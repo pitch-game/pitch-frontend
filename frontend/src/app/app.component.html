@@ -7,7 +7,7 @@
     <div class="pad-xs">
         <span class="badge badge-warning">NEW PACK!</span>
     </div>
-    <div (click)="spin('c')" class="player gold" [ngClass]="spins['c'] || 'unopened'">
+    <div (click)="spin('c')" class="player special" [ngClass]="spins['c'] || 'unopened'">
       <span class="position">{{players['c']?.Position || '?'}}</span>
       <span class="name">{{players['c']?.Name || '?'}}</span>
       <span class="rating">{{players['c']?.Rating || '?'}}</span>
