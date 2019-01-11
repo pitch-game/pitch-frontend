@@ -27,8 +27,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.less",
-              "node_modules/shoelace-css/dist/shoelace.css"
+              "src/styles.css"
             ],
             "scripts": []
           },
