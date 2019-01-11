@@ -1,0 +1,141 @@
+/* You can add global styles to this file, and also import other style files */
+.gradient-animation(@start, @end) {
+    background-size: 100%;
+    background-image: -webkit-linear-gradient(@start, @end);
+    background-image: linear-gradient(@start, @end);
+}
+
+.player {
+    cursor: pointer;
+    user-select: none;
+    display: inline-block !important;
+    width: 140px;
+    height: 140px;
+    display: block;
+    -webkit-clip-path: polygon(50% 0%, 93% 19%, 85% 86%, 50% 100%, 15% 86%, 7% 19%);
+    clip-path: polygon(50% 0%, 93% 19%, 85% 86%, 50% 100%, 15% 86%, 7% 19%);
+    //background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+    //background: radial-gradient(ellipse farthest-corner at left top, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+    // gradient animation mixin
+    // background: #0099F7;  /* fallback for old browsers */
+    // background: -webkit-linear-gradient(to right, #F11712, #0099F7);  /* Chrome 10-25, Safari 5.1-6 */
+    // background: linear-gradient(to right, #F11712, #0099F7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    text-align: center;
+  
+    &.unopened {
+      background-image: linear-gradient(whitesmoke, lightgrey) !important;
+  
+      .name,
+      .rating,
+      .position {
+        opacity: 0;
+      }
+    }
+  
+    .position {
+      margin-top: 15px;
+      display: block;
+      position: relative;
+      font-size: 14px;
+    }
+  
+    .name {
+      font-size: 18px;
+      margin-top: 10px;
+      display: block;
+      position: relative;
+    }
+  
+    .rating {
+      display: block;
+      position: relative;
+      font-size: 45px;
+      margin-top:-5px;
+    }
+  
+    &.gold {
+      //background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+      //background: radial-gradient(ellipse farthest-corner at left top, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+      .gradient-animation(#9f7928, #FEDB37);
+    }
+  
+    &.silver {
+      .gradient-animation(grey, silver);
+    }
+  
+    &.bronze {
+      .gradient-animation(#cd7f32, #be7023);
+    }
+  
+    &.special {
+      background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+      background-size: 120% 120%;
+      animation: Gradient 3s ease infinite;
+    }
+  
+    &.spin {
+      cursor: default;
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 2800ms;
+      -webkit-animation-iteration-count: 1;
+      -webkit-animation-timing-function: ease;
+  
+      > .name {
+        animation: 5000ms fadeIn linear;
+        animation-fill-mode: forwards;
+      }
+  
+      > .rating {
+        animation: 4000ms fadeIn linear;
+        animation-fill-mode: forwards;
+      }
+  
+      > .position {
+        animation: 3000ms fadeIn linear;
+        animation-fill-mode: forwards;
+      }
+    }
+  
+    &.event {
+      color: white;
+      .gradient-animation(#3B3C36, #2C2D27);
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    95% {
+      opacity: 0;
+    }
+  
+    98% {
+      opacity: 0.5;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes spin {
+    100% {
+      -webkit-transform: rotatey(0deg);
+      transform: rotatey(2520deg);
+    }
+  }
+  @keyframes Gradient {
+    0% {
+      background-position: 0 50%;
+    }
+  
+    50% {
+      background-position: 100% 50%;
+    }
+  
+    100% {
+      background-position: 0 50%;
+    }
+  }
+  

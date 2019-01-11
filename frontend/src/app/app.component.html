@@ -1,54 +1,56 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<!-- <div style="text-align:center">
-  <h1 class="bg-secondary mar-0 pad-sm text-light">
-    Welcome to {{ title }}!
-  </h1>
-  <div class="bg-primary pad-md">
-    <div class="pad-xs">
-        <span class="badge badge-warning">NEW PACK!</span>
-    </div>
-    <div (click)="spin('c')" class="player special" [ngClass]="spins['c'] || 'unopened'">
-      <span class="position">{{players['c']?.Position || '?'}}</span>
-      <span class="name">{{players['c']?.Name || '?'}}</span>
-      <span class="rating">{{players['c']?.Rating || '?'}}</span>
-    </div>
-  </div>
-</div> -->
-
-<nav class="flex items-center justify-between flex-wrap bg-teal p-6">
+<nav class="flex items-center justify-between flex-wrap bg-indigo-dark p-6">
   <div class="flex items-center flex-no-shrink text-white mr-6">
     <span class="font-semibold text-xl tracking-tight">Pitch</span>
   </div>
   <div class="block lg:hidden">
-    <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
+    <button class="flex items-center px-3 py-2 border rounded text-indigo border-indigo-light hover:text-white hover:border-white">
       <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
     </button>
   </div>
   <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
     <div class="text-sm lg:flex-grow">
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Competitive
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Seasons
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Challenges
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Squad
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Marketplace
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white">
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white">
         Store
       </a>
     </div>
     <div>
-      <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0">Download</a>
+      <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
+        Login
+      </a>
     </div>
   </div>
 </nav>
+
+<div class="bg-indigo-darkest text-center py-4 lg:px-4">
+    <div class="p-2 bg-indigo-darker items-center text-indigo-lightest leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+      <span class="flex rounded-full bg-indigo uppercase px-2 py-1 text-xs font-bold mr-3">New</span>
+      <span class="font-semibold mr-2 text-left flex-auto">Team of the year packs in store now!</span>
+      <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+    </div>
+</div>
+
+<div class="bg-indigo text-center py-4 lg:px-4">
+    <div (click)="spin('c')" class="player special" [ngClass]="spins['c'] || 'unopened'">
+        <span class="position">{{players['c']?.Position || '?'}}</span>
+        <span class="name">{{players['c']?.Name || '?'}}</span>
+        <span class="rating">{{players['c']?.Rating || '?'}}</span>
+      </div>
+</div>
 
 <router-outlet></router-outlet>
