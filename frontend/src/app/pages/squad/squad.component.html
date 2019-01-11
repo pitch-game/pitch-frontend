@@ -1,0 +1,7 @@
+<div class="bg-indigo text-center py-4 lg:px-4">
+    <div (click)="spin('c')" class="player special" [ngClass]="spins['c'] || 'unopened'">
+        <span class="position">{{players['c']?.Position || '?'}}</span>
+        <span class="name">{{players['c']?.Name || '?'}}</span>
+        <span class="rating">{{players['c']?.Rating || '?'}}</span>
+      </div>
+</div>

@@ -1,37 +1,43 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<nav class="flex items-center justify-between flex-wrap bg-indigo-dark p-6">
+<nav class="flex items-center justify-between flex-wrap bg-indigo-dark p-3 pb-2">
   <div class="flex items-center flex-no-shrink text-white mr-6">
-    <span class="font-semibold text-xl tracking-tight">Pitch</span>
+    <span routerLink="/" class="font-semibold text-xl tracking-tight">Pitch</span>
   </div>
-  <div class="block lg:hidden">
-    <button class="flex items-center px-3 py-2 border rounded text-indigo border-indigo-light hover:text-white hover:border-white">
-      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-    </button>
+  <div class="flex items-right flex-no-shrink text-white text-sm">
+    <a href="http://updates.pitch-ga.me" class="font-semibold tracking-tight text-indigo-lighter"> 1.0.4 alpha</a>
   </div>
+</nav>
+<nav class="flex items-center justify-between flex-wrap bg-indigo-dark p-3 pt-0">
   <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
     <div class="text-sm lg:flex-grow">
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
+        <svg class="h-4 w-4 mt-2 mr-1 text-indigo fill-current" viewBox="0 0 32 32">
+            <path d="M26 6v-4h-20v4h-6v4c0 3.314 2.686 6 6 6 0.627 0 1.232-0.096 1.801-0.275 1.443 2.063 3.644 3.556 6.199 4.075v6.2h-2c-2.209 0-4 1.791-4 4h16c0-2.209-1.791-4-4-4h-2v-6.2c2.555-0.519 4.756-2.012 6.199-4.075 0.568 0.179 1.173 0.275 1.801 0.275 3.314 0 6-2.686 6-6v-4h-6zM6 13.625c-1.999 0-3.625-1.626-3.625-3.625v-2h3.625v2c0 1.256 0.232 2.457 0.655 3.565-0.213 0.039-0.431 0.060-0.655 0.060zM29.625 10c0 1.999-1.626 3.625-3.625 3.625-0.224 0-0.442-0.021-0.655-0.060 0.423-1.107 0.655-2.309 0.655-3.565v-2h3.625v2z"></path>
+        </svg>
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter mr-4 cursor-not-allowed opacity-50">
         Competitive
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
+      <a routerLink="/seasons" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Seasons
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter mr-4 cursor-not-allowed opacity-50">
+        Leagues
+      </a>
+      <a routerLink="/challenges" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Challenges
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
+      <a routerLink="/squad" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Squad
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter mr-4 cursor-not-allowed opacity-50">
         Marketplace
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white">
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter cursor-not-allowed opacity-50">
         Store
       </a>
     </div>
     <div>
-      <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
-        Login
+      <a href="#" class="inline-block text-sm px-4 py-2 leading-none rounded text-white border-white hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
+        user492 (5)
       </a>
     </div>
   </div>
@@ -45,12 +51,6 @@
     </div>
 </div>
 
-<div class="bg-indigo text-center py-4 lg:px-4">
-    <div (click)="spin('c')" class="player special" [ngClass]="spins['c'] || 'unopened'">
-        <span class="position">{{players['c']?.Position || '?'}}</span>
-        <span class="name">{{players['c']?.Name || '?'}}</span>
-        <span class="rating">{{players['c']?.Rating || '?'}}</span>
-      </div>
+<div [@routeAnimations]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
 </div>
-
-<router-outlet></router-outlet>
