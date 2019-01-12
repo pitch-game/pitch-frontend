@@ -35,3 +35,30 @@ Online multiplayer football trading card game
 ## Store
 - Special packs should be able to be created by content team e.g 'Sunday Attacking Special' or as achievements e.g '5-0 Loser' etc...
 - Buy packs via PayPal
+
+## Minimum viable product
+I will write a blog post about each of these points until we launch alpha:
+
+### Alpha
+- Technologies and boiler plating
+- Deployments
+- OpenID login with Google account
+- Player data structure
+- Squads and editor
+- Pack system with player weighting
+- Seasons (Quickmatch) with matchmaking (Signlr?)
+- Game engine
+- XP & Reward system basics
+- Store (ingame currency)
+- Player data
+- Responsive (PC & Mobile)
+
+### Beta
+- Frontend & API testing
+- Completely data driven
+- Challenge engine
+- Player stats
+- Team stats
+- Leagues
+
+
