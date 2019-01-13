@@ -41,10 +41,12 @@ namespace api
                 options.IncludeErrorDetails = true;
             });
 
+            services.AddEntityFrameworkCosmosSql();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                {
                    // Configure the context to use Microsoft SQL Server.
-                   options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                   options.UseCosmosSql(new Uri(Configuration["CosmosDb:EndpointURI"]), Configuration["CosmosDb:PrivateKey"], "test-db");
 
                    // Register the entity sets needed by OpenIddict.
                    // Note: use the generic overload if you need
