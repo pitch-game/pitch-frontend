@@ -12,8 +12,13 @@ import { slideInAnimation } from './animations';
 })
 export class AppComponent {
   title = 'Pitch';
+  showMenu = false;
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
+
+  toggleMenu(){
+    this.showMenu = !this.showMenu;
   }
 }
