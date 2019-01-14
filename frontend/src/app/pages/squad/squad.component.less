@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 .gradient-animation(@start, @end) {
     background-size: 100%;
     background-image: -webkit-linear-gradient(@start, @end);
@@ -7,30 +6,85 @@
 
 .player {
     cursor: pointer;
+    display: inline-block;
+    -webkit-clip-path: polygon(50% 0%, 93% 19%, 85% 86%, 50% 100%, 15% 86%, 7% 19%);
+    clip-path: polygon(50% 0%, 93% 19%, 85% 86%, 50% 100%, 15% 86%, 7% 19%);
+    overflow:hidden;
+    position:relative;
+}
+
+.ribbon {
+  position:absolute;
+  background-color:#D0D0D0;
+  display:block;
+  opacity:90;
+  z-index:99;
+
+  &.bow-left {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 15px 26.0px;
+    border-color: transparent transparent transparent #C0C0C0;
+    background-color:transparent;
+    top:15px;
+    left:50px;
+    z-index:9999;
+  }
+
+  &.bow-right {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 26.0px 15px 0;
+    border-color: transparent #C0C0C0 transparent transparent;
+    background-color:transparent;
+    top:15px;
+    left:63px;
+    z-index:9999;
+  }
+
+  &.ribbon-left {
+    top:20px;
+    width:60px;
+    height:20px;
+  }
+
+  &.ribbon-right {
+    top:20px;
+    width:50px;
+    height:20px;
+    left:80px;
+  }
+
+  &.ribbon-top {
+    width:20px;
+    height:50px;
+    left:60px;
+  }
+
+  &.ribbon-bottom {
+    width:20px;
+    height:90px;
+    left:60px;
+    top:50px
+  }
+}
+
+.shield {
     user-select: none;
     display: inline-block !important;
     width: 140px;
     height: 140px;
     display: block;
-    -webkit-clip-path: polygon(50% 0%, 93% 19%, 85% 86%, 50% 100%, 15% 86%, 7% 19%);
-    clip-path: polygon(50% 0%, 93% 19%, 85% 86%, 50% 100%, 15% 86%, 7% 19%);
-    //background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-    //background: radial-gradient(ellipse farthest-corner at left top, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-    // gradient animation mixin
-    // background: #0099F7;  /* fallback for old browsers */
-    // background: -webkit-linear-gradient(to right, #F11712, #0099F7);  /* Chrome 10-25, Safari 5.1-6 */
-    // background: linear-gradient(to right, #F11712, #0099F7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     text-align: center;
-  
-    &.unopened {
-      background-image: linear-gradient(whitesmoke, lightgrey) !important;
-  
+
+
       .name,
       .rating,
       .position {
         opacity: 0;
       }
-    }
   
     .position {
       margin-top: 15px;
@@ -41,7 +95,7 @@
   
     .name {
       font-size: 18px;
-      margin-top: 10px;
+      margin-top: 14px;
       display: block;
       position: relative;
     }
@@ -50,13 +104,15 @@
       display: block;
       position: relative;
       font-size: 45px;
-      margin-top:-5px;
+      margin-top:10px;
     }
   
     &.gold {
       //background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
       //background: radial-gradient(ellipse farthest-corner at left top, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-      .gradient-animation(#9f7928, #FEDB37);
+      background: #F2994A;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to top, #F2C94C, #F2994A);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to top, #F2C94C, #F2994A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
   
     &.silver {
@@ -66,76 +122,21 @@
     &.bronze {
       .gradient-animation(#cd7f32, #be7023);
     }
+
+    &.cover {
+      background: linear-gradient(whitesmoke, lightgrey) !important;
+    }
   
     &.special {
-      background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-      background-size: 120% 120%;
-      animation: Gradient 3s ease infinite;
+      background: #B993D6;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to top, #8CA6DB, #B993D6);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to top, #8CA6DB, #B993D6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
-  
-    &.spin {
-      cursor: default;
-      // -webkit-animation-name: spin;
-      // -webkit-animation-duration: 2800ms;
-      // -webkit-animation-iteration-count: 1;
-      // -webkit-animation-timing-function: ease;
-  
-      > .name {
-        animation: 5000ms fadeIn linear;
-        animation-fill-mode: forwards;
-      }
-  
-      > .rating {
-        animation: 4000ms fadeIn linear;
-        animation-fill-mode: forwards;
-      }
-  
-      > .position {
-        animation: 3000ms fadeIn linear;
-        animation-fill-mode: forwards;
-      }
+
+    &.super-rare {
+      background: #c31432;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to top, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to top, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
-  
-    &.event {
-      color: white;
-      .gradient-animation(#3B3C36, #2C2D27);
-    }
+
   }
-
-  // @keyframes fadeIn {
-  //   0% {
-  //     opacity: 0;
-  //   }
-
-  //   95% {
-  //     opacity: 0;
-  //   }
-  
-  //   98% {
-  //     opacity: 0.5;
-  //   }
-  
-  //   100% {
-  //     opacity: 1;
-  //   }
-  // }
-  // @keyframes spin {
-  //   100% {
-  //     -webkit-transform: rotatey(0deg);
-  //     transform: rotatey(2520deg);
-  //   }
-  // }
-  // @keyframes Gradient {
-  //   0% {
-  //     background-position: 0 50%;
-  //   }
-  
-  //   50% {
-  //     background-position: 100% 50%;
-  //   }
-  
-  //   100% {
-  //     background-position: 0 50%;
-  //   }
-  // }
-  
