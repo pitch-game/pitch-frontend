@@ -8,13 +8,16 @@
   </div>
   <div class="block lg:hidden">
     <button (click)="toggleMenu()" class="flex items-center px-3 py-2 border rounded text-indigo-lighter border-indigo-light hover:text-white hover:border-white">
-      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <title>Menu</title>
+        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+      </svg>
     </button>
   </div>
 </nav>
 <nav class="lg:flex items-center justify-between flex-wrap bg-indigo-dark p-3 pt-0 hidden lg:block" [ngClass]="{'block' : showMenu, 'hidden' : !showMenu}">
   <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-    <div class="text-sm lg:flex-grow">
+    <div class="text-sm lg:flex-grow text-right lg:text-left pt-2 lg:pt-0">
       <a routerLink="/seasons" class="block lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Seasons
       </a>
@@ -28,20 +31,22 @@
         Store
       </a>
     </div>
-    <div>
-      <a href="#" class="inline-block text-sm px-4 py-2 leading-none rounded text-white border-white hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
-        user492 (5)
-      </a>
-    </div>
+    <div class="">
+        <a href="#" class="inline-block text-sm px-4 py-2 leading-none rounded text-white border-white bg-indigo-light hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
+          user492 (5)
+        </a>
+      </div>
   </div>
 </nav>
 
 <div class="bg-indigo-darkest text-center py-4 lg:px-4">
-    <div class="p-2 bg-indigo-darker items-center text-indigo-lightest leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-      <span class="flex rounded-full bg-indigo uppercase px-2 py-1 text-xs font-bold mr-3">New</span>
-      <span class="font-semibold mr-2 text-left flex-auto">Team of the year packs in store now!</span>
-      <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
-    </div>
+  <div class="p-2 bg-indigo-darker items-center text-indigo-lightest leading-none lg:rounded-full flex lg:inline-flex"
+    role="alert">
+    <span class="flex rounded-full bg-indigo uppercase px-2 py-1 text-xs font-bold mr-3">New</span>
+    <span class="font-semibold mr-2 text-left flex-auto">Team of the year packs in store now!</span>
+    <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+      <path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z" /></svg>
+  </div>
 </div>
 
 <div [@routeAnimations]="prepareRoute(outlet)">
