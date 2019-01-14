@@ -1,9 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <nav class="flex items-center justify-between flex-wrap bg-indigo-dark p-3 pb-2">
-  <div class="flex items-center flex-no-shrink text-white mr-6">
+  <div class="flex items-left flex-no-shrink text-white">
     <span routerLink="/" class="font-semibold text-xl tracking-tight">Pitch</span>
   </div>
-  <div class="flex items-right flex-no-shrink text-white text-sm">
+  <div class="flex items-center flex-no-shrink text-white text-sm">
     <a href="http://updates.pitch-ga.me" class="font-semibold tracking-tight text-indigo-lighter"> 1.0.4 alpha</a>
   </div>
   <div class="block lg:hidden">
@@ -15,17 +15,8 @@
 <nav class="lg:flex items-center justify-between flex-wrap bg-indigo-dark p-3 pt-0 hidden lg:block" [ngClass]="{'block' : showMenu, 'hidden' : !showMenu}">
   <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
     <div class="text-sm lg:flex-grow">
-      <a class="block lg:inline-block lg:mt-0 text-indigo-lighter mr-4 cursor-not-allowed opacity-50">
-          <svg class="h-4 w-4 mr-1 text-indigo fill-current inline-block" viewBox="0 0 32 32">
-              <path d="M26 6v-4h-20v4h-6v4c0 3.314 2.686 6 6 6 0.627 0 1.232-0.096 1.801-0.275 1.443 2.063 3.644 3.556 6.199 4.075v6.2h-2c-2.209 0-4 1.791-4 4h16c0-2.209-1.791-4-4-4h-2v-6.2c2.555-0.519 4.756-2.012 6.199-4.075 0.568 0.179 1.173 0.275 1.801 0.275 3.314 0 6-2.686 6-6v-4h-6zM6 13.625c-1.999 0-3.625-1.626-3.625-3.625v-2h3.625v2c0 1.256 0.232 2.457 0.655 3.565-0.213 0.039-0.431 0.060-0.655 0.060zM29.625 10c0 1.999-1.626 3.625-3.625 3.625-0.224 0-0.442-0.021-0.655-0.060 0.423-1.107 0.655-2.309 0.655-3.565v-2h3.625v2z"></path>
-          </svg>
-        Competitive
-      </a>
-      <a routerLink="/seasons" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
+      <a routerLink="/seasons" class="block lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Seasons
-      </a>
-      <a class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter mr-4 cursor-not-allowed opacity-50">
-        Leagues
       </a>
       <a routerLink="/challenges" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Challenges
@@ -33,10 +24,7 @@
       <a routerLink="/squad" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Squad
       </a>
-      <a class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter mr-4 cursor-not-allowed opacity-50">
-        Marketplace
-      </a>
-      <a class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter cursor-not-allowed opacity-50">
+      <a routerLink="/store" class="block mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Store
       </a>
     </div>
