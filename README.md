@@ -3,10 +3,6 @@ Online multiplayer football trading card game
 
 ## Game Modes
 
-### Competitive Mode
-- Users enter by a certain date
-- Fixtures are drawn up and are then fixed
-
 ### Seasons
 - Season is based on points per games rolling per month
 - Users are ranked based on results and given a rank level between 50 and 1
@@ -42,8 +38,9 @@ I will write a blog post about each of these points until we launch alpha:
 ### Alpha
 - Technologies and boiler plating
 - Deployments
-- OpenID login with Google account
-- Player data structure
+- Authorisation and OpenID
+- Data storage
+- Player
 - Squads and editor
 - Pack system with player weighting
 - Seasons (Quickmatch) with matchmaking (Signlr?)
