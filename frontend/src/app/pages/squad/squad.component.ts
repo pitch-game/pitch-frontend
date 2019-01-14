@@ -6,7 +6,7 @@ import anime from 'animejs';
   templateUrl: "./squad.component.html",
   styleUrls: ["./squad.component.less"]
 })
-export class SquadComponent implements OnInit, AfterViewInit {
+export class SquadComponent implements OnInit {
   constructor() {}
   ngOnInit() {}
 
