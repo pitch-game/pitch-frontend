@@ -16,8 +16,8 @@
   </div>
 </nav>
 <nav class="lg:flex items-center justify-between flex-wrap bg-indigo-dark p-3 pt-0 hidden lg:block" [ngClass]="{'block' : showMenu, 'hidden' : !showMenu}">
-  <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-    <div class="text-sm lg:flex-grow text-right lg:text-left pt-2 lg:pt-0">
+  <div class="w-full block flex-grow flex lg:items-center lg:w-auto flex-row-reverse lg:flex-row">
+    <div class="text-sm lg:flex-auto text-right lg:text-left pt-2 lg:pt-0">
       <a routerLink="/seasons" class="block lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
         Seasons
       </a>
@@ -31,7 +31,7 @@
         Store
       </a>
     </div>
-    <div class="">
+    <div class="flex-grow lg:flex-none">
         <a href="#" class="inline-block text-sm px-4 py-2 leading-none rounded text-white border-white bg-indigo-light hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
           user492 (5)
         </a>
