@@ -5,5 +5,6 @@ namespace api.Models
 {
   public class ApplicationUser : IdentityUser
   {
+    public long GoogleId { get; set; }
   }
 }
