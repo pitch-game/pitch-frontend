@@ -33,7 +33,8 @@ namespace api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddGoogle(options => {
+            .AddGoogle(options =>
+            {
                 options.ClientId = Configuration["Authentication:Google:ClientId"];
                 options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
             })
@@ -51,12 +52,50 @@ namespace api
                {
                    // Configure the context to use Microsoft SQL Server.
                    options.UseCosmosSql(new Uri(Configuration["CosmosDb:EndpointURI"]), Configuration["CosmosDb:PrivateKey"], "pitch");
+
+                    // Register the entity sets needed by OpenIddict.
+                    // Note: use the generic overload if you need
+                    // to replace the default OpenIddict entities.
+                    options.UseOpenIddict();
                });
 
             // Register the Identity services.
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddOpenIddict()
+            .AddCore(options =>
+            {
+                // Configure OpenIddict to use the Entity Framework Core stores and entities.
+                options.UseEntityFrameworkCore().UseDbContext<ApplicationDbContext>();
+            })
+            .AddServer(options =>
+            {
+                // Register the ASP.NET Core MVC binder used by OpenIddict.
+                // Note: if you don't call this method, you won't be able to
+                // bind OpenIdConnectRequest or OpenIdConnectResponse parameters.
+                options.UseMvc();
+
+                // Enable the token endpoint (required to use the password flow).
+                //options.EnableTokenEndpoint("/connect/token");
+
+                // Allow client applications to use the grant_type=password flow.
+                //options.AllowPasswordFlow();
+                options.AllowAuthorizationCodeFlow();
+                options.AllowImplicitFlow();
+                
+                options.AllowRefreshTokenFlow();
+
+                // During development, you can disable the HTTPS requirement.
+                options.DisableHttpsRequirement();
+
+                // Accept token requests that don't specify a client_id.
+                options.AcceptAnonymousClients();
+
+                options.UseJsonWebTokens();
+            })
+            .AddValidation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
