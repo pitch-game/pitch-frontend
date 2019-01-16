@@ -25,7 +25,9 @@ public class AuthorizationController : Controller
         _userManager = userManager;
     }
 
-    [HttpGet("~/connect/token")]
+    //https://localhost:5001/connect/authorize?client_id=pitch-api&redirect_uri=http://localhost:4200&response_type=id_token&scope=openid&nonce=1
+
+    [HttpGet("~/connect/authorize")]
     public async Task<IActionResult> Authorize(OpenIdConnectRequest request)
     {
         // Check if user is authenticated

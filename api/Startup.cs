@@ -15,6 +15,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using OpenIddict.Abstractions;
+using OpenIddict.Core;
+using OpenIddict.EntityFrameworkCore.Models;
 
 namespace api
 {
@@ -51,12 +54,12 @@ namespace api
             services.AddDbContext<ApplicationDbContext>(options =>
                {
                    // Configure the context to use Microsoft SQL Server.
-                   options.UseCosmosSql(new Uri(Configuration["CosmosDb:EndpointURI"]), Configuration["CosmosDb:PrivateKey"], "pitch");
+                   options.UseInMemoryDatabase("pitch");
 
-                    // Register the entity sets needed by OpenIddict.
-                    // Note: use the generic overload if you need
-                    // to replace the default OpenIddict entities.
-                    options.UseOpenIddict();
+                   // Register the entity sets needed by OpenIddict.
+                   // Note: use the generic overload if you need
+                   // to replace the default OpenIddict entities.
+                   options.UseOpenIddict();
                });
 
             // Register the Identity services.
@@ -78,14 +81,14 @@ namespace api
                 options.UseMvc();
 
                 // Enable the token endpoint (required to use the password flow).
-                //options.EnableTokenEndpoint("/connect/token");
+                options.EnableAuthorizationEndpoint("/connect/authorize");
 
                 // Allow client applications to use the grant_type=password flow.
                 //options.AllowPasswordFlow();
-                options.AllowAuthorizationCodeFlow();
+                //options.AllowAuthorizationCodeFlow();
                 options.AllowImplicitFlow();
-                
-                options.AllowRefreshTokenFlow();
+
+                //options.AllowRefreshTokenFlow();
 
                 // During development, you can disable the HTTPS requirement.
                 options.DisableHttpsRequirement();
@@ -94,12 +97,18 @@ namespace api
                 options.AcceptAnonymousClients();
 
                 options.UseJsonWebTokens();
+
+                options.AddDevelopmentSigningCertificate();
+
+                options.IgnoreEndpointPermissions();
+                options.IgnoreGrantTypePermissions();
+                options.IgnoreScopePermissions();
             })
             .AddValidation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -109,6 +118,27 @@ namespace api
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+            }
+
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                await context.Database.EnsureCreatedAsync();
+
+                // Note: when using a custom entity or a custom key type, replace OpenIddictApplication by the appropriate type.
+                var manager = scope.ServiceProvider.GetRequiredService<OpenIddictApplicationManager<OpenIddictApplication>>();
+
+                if (await manager.FindByClientIdAsync("pitch-api") == null)
+                {
+                    var descriptor = new OpenIddictApplicationDescriptor
+                    {
+                        ClientId = "pitch-api",
+                        ClientSecret = "hello",
+                        RedirectUris = { new Uri("http://localhost:4200") }
+                    };
+
+                    await manager.CreateAsync(descriptor);
+                }
             }
 
             app.UseAuthentication();
