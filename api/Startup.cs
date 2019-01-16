@@ -29,6 +29,8 @@ namespace AuthorizationServer
 
         public IConfiguration Configuration { get; }
 
+        // http://localhost:5000/connect/authorize?client_id=angular-app&redirect_uri=https%3A%2F%2Foidcdebugger.com%2Fdebug&scope=openid&response_type=id_token&response_mode=form_post&nonce=tbgr049ja3
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -52,15 +54,20 @@ namespace AuthorizationServer
                     options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
 
                     //options.Scope.Add("user:email");
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = "http://localhost:5000";
+                    options.Audience = "angular-app";
+                    options.RequireHttpsMetadata = false;
                 });
-                //.AddOAuthValidation();
 
             services.AddOpenIddict()
             .AddCore(options =>
-        {
-            // Configure OpenIddict to use the Entity Framework Core stores and entities.
-            options.UseEntityFrameworkCore().UseDbContext<AuthorizationDbContext>();
-        })
+            {
+                // Configure OpenIddict to use the Entity Framework Core stores and entities.
+                options.UseEntityFrameworkCore().UseDbContext<AuthorizationDbContext>();
+            })
             .AddServer(options =>
             {
                 // Register the ASP.NET Core MVC binder used by OpenIddict
