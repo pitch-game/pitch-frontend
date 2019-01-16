@@ -29,7 +29,7 @@ namespace AuthorizationServer
 
         public IConfiguration Configuration { get; }
 
-        // http://localhost:5000/connect/authorize?client_id=angular-app&redirect_uri=https%3A%2F%2Foidcdebugger.com%2Fdebug&scope=openid&response_type=id_token&response_mode=form_post&nonce=tbgr049ja3
+        // http://localhost:5000/connect/authorize?client_id=angular-app&redirect_uri=https%3A%2F%2Foidcdebugger.com%2Fdebug&scope=openid&response_type=id_token&response_mode=fragment&nonce=tbgr049ja3
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
