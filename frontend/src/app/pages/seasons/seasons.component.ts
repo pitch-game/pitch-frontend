@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { environment } from 'src/environments/environment.prod'; //TODO
-
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: "app-seasons",

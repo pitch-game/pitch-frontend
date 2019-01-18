@@ -54,12 +54,10 @@ namespace AuthorizationServer
                 {
                     options.ClientId = Configuration["Authentication:Google:ClientId"];
                     options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-
-                    //options.Scope.Add("user:email");
                 })
                 .AddJwtBearer(options =>
                 {
-                    options.Authority = "http://localhost:5000";
+                    options.Authority = Configuration["AppUri"];
                     options.Audience = "angular-app";
                     options.RequireHttpsMetadata = false;
                 });
