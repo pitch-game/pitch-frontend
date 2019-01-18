@@ -46,6 +46,8 @@ namespace AuthorizationServer
 
             services.AddMvc();
 
+            services.AddCors();
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie()
                 .AddGoogle(options =>
@@ -100,6 +102,8 @@ namespace AuthorizationServer
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder => builder.WithOrigins(new string[] {"http://localhost:4200", "http://pitch-webapp.azurewebsites.net"}).AllowAnyHeader());
 
             app.UseAuthentication();
 
