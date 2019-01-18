@@ -44,9 +44,9 @@ namespace AuthorizationServer
                 options.UseOpenIddict();
             });
 
-            services.AddMvc();
-
             services.AddCors();
+
+            services.AddMvc();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie()

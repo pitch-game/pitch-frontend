@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 [Route("api/[controller]")]
-public class TestController : Controller {
+[ApiController]
+public class TestController : ControllerBase {
     [HttpGet]
     public JsonResult GetTestItem(){
         return new JsonResult("test");
