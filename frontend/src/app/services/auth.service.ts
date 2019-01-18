@@ -1,6 +1,8 @@
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 import { UserManager, UserManagerSettings, User } from "oidc-client";
 import { environment } from "src/environments/environment";
+import { Observable, from } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: "root"
@@ -8,6 +10,7 @@ import { environment } from "src/environments/environment";
 export class AuthService {
   private manager = new UserManager(getClientSettings());
   private user: User = null;
+  public onAuthenticationCompleted: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     this.manager.getUser().then(user => {
@@ -15,8 +18,14 @@ export class AuthService {
     });
   }
 
-  isLoggedIn(): boolean {
-    return this.user != null && !this.user.expired;
+  isLoggedIn(): Observable<boolean> {
+    return from(this.manager.getUser()).pipe(map<User, boolean>((user) => {
+      if (user) {
+        return true;
+      } else {
+        return false;
+      }
+    }));
   }
 
   getClaims(): any {
@@ -35,6 +44,7 @@ export class AuthService {
   completeAuthentication(): Promise<void> {
     return this.manager.signinRedirectCallback().then(user => {
       this.user = user;
+      this.onAuthenticationCompleted.emit();
     });
   }
 }

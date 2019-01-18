@@ -6,14 +6,15 @@ import { AuthService } from "./auth.service";
   providedIn: "root"
 })
 export class AuthGuardService implements CanActivate {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
-  canActivate(): boolean {
-    if (this.authService.isLoggedIn()) {
-      return true;
-    }
-
-    this.authService.startAuthentication();
-    return false;
+  canActivate() {
+    let isLoggedIn = this.authService.isLoggedIn();
+    isLoggedIn.subscribe((loggedin) => {
+      if (!loggedin) {
+        return true;
+      }
+    });
+    return isLoggedIn;
   }
 }

@@ -14,18 +14,27 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'Pitch';
   showMenu = false;
+  isLoggedIn: boolean;
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService) {
+    this.authService.isLoggedIn().subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+    });
+
+    this.authService.onAuthenticationCompleted.subscribe(() => {
+      this.isLoggedIn = true;
+    });
+  }
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 
-  toggleMenu(){
+  toggleMenu() {
     this.showMenu = !this.showMenu;
   }
 
-  login(){
+  login() {
     this.authService.startAuthentication();
   }
 }
