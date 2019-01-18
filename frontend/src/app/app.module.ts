@@ -8,20 +8,26 @@ import { SeasonsComponent } from './pages/seasons/seasons.component';
 import { ChallengesComponent } from './pages/challenges/challenges.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     SquadComponent,
     SeasonsComponent,
-    ChallengesComponent
+    ChallengesComponent,
+    AuthCallbackComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuardService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
