@@ -103,7 +103,7 @@ namespace AuthorizationServer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder => builder.WithOrigins(new string[] {"http://localhost:4200", "http://pitch-webapp.azurewebsites.net"}).AllowAnyHeader());
+            app.UseCors(builder => builder.WithOrigins(new string[] {"http://localhost:4200", "http://pitch-webapp.azurewebsites.net"}).AllowAnyHeader().AllowCredentials());
 
             app.UseAuthentication();
 
