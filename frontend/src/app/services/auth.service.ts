@@ -43,8 +43,8 @@ export function getClientSettings(): UserManagerSettings {
   return {
     authority: environment.apiEndpoint,
     client_id: "angular-app",
-    redirect_uri: "http://localhost:4200/auth-callback",
-    post_logout_redirect_uri: "http://localhost:4200/",
+    redirect_uri: environment.appUri + "/auth-callback",
+    post_logout_redirect_uri: environment.appUri,
     response_type: "id_token",
     scope: "openid",
     filterProtocolClaims: true,
