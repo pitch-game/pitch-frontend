@@ -32,7 +32,7 @@
       </a>
     </div>
     <div class="flex-grow lg:flex-none">
-        <a href="#" (click)="!!login()" class="inline-block text-sm px-4 py-2 leading-none rounded text-white border-white bg-indigo-light hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
+        <a href="#" (click)="login()" class="inline-block text-sm px-4 py-2 leading-none rounded text-white border-white bg-indigo-light hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
           <span *ngIf="!authService.isLoggedIn()">Login</span>
           <span *ngIf="authService.isLoggedIn()">Welcome, {{authService.getClaims().name}}</span>
         </a>
