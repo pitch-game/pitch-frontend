@@ -125,8 +125,8 @@ namespace AuthorizationServer
                     {
                         ClientId = "angular-app",
                         DisplayName = "Angular Application",
-                        PostLogoutRedirectUris = { new Uri("https://oidcdebugger.com/debug") },
-                        RedirectUris = { new Uri("https://oidcdebugger.com/debug") }
+                        PostLogoutRedirectUris = { new Uri("http://localhost:4200"), new Uri("http://pitch-webapp.azurewebsites.net") },
+                        RedirectUris = { new Uri("http://localhost:4200/auth-callback"), new Uri("http://pitch-webapp.azurewebsites.net/auth-callback") }
                     };
 
                     await manager.CreateAsync(descriptor, cancellationToken);
