@@ -1,0 +1,14 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+build_script:
+- cmd: dotnet publish ./src/api/api.csproj
+artifacts:
+- path: src\api\bin\Debug\netcoreapp2.2\publish
+  name: pitch-api
+deploy:
+- provider: AzureAppServiceZipDeploy
+  website: pitch-api
+  username: $pitch-api
+  password:
+    secure: 9UfALmBvkt2ikqf1/Ga3OrLKS3/idP05YhOyWQk+u8JromsJH7D/vXCCZ4AvOGNAGTxvsWUilp1CiYyCXuVKWQ==
+  artifact: src\api\bin\Debug\netcoreapp2.2\pitch-api.zip

@@ -92,8 +92,8 @@ echo Handling node.js deployment.
 call :SelectNodeVersion
 
 :: 3. Install npm packages
-IF EXIST "%DEPLOYMENT_SOURCE%\frontend\package.json" (
-  pushd "%DEPLOYMENT_SOURCE%\frontend"
+IF EXIST "%DEPLOYMENT_SOURCE%\src\frontend\package.json" (
+  pushd "%DEPLOYMENT_SOURCE%\src\frontend"
   call :ExecuteCmd !NPM_CMD! install
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
@@ -101,8 +101,8 @@ IF EXIST "%DEPLOYMENT_SOURCE%\frontend\package.json" (
 
 echo Handling Angular build   
 :: 4. Build ng app
-IF EXIST "%DEPLOYMENT_SOURCE%\frontend\package.json" (
-  pushd "%DEPLOYMENT_SOURCE%\frontend"
+IF EXIST "%DEPLOYMENT_SOURCE%\src\frontend\package.json" (
+  pushd "%DEPLOYMENT_SOURCE%\src\frontend"
   call :ExecuteCmd "!NODE_EXE!" ./node_modules/@angular/cli/bin/ng build --prod
   IF !ERRORLEVEL! NEQ 0 goto error
   :: the next line is optional to fix 404 error see section #8
@@ -113,7 +113,7 @@ IF EXIST "%DEPLOYMENT_SOURCE%\frontend\package.json" (
 
 :: 4. KuduSync
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%\frontend\dist\pitch-frontend" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%\src\frontend\dist\pitch-frontend" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
