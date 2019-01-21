@@ -11,7 +11,14 @@ install:
     npm install
 build_script:
 - cmd: >-
-    dotnet publish ./src/api/api.csproj
+cd %appveyor_build_folder%
+   cd %appveyor_build_folder%
+
+
+
+    
+    
+   dotnet publish ./src/api/api.csproj
 
 
 
@@ -25,6 +32,9 @@ build_script:
 artifacts:
 - path: src\api\bin\Debug\netcoreapp2.2\publish
   name: pitch-api
+
+- path: src\frontend\dist\pitch-frontend
+  name: pitch-frontend
 deploy:
 - provider: AzureAppServiceZipDeploy
   website: pitch-api
