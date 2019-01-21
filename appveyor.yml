@@ -3,7 +3,7 @@ image: Visual Studio 2017
 install:
 - ps: Install-Product node 6
 - cmd: >-
-    cd src/frontend
+    cd ./src/frontend
     npm install
 build_script:
 - cmd: >-
