@@ -45,3 +45,9 @@ deploy:
   password:
     secure: 9UfALmBvkt2ikqf1/Ga3OrLKS3/idP05YhOyWQk+u8JromsJH7D/vXCCZ4AvOGNAGTxvsWUilp1CiYyCXuVKWQ==
   artifact: src\api\bin\Debug\netcoreapp2.2\pitch-api.zip
+- provider: AzureWebJob
+  website: pitch-webapp
+  username: $pitch-webapp
+  password:
+    secure: i4Wl8Dua9T+kuAwgbTocGiyJ4qThue347RYNbPBICaGlV4sGYaSrwcclzb5TamHNGhuhabABIbDaHjsc4Mc3VA==
+  artifact: pitch-frontend
