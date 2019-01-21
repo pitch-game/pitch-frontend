@@ -4,11 +4,23 @@ install:
 - ps: Install-Product node 6
 - cmd: >-
     cd ./src/frontend
+
+
+
+    
     npm install
 build_script:
 - cmd: >-
     dotnet publish ./src/api/api.csproj
+
+
+
+    
     cd ./src/frontend
+
+
+
+    
     ng build --prod
 artifacts:
 - path: src\api\bin\Debug\netcoreapp2.2\publish
