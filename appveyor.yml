@@ -11,14 +11,12 @@ install:
     npm install
 build_script:
 - cmd: >-
-cd %appveyor_build_folder%
-   cd %appveyor_build_folder%
+    cd %appveyor_build_folder%
 
 
 
     
-    
-   dotnet publish ./src/api/api.csproj
+    dotnet publish ./src/api/api.csproj
 
 
 
