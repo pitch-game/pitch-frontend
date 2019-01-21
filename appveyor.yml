@@ -26,7 +26,7 @@ build_script:
 
 
     
-    ./src/frontend/node_modules/@angular/cli/bin/ng build --prod
+    "./src/frontend/node_modules/@angular/cli/bin/ng" build --prod
 artifacts:
 - path: src\api\bin\Debug\netcoreapp2.2\publish
   name: pitch-api
