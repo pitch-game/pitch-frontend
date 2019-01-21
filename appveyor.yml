@@ -1,11 +1,10 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 install:
-- ps: >-
-    Install-Product node 6
+- ps: Install-Product node 6
 - cmd: >-
     cd src/frontend
-    npm install --no-optional
+    npm install
 build_script:
 - cmd: >-
     dotnet publish ./src/api/api.csproj
