@@ -1,6 +1,8 @@
 # Pitch
 Online multiplayer football trading card game
 
+![build](https://ci.appveyor.com/api/projects/status/jcbcn/pitch)
+
 ## Game Modes
 
 ### Seasons
