@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './animations';
 import { AuthService } from './services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
   title = 'Pitch';
   showMenu = false;
   isLoggedIn: boolean;
+  version: string;
 
   constructor(public authService: AuthService) {
     this.authService.isLoggedIn().subscribe((isLoggedIn) => {
@@ -24,6 +26,8 @@ export class AppComponent {
     this.authService.onAuthenticationCompleted.subscribe(() => {
       this.isLoggedIn = true;
     });
+
+    this.version = environment.version;
   }
 
   prepareRoute(outlet: RouterOutlet) {
