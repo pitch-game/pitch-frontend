@@ -14,7 +14,7 @@ namespace AuthorizationServer.Controllers
     public class AuthorizationController : Controller
     {
         [HttpGet("~/connect/authorize")]
-        public async Task<IActionResult> Authorize(OpenIdConnectRequest request)
+        public IActionResult Authorize(OpenIdConnectRequest request)
         {
             Debug.Assert(request.IsAuthorizationRequest(),
                 "The OpenIddict binder for ASP.NET Core MVC is not registered. " +

@@ -1,7 +1,20 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 install:
-- ps: Install-Product node 8
+- ps: >-
+    Install-Product node 8
+
+
+
+    $envFile = $env:APPVEYOR_BUILD_FOLDER + '\src\frontend\src\environments\environment.prod.ts'
+    
+    
+    
+    Write-Host $envFile
+    
+    
+    
+    (Get-Content $envFile).replace('X.X.X.X', $env:APPVEYOR_BUILD_VERSION) | Set-Content $envFile
 - cmd: >-
     cd ./src/frontend
 
@@ -45,7 +58,7 @@ deploy:
   password:
     secure: 2uXuJQsAT9cZJnkHBYanAZYVcoj5f13WR5Z9RTCfAyLMCtrFza16wEU8XZxog8H45aBPT6D3StgrnwnZqaUkGw==
   artifact: src\api\bin\Debug\netcoreapp2.2\pitch-api.zip
-- provider: AzureWebJob
+- provider: AzureAppServiceZipDeploy
   website: pitch-frontend
   username: $pitch-frontend
   password:
