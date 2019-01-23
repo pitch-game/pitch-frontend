@@ -101,7 +101,7 @@ namespace AuthorizationServer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder => builder.WithOrigins(new string[] {"http://localhost:4200", "http://pitch-webapp.azurewebsites.net"}).AllowAnyHeader().AllowCredentials());
+            app.UseCors(builder => builder.WithOrigins(new string[] {"http://localhost:4200", "http://pitch-game.io"}).AllowAnyHeader().AllowCredentials());
 
             app.UseAuthentication();
 
@@ -123,8 +123,8 @@ namespace AuthorizationServer
                     {
                         ClientId = "angular-app",
                         DisplayName = "Angular Application",
-                        PostLogoutRedirectUris = { new Uri("http://localhost:4200"), new Uri("http://pitch-webapp.azurewebsites.net") },
-                        RedirectUris = { new Uri("http://localhost:4200/auth-callback"), new Uri("http://pitch-webapp.azurewebsites.net/auth-callback") }
+                        PostLogoutRedirectUris = { new Uri("http://localhost:4200"), new Uri("http://pitch-game.io") },
+                        RedirectUris = { new Uri("http://localhost:4200/auth-callback"), new Uri("http://pitch-game.io/auth-callback") }
                     };
 
                     await manager.CreateAsync(descriptor, cancellationToken);
