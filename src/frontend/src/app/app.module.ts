@@ -12,6 +12,8 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreComponent } from './pages/store/store.component';
+import { PlayerComponent } from './components/player/player.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     SquadComponent,
     SeasonsComponent,
     ChallengesComponent,
-    AuthCallbackComponent
+    StoreComponent,
+    AuthCallbackComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,
