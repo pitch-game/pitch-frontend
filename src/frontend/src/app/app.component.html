@@ -15,7 +15,7 @@
     </button>
   </div>
 </nav>
-<nav class="lg:flex items-center justify-between flex-wrap bg-indigo-darker p-3 pt-0 hidden lg:block" [ngClass]="{'block' : showMenu, 'hidden' : !showMenu}">
+<nav class="lg:flex items-center justify-between flex-wrap bg-indigo-darker p-3 hidden lg:block" [ngClass]="{'block' : layoutService.showNav, 'hidden' : !layoutService.showNav}">
   <div class="w-full block flex-grow flex lg:items-center lg:w-auto flex-row-reverse lg:flex-row">
     <div class="text-sm lg:flex-auto text-right lg:text-left pt-2 lg:pt-0">
       <a routerLink="/seasons" class="block lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">

@@ -14,6 +14,7 @@ import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreComponent } from './pages/store/store.component';
 import { PlayerComponent } from './components/player/player.component';
+import { LayoutService } from './layout/layout.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { PlayerComponent } from './components/player/player.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AuthGuardService, AuthService],
+  providers: [AuthGuardService, AuthService, LayoutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
