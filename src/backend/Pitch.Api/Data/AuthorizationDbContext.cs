@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace AuthorizationServer.Data
+namespace PitchApi.Data
 {
     public class AuthorizationDbContext : DbContext
     {

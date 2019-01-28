@@ -29,7 +29,7 @@ build_script:
 
 
     
-    dotnet publish ./src/api/api.csproj
+    dotnet publish ./src/backend/Pitch.Api/Pitch.Api.csproj
 
 
 
@@ -46,7 +46,7 @@ build_script:
     
     ng build --prod
 artifacts:
-- path: src\api\bin\Debug\netcoreapp2.2\publish
+- path: src\backend\Pitch.Api\bin\Debug\netcoreapp2.2\publish
   name: pitch-api
 
 - path: src\frontend\dist\pitch-frontend
@@ -57,7 +57,7 @@ deploy:
   username: $pitch-api
   password:
     secure: 2uXuJQsAT9cZJnkHBYanAZYVcoj5f13WR5Z9RTCfAyLMCtrFza16wEU8XZxog8H45aBPT6D3StgrnwnZqaUkGw==
-  artifact: src\api\bin\Debug\netcoreapp2.2\pitch-api.zip
+  artifact: src\backend\Pitch.Api\bin\Debug\netcoreapp2.2\pitch-api.zip
 - provider: AzureAppServiceZipDeploy
   website: pitch-frontend
   username: $pitch-frontend
