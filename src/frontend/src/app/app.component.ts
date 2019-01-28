@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { slideInAnimation } from './animations';
 import { AuthService } from './services/auth.service';
 import { environment } from 'src/environments/environment';
+import { LayoutService } from './layout/layout.service';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +15,10 @@ import { environment } from 'src/environments/environment';
 })
 export class AppComponent {
   title = 'Pitch';
-  showMenu = false;
   isLoggedIn: boolean;
   version: string;
 
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService, public layoutService: LayoutService, private router: Router) {
     this.authService.isLoggedIn().subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
@@ -28,6 +28,12 @@ export class AppComponent {
     });
 
     this.version = environment.version;
+
+    this.router.events.subscribe((event) => {
+      //if(typeof(event) == NavigationEnd) { TODO
+        this.layoutService.showNav = false;
+      //}
+    });
   }
 
   prepareRoute(outlet: RouterOutlet) {
@@ -35,7 +41,7 @@ export class AppComponent {
   }
 
   toggleMenu() {
-    this.showMenu = !this.showMenu;
+    this.layoutService.toggleNav();
   }
 
   login() {

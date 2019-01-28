@@ -1,16 +1,143 @@
-<div class="bg-indigo text-center py-4 lg:px-4">
-    <div (click)="click()" class="player">
-        <div class="ribbon bow-left"></div>
-        <div class="ribbon bow-right"></div>
-        <div class="ribbon ribbon-left"></div>
-        <div class="ribbon ribbon-top"></div>
-        <div class="ribbon ribbon-right"></div>
-        <div class="ribbon ribbon-bottom"></div>
-        <div class="shield cover absolute z-10"></div>
-        <div class="shield gold">
-            <span class="position">ST</span>
-            <span class="name">Mbappé</span>
-            <span class="rating">84</span>
+<div class="w-full block flex-grow flex items-center w-auto flex-row bg-indigo-darker">
+    <div class="text-sm flex-auto text-left pt-3 pb-3">
+        <a routerLink="/seasons" class="block inline-block mt-0 text-indigo-lighter hover:text-white mr-4 ml-2">
+            Active Squad
+        </a>
+        <a routerLink="/challenges" class="block inline-block mt-0 text-indigo-lighter hover:text-white mr-4">
+            Training
+        </a>
+        <a routerLink="/squad" class="block inline-block mt-0 text-indigo-lighter hover:text-white mr-4">
+            Team
+        </a>
+    </div>
+</div>
+<div class="flex bg-indigo">
+    <div class="w-1/4"></div>
+    <div class="w-1/4">
+        <div class="bg-indigo text-center py-2">
+            <div (click)="click()" class="player">
+                <div class="shield gold">
+                    <span class="position">ST</span>
+                    <span class="name">Firminho</span>
+                    <span class="rating">84</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/4">
+        <div class="bg-indigo text-center py-2">
+            <div (click)="click()" class="player">
+                <div class="shield super-rare text-white">
+                    <span class="position">ST</span>
+                    <span class="name">Mbappé</span>
+                    <span class="rating">92</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="flex bg-indigo-light">
+    <div class="w-1/4">
+        <div class="bg-indigo text-center py-2">
+            <div (click)="click()" class="player">
+                <div class="shield gold">
+                    <span class="position">LM</span>
+                    <span class="name">Mane</span>
+                    <span class="rating">84</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/4">
+        <div class="bg-indigo text-center py-2">
+            <div (click)="click()" class="player">
+                <div class="shield silver">
+                    <span class="position">CM</span>
+                    <span class="name">Milner</span>
+                    <span class="rating">80</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/4">
+        <div class="bg-indigo text-center py-2">
+            <div (click)="click()" class="player">
+                <div class="shield silver">
+                    <span class="position">CM</span>
+                    <span class="name">Henderson</span>
+                    <span class="rating">80</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/4">
+        <div class="bg-indigo text-center py-2">
+            <div (click)="click()" class="player">
+                <div class="shield super-rare text-white">
+                    <span class="position">RM</span>
+                    <span class="name">Salah</span>
+                    <span class="rating">88</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="flex bg-indigo-light">
+    <div class="w-1/4">
+        <div class="bg-indigo text-center py-2">
+            <div (click)="click()" class="player">
+                <div class="shield gold">
+                    <span class="position">LB</span>
+                    <span class="name">Robertson</span>
+                    <span class="rating">80</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/4">
+        <div class="bg-indigo text-center py-2">
+            <div (click)="click()" class="player">
+                <div class="shield super-rare text-white">
+                    <span class="position">CB</span>
+                    <span class="name">Van Dijk</span>
+                    <span class="rating">86</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/4">
+        <div class="bg-indigo text-center py-2">
+            <div (click)="click()" class="player">
+                <div class="shield gold">
+                    <span class="position">CB</span>
+                    <span class="name">Matip</span>
+                    <span class="rating">78</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/4">
+        <div class="bg-indigo text-center py-2">
+            <div (click)="click()" class="player">
+                <div class="shield gold">
+                    <span class="position">RB</span>
+                    <span class="name">Trent</span>
+                    <span class="rating">80</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="flex bg-indigo-light items-center">
+    <div class="flex-1">
+        <div class="bg-indigo text-center py-2">
+            <div (click)="click()" class="player">
+                <div class="shield gold">
+                    <span class="position">GK</span>
+                    <span class="name">Alison</span>
+                    <span class="rating">88</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
