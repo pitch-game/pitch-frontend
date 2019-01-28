@@ -29,7 +29,7 @@ build_script:
 
 
     
-    dotnet publish ./src/backend/Pitch.Api/Pitch.Api.csproj
+    dotnet publish ./src/backend/Pitch.sln
 
 
 
