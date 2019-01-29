@@ -11,8 +11,12 @@ import { CanActivate } from '@angular/router/src/utils/preactivation';
 import { ActivesquadComponent } from './pages/squad/activesquad/activesquad.component';
 
 const routes: Routes = [
-  { path: 'squad', component: SquadComponent, data: {animation: 'squad'}, canActivate: [AuthGuardService] },
-  { path: 'squad/active', component: ActivesquadComponent, data: {animation: 'squad'}, canActivate: [AuthGuardService] },
+  { path: 'squad', component: SquadComponent, data: {animation: 'squad'}, canActivate: [AuthGuardService],
+    children: [
+      { path: '', redirectTo: 'active', pathMatch: 'full'},
+      { path: 'active', component: ActivesquadComponent, }
+    ]
+  },
   { path: 'seasons', component: SeasonsComponent, data: {animation: 'seasons'}, canActivate: [AuthGuardService] },
   { path: 'challenges', component: ChallengesComponent, data: {animation: 'challenges'}, canActivate: [AuthGuardService] },
   { path: 'store', component: StoreComponent, data: { animation: 'store'}, canActivate: [AuthGuardService] },
