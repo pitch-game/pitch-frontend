@@ -7,14 +7,17 @@ import { ChallengesComponent } from './pages/challenges/challenges.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { StoreComponent } from './pages/store/store.component';
-import { CanActivate } from '@angular/router/src/utils/preactivation';
-import { ActivesquadComponent } from './pages/squad/activesquad/activesquad.component';
+import { ActivesquadComponent } from './pages/squad/active-squad/active-squad.component';
+import { TrainingComponent } from './pages/squad/training/training.component';
+import { ClubComponent } from './pages/squad/club/club.component';
 
 const routes: Routes = [
   { path: 'squad', component: SquadComponent, data: {animation: 'squad'}, canActivate: [AuthGuardService],
     children: [
       { path: '', redirectTo: 'active', pathMatch: 'full'},
-      { path: 'active', component: ActivesquadComponent, }
+      { path: 'active', component: ActivesquadComponent, },
+      { path: 'training', component: TrainingComponent, },
+      { path: 'club', component: ClubComponent, }
     ]
   },
   { path: 'seasons', component: SeasonsComponent, data: {animation: 'seasons'}, canActivate: [AuthGuardService] },
