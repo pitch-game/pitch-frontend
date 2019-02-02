@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActivesquadComponent } from './activesquad.component';
+import { ActivesquadComponent } from './active-squad.component';
 
 describe('ActivesquadComponent', () => {
   let component: ActivesquadComponent;

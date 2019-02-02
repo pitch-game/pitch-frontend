@@ -15,7 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreComponent } from './pages/store/store.component';
 import { PlayerComponent } from './components/player/player.component';
 import { LayoutService } from './layout/layout.service';
-import { ActivesquadComponent } from './pages/squad/activesquad/activesquad.component';
+import { ActivesquadComponent } from './pages/squad/active-squad/active-squad.component';
+import { TrainingComponent } from './pages/squad/training/training.component';
+import { ClubComponent } from './pages/squad/club/club.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ActivesquadComponent } from './pages/squad/activesquad/activesquad.comp
     StoreComponent,
     AuthCallbackComponent,
     PlayerComponent,
-    ActivesquadComponent
+    ActivesquadComponent,
+    TrainingComponent,
+    ClubComponent
   ],
   imports: [
     BrowserModule,
