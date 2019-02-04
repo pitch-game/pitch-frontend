@@ -35,12 +35,12 @@ namespace PitchApi
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddEntityFrameworkCosmos();
+
             services.AddDbContext<AuthorizationDbContext>(options =>
             {
-                // Configure the context to use Microsoft SQL Server.
-                options.UseInMemoryDatabase("pitch");
+                options.UseCosmos(Configuration["CosmosDb:EndpointURI"], Configuration["CosmosDb:PrivateKey"], "pitch");
 
-                // Register the entity sets needed by OpenIddict
                 options.UseOpenIddict();
             });
 
@@ -112,9 +112,11 @@ namespace PitchApi
 
         private async Task InitializeAsync(IServiceProvider services, CancellationToken cancellationToken)
         {
+
             // Create a new service scope to ensure the database context is correctly disposed when this methods returns.
             using (var scope = services.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
+                await scope.ServiceProvider.GetRequiredService<AuthorizationDbContext>().Database.EnsureCreatedAsync();
                 var manager = scope.ServiceProvider.GetRequiredService<OpenIddictApplicationManager<OpenIddictApplication>>();
 
                 if (await manager.FindByClientIdAsync("angular-app", cancellationToken) == null)
