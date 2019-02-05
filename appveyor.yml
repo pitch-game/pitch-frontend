@@ -44,7 +44,7 @@ build_script:
 
 
     
-    ng build --prod
+    ngtw build && ng build --prod
 artifacts:
 - path: src\backend\Pitch.Api\bin\Debug\netcoreapp2.2\publish
   name: pitch-api
