@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
+import { faFutbol } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: "app-seasons",
@@ -11,6 +12,8 @@ import { environment } from 'src/environments/environment';
 export class SeasonsComponent implements OnInit {
   constructor(private http: HttpClient, private authService: AuthService) {}
   response:any;
+
+  nextMatchIcon = faFutbol;
 
   ngOnInit() {
     let headers = new HttpHeaders({

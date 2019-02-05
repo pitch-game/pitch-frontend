@@ -1,17 +1,19 @@
-<div class="w-full block flex-grow flex items-center w-auto flex-row bg-indigo">
-    <div class="text-sm flex-auto text-left pt-2 pb-2">
-        <fa-icon [icon]="squadIcon" class="mr-2 text-white ml-2"></fa-icon>
-        <a routerLink="/squad/active" class="block inline-block mt-0 text-white hover:text-white mr-4">
-            Active Squad
-        </a>
-        <fa-icon [icon]="trainingIcon" class="mr-2 text-white"></fa-icon>
-        <a routerLink="/squad/training" class="block inline-block mt-0 text-white hover:text-white mr-4">
-            Training
-        </a>
-        <fa-icon [icon]="clubIcon" class="mr-2 text-white"></fa-icon>
-        <a routerLink="/squad/club" class="block inline-block mt-0 text-white hover:text-white mr-4">
-            Club
-        </a>
+<div class="sticky pin-t z-10"> <!--TODO-->
+    <div class="w-full block flex-grow flex items-center w-auto flex-row bg-indigo">
+        <div class="text-sm flex-auto text-left pt-2 pb-2">
+            <fa-icon [icon]="squadIcon" class="mr-2 text-white ml-2"></fa-icon>
+            <a routerLink="/squad/active" class="block inline-block mt-0 text-white hover:text-white mr-4">
+                Active Squad
+            </a>
+            <fa-icon [icon]="trainingIcon" class="mr-2 text-white"></fa-icon>
+            <a routerLink="/squad/training" class="block inline-block mt-0 text-white hover:text-white mr-4">
+                Training
+            </a>
+            <fa-icon [icon]="clubIcon" class="mr-2 text-white"></fa-icon>
+            <a routerLink="/squad/club" class="block inline-block mt-0 text-white hover:text-white mr-4">
+                Club
+            </a>
+        </div>
     </div>
 </div>
 <router-outlet></router-outlet>
