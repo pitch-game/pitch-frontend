@@ -27,27 +27,27 @@
   <nav class="lg:flex items-center justify-between flex-wrap bg-indigo-darker p-3 hidden lg:block" [ngClass]="{'block' : layoutService.showNav, 'hidden' : !layoutService.showNav}">
     <div class="w-full block flex-grow flex lg:items-center lg:w-auto flex-row-reverse lg:flex-row">
       <div class="text-sm lg:flex-auto text-right lg:text-left pt-2 lg:pt-0">
-        <div>
+        <div class="lg:inline-block lg:mt-0">
           <fa-icon [icon]="seasonsIcon" class="mr-2 text-indigo-lighter"></fa-icon>
-          <a routerLink="/seasons" class="lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
+          <a routerLink="/seasons" class="text-indigo-lighter hover:text-white mr-4">
             Seasons
           </a>
         </div>
-        <div class="mt-4">
+        <div class="mt-4 lg:inline-block lg:mt-0">
           <fa-icon [icon]="squadIcon" class="mr-2 text-indigo-lighter"></fa-icon>
-          <a routerLink="/squad" class="lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
+          <a routerLink="/squad" class="text-indigo-lighter hover:text-white mr-4">
             Squad
           </a>
         </div>
-        <div class="mt-4">
+        <div class="mt-4 lg:inline-block lg:mt-0">
           <fa-icon [icon]="challengesIcon" class="mr-2 text-indigo-lighter"></fa-icon>
           <a routerLink="/challenges" class="lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
             Challenges
           </a>
         </div>
-        <div class="mt-4">
+        <div class="mt-4 lg:inline-block lg:mt-0">
           <fa-icon [icon]="storeIcon" class="mr-2 text-indigo-lighter"></fa-icon>
-          <a routerLink="/store" class="mt-4 lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
+          <a routerLink="/store" class="lg:inline-block text-indigo-lighter hover:text-white mr-4">
             Store
           </a>
         </div>
