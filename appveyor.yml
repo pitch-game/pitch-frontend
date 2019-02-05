@@ -43,6 +43,11 @@ build_script:
 
 
 
+
+    npm link ng-tailwindcss
+
+
+
     
     ngtw build && ng build --prod
 artifacts:
