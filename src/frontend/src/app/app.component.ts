@@ -4,6 +4,7 @@ import { slideInAnimation } from './animations';
 import { AuthService } from './services/auth.service';
 import { environment } from 'src/environments/environment';
 import { LayoutService } from './layout/layout.service';
+import { faUsers, faFutbol, faTicketAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,12 @@ import { LayoutService } from './layout/layout.service';
 })
 export class AppComponent {
   title = 'Pitch';
+
+  seasonsIcon = faFutbol;
+  squadIcon = faUsers;
+  challengesIcon = faTicketAlt;
+  storeIcon = faShoppingBasket;
+
   isLoggedIn: boolean;
   version: string;
 

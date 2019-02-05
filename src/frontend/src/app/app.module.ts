@@ -18,6 +18,7 @@ import { LayoutService } from './layout/layout.service';
 import { ActivesquadComponent } from './pages/squad/active-squad/active-squad.component';
 import { TrainingComponent } from './pages/squad/training/training.component';
 import { ClubComponent } from './pages/squad/club/club.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ClubComponent } from './pages/squad/club/club.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [AuthGuardService, AuthService, LayoutService],
   bootstrap: [AppComponent]
