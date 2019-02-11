@@ -17,6 +17,6 @@
         </div>
     </div>
 </div>
-<div [@routeAnimations]="prepareRoute(outlet)">
-    <router-outlet></router-outlet>
+<div [@routeAnimations]="prepareRoute(squadOutlet)">
+    <router-outlet #squadOutlet="squadOutlet"></router-outlet>
 </div>
