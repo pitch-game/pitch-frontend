@@ -10,16 +10,7 @@ var nextId = 0;
 export class PlayerComponent implements OnInit {
 
     @Input()
-    name: string;
-    @Input()
-    position: string;
-    @Input()
-    rating: number;
-    @Input()
-    rarity: Rarity;
-
-    @Input()
-    opened: boolean;
+    card: Card;
 
     id = `pitch-player-${nextId++}`;
 
@@ -55,9 +46,10 @@ export enum Rarity {
     SuperRare
 }
 
-export class Player {
+export class Card {
     name: string;
     position: string;
     rating: number;
-    rarity: Rarity;
+    rarity: string;
+    opened: boolean;
 }

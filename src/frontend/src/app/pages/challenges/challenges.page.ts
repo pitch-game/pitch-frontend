@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-challenges',
-  templateUrl: './challenges.component.html',
-  styleUrls: ['./challenges.component.less']
+  templateUrl: './challenges.page.html',
+  styleUrls: ['./challenges.page.less']
 })
 export class ChallengesComponent implements OnInit {
 

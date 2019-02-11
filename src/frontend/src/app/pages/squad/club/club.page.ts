@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-club',
-  templateUrl: './club.component.html',
-  styleUrls: ['./club.component.less']
+  templateUrl: './club.page.html',
+  styleUrls: ['./club.page.less']
 })
 export class ClubComponent implements OnInit {
 

@@ -1,4 +1,5 @@
-<div class="sticky pin-t z-10"> <!--TODO-->
+<div class="sticky pin-t z-10">
+    <!--TODO-->
     <div class="w-full block flex-grow flex items-center w-auto flex-row bg-indigo">
         <div class="text-sm flex-auto text-left pt-2 pb-2">
             <fa-icon [icon]="squadIcon" class="mr-2 text-white ml-2"></fa-icon>
@@ -16,4 +17,6 @@
         </div>
     </div>
 </div>
-<router-outlet></router-outlet>
+<div [@routeAnimations]="prepareRoute(squadOutlet)">
+    <router-outlet #squadOutlet="outlet"></router-outlet>
+</div>
