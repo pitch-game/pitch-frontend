@@ -41,7 +41,9 @@ namespace PitchApi
 
             services.AddDbContext<AuthorizationDbContext>(options =>
             {
-                options.UseCosmos(Configuration["CosmosDb:EndpointURI"], Configuration["CosmosDb:PrivateKey"], "pitch");
+                //Store this in memory for now
+                options.UseInMemoryDatabase("pitch-im");
+                //options.UseCosmos(Configuration["CosmosDb:EndpointURI"], Configuration["CosmosDb:PrivateKey"], "pitch");
 
                 options.UseOpenIddict();
             });
