@@ -6,8 +6,8 @@ import { faFutbol } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: "app-seasons",
-  templateUrl: "./seasons.component.html",
-  styleUrls: ["./seasons.component.less"]
+  templateUrl: "./seasons.page.html",
+  styleUrls: ["./seasons.page.less"]
 })
 export class SeasonsComponent implements OnInit {
   constructor(private http: HttpClient, private authService: AuthService) {}
