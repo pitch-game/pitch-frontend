@@ -6,7 +6,7 @@ import { SeasonsComponent } from './pages/seasons/seasons.page';
 import { ChallengesComponent } from './pages/challenges/challenges.page';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
-import { StoreComponent } from './pages/store/store.component';
+import { StoreComponent } from './pages/store/store.page';
 import { ActivesquadComponent } from './pages/squad/active-squad/active-squad.page';
 import { TrainingComponent } from './pages/squad/training/training.page';
 import { ClubComponent } from './pages/squad/club/club.page';

@@ -12,7 +12,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { HttpClientModule } from '@angular/common/http';
-import { StoreComponent } from './pages/store/store.component';
+import { StoreComponent } from './pages/store/store.page';
 import { PlayerComponent } from './components/player/player.component';
 import { LayoutService } from './layout/layout.service';
 import { ActivesquadComponent } from './pages/squad/active-squad/active-squad.page';
