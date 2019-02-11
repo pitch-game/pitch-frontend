@@ -127,8 +127,8 @@ namespace PitchApi
             // Create a new service scope to ensure the database context is correctly disposed when this methods returns.
             using (var scope = services.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                await scope.ServiceProvider.GetRequiredService<AuthorizationDbContext>().Database.EnsureCreatedAsync();
-                await scope.ServiceProvider.GetRequiredService<PitchContext>().Database.EnsureCreatedAsync();
+                //await scope.ServiceProvider.GetRequiredService<AuthorizationDbContext>().Database.EnsureCreatedAsync();
+                //await scope.ServiceProvider.GetRequiredService<PitchContext>().Database.EnsureCreatedAsync();
                 var manager = scope.ServiceProvider.GetRequiredService<OpenIddictApplicationManager<OpenIddictApplication>>();
 
                 if (await manager.FindByClientIdAsync("angular-app", cancellationToken) == null)
