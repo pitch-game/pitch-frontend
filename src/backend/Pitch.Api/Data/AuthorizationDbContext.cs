@@ -4,7 +4,7 @@ namespace PitchApi.Data
 {
     public class AuthorizationDbContext : DbContext
     {
-        public AuthorizationDbContext(DbContextOptions options) : base(options)
+        public AuthorizationDbContext(DbContextOptions<AuthorizationDbContext> options) : base(options)
         {
         }
     }

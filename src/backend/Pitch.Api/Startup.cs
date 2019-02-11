@@ -17,6 +17,8 @@ using Microsoft.Extensions.DependencyInjection;
 using OpenIddict.Abstractions;
 using OpenIddict.Core;
 using OpenIddict.EntityFrameworkCore.Models;
+using Pitch.Domain.Services;
+using Pitch.DataStorage.Contexts;
 
 namespace PitchApi
 {
@@ -42,6 +44,11 @@ namespace PitchApi
                 options.UseCosmos(Configuration["CosmosDb:EndpointURI"], Configuration["CosmosDb:PrivateKey"], "pitch");
 
                 options.UseOpenIddict();
+            });
+
+            services.AddDbContext<PitchContext>(options =>
+            {
+                options.UseCosmos(Configuration["CosmosDb:EndpointURI"], Configuration["CosmosDb:PrivateKey"], "pitch");
             });
 
             services.AddCors();
@@ -91,6 +98,8 @@ namespace PitchApi
                 options.IgnoreGrantTypePermissions();
                 options.IgnoreScopePermissions();
             });
+
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -116,7 +125,8 @@ namespace PitchApi
             // Create a new service scope to ensure the database context is correctly disposed when this methods returns.
             using (var scope = services.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                //await scope.ServiceProvider.GetRequiredService<AuthorizationDbContext>().Database.EnsureCreatedAsync();
+                await scope.ServiceProvider.GetRequiredService<AuthorizationDbContext>().Database.EnsureCreatedAsync();
+                await scope.ServiceProvider.GetRequiredService<PitchContext>().Database.EnsureCreatedAsync();
                 var manager = scope.ServiceProvider.GetRequiredService<OpenIddictApplicationManager<OpenIddictApplication>>();
 
                 if (await manager.FindByClientIdAsync("angular-app", cancellationToken) == null)

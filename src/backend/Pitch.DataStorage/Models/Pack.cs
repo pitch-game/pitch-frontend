@@ -5,7 +5,7 @@ namespace Pitch.DataStorage.Models
     /// <summary>
     /// A Pack is opened to create a Card.
     /// </summary>
-    public class Pack
+    public class Pack : BaseEntity
     {
         public Guid PlayerId { get; set; }
         public PackType Type { get; set; }

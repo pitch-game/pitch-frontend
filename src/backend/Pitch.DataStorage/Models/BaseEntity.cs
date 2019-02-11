@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Pitch.DataStorage.Models
 {
     public abstract class BaseEntity
     {
-        public Guid Id { get; set; }
+        [Key]
+        public string id { get; set; }
     }
 }

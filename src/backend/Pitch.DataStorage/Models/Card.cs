@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pitch.DataStorage.Models
 {
     /// <summary>
     /// Generated from a pack and many-to-many with Player
     /// </summary>
-    public class Card
+    public class Card : BaseEntity
     {
         //TODO Link property
         public Guid PlayerId { get; set; }
@@ -17,6 +19,7 @@ namespace Pitch.DataStorage.Models
         public DateTime CreatedOn { get; set; }
     }
 
+    [Owned]
     public class Statistics
     {
         public int Played { get; set; }

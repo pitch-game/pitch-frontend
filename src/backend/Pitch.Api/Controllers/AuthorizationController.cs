@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AspNet.Security.OpenIdConnect.Extensions;
@@ -8,13 +6,21 @@ using AspNet.Security.OpenIdConnect.Primitives;
 using AspNet.Security.OpenIdConnect.Server;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Pitch.Domain.Services;
 
 namespace AuthorizationServer.Controllers
 {
     public class AuthorizationController : Controller
     {
+        private readonly IUserService _userService;
+
+        public AuthorizationController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [HttpGet("~/connect/authorize")]
-        public IActionResult Authorize(OpenIdConnectRequest request)
+        public async Task<IActionResult> Authorize(OpenIdConnectRequest request)
         {
             Debug.Assert(request.IsAuthorizationRequest(),
                 "The OpenIddict binder for ASP.NET Core MVC is not registered. " +
@@ -23,6 +29,8 @@ namespace AuthorizationServer.Controllers
             // Check if a user is authenticated. If not, challenge the GitHub authentication handler
             if (!User.Identity.IsAuthenticated)
                 return Challenge("Google");
+
+            await _userService.GetOrCreate(User.FindFirstValue(ClaimTypes.Name), User.FindFirstValue(ClaimTypes.Email));
 
             // Create a new ClaimsPrincipal containing the claims that
             // will be used to create an id_token, a token or a code.
