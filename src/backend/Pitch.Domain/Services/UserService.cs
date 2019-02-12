@@ -9,6 +9,7 @@ namespace Pitch.Domain.Services
     {
         Task<User> GetOrCreate(string name, string email);
         User Get(string email);
+        Task<User> CreateThrowaway();
     }
 
     public class UserService : IUserService
@@ -23,6 +24,14 @@ namespace Pitch.Domain.Services
         public User Get(string email)
         {
             return _pitchContext.Users.SingleOrDefault(x => x.Email == email);
+        }
+
+        public async Task<User> CreateThrowaway()
+        {
+            var user = new User() { Name = "TODO", Email = "TODO" };
+            _pitchContext.Users.Add(user);
+            await _pitchContext.SaveChangesAsync();
+            return user;
         }
 
         public async Task<User> GetOrCreate(string name, string email)

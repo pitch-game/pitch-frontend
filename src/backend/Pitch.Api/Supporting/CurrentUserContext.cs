@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pitch.Api.Supporting
 {
-    public class CurrentUserContext : ICurrentUserContext
+    internal class CurrentUserContext : ICurrentUserContext
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserService _userService;
@@ -24,7 +24,7 @@ namespace Pitch.Api.Supporting
         public async Task<User> User()
         {
             var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
-            return _user ?? (_userService.Get(user.Email));
+            return _user ?? (_user = _userService.Get(user.Email));
         }
     }
 }

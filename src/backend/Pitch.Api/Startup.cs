@@ -19,6 +19,7 @@ using OpenIddict.Core;
 using OpenIddict.EntityFrameworkCore.Models;
 using Pitch.Domain.Services;
 using Pitch.DataStorage.Contexts;
+using Pitch.Api.Supporting;
 
 namespace PitchApi
 {
@@ -102,6 +103,7 @@ namespace PitchApi
             });
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICurrentUserContext, CurrentUserContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
