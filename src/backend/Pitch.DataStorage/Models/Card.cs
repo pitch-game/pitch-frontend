@@ -9,8 +9,7 @@ namespace Pitch.DataStorage.Models
     /// </summary>
     public class Card : BaseEntity
     {
-        //TODO Link property
-        public Guid PlayerId { get; set; }
+        public Player Player { get; set; }
 
         public int Fitness { get; set; }
         public long Xp { get; set; }

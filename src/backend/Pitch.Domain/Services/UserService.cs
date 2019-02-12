@@ -8,6 +8,7 @@ namespace Pitch.Domain.Services
     public interface IUserService
     {
         Task<User> GetOrCreate(string name, string email);
+        User Get(string email);
     }
 
     public class UserService : IUserService
@@ -17,6 +18,11 @@ namespace Pitch.Domain.Services
         public UserService(PitchContext pitchContext)
         {
             _pitchContext = pitchContext;
+        }
+
+        public User Get(string email)
+        {
+            return _pitchContext.Users.SingleOrDefault(x => x.Email == email);
         }
 
         public async Task<User> GetOrCreate(string name, string email)
