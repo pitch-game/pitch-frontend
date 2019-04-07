@@ -13,12 +13,13 @@ import { AuthService } from './services/auth.service';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreComponent } from './pages/store/store.page';
-import { PlayerComponent } from './components/player/player.component';
 import { LayoutService } from './layout/layout.service';
 import { ActivesquadComponent } from './pages/squad/active-squad/active-squad.page';
 import { TrainingComponent } from './pages/squad/training/training.page';
 import { ClubComponent } from './pages/squad/club/club.page';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { PitchPlayerCardModule } from 'pitch-player-card'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ChallengesComponent,
     StoreComponent,
     AuthCallbackComponent,
-    PlayerComponent,
     ActivesquadComponent,
     TrainingComponent,
     ClubComponent
@@ -38,7 +38,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    PitchPlayerCardModule
   ],
   providers: [AuthGuardService, AuthService, LayoutService],
   bootstrap: [AppComponent]

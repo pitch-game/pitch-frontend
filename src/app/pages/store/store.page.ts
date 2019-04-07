@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
-import { Card } from 'src/app/components/player/player.component';
+import { Card } from 'pitch-player-card/models/card';
 
 @Component({
   selector: "app-store",
