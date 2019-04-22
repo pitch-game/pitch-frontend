@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
-import { faFutbol, faEllipsisH, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faFutbol, faEllipsisH, faStar, faCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: "app-seasons",
@@ -16,6 +16,7 @@ export class SeasonsComponent implements OnInit {
   findMatchIcon = faFutbol;
   simMatchIcon = faEllipsisH;
   starIcon = faStar;
+  circleIcon = faCircle;
 
   ngOnInit() {
     // let headers = new HttpHeaders({
