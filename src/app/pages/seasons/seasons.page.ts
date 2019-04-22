@@ -18,12 +18,12 @@ export class SeasonsComponent implements OnInit {
   starIcon = faStar;
 
   ngOnInit() {
-    let headers = new HttpHeaders({
-      Authorization: this.authService.getAuthorizationHeaderValue()
-    });
+    // let headers = new HttpHeaders({
+    //   Authorization: this.authService.getAuthorizationHeaderValue()
+    // });
 
-    this.http
-      .get(`${environment.apiEndpoint}/api/test`, { headers: headers })
-      .subscribe(response => (this.response = response));
+    // this.http
+    //   .get(`${environment.apiEndpoint}/api/test`, { headers: headers })
+    //   .subscribe(response => (this.response = response));
   }
 }

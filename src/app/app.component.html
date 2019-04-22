@@ -8,10 +8,10 @@
       <a href="http://updates.pitch-ga.me" class="font-semibold tracking-tight text-indigo-lighter"> {{version}} alpha</a>
     </div>
     <div class="flex">
-      <button *ngIf="isLoggedIn" (click)="toggleMenu()" class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-black border-yellow hover:bg-yellow bg-yellow-dark">
+      <button *ngIf="true" (click)="toggleMenu()" class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-black border-yellow hover:bg-yellow bg-yellow-dark">
         £1.2m
       </button>
-      <button *ngIf="isLoggedIn" (click)="toggleMenu()" class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-white border-orange hover:bg-orange bg-orange-dark">
+      <button *ngIf="true" (click)="toggleMenu()" class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-white border-orange hover:bg-orange bg-orange-dark">
         Level 3
       </button>
       <div class="block lg:hidden">
@@ -71,6 +71,11 @@
   </div>
 </div> -->
 
-<div [@routeAnimations]="prepareRoute(outlet)">
-  <router-outlet #outlet="outlet"></router-outlet>
+<div class="flex">
+  <div class="invisible lg:flex-1 lg:visible lg:bg-indigo-lightest"></div>
+  <div class="flex-auto" [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  <div class="invisible lg:flex-1 lg:visible lg:bg-indigo-lightest"></div>
 </div>
+
