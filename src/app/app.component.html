@@ -9,11 +9,11 @@
         alpha</a>
     </div>
     <div class="flex">
-      <button *ngIf="true" (click)="toggleMenu()"
+      <button *ngIf="isLoggedIn" (click)="toggleMenu()"
         class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-black border-yellow hover:bg-yellow bg-yellow-dark">
         £1.2m
       </button>
-      <button *ngIf="true" (click)="toggleMenu()"
+      <button *ngIf="isLoggedIn" (click)="toggleMenu()"
         class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-white border-orange hover:bg-orange bg-orange-dark">
         Level 3
       </button>
