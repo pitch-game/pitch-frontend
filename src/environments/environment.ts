@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://localhost:5000/identity',
+  apiEndpoint: 'https://localhost:44383/identity',
   appUri: 'http://localhost:4200',
   version: '1.0.0.0'
 };
