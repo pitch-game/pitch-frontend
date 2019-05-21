@@ -20,6 +20,7 @@ import { ClubComponent } from './pages/squad/club/club.page';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { PitchPlayerCardModule } from 'pitch-player-card'
+import { StoreHttpService } from './pages/store/store.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { PitchPlayerCardModule } from 'pitch-player-card'
     FontAwesomeModule,
     PitchPlayerCardModule
   ],
-  providers: [AuthGuardService, AuthService, LayoutService],
+  providers: [AuthGuardService, AuthService, LayoutService, StoreHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

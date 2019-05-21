@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { Card } from 'pitch-player-card/models/card';
+import { HttpClient } from '@angular/common/http';
+import { StoreHttpService } from './store.service';
 
 @Component({
   selector: "app-store",
@@ -7,16 +9,17 @@ import { Card } from 'pitch-player-card/models/card';
   styleUrls: ["./store.page.less"]
 })
 export class StoreComponent implements OnInit {
-  card: Card = { name: 'Ozil', rating: 78, position: 'ST', opened: true, rarity: 'gold' };
+  cards: Card[] = [];
 
-  constructor() {}
+  constructor(private store: StoreHttpService) {}
+
   ngOnInit() {
   }
 
-  click(): void {
-
-  }
-
-  onClick() {
+  click(id: string): void {
+    if(this.cards[id] && this.cards[id].opened) return;
+    this.store.openPack(id).subscribe(card => {
+      this.cards[id] = card;
+    });
   }
 }

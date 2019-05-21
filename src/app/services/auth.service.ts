@@ -51,7 +51,7 @@ export class AuthService {
 
 export function getClientSettings(): UserManagerSettings {
   return {
-    authority: environment.apiEndpoint,
+    authority: environment.identityEndpoint,
     client_id: "cbf24cc4a1bb79e441a5b5937be6dd84",
     redirect_uri: environment.appUri + "/auth-callback",
     post_logout_redirect_uri: environment.appUri,
