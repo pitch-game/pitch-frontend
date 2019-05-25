@@ -7,40 +7,28 @@
             <path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z" /></svg>
     </div>
 </div>
-<span class="text-2xl m-2">Ready to open </span>
-<span class="rounded-full bg-indigo uppercase px-2 py-1 text-sm text-white font-bold">6</span>
-<div class="flex">
-    <div class="flex-1">
-        <pitch-player-card [card]="card"></pitch-player-card>
+
+<div class="flex content-center flex-wrap justify-center m-5">
+    <div class="w-5/6 p-2">
+        <button (click)="click('86031df8-a9ce-4558-8490-3428b0914ea6')"
+            class="w-full h-12 bg-indigo hover:bg-indigo-lighter text-white font-bold py-2 px-4 rounded">
+            <span>Open Pack <span class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">6</span></span>
+        </button>
     </div>
-    <div class="flex-1">
-        <pitch-player-card [card]="card"></pitch-player-card>
-    </div>
-</div>
-<div class="flex">
-    <div class="flex-1">
-        <pitch-player-card [card]="card"></pitch-player-card>
-    </div>
-    <div class="flex-1">
-        <pitch-player-card [card]="card"></pitch-player-card>
-    </div>
-</div>
-<div class="flex">
-    <div class="flex-1">
-        <pitch-player-card [card]="card"></pitch-player-card>
-    </div>
-    <div class="flex-1">
-        <pitch-player-card [card]="card"></pitch-player-card>
-    </div>
-</div>
-<span class="text-2xl m-2">Buy </span>
-<div class="flex">
-    <a href="#" (click)="!!click('86031df8-a9ce-4558-8490-3428b0914ea6')"
-    class="inline-block full-w text-sm px-4 py-2 leading-none rounded text-white border-white bg-indigo-light hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
-    <span>Open Next</span>
-  </a>
 </div>
 
-<div *ngIf="showCurtain" class="fixed pin flex z-40 items-center justify-center overflow-auto bg-black" (click)="dismissCurtain()">
-    <pitch-player-card class="z-50" [card]="cards['86031df8-a9ce-4558-8490-3428b0914ea6']" size="lg" spinOnInit="true"></pitch-player-card>
+<div *ngIf="showCurtain" class="fixed pin flex z-40 items-center justify-center overflow-auto bg-black"
+    (click)="dismissCurtain()">
+    <pitch-player-card class="z-50" [card]="cards['86031df8-a9ce-4558-8490-3428b0914ea6']" size="lg" spinOnInit="true">
+    </pitch-player-card>
+</div>
+
+<span class="text-2xl m-2">Purchase</span>
+<div class="flex content-center justify-center">
+    <div class="flex-1">
+        <pitch-player-card [card]="card"></pitch-player-card>
+    </div>
+    <div class="flex-1">
+        <pitch-player-card [card]="card"></pitch-player-card>
+    </div>
 </div>
