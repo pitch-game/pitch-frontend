@@ -13,13 +13,24 @@ export class StoreComponent implements OnInit {
 
   constructor(private store: StoreHttpService) {}
 
+  showCurtain: boolean;
+  
   ngOnInit() {
   }
 
   click(id: string): void {
+    this.openCurtain();
     if(this.cards[id] && this.cards[id].opened) return;
     this.store.openPack(id).subscribe(card => {
       this.cards[id] = card;
     });
+  }
+
+  dismissCurtain() {
+    this.showCurtain = false;
+  }
+
+  openCurtain() {
+    this.showCurtain = true;
   }
 }

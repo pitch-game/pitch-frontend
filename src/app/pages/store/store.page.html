@@ -35,20 +35,12 @@
 </div>
 <span class="text-2xl m-2">Buy </span>
 <div class="flex">
-    <div class="flex-1 text-center">
-        <pitch-player-card [card]="cards['e25d1db3-b273-4a1e-b897-c06710137344']" (click)="click('e25d1db3-b273-4a1e-b897-c06710137344')"></pitch-player-card>
-        <h4>Normal</h4>
-        <div class="m-1 p-1 bg-yellow-dark items-center text-black leading-none rounded-full flex inline-flex"
-            role="alert">
-            £10,000
-        </div>
-    </div>
-    <div class="flex-1 text-center">
-        <pitch-player-card [card]="cards['86031df8-a9ce-4558-8490-3428b0914ea6']"  (click)="click('86031df8-a9ce-4558-8490-3428b0914ea6')"></pitch-player-card>
-        <h4>Rare</h4>
-        <div class="m-1 p-1 bg-yellow-dark items-center text-black leading-none rounded-full flex inline-flex"
-            role="alert">
-            £100,000
-        </div>
-    </div>
+    <a href="#" (click)="!!click('86031df8-a9ce-4558-8490-3428b0914ea6')"
+    class="inline-block full-w text-sm px-4 py-2 leading-none rounded text-white border-white bg-indigo-light hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
+    <span>Open Next</span>
+  </a>
+</div>
+
+<div *ngIf="showCurtain" class="fixed pin flex z-40 items-center justify-center overflow-auto bg-black" (click)="dismissCurtain()">
+    <pitch-player-card class="z-50" [card]="cards['86031df8-a9ce-4558-8490-3428b0914ea6']" size="lg" spinOnInit="true"></pitch-player-card>
 </div>
