@@ -18,10 +18,23 @@
     </div>
 </div>
 
-<div *ngIf="showCurtain" class="fixed pin flex z-40 items-center justify-center overflow-auto bg-black"
-    (click)="dismissCurtain()">
-    <pitch-player-card class="z-50" [card]="cards['86031df8-a9ce-4558-8490-3428b0914ea6']" size="lg" spinOnInit="true">
-    </pitch-player-card>
+<div *ngIf="showCurtain" class="fixed pin flex flex-col z-40 items-center justify-center overflow-auto bg-black">
+    <button (click)="dismissCurtain()" class="absolute pin-t pin-b pin-r p-4">
+        <fa-icon [icon]="closeIcon" size="2x" class="ml-2 text-indigo-lighter"></fa-icon>
+    </button>
+    <div class="flex">
+        <pitch-player-card class="z-50" [card]="cards[curtainPackId]" size="lg" spinOnInit="true"></pitch-player-card>
+    </div>
+    <div class="flex content-center flex-wrap justify-center m-5">
+        <div class="flex-1 p-2">
+            <button (click)="click('86031df8-a9ce-4558-8490-3428b0914ea6')"
+                class="w-full h-12 bg-indigo hover:bg-indigo-lighter text-white font-bold py-2 px-4 rounded">
+                <span>Open Next <span
+                        class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">5</span></span>
+                <fa-icon [icon]="nextIcon" class="ml-2 text-indigo-lighter"></fa-icon>
+            </button>
+        </div>
+    </div>
 </div>
 
 <span class="text-2xl m-2">Purchase</span>

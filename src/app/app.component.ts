@@ -4,7 +4,7 @@ import { slideInAnimation } from './animations';
 import { AuthService } from './services/auth.service';
 import { environment } from 'src/environments/environment';
 import { LayoutService } from './layout/layout.service';
-import { faUsers, faFutbol, faTicketAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faFutbol, faTicketAlt, faShoppingBasket, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +21,7 @@ export class AppComponent {
   squadIcon = faUsers;
   challengesIcon = faTicketAlt;
   storeIcon = faShoppingBasket;
+  marketplaceIcon = faMoneyBill;
 
   isLoggedIn: boolean;
   version: string;
