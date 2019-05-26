@@ -1,22 +1,27 @@
-<div class="sticky pin-t z-10">
-    <!--TODO-->
-    <div class="w-full block flex-grow flex items-center w-auto flex-row bg-indigo">
-        <div class="text-sm flex-auto text-left pt-2 pb-2">
+<div class="flex content-center flex-wrap justify-center m-5">
+    <div class="w-1/3 p-2">
+        <button routerLink="/squad/active"
+            class="w-full h-12 bg-indigo-lighter text-white font-bold py-2 px-4 rounded">
             <fa-icon [icon]="squadIcon" class="mr-2 text-white ml-2"></fa-icon>
-            <a routerLink="/squad/active" class="block inline-block mt-0 text-white hover:text-white mr-4">
-                Active Squad
-            </a>
+            <span>Squad</span>
+        </button>
+    </div>
+    <div class="w-1/3 p-2">
+        <button routerLink="/squad/training"
+            class="w-full h-12 bg-indigo hover:bg-indigo-lighter text-white font-bold py-2 px-4 rounded">
             <fa-icon [icon]="trainingIcon" class="mr-2 text-white"></fa-icon>
-            <a routerLink="/squad/training" class="block inline-block mt-0 text-white hover:text-white mr-4">
-                Training
-            </a>
+            <span>Training</span>
+        </button>
+    </div>
+    <div class="w-1/3 p-2">
+        <button routerLink="/squad/club" 
+            class="w-full h-12 bg-indigo hover:bg-indigo-lighter text-white font-bold py-2 px-4 rounded">
             <fa-icon [icon]="clubIcon" class="mr-2 text-white"></fa-icon>
-            <a routerLink="/squad/club" class="block inline-block mt-0 text-white hover:text-white mr-4">
-                Club
-            </a>
-        </div>
+            <span>Club</span>
+        </button>
     </div>
 </div>
+
 <div [@routeAnimations]="prepareRoute(squadOutlet)">
     <router-outlet #squadOutlet="outlet"></router-outlet>
 </div>
