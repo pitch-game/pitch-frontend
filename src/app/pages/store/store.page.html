@@ -12,7 +12,8 @@
     <div class="w-5/6 p-2">
         <button (click)="click('86031df8-a9ce-4558-8490-3428b0914ea6')"
             class="w-full h-12 bg-indigo hover:bg-indigo-lighter text-white font-bold py-2 px-4 rounded">
-            <span>Open Pack <span class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">6</span></span>
+            <span>Open Pack <span
+                    class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">6</span></span>
         </button>
     </div>
 </div>
@@ -25,10 +26,22 @@
 
 <span class="text-2xl m-2">Purchase</span>
 <div class="flex content-center justify-center">
-    <div class="flex-1">
-        <pitch-player-card [card]="card"></pitch-player-card>
+    <div class="flex-1 text-center">
+        <div>
+            <pitch-player-card [card]="card"></pitch-player-card>
+        </div>
+        <div class="m-1 p-1 bg-yellow-dark items-center text-black leading-none rounded-full flex inline-flex"
+            role="alert">
+            £10,000
+        </div>
     </div>
-    <div class="flex-1">
-        <pitch-player-card [card]="card"></pitch-player-card>
+    <div class="flex-1 text-center">
+        <div>
+            <pitch-player-card [card]="card"></pitch-player-card>
+        </div>
+        <div class="m-1 p-1 bg-yellow-dark items-center text-black leading-none rounded-full flex inline-flex"
+            role="alert">
+            £100,000
+        </div>
     </div>
 </div>

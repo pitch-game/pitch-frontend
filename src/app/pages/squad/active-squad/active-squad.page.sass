@@ -7,74 +7,10 @@
   *
       transform-style: preserve-3d
 
-      .player
+      .player, pitch-player-card
           transform: translateZ(3rem) rotateX(-90deg) rotateY(180deg)
       img
         transform: translateZ(2rem) rotateY(180deg) rotateX(90deg)
         height: 50px
         width: 50px
         position: absolute
-
-// .arrows
-//   background-image: url('http://freevector.co/wp-content/uploads/2014/02/22059-arrow-up-ios-7-interface-symbol1-200x200.png')
-//   background-size: 30px 30px
-
-.player
-  cursor: pointer
-  display: inline-block
-  -webkit-clip-path: polygon(50% 0%, 93% 19%, 85% 86%, 50% 100%, 15% 86%, 7% 19%)
-  clip-path: polygon(50% 0%, 93% 19%, 85% 86%, 50% 100%, 15% 86%, 7% 19%)
-  overflow:hidden
-  position:relative
-
-.shield
-  user-select: none
-  display: inline-block !important
-  width: 5.5rem
-  height: 5.5rem
-  display: block
-  text-align: center
-
-.position
-  margin-top: 10px
-  display: block
-  position: relative
-  font-size: 12px
-
-.name
-  font-size: 0.9rem
-  margin-top: 6px
-  display: block
-  position: relative
-
-.rating
-  display: block
-  position: relative
-  font-size: 24px
-  margin-top: 2px
-
-.gold
-  //background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%)
-  //background: radial-gradient(ellipse farthest-corner at left top, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%)
-  background: #F2994A  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #F2C94C, #F2994A)  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #F2C94C, #F2994A) /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-.silver
-  background: #c0c0c0
-
-// &.bronze
-//   .gradient-animation(#cd7f32, #be7023)
-
-.cover
-  background: linear-gradient(whitesmoke, lightgrey) !important
-
-.special
-  background: #B993D6  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #8CA6DB, #B993D6)  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #8CA6DB, #B993D6) /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-.super-rare
-  background: #c31432  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #240b36, #c31432)  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #240b36, #c31432) /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
