@@ -20,3 +20,6 @@
     <td>{{card.createdOn}}</td>
   </tr>
 </table>
+<div>
+  <pitch-player-card [card]="card" size="sm" *ngFor="let card of cards"></pitch-player-card>
+</div>
