@@ -1,3 +1,22 @@
-<p>
-  club works!
-</p>
+<table class="w-full text-left">
+  <tr>
+    <th>Position</th>
+    <th>Name</th>
+    <th>Rating</th>
+    <th>Form</th>
+    <th>Fitness</th>
+    <th>Owners</th>
+    <th>Games Played</th>
+    <th>Created On</th>
+  </tr>
+  <tr *ngFor="let card of cards">
+    <td>{{card.position}}</td>
+    <td>{{card.name}}</td>
+    <td>{{card.rating}}</td>
+    <td>{{card.form}}</td>
+    <td>{{card.fitness}}</td>
+    <td>{{card.previousOwners}}</td>
+    <td>{{card.gamesPlayed}}</td>
+    <td>{{card.createdOn}}</td>
+  </tr>
+</table>
