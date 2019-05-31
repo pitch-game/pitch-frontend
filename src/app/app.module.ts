@@ -21,6 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { PitchPlayerCardModule } from 'pitch-player-card'
 import { StoreHttpService } from './pages/store/store.service';
+import { PlayerAlreadyInSquadPipe } from './pipes/player-already-in-squad.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { StoreHttpService } from './pages/store/store.service';
     AuthCallbackComponent,
     ActivesquadComponent,
     TrainingComponent,
-    ClubComponent
+    ClubComponent,
+    PlayerAlreadyInSquadPipe
   ],
   imports: [
     BrowserModule,

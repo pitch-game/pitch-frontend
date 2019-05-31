@@ -10,8 +10,6 @@ export class TrainingComponent implements OnInit {
 
   constructor() { }
   
-  neymar: Card = { name: 'Neymar Jr', position: 'LM', rating: 92, rarity: 'super-rare'}
-  milner: Card = { name: 'Milner', position: 'CM', rating: 80, rarity: 'gold'}
 
   ngOnInit() {
   }

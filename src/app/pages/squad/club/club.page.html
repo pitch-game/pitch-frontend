@@ -1,25 +1,14 @@
-<table class="w-full text-left">
-  <tr>
-    <th>Position</th>
-    <th>Name</th>
-    <th>Rating</th>
-    <th>Form</th>
-    <th>Fitness</th>
-    <th>Owners</th>
-    <th>Games Played</th>
-    <th>Created On</th>
-  </tr>
-  <tr *ngFor="let card of cards">
-    <td>{{card.position}}</td>
-    <td>{{card.name}}</td>
-    <td>{{card.rating}}</td>
-    <td>{{card.form}}</td>
-    <td>{{card.fitness}}</td>
-    <td>{{card.previousOwners}}</td>
-    <td>{{card.gamesPlayed}}</td>
-    <td>{{card.createdOn}}</td>
-  </tr>
-</table>
 <div>
-  <pitch-player-card [card]="card" size="sm" *ngFor="let card of cards"></pitch-player-card>
+  <div class="flex content-center items-center justify-center p-2 hover:bg-blue cursor-pointer" *ngFor="let card of cards">
+    <div class="m-2 flex-1">
+      <pitch-player-card [card]="card" size="sm"></pitch-player-card>
+    </div>
+    <div class="m-2 flex-grow flex-col justify-center content-center">{{card.name}}</div>
+    <div class="m-2 flex-grow justify-center content-center">{{card.position}}</div>
+    <div class="m-2 flex-grow justify-center content-center">{{card.rating}}</div>
+    <div class="m-2 flex-grow justify-center content-center">{{card.fitness}}</div>
+    <div class="m-2 flex-grow justify-center content-center">{{card.form}}</div>
+    <div class="m-2 flex-grow justify-center content-center">{{card.previousOwners}}</div>
+    <div class="m-2 flex-grow justify-center content-center">{{card.createdOn}}</div>
+  </div>
 </div>
