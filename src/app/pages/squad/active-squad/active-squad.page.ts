@@ -25,12 +25,14 @@ export class ActivesquadComponent implements OnInit {
 
   tickIcon = faCheckCircle;
 
-  headers = {
-    'Content-Type': 'application/json',
-    'Authorization': this.authService.getAuthorizationHeaderValue()
-  };
+  headers: any;
 
   ngOnInit() {
+    this.headers = {
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getAuthorizationHeaderValue()
+    };
+    
     this.http.get<any>(`${environment.apiEndpoint}/squad`, { headers: this.headers }).subscribe((squad) => {
       this.squad = squad
 
@@ -54,7 +56,7 @@ export class ActivesquadComponent implements OnInit {
 
   getPlayers(position: string) {
     this.http.get<Card[]>(`${environment.apiEndpoint}/card`, { headers: this.headers, params: new HttpParams().set('take', '11').set('position', position) }).subscribe((cards) => {
-      this.popupCards = cards
+      this.modal.popupCards = cards
     });
   }
 

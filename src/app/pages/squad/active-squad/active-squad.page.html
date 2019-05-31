@@ -122,7 +122,7 @@
             <p>Select a {{modal.position}}</p>
         </div>
         <div style="max-height:500px;height:500px;" class="overflow-y-scroll">
-            <div *ngFor="let card of popupCards | playerAlreadyInSquad : squad.lineup" (click)="assign(modal.position, card.id)"
+            <div *ngFor="let card of modal.popupCards | playerAlreadyInSquad : squad.lineup" (click)="assign(modal.position, card.id)"
                 class="flex bg-grey-lighter content-center items-center justify-center p-2 hover:bg-blue cursor-pointer">
                 <div class="m-2 flex-1">
                     <pitch-player-card [card]="card" size="sm"></pitch-player-card>
