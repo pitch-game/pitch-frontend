@@ -42,20 +42,18 @@ export class ActivesquadComponent implements OnInit {
     var cards = await this.http.get<Card[]>(`${environment.apiEndpoint}/card/cards/${ids}`, { headers: this.headers }).toPromise();
     for (let position in this.squad.lineup) {
       var card = cards.find(x => x.id == this.squad.lineup[position]);
-      card.name = card.shortName; //TODO
+      //card.name = card.shortName; //TODO and check null
       this.cards[position] = card;
     };
   }
 
-  //TODO aggregate in gateway
   async loadPosition(position: string) {
     if(!this.squad.lineup[position]){
-      //this.cards[position] = {};
+      this.cards[position] = null;
       return;
     }
 
     this.cards[position] = await this.http.get<Card[]>(`${environment.apiEndpoint}/card/${this.squad.lineup[position]}`, { headers: this.headers }).toPromise();
-
   }
 
   async getPlayers(position: string) {

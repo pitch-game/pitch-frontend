@@ -1,10 +1,12 @@
 <div class="flex content-center flex-wrap justify-center m-5">
     <div class="w-2/3 p-2">
-        <button *ngIf="!pendingChanges" routerLink="/squad/active" class="w-full h-12 bg-grey text-white font-bold py-2 px-4 rounded">
+        <button *ngIf="!pendingChanges" routerLink="/squad/active"
+            class="w-full h-12 bg-grey text-white font-bold py-2 px-4 rounded">
             <fa-icon [icon]="tickIcon" class="mr-2 text-white ml-2"></fa-icon>
             <span>Up to date</span>
         </button>
-        <button *ngIf="pendingChanges" (click)="save()" class="w-full h-12 bg-green text-white font-bold py-2 px-4 rounded">
+        <button *ngIf="pendingChanges" (click)="save()"
+            class="w-full h-12 bg-green text-white font-bold py-2 px-4 rounded">
             <fa-icon [icon]="tickIcon" class="mr-2 text-white ml-2"></fa-icon>
             <span>Save changes</span>
         </button>
@@ -19,13 +21,15 @@
                 <div class="w-1/4 hover:bg-green">
                     <div class="text-center py-2">
                         <!-- <img src="https://www.fifaindex.com/static/FIFA19/images/players/10/20801.png"> -->
-                        <pitch-player-card (click)="pickPlayer('LST')" [card]="cards['LST']" size="sm" mode="squad"></pitch-player-card>
+                        <pitch-player-card (click)="pickPlayer('LST')" [card]="cards['LST']" size="sm" mode="squad">
+                        </pitch-player-card>
                     </div>
                 </div>
                 <div class="w-1/4 hover:bg-green">
                     <div class="text-center py-2">
                         <!-- <img src="https://www.fifaindex.com/static/FIFA19/images/players/10/231747.png" /> -->
-                        <pitch-player-card (click)="pickPlayer('RST')" [card]="cards['RST']" size="sm" mode="squad"></pitch-player-card>
+                        <pitch-player-card (click)="pickPlayer('RST')" [card]="cards['RST']" size="sm" mode="squad">
+                        </pitch-player-card>
                     </div>
                 </div>
             </div>
@@ -33,25 +37,29 @@
                 <div class="w-1/4 hover:bg-green">
                     <div class="text-center py-2">
                         <!-- <img src="https://www.fifaindex.com/static/FIFA19/images/players/10/190871.png"> -->
-                        <pitch-player-card (click)="pickPlayer('LM')" [card]="cards['LM']" size="sm" mode="squad"></pitch-player-card>
+                        <pitch-player-card (click)="pickPlayer('LM')" [card]="cards['LM']" size="sm" mode="squad">
+                        </pitch-player-card>
                     </div>
                 </div>
                 <div class="w-1/4 hover:bg-green">
                     <div class="text-center py-2">
                         <!-- <img src="https://www.fifaindex.com/static/FIFA19/images/players/10/138412.png" /> -->
-                        <pitch-player-card (click)="pickPlayer('LCM')" [card]="cards['LCM']" size="sm" mode="squad"></pitch-player-card>
+                        <pitch-player-card (click)="pickPlayer('LCM')" [card]="cards['LCM']" size="sm" mode="squad">
+                        </pitch-player-card>
                     </div>
                 </div>
                 <div class="w-1/4 hover:bg-green">
                     <div class="text-center py-2">
                         <!-- <img src="https://www.fifaindex.com/static/FIFA19/images/players/10/183711.png" /> -->
-                        <pitch-player-card (click)="pickPlayer('RCM')" [card]="cards['RCM']" size="sm" mode="squad"></pitch-player-card>
+                        <pitch-player-card (click)="pickPlayer('RCM')" [card]="cards['RCM']" size="sm" mode="squad">
+                        </pitch-player-card>
                     </div>
                 </div>
                 <div class="w-1/4 hover:bg-green">
                     <div class="text-center py-2">
                         <!-- <img src="https://www.fifaindex.com/static/FIFA19/images/players/5/209331.png" /> -->
-                        <pitch-player-card (click)="pickPlayer('RM')" [card]="cards['RM']" size="sm" mode="squad"></pitch-player-card>
+                        <pitch-player-card (click)="pickPlayer('RM')" [card]="cards['RM']" size="sm" mode="squad">
+                        </pitch-player-card>
                     </div>
                 </div>
             </div>
@@ -59,25 +67,29 @@
                 <div class="w-1/4 hover:bg-green">
                     <div class="text-center py-2">
                         <!-- <img src="https://www.fifaindex.com/static/FIFA19/images/players/10/216267.png" /> -->
-                        <pitch-player-card (click)="pickPlayer('LB')" [card]="cards['LB']" size="sm" mode="squad"></pitch-player-card>
+                        <pitch-player-card (click)="pickPlayer('LB')" [card]="cards['LB']" size="sm" mode="squad">
+                        </pitch-player-card>
                     </div>
                 </div>
                 <div class="w-1/4 hover:bg-green">
                     <div class="text-center py-2">
                         <!-- <img src="https://www.fifaindex.com/static/FIFA19/images/players/10/203376.png" /> -->
-                        <pitch-player-card (click)="pickPlayer('LCB')" [card]="cards['LCB']" size="sm" mode="squad"></pitch-player-card>
+                        <pitch-player-card (click)="pickPlayer('LCB')" [card]="cards['LCB']" size="sm" mode="squad">
+                        </pitch-player-card>
                     </div>
                 </div>
                 <div class="w-1/4 hover:bg-green">
                     <div class="text-center py-2">
                         <!-- <img src="https://www.fifaindex.com/static/FIFA19/images/players/10/197061.png" /> -->
-                        <pitch-player-card (click)="pickPlayer('RCB')" [card]="cards['RCB']" size="sm" mode="squad"></pitch-player-card>
+                        <pitch-player-card (click)="pickPlayer('RCB')" [card]="cards['RCB']" size="sm" mode="squad">
+                        </pitch-player-card>
                     </div>
                 </div>
                 <div class="w-1/4 hover:bg-green">
                     <div class="text-center py-2">
                         <!-- <img src="https://www.fifaindex.com/static/FIFA19/images/players/10/231281.png" /> -->
-                        <pitch-player-card (click)="pickPlayer('RB')" [card]="cards['RB']" size="sm" mode="squad"></pitch-player-card>
+                        <pitch-player-card (click)="pickPlayer('RB')" [card]="cards['RB']" size="sm" mode="squad">
+                        </pitch-player-card>
                     </div>
                 </div>
             </div>
@@ -85,9 +97,15 @@
                 <div class="w-1/4 hover:bg-green">
                     <div class="text-center py-2">
                         <!-- <img src="https://www.fifaindex.com/static/FIFA19/images/players/10/212831.png" /> -->
-                        <pitch-player-card (click)="pickPlayer('GK')" [(card)]="cards['GK']" size="sm" mode="squad"></pitch-player-card>
+                        <pitch-player-card (click)="pickPlayer('GK')" [(card)]="cards['GK']" size="sm" mode="squad">
+                        </pitch-player-card>
                     </div>
                 </div>
+            </div>
+            <div class="sponsor-container bg-red flex" style="position:relative;width:100%;height:50px;">
+                <img class="flex-1" style="width:100px;" src="/assets/sponsor.png">
+                <img class="flex-1" style="width:100px;" src="/assets/sponsor.png">
+                <img class="flex-1" style="width:100px;" src="/assets/sponsor.png">
             </div>
         </div>
     </div>
@@ -115,13 +133,15 @@
 
 
 <div *ngIf="modal.visible" (click)="modal.visible = false"
-    class="pin h-screen w-full absolute flex items-center justify-center bg-modal" style="background-color: rgba(0, 0, 0, 0.8)">
+    class="pin h-screen w-full absolute flex items-center justify-center bg-modal"
+    style="background-color: rgba(0, 0, 0, 0.8)">
     <div class="bg-white rounded shadow m-4 max-w-xs max-h-full text-center">
         <div class="m-4 p-2 text-lg">
             <p>Select a {{modal.position}}</p>
         </div>
         <div style="max-height:500px;height:500px;" class="overflow-y-scroll">
-            <div *ngFor="let card of modal.popupCards | async | playerAlreadyInSquad : squad.lineup" (click)="assign(modal.position, card.id)"
+            <div *ngFor="let card of modal.popupCards | async | playerAlreadyInSquad : squad.lineup"
+                (click)="assign(modal.position, card.id)"
                 class="flex bg-grey-lighter content-center items-center justify-center p-2 hover:bg-blue cursor-pointer">
                 <div class="m-2 flex-1">
                     <pitch-player-card [card]="card" size="sm" mode="squad"></pitch-player-card>
@@ -132,8 +152,8 @@
             </div>
         </div>
         <a href="#" class="block group hover:bg-blue p-2" (click)="$event.stopPropagation()">
-                <p class="text-sm mb-1 text-black group-hover:text-white">Load More...</p>
-            </a>
+            <p class="text-sm mb-1 text-black group-hover:text-white">Load More...</p>
+        </a>
         <a href="#" class="block group hover:bg-blue p-4" (click)="assign(modal.position, null)">
             <p class="font-bold text-lg mb-1 text-black group-hover:text-white">Remove Player</p>
         </a>

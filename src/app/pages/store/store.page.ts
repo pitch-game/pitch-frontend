@@ -24,6 +24,9 @@ export class StoreComponent implements OnInit {
   }
 
   async click(id: string) {
+    if(this.showCurtain = true){
+      this.dismissCurtain();
+    }
     this.cards[id] = await this.store.openPack(id);
     this.openCurtain(id);
     if(this.cards[id] && this.cards[id].opened) return;
