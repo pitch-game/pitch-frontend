@@ -23,12 +23,10 @@ export class StoreComponent implements OnInit {
   ngOnInit() {
   }
 
-  click(id: string): void {
+  async click(id: string) {
+    this.cards[id] = await this.store.openPack(id);
     this.openCurtain(id);
     if(this.cards[id] && this.cards[id].opened) return;
-    this.store.openPack(id).subscribe(card => {
-      this.cards[id] = card;
-    });
   }
 
   dismissCurtain() {

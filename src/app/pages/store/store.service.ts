@@ -10,11 +10,11 @@ export class StoreHttpService {
     constructor(private http: HttpClient, private authService: AuthService) { }
 
     //todo split to http service
-    openPack(id: string) {
+    async openPack(id: string) {
         const headers = {
             'Content-Type': 'application/json',
             'Authorization': this.authService.getAuthorizationHeaderValue()
         };
-        return this.http.get<Card>(`${environment.apiEndpoint}/store/packs/open/` + id, { headers: headers });
+        return await this.http.get<Card>(`${environment.apiEndpoint}/store/packs/open/` + id, { headers: headers });
     }
 }

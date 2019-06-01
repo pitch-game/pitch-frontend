@@ -1,7 +1,7 @@
 <div>
-  <div class="flex content-center items-center justify-center p-2 hover:bg-blue cursor-pointer" *ngFor="let card of cards">
+  <div class="flex content-center items-center justify-center p-2 hover:bg-blue cursor-pointer" *ngFor="let card of cards | async">
     <div class="m-2 flex-1">
-      <pitch-player-card [card]="card" size="sm"></pitch-player-card>
+      <pitch-player-card [card]="card" size="sm" mode="squad"></pitch-player-card>
     </div>
     <div class="m-2 flex-grow flex-col justify-center content-center">{{card.name}}</div>
     <div class="m-2 flex-grow justify-center content-center">{{card.position}}</div>

@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-active-squad',
@@ -27,49 +28,50 @@ export class ActivesquadComponent implements OnInit {
 
   headers: any;
 
-  ngOnInit() {
+  async ngOnInit() {
     this.headers = {
       'Content-Type': 'application/json',
       'Authorization': this.authService.getAuthorizationHeaderValue()
     };
     
-    this.http.get<any>(`${environment.apiEndpoint}/squad`, { headers: this.headers }).subscribe((squad) => {
-      this.squad = squad
-
-      for (let position in squad.lineup) {
-        this.loadPosition(position);
-      };
-    });
+    this.squad = await this.http.get<any>(`${environment.apiEndpoint}/squad`, { headers: this.headers }).toPromise();
+    var ids = Object.values(this.squad.lineup).filter(x => x).join(';');
+    if(ids.length === 0){
+      return;
+    };
+    var cards = await this.http.get<Card[]>(`${environment.apiEndpoint}/card/cards/${ids}`, { headers: this.headers }).toPromise();
+    for (let position in this.squad.lineup) {
+      var card = cards.find(x => x.id == this.squad.lineup[position]);
+      card.name = card.shortName; //TODO
+      this.cards[position] = card;
+    };
   }
 
   //TODO aggregate in gateway
-  loadPosition(position: string) {
+  async loadPosition(position: string) {
     if(!this.squad.lineup[position]){
       //this.cards[position] = {};
       return;
     }
 
-    this.http.get<any>(`${environment.apiEndpoint}/card/${this.squad.lineup[position]}`, { headers: this.headers }).subscribe((card) => {
-      this.cards[position] = card;
-    });
+    this.cards[position] = await this.http.get<Card[]>(`${environment.apiEndpoint}/card/${this.squad.lineup[position]}`, { headers: this.headers }).toPromise();
+
   }
 
-  getPlayers(position: string) {
-    this.http.get<Card[]>(`${environment.apiEndpoint}/card`, { headers: this.headers, params: new HttpParams().set('take', '11').set('position', position) }).subscribe((cards) => {
-      this.modal.popupCards = cards
-    });
+  async getPlayers(position: string) {
+    this.modal.popupCards = await this.http.get<Card[]>(`${environment.apiEndpoint}/card`, { headers: this.headers, params: new HttpParams().set('take', '11').set('position', position) });
   }
 
-  assign(position: string, cardId: string){
+  async assign(position: string, cardId: string){
     this.squad.lineup[position] = cardId;
-    this.loadPosition(position);
+    await this.loadPosition(position);
     this.pendingChanges = true;
   }
 
-  pickPlayer(position: string) {
+  async pickPlayer(position: string) {
     this.modal.visible = true;
     this.modal.position = position;
-    this.getPlayers(position);
+    await this.getPlayers(position);
   }
 
   save(){
