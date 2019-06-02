@@ -1,14 +1,15 @@
-<div>
-  <div class="flex content-center items-center justify-center p-2 hover:bg-blue cursor-pointer" *ngFor="let card of cards | async">
-    <div class="m-2 flex-1">
-      <pitch-player-card [card]="card" size="sm" mode="squad"></pitch-player-card>
-    </div>
-    <div class="m-2 flex-grow flex-col justify-center content-center">{{card.name}}</div>
-    <div class="m-2 flex-grow justify-center content-center">{{card.position}}</div>
-    <div class="m-2 flex-grow justify-center content-center">{{card.rating}}</div>
-    <div class="m-2 flex-grow justify-center content-center">{{card.fitness}}</div>
-    <div class="m-2 flex-grow justify-center content-center">{{card.form}}</div>
-    <div class="m-2 flex-grow justify-center content-center">{{card.previousOwners}}</div>
-    <div class="m-2 flex-grow justify-center content-center">{{card.createdOn}}</div>
+<div class="flex content-center items-center justify-center p-2 hover:bg-indigo-lighter cursor-pointer"
+  *ngFor="let card of cards | async">
+  <div class="w-1/6 invisible lg:visible"></div>
+  <div class="m-2 flex-1">
+    <pitch-player-card [card]="card" size="sm" mode="squad"></pitch-player-card>
   </div>
+  <div class="m-2 flex-grow flex-col justify-center content-center">{{card.name}}</div>
+  <div class="m-2 flex-grow justify-center content-center">{{card.position}}</div>
+  <div class="m-2 flex-grow justify-center content-center">{{card.rating}}</div>
+  <div class="m-2 flex-grow justify-center content-center">{{card.fitness}}</div>
+  <div class="m-2 flex-grow justify-center content-center">{{card.form}}</div>
+  <div class="m-2 flex-grow justify-center content-center">{{card.previousOwners}}</div>
+  <div class="m-2 flex-grow justify-center content-center">{{card.createdOn}}</div>
+  <div class="w-1/6 invisible lg:visible"></div>
 </div>

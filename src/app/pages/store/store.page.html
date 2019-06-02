@@ -1,3 +1,29 @@
+<div class="w-full flex" style="background-color:#3D457F">
+    <div class="w-1/6 invisible lg:visible"></div>
+    <div class="flex-grow invisible lg:visible">
+        <div class="text-2xl p-6 text-white">Store</div>
+        <ul class="list-reset flex">
+            <li class="-mb-px mr-1">
+                <a class="bg-white inline-block rounded-t py-2 px-4 text-indigo hover:text-indigo-lighter"
+                    routerLink="/squad/active">
+                    <span class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">5</span>
+                    Ready to open
+                </a>
+            </li>
+            <li class="mr-1">
+                <a class="bg-indigo-lightest inline-block rounded-t py-2 px-4 text-indigo hover:text-indigo-lighter hover:bg-indigo"
+                    routerLink="/squad/club">
+                    Buy
+                </a>
+            </li>
+            <li class="mr-1">
+                <a class="bg-indigo-lightest inline-block rounded-t py-2 px-4 text-grey line-through" href="#">Special
+                    Offers</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
 <div class="bg-indigo-darkest text-center py-4 lg:px-4">
     <div class="p-2 bg-indigo-darker items-center text-indigo-lightest leading-none lg:rounded-full flex lg:inline-flex"
         role="alert">
@@ -8,14 +34,42 @@
     </div>
 </div>
 
-<div class="flex content-center flex-wrap justify-center m-5">
-    <div class="w-5/6 p-2">
-        <button (click)="click('86031df8-a9ce-4558-8490-3428b0914ea6')"
-            class="w-full h-12 bg-indigo hover:bg-indigo-lighter text-white font-bold py-2 px-4 rounded">
-            <span>Open Pack <span
-                    class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">6</span></span>
-        </button>
+
+<div class="flex">
+    <div class="w-1/6 invisible lg:visible"></div>
+    <div class="w-1/4 flex-grow">
+        <div class="flex content-center flex-wrap justify-center m-5">
+            <div class="w-5/6 p-2">
+                <button (click)="click('86031df8-a9ce-4558-8490-3428b0914ea6')"
+                    class="w-full h-12 bg-indigo hover:bg-indigo-lighter text-white font-bold py-2 px-4 rounded">
+                    <span>Open Pack <span
+                            class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">6</span></span>
+                </button>
+            </div>
+        </div>
+        <span class="text-2xl m-2">Purchase</span>
+        <div class="flex content-center justify-center">
+            <div class="flex-1 text-center">
+                <div>
+                    <pitch-player-card [card]="card"></pitch-player-card>
+                </div>
+                <div class="m-1 p-1 bg-yellow-dark items-center text-black leading-none rounded-full flex inline-flex"
+                    role="alert">
+                    £10,000
+                </div>
+            </div>
+            <div class="flex-1 text-center">
+                <div>
+                    <pitch-player-card [card]="card"></pitch-player-card>
+                </div>
+                <div class="m-1 p-1 bg-yellow-dark items-center text-black leading-none rounded-full flex inline-flex"
+                    role="alert">
+                    £100,000
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="w-1/6 invisible lg:visible"></div>
 </div>
 
 <div *ngIf="showCurtain" class="fixed pin flex flex-col z-40 items-center justify-center overflow-auto bg-black">
@@ -33,28 +87,6 @@
                         class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">5</span></span>
                 <fa-icon [icon]="nextIcon" class="ml-2 text-indigo-lighter"></fa-icon>
             </button>
-        </div>
-    </div>
-</div>
-
-<span class="text-2xl m-2">Purchase</span>
-<div class="flex content-center justify-center">
-    <div class="flex-1 text-center">
-        <div>
-            <pitch-player-card [card]="card"></pitch-player-card>
-        </div>
-        <div class="m-1 p-1 bg-yellow-dark items-center text-black leading-none rounded-full flex inline-flex"
-            role="alert">
-            £10,000
-        </div>
-    </div>
-    <div class="flex-1 text-center">
-        <div>
-            <pitch-player-card [card]="card"></pitch-player-card>
-        </div>
-        <div class="m-1 p-1 bg-yellow-dark items-center text-black leading-none rounded-full flex inline-flex"
-            role="alert">
-            £100,000
         </div>
     </div>
 </div>

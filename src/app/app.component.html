@@ -46,13 +46,13 @@
         </div>
         <div class="mt-4 lg:inline-block lg:mt-0">
           <fa-icon [icon]="challengesIcon" class="mr-2 text-indigo-lighter"></fa-icon>
-          <a routerLink="/challenges" class="lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
+          <a class="lg:inline-block lg:mt-0 text-indigo-lighter mr-4 line-through">
             Challenges
           </a>
         </div>
         <div class="mt-4 lg:inline-block lg:mt-0">
             <fa-icon [icon]="marketplaceIcon" class="mr-2 text-indigo-lighter"></fa-icon>
-            <a routerLink="/marketplace" class="lg:inline-block text-indigo-lighter hover:text-white mr-4">
+            <a class="lg:inline-block text-indigo-lighter mr-4 line-through">
               Marketplace
             </a>
           </div>
@@ -84,9 +84,9 @@
 </div> -->
 
 <div class="flex">
-  <div class="invisible lg:flex-1 lg:visible"></div>
+  <!-- <div class="invisible lg:flex-1 lg:visible"></div> -->
   <div class="flex-auto" [@routeAnimations]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>
   </div>
-  <div class="invisible lg:flex-1 lg:visible"></div>
+  <!-- <div class="invisible lg:flex-1 lg:visible"></div> -->
 </div>
