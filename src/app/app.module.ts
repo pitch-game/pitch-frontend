@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreComponent } from './pages/store/store.page';
 import { LayoutService } from './layout/layout.service';
 import { ActivesquadComponent } from './pages/squad/active-squad/active-squad.page';
@@ -22,6 +22,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PitchPlayerCardModule } from 'pitch-player-card'
 import { StoreHttpService } from './pages/store/store.service';
 import { PlayerAlreadyInSquadPipe } from './pipes/player-already-in-squad.pipe';
+import { TokenInterceptor } from './auth/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,16 @@ import { PlayerAlreadyInSquadPipe } from './pipes/player-already-in-squad.pipe';
     FontAwesomeModule,
     PitchPlayerCardModule
   ],
-  providers: [AuthGuardService, AuthService, LayoutService, StoreHttpService],
+  providers: [
+    AuthGuardService,
+    AuthService,
+    LayoutService,
+    StoreHttpService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,15 +12,11 @@ import { Observable } from 'rxjs';
 })
 export class ClubComponent implements OnInit {
 
-  constructor(private authService: AuthService, private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   cards: Observable<Card[]>;
 
   async ngOnInit() {
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': this.authService.getAuthorizationHeaderValue()
-    };
-    this.cards = await this.http.get<Card[]>(`${environment.apiEndpoint}/card`, { headers: headers });
+    this.cards = await this.http.get<Card[]>(`${environment.apiEndpoint}/card`);
   }
 }

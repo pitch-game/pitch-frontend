@@ -26,20 +26,13 @@ export class ActivesquadComponent implements OnInit {
 
   tickIcon = faCheckCircle;
 
-  headers: any;
-
   async ngOnInit() {
-    this.headers = {
-      'Content-Type': 'application/json',
-      'Authorization': this.authService.getAuthorizationHeaderValue()
-    };
-    
-    this.squad = await this.http.get<any>(`${environment.apiEndpoint}/squad`, { headers: this.headers }).toPromise();
+    this.squad = await this.http.get<any>(`${environment.apiEndpoint}/squad`).toPromise();
     var ids = Object.values(this.squad.lineup).filter(x => x).join(';');
-    if(ids.length === 0){
+    if (ids.length === 0) {
       return;
     };
-    var cards = await this.http.get<Card[]>(`${environment.apiEndpoint}/card/cards/${ids}`, { headers: this.headers }).toPromise();
+    var cards = await this.http.get<Card[]>(`${environment.apiEndpoint}/card/cards/${ids}`).toPromise();
     for (let position in this.squad.lineup) {
       var card = cards.find(x => x.id == this.squad.lineup[position]);
       //card.name = card.shortName; //TODO and check null
@@ -48,19 +41,19 @@ export class ActivesquadComponent implements OnInit {
   }
 
   async loadPosition(position: string) {
-    if(!this.squad.lineup[position]){
+    if (!this.squad.lineup[position]) {
       this.cards[position] = null;
       return;
     }
 
-    this.cards[position] = await this.http.get<Card[]>(`${environment.apiEndpoint}/card/${this.squad.lineup[position]}`, { headers: this.headers }).toPromise();
+    this.cards[position] = await this.http.get<Card[]>(`${environment.apiEndpoint}/card/${this.squad.lineup[position]}`).toPromise();
   }
 
   async getPlayers(position: string) {
-    this.modal.popupCards = await this.http.get<Card[]>(`${environment.apiEndpoint}/card`, { headers: this.headers, params: new HttpParams().set('take', '11').set('position', position) });
+    this.modal.popupCards = await this.http.get<Card[]>(`${environment.apiEndpoint}/card`, { params: new HttpParams().set('take', '11').set('position', position) });
   }
 
-  async assign(position: string, cardId: string){
+  async assign(position: string, cardId: string) {
     this.squad.lineup[position] = cardId;
     await this.loadPosition(position);
     this.pendingChanges = true;
@@ -72,8 +65,8 @@ export class ActivesquadComponent implements OnInit {
     await this.getPlayers(position);
   }
 
-  save(){
-    this.http.put<any>(`${environment.apiEndpoint}/squad`, this.squad, { headers: this.headers }).subscribe((squad) => {
+  save() {
+    this.http.put<any>(`${environment.apiEndpoint}/squad`, this.squad).subscribe((squad) => {
       this.squad = squad
 
       for (let position in squad.lineup) {
