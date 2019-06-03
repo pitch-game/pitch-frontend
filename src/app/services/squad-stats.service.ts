@@ -10,7 +10,7 @@ export class SquadStatsService {
     calculate(squad: Squad, cards: { [position: string]: Card }): SquadStats {
         var occupiedPositions = Object.keys(squad.lineup).filter(pos => squad.lineup[pos]);
 
-        if (occupiedPositions.length === 0) return;
+        if (occupiedPositions.length === 0) return SquadStats.empty;
 
         var stats = new SquadStats();
         stats.rating = occupiedPositions.map<number>(c => cards[c].rating).reduce((sum, current) => sum + current) / Object.keys(squad.lineup).length;

@@ -4,16 +4,16 @@
         <div class="flex w-full justify-between p-4">
             <div class="w-1/4 bg-transparent text-indigo-dark font-semibold py-2 px-4 border border-indigo rounded">
                 <div class="text-center text-sm">Team Chemistry</div>
-                <div class="text-center text-xl text-black pt-1">{{this.stats.chemistry | number:'2.0-0'}}%
+                <div class="text-center text-xl text-black pt-1">{{stats.chemistry | number:'2.0-0'}}%
                 </div>
             </div>
             <div class="w-1/4 bg-transparent text-indigo-dark font-semibold py-2 px-4 border border-indigo rounded">
                 <div class="text-center text-sm">Overall Fitness</div>
-                <div class="text-center text-xl text-black pt-1">{{this.stats.fitness | number:'2.0-0'}}%</div>
+                <div class="text-center text-xl text-black pt-1">{{stats.fitness | number:'2.0-0'}}%</div>
             </div>
             <div class="w-1/4 bg-transparent text-indigo-dark font-semibold py-2 px-4 border border-indigo rounded">
                 <div class="text-center text-sm">Overall Rating</div>
-                <div class="text-center text-xl text-black pt-1">{{this.stats.rating | number:'2.0-0'}}</div>
+                <div class="text-center text-xl text-black pt-1">{{stats.rating | number:'2.0-0'}}</div>
             </div>
         </div>
 
@@ -222,7 +222,6 @@
                 <div class="m-2 flex-grow flex-col justify-center content-center">{{card.name}}</div>
                 <div class="m-2 flex-grow justify-center content-center">{{card.fitness}}</div>
             </div>
-            <div *ngIf="modal.cards && (modal.cards | async).length == 0">No results</div>
         </div>
         <a href="#" class="block group hover:bg-indigo-lighter p-4 rounded" (click)="modal.callback(null)">
             <p class="font-bold text-md mb-1 text-black group-hover:text-white">Remove Player</p>
