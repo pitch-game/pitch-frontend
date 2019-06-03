@@ -1,15 +1,30 @@
-<div class="flex content-center items-center justify-center p-2 hover:bg-indigo-lighter cursor-pointer"
-  *ngFor="let card of cards | async">
+<div class="flex content-center items-center justify-center p-2" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
   <div class="w-1/6 invisible lg:visible"></div>
-  <div class="m-2 flex-1">
-    <pitch-player-card [card]="card" size="sm" mode="squad"></pitch-player-card>
+  <div class="m-2 flex-grow">
+    <table class="w-full text-center">
+      <thead>
+        <tr>
+          <th class="p-4" scope="col">Card</th>
+          <th class="p-4" scope="col">Name</th>
+          <th class="p-4" scope="col">Position</th>
+          <th class="p-4" scope="col">Rating</th>
+          <th class="p-4" scope="col">Fitness</th>
+          <th class="p-4" scope="col">Created On</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let card of (cards$ | async)" class="cursor-pointer hover:bg-indigo-lighter p-2">
+          <td class="p-2">
+            <pitch-player-card [card]="card" size="sm" mode="squad"></pitch-player-card>
+          </td>
+          <td class="p-2">{{card.name}}</td>
+          <td class="p-2">{{card.position}}</td>
+          <td class="p-2">{{card.rating}}</td>
+          <td class="p-2">{{card.fitness}}</td>
+          <td class="p-2">{{card.createdOn | timeAgo}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <div class="m-2 flex-grow flex-col justify-center content-center">{{card.name}}</div>
-  <div class="m-2 flex-grow justify-center content-center">{{card.position}}</div>
-  <div class="m-2 flex-grow justify-center content-center">{{card.rating}}</div>
-  <div class="m-2 flex-grow justify-center content-center">{{card.fitness}}</div>
-  <div class="m-2 flex-grow justify-center content-center">{{card.form}}</div>
-  <div class="m-2 flex-grow justify-center content-center">{{card.previousOwners}}</div>
-  <div class="m-2 flex-grow justify-center content-center">{{card.createdOn}}</div>
   <div class="w-1/6 invisible lg:visible"></div>
 </div>

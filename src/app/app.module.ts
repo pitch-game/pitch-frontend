@@ -24,6 +24,10 @@ import { StoreHttpService } from './pages/store/store.service';
 import { PlayerAlreadyInSquadPipe } from './pipes/player-already-in-squad.pipe';
 import { TokenInterceptor } from './auth/token.interceptor';
 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
+import {TimeAgoPipe} from 'time-ago-pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +39,8 @@ import { TokenInterceptor } from './auth/token.interceptor';
     ActivesquadComponent,
     TrainingComponent,
     ClubComponent,
-    PlayerAlreadyInSquadPipe
+    PlayerAlreadyInSquadPipe,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,8 @@ import { TokenInterceptor } from './auth/token.interceptor';
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
-    PitchPlayerCardModule
+    PitchPlayerCardModule,
+    InfiniteScrollModule
   ],
   providers: [
     AuthGuardService,
