@@ -1,8 +1,7 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
-import { Card } from 'pitch-player-card/models/card';
-import { HttpClient } from '@angular/common/http';
 import { StoreHttpService } from './store.service';
 import { faChevronCircleRight, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Card } from 'src/app/models/card/card';
 
 @Component({
   selector: "app-store",
