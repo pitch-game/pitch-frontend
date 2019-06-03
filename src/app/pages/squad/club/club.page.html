@@ -4,12 +4,13 @@
     <table class="w-full text-center">
       <thead>
         <tr>
-          <th class="p-4" scope="col">Card</th>
+          <th class="p-4" scope="col"></th>
           <th class="p-4" scope="col">Name</th>
           <th class="p-4" scope="col">Position</th>
           <th class="p-4" scope="col">Rating</th>
           <th class="p-4" scope="col">Fitness</th>
-          <th class="p-4" scope="col">Created On</th>
+          <th class="p-4" scope="col">Goals Scored</th>
+          <th class="p-4" scope="col">Recieved</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +22,7 @@
           <td class="p-2">{{card.position}}</td>
           <td class="p-2">{{card.rating}}</td>
           <td class="p-2">{{card.fitness}}</td>
+          <td class="p-2">{{card.goalsScored}}</td>
           <td class="p-2">{{card.createdOn | timeAgo}}</td>
         </tr>
       </tbody>

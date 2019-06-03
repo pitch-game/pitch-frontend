@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Card } from 'pitch-player-card';
 import { Observable, Subject } from 'rxjs';
 import { switchMap, scan, startWith } from 'rxjs/operators';
+import { Card } from 'src/app/models/card/card';
+import { CardService, CardQueryModel } from 'src/app/services/card.service';
 
 @Component({
   selector: 'app-club',
@@ -12,7 +13,7 @@ import { switchMap, scan, startWith } from 'rxjs/operators';
 })
 export class ClubComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private cardService: CardService) { }
 
   cards$: Observable<Card[]>;
   loadMore$ = new Subject<number>();
@@ -33,7 +34,7 @@ export class ClubComponent implements OnInit {
   }
 
   getCards(skip: number) {
-    return this.http.get<Card[]>(`${environment.apiEndpoint}/card`, { params: new HttpParams().set('skip', skip.toString()).set('take', this.take.toString()) });
+    return this.cardService.getWithQuery(new CardQueryModel(this.skip, this.take));
   }
 
   onScroll() {

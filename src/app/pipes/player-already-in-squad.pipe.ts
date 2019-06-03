@@ -3,9 +3,8 @@ import { Card } from 'pitch-player-card';
 
 @Pipe({ name: 'playerAlreadyInSquad' })
 export class PlayerAlreadyInSquadPipe implements PipeTransform {
-  transform(cards: Card[], lineup: any) {
+  transform(cards: Card[], cardIds: string[]) {
     if(!cards) return [];
-    var values = Object.values(lineup);
-    return cards.filter(card => values.indexOf(card.id) == -1);
+    return cards.filter(card => cardIds.indexOf(card.id) == -1);
   }
 }
