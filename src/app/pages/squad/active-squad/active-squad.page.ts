@@ -85,6 +85,7 @@ export class ActivesquadComponent implements OnInit {
 
   setTeamInstruction(style: string, value: number) {
     this.squad.instructions[style] = value;
+    this.pendingChanges = true;
   }
 
   async pickSub(index: number) {
@@ -92,7 +93,9 @@ export class ActivesquadComponent implements OnInit {
     this.modal.visible = true;
     this.modal.callback = (async (id) => {
       this.squad.subs[index] = id;
-      this.cards[id] = await this.cardService.get(id).toPromise();
+      if (id) {
+        this.cards[id] = await this.cardService.get(id).toPromise();
+      }
       this.pendingChanges = true;
       this.stats = this.squadStatsService.calculate(this.squad, this.cards);
     });
