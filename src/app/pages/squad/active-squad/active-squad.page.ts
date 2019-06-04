@@ -32,47 +32,6 @@ export class ActivesquadComponent implements OnInit {
     this.stats = this.squadStatsService.calculate(this.squad, this.cards);
   }
 
-  async getCardsForLineup() {
-    var ids = Object.values(this.squad.lineup).filter(x => x);
-    if (ids.length == 0) return;
-    var cards = await this.cardService.getMany(ids).toPromise();
-    for (let position in this.squad.lineup) {
-      var card = cards.find(x => x.id == this.squad.lineup[position]);
-      //card.name = card.shortName; //TODO and check null
-      this.cards[position] = card;
-    };
-  }
-
-  async getCardsForSubs() {
-    var subIds = this.squad.subs.filter(x => x);
-    if (subIds.length == 0) return;
-    var subCards = await this.cardService.getMany(subIds).toPromise();
-    for (let index in this.squad.subs) {
-      var card = subCards.find(x => x.id == this.squad.subs[index]);
-      this.cards[this.squad.subs[index]] = card;
-    };
-  }
-
-  async loadPosition(position: string) {
-    if (!this.squad.lineup[position]) {
-      this.cards[position] = null;
-      return;
-    }
-
-    this.cards[position] = await this.cardService.get(this.squad.lineup[position]).toPromise();
-  }
-
-  async getPlayers(position: string) {
-    this.modal.cards = await this.cardService.getWithQuery(new CardQueryModel(0, 10, position, this.idsToFilter()));
-  }
-
-  async assign(position: string, cardId: string) {
-    this.squad.lineup[position] = cardId;
-    await this.loadPosition(position);
-    this.pendingChanges = true;
-    this.stats = this.squadStatsService.calculate(this.squad, this.cards);
-  }
-
   async pickPlayer(position: string) {
     this.modal = new PlayerPickerModal();
     this.modal.position = position;
@@ -120,5 +79,46 @@ export class ActivesquadComponent implements OnInit {
 
   onScroll() {
     console.log('scroll');
+  }
+
+  private async getCardsForLineup() {
+    var ids = Object.values(this.squad.lineup).filter(x => x);
+    if (ids.length == 0) return;
+    var cards = await this.cardService.getMany(ids).toPromise();
+    for (let position in this.squad.lineup) {
+      var card = cards.find(x => x.id == this.squad.lineup[position]);
+      //card.name = card.shortName; //TODO and check null
+      this.cards[position] = card;
+    };
+  }
+
+  private async getCardsForSubs() {
+    var subIds = this.squad.subs.filter(x => x);
+    if (subIds.length == 0) return;
+    var subCards = await this.cardService.getMany(subIds).toPromise();
+    for (let index in this.squad.subs) {
+      var card = subCards.find(x => x.id == this.squad.subs[index]);
+      this.cards[this.squad.subs[index]] = card;
+    };
+  }
+
+  private async loadPosition(position: string) {
+    if (!this.squad.lineup[position]) {
+      this.cards[position] = null;
+      return;
+    }
+
+    this.cards[position] = await this.cardService.get(this.squad.lineup[position]).toPromise();
+  }
+
+  private async getPlayers(position: string) {
+    this.modal.cards = await this.cardService.getWithQuery(new CardQueryModel(0, 10, position, this.idsToFilter()));
+  }
+
+  private async assign(position: string, cardId: string) {
+    this.squad.lineup[position] = cardId;
+    await this.loadPosition(position);
+    this.pendingChanges = true;
+    this.stats = this.squadStatsService.calculate(this.squad, this.cards);
   }
 }
