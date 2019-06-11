@@ -10,19 +10,31 @@ import { StoreComponent } from './pages/store/store.page';
 import { ActivesquadComponent } from './pages/squad/active-squad/active-squad.page';
 import { TrainingComponent } from './pages/squad/training/training.page';
 import { ClubComponent } from './pages/squad/club/club.page';
+import { BuyPageComponent } from './pages/store/buy/buy.page';
+import { ReadyToOpenComponent } from './pages/store/open/open.page';
 
 const routes: Routes = [
-  { path: 'squad', component: SquadComponent, data: {animation: 'squad'}, canActivate: [AuthGuardService],
+  {
+    path: 'squad', component: SquadComponent, data: { animation: 'squad' }, canActivate: [AuthGuardService],
     children: [
-      { path: '', redirectTo: 'active', pathMatch: 'full', data: {animation: 'squad'}},
-      { path: 'active', component: ActivesquadComponent, data: {animation: 'squad'} },
-      { path: 'training', component: TrainingComponent, data: {animation: 'squad'} },
-      { path: 'club', component: ClubComponent, data: {animation: 'squad'} }
+      { path: '', redirectTo: 'active', pathMatch: 'full', data: { animation: 'squad' } },
+      { path: 'active', component: ActivesquadComponent, data: { animation: 'squad' } },
+      { path: 'training', component: TrainingComponent, data: { animation: 'squad' } },
+      { path: 'club', component: ClubComponent, data: { animation: 'squad' } }
     ]
   },
-  { path: 'seasons', component: SeasonsComponent, data: {animation: 'seasons'}, canActivate: [AuthGuardService] },
-  { path: 'challenges', component: ChallengesComponent, data: {animation: 'challenges'}, canActivate: [AuthGuardService] },
-  { path: 'store', component: StoreComponent, data: { animation: 'store'}, canActivate: [AuthGuardService] },
+  { path: 'seasons', component: SeasonsComponent, data: { animation: 'seasons' }, canActivate: [AuthGuardService] },
+  { path: 'challenges', component: ChallengesComponent, data: { animation: 'challenges' }, canActivate: [AuthGuardService] },
+  {
+    path: 'store', component: StoreComponent, canActivate: [AuthGuardService],
+    children: [
+      { path: '', redirectTo: 'open', pathMatch: 'full' },
+      { path: 'open', component: ReadyToOpenComponent },
+      { path: 'buy', component: BuyPageComponent },
+    ]
+  },
+  { path: 'store', component: StoreComponent, data: { animation: 'store' }, canActivate: [AuthGuardService] },
+  { path: 'buy', component: BuyPageComponent, data: { animation: 'buy' }, canActivate: [AuthGuardService] },
   { path: 'auth-callback', component: AuthCallbackComponent }
 ];
 

@@ -12,4 +12,8 @@ export class StoreHttpService {
     async openPack(id: string) {
         return await this.http.get<Card>(`${environment.apiEndpoint}/store/packs/open/` + id);
     }
+
+    async getPacks(){
+        return await this.http.get<any>(`${environment.apiEndpoint}/store/packs`);
+    }
 }

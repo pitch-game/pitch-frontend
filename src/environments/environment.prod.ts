@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiEndpoint: 'https://api.pitch-game.io',
-  appUri: 'https://pitch-game.io',
+  apiEndpoint: 'http://api.pitch-game.io',
+  appUri: 'http://pitch-game.io',
   version: 'X.X.X.X'
 };

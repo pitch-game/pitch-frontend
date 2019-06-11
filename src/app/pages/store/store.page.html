@@ -5,14 +5,14 @@
         <ul class="list-reset flex">
             <li class="-mb-px mr-1">
                 <a class="bg-white inline-block rounded-t py-2 px-4 text-indigo hover:text-indigo-lighter"
-                    routerLink="/store">
+                    routerLink="/store/open">
                     <span class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">5</span>
                     Ready to open
                 </a>
             </li>
             <li class="mr-1">
                 <a class="bg-indigo-lightest inline-block rounded-t py-2 px-4 text-indigo hover:text-indigo-lighter hover:bg-indigo"
-                    routerLink="/store">
+                    routerLink="/store/buy">
                     Buy
                 </a>
             </li>
@@ -28,64 +28,12 @@
     <div class="p-2 bg-indigo-darker items-center text-indigo-lightest leading-none lg:rounded-full flex lg:inline-flex"
         role="alert">
         <span class="flex rounded-full bg-indigo uppercase px-2 py-1 text-xs font-bold mr-3">New</span>
-        <span class="font-semibold mr-2 text-left flex-auto">Limited time offer on special holiday packs!</span>
+        <span class="font-semibold mr-2 text-left flex-auto">Positional packs coming soon!</span>
         <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z" /></svg>
     </div>
 </div>
 
-<div class="flex">
-    <div class="w-1/6 invisible lg:visible"></div>
-    <div class="w-1/4 flex-grow">
-        <div class="flex content-center flex-wrap justify-center m-5">
-            <div class="w-5/6 p-2">
-                <button (click)="click('86031df8-a9ce-4558-8490-3428b0914ea6')"
-                    class="w-full h-12 bg-indigo hover:bg-indigo-lighter text-white font-bold py-2 px-4 rounded">
-                    <span>Open Pack <span
-                            class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">6</span></span>
-                </button>
-            </div>
-        </div>
-        <span class="text-2xl m-2">Purchase</span>
-        <div class="flex content-center justify-center">
-            <div class="flex-1 text-center">
-                <div>
-                    <pitch-player-card [card]="card"></pitch-player-card>
-                </div>
-                <div class="m-1 p-1 bg-yellow-dark items-center text-black leading-none rounded-full flex inline-flex"
-                    role="alert">
-                    £10,000
-                </div>
-            </div>
-            <div class="flex-1 text-center">
-                <div>
-                    <pitch-player-card [card]="card"></pitch-player-card>
-                </div>
-                <div class="m-1 p-1 bg-yellow-dark items-center text-black leading-none rounded-full flex inline-flex"
-                    role="alert">
-                    £100,000
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="w-1/6 invisible lg:visible"></div>
-</div>
-
-<div *ngIf="showCurtain" class="fixed pin flex flex-col z-40 items-center justify-center overflow-auto bg-black">
-    <button (click)="dismissCurtain()" class="absolute h-10 pin-t pin-b pin-r p-4">
-        <fa-icon [icon]="closeIcon" size="2x" class="ml-2 text-indigo-lighter"></fa-icon>
-    </button>
-    <div class="flex">
-        <pitch-player-card class="z-50" [card]="cards[curtainPackId]" size="lg" spinOnInit="true"></pitch-player-card>
-    </div>
-    <div class="flex content-center flex-wrap justify-center m-5">
-        <div class="flex-1 p-2">
-            <button (click)="click('86031df8-a9ce-4558-8490-3428b0914ea6')"
-                class="w-full h-12 bg-indigo hover:bg-indigo-lighter text-white font-bold py-2 px-4 rounded">
-                <span>Open Next <span
-                        class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">5</span></span>
-                <fa-icon [icon]="nextIcon" class="ml-2 text-indigo-lighter"></fa-icon>
-            </button>
-        </div>
-    </div>
+<div>
+    <router-outlet #storeOutlet="outlet"></router-outlet>
 </div>
