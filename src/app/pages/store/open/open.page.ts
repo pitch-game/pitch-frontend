@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StoreHttpService } from '../store.service';
 import { Card } from 'pitch-player-card';
 import { faChevronCircleRight, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-ready-to-open',
@@ -10,9 +11,8 @@ import { faChevronCircleRight, faTimes } from '@fortawesome/free-solid-svg-icons
 })
 export class ReadyToOpenComponent implements OnInit {
   cards: Card[] = [];
-  //packs: Observable<any>;
-  packs: any[];
-
+  packs: Observable<any>;
+  
   constructor(private store: StoreHttpService) {}
 
   showCurtain: boolean;
@@ -22,8 +22,7 @@ export class ReadyToOpenComponent implements OnInit {
   closeIcon = faTimes;
   
   async ngOnInit() {
-    //this.packs = await this.store.getPacks();
-    this.packs = [{id: '1'},{id: '1'},{id: '1'},{id: '1'},{id: '1'},{id: '1'},{id: '1'},{id: '1'},{id: '1'},{id: '1'},{id: '1'},{id: '1'},{id: '1'},{id: '1'},{id: '1'}]
+    this.packs = await this.store.getPacks();
   }
 
   async click(id: string) {

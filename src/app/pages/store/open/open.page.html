@@ -6,7 +6,7 @@
         <pitch-player-card size="lg"></pitch-player-card>
       </div>
       <div>
-        <span class="rounded-full bg-grey-light text-black px-2 py-1 text-2xl">x{{packs?.length}}</span>
+        <span class="rounded-full bg-grey-light text-black px-2 py-1 text-2xl">x{{(packs | async)?.length || '?'}}</span>
       </div>
     </div>
     <div class="flex content-center flex-wrap justify-center m-5">
@@ -16,7 +16,7 @@
           <span class="text-lg mb-2">Open Pack</span>
           <div class="m-2">
             <span
-              class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">{{packs?.length}}
+              class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">{{(packs | async) ?.length || '?'}}
               remaining</span> </div>
         </button>
       </div>
