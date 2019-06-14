@@ -1,19 +1,20 @@
 
-import { Card } from 'pitch-player-card';
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Card } from 'src/app/models/card/card';
 
 @Injectable()
 export class StoreHttpService {
     constructor(private http: HttpClient) { }
 
     //todo split to http service
-    async openPack(id: string) {
-        return await this.http.get<Card>(`${environment.apiEndpoint}/store/packs/open/` + id);
+    openPack(id: string) {
+        return this.http.get<Card>(`${environment.apiEndpoint}/store/packs/open/` + id);
     }
 
-    async getPacks(){
-        return await this.http.get<any>(`${environment.apiEndpoint}/store/packs`);
+    getPacks(){
+        return this.http.get<any[]>(`${environment.apiEndpoint}/store/packs`);
     }
 }

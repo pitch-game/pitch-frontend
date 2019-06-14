@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreHttpService } from '../store.service';
-import { Card } from 'pitch-player-card';
 import { faChevronCircleRight, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { Observable } from 'rxjs';
+import { Card } from 'src/app/models/card/card';
 
 @Component({
   selector: 'app-ready-to-open',
@@ -10,8 +9,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./open.page.less']
 })
 export class ReadyToOpenComponent implements OnInit {
-  cards: Card[] = [];
-  packs: Observable<any>;
+  cards: {[id: string]: Card} = {};
+  packs: any[];
   
   constructor(private store: StoreHttpService) {}
 
@@ -22,14 +21,19 @@ export class ReadyToOpenComponent implements OnInit {
   closeIcon = faTimes;
   
   async ngOnInit() {
-    this.packs = await this.store.getPacks();
+    this.store.getPacks().subscribe((packs) => {
+      this.packs = packs;
+    });
   }
 
-  async click(id: string) {
+  async click() {
+    let id = this.packs.pop().id;
     if(this.showCurtain = true){
       this.dismissCurtain();
     }
-    this.cards[id] = await this.store.openPack(id);
+    this.store.openPack(id).subscribe((card) => {
+      this.cards[id] = card;
+    });
     this.openCurtain(id);
     if(this.cards[id] && this.cards[id].opened) return;
   }

@@ -6,7 +6,7 @@
         <pitch-player-card size="lg"></pitch-player-card>
       </div>
       <div>
-        <span class="rounded-full bg-grey-light text-black px-2 py-1 text-2xl">x{{(packs | async)?.length || '?'}}</span>
+        <span class="rounded-full bg-grey-light text-black px-2 py-1 text-2xl">x{{packs?.length || '?'}}</span>
       </div>
     </div>
     <div class="flex content-center flex-wrap justify-center m-5">
@@ -16,7 +16,7 @@
           <span class="text-lg mb-2">Open Pack</span>
           <div class="m-2">
             <span
-              class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">{{(packs | async) ?.length || '?'}}
+              class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">{{packs?.length || '?'}}
               remaining</span> </div>
         </button>
       </div>
@@ -34,10 +34,10 @@
   </div>
   <div class="flex content-center flex-wrap justify-center m-5">
     <div class="flex-1 p-2">
-      <button (click)="click('86031df8-a9ce-4558-8490-3428b0914ea6')"
+      <button (click)="click()"
         class="w-full h-12 bg-indigo hover:bg-indigo-lighter text-white font-bold py-2 px-4 rounded">
         <span>Open Next <span
-            class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">{{packs?.length}}</span></span>
+            class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">{{packs?.length || '?'}}</span></span>
         <fa-icon [icon]="nextIcon" class="ml-2 text-indigo-lighter"></fa-icon>
       </button>
     </div>
