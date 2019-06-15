@@ -29,6 +29,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { BuyPageComponent } from './pages/store/buy/buy.page';
 import { ReadyToOpenComponent } from './pages/store/open/open.page';
+import { MatchComponent } from './pages/match/match.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ReadyToOpenComponent } from './pages/store/open/open.page';
     PlayerAlreadyInSquadPipe,
     TimeAgoPipe,
     BuyPageComponent,
-    ReadyToOpenComponent
+    ReadyToOpenComponent,
+    MatchComponent
   ],
   imports: [
     BrowserModule,

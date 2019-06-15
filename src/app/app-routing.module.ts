@@ -12,6 +12,7 @@ import { TrainingComponent } from './pages/squad/training/training.page';
 import { ClubComponent } from './pages/squad/club/club.page';
 import { BuyPageComponent } from './pages/store/buy/buy.page';
 import { ReadyToOpenComponent } from './pages/store/open/open.page';
+import { MatchComponent } from './pages/match/match.component';
 
 const routes: Routes = [
   {
@@ -35,7 +36,8 @@ const routes: Routes = [
   },
   { path: 'store', component: StoreComponent, data: { animation: 'store' }, canActivate: [AuthGuardService] },
   { path: 'buy', component: BuyPageComponent, data: { animation: 'buy' }, canActivate: [AuthGuardService] },
-  { path: 'auth-callback', component: AuthCallbackComponent }
+  { path: 'auth-callback', component: AuthCallbackComponent },
+  { path: 'match/:id', component: MatchComponent }
 ];
 
 @NgModule({

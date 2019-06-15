@@ -37,6 +37,11 @@ export class AuthService {
     //return `${this.user.token_type} ${this.user.access_token}`;
   }
 
+  async getToken() {
+    let user = await this.manager.getUser();
+    return user.id_token;
+  }
+
   startAuthentication(): Promise<void> {
     return this.manager.signinRedirect();
   }
