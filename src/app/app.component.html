@@ -10,6 +10,16 @@
     </div>
     <div class="flex">
       <button *ngIf="isLoggedIn" (click)="toggleMenu()"
+        class="rounded-full mr-2 items-center text-xs border rounded text-black border-grey-light hover:bg-grey-light bg-grey-lightest">
+        <span class="text-green m-3">
+          <fa-icon [icon]="loadingIcon" [spin]="true"></fa-icon>
+          <span class="ml-1">7'</span>
+        </span>
+        <span class="rounded-full items-center text-xs px-3 py-2 border rounded text-black border-bg-green hover:bg-green-light bg-green">
+          1 - 1
+        </span>
+      </button>
+      <button *ngIf="isLoggedIn" (click)="toggleMenu()"
         class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-black border-yellow hover:bg-yellow bg-yellow-dark">
         £1.2m
       </button>
@@ -73,14 +83,14 @@
     </div>
   </nav>
   <div *ngIf="layoutService.showMatchmaking" class="bg-indigo-darkest text-center py-4 lg:px-4">
-      <div class="p-2 bg-indigo-darker items-center text-indigo-lightest leading-none lg:rounded-full flex lg:inline-flex"
-        role="alert">
-        <span class="font-semibold mr-2 text-center flex-auto">
-          <fa-icon class="mr-1" [icon]="loadingIcon" [spin]="true"></fa-icon>
-          Matchmaking in progress...
-        </span>
-      </div>
+    <div class="p-2 bg-indigo-darker items-center text-indigo-lightest leading-none lg:rounded-full flex lg:inline-flex"
+      role="alert">
+      <span class="font-semibold mr-2 text-center flex-auto">
+        <fa-icon class="mr-1" [icon]="loadingIcon" [spin]="true"></fa-icon>
+        Matchmaking in progress...
+      </span>
     </div>
+  </div>
 </div>
 
 <div class="flex">
