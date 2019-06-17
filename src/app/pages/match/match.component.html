@@ -1,3 +1,79 @@
+<div class="w-full flex" style="background-color:#3D457F">
+    <div class="w-1/6 invisible lg:visible"></div>
+    <div class="flex-grow invisible lg:visible">
+        <div class="text-2xl p-6 text-white">Match</div>
+        <ul class="list-reset flex">
+            <li class="-mb-px mr-1">
+                <a class="bg-white inline-block rounded-t py-2 px-4 text-indigo hover:text-indigo-lighter"
+                    routerLink="/squad/active">
+                    <fa-icon [icon]="squadIcon" class="mr-2 text-indigo ml-2"></fa-icon> Overview
+                </a>
+            </li>
+            <li class="mr-1">
+                <a class="bg-indigo-lightest inline-block rounded-t py-2 px-4 text-indigo hover:text-indigo-lighter hover:bg-indigo"
+                    routerLink="/squad/club">
+                    <fa-icon [icon]="clubIcon" class="mr-2 text-indigo"></fa-icon>
+                    Lineup
+                </a>
+            </li>
+            <li class="mr-1">
+                <a class="bg-indigo-lightest inline-block rounded-t py-2 px-4 text-grey line-through"
+                    href="#">Advanced</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
 <p>
   {{match | json}}
 </p>
+
+<div class="flex">
+  <div class="w-1/5"></div>
+  <div class="w-1/5">
+    <div class="text-3xl text-center">
+      <div>Home</div>
+      {{match?.homeResult.score}}
+      <div *ngFor="let scorer of match?.homeResult.scorers">
+        {{scorer}}
+      </div>
+    </div>
+  </div>
+  <div class="w-1/5">
+    <div class="text-3xl text-center">
+      {{match?.minute}}'
+    </div>
+  </div>
+  <div class="w-1/5">
+    <div class="text-3xl text-center">
+      <div>Away</div>
+      {{match?.awayResult.score}}
+      <div *ngFor="let scorer of match?.awayResult.scorers">
+        {{scorer}}
+      </div>
+    </div>
+  </div>
+  <div class="w-1/5"></div>
+</div>
+<div class="flex mb-4">
+  <div class="w-1/5"></div>
+  <div class="w-1/5">
+  </div>
+  <div class="w-1/5">
+    <div *ngFor="let event of match?.events" class="text-xl text-center">
+      <span>{{event.minute}}'</span>
+      {{event.name}}
+    </div>
+  </div>
+  <div class="w-1/5">
+  </div>
+  <div class="w-1/5"></div>
+</div>
+<div class="flex">
+  <div class="flex-grow bg-red h-12 align-center content-center justify-center">
+    <div class="bg-green-light h-12 text-2xl leading-none py-1 text-center"
+      [style.width.%]="match?.homePossessionPercent">
+      {{match?.homePossessionPercent}}%
+    </div>
+  </div>
+</div>
