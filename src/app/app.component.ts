@@ -5,6 +5,7 @@ import { AuthService } from './services/auth.service';
 import { environment } from 'src/environments/environment';
 import { LayoutService } from './layout/layout.service';
 import { faUsers, faFutbol, faTicketAlt, faShoppingBasket, faMoneyBill, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -27,13 +28,21 @@ export class AppComponent {
   isLoggedIn: boolean;
   version: string;
 
-  constructor(public authService: AuthService, public layoutService: LayoutService, private router: Router) {
+  profile: any;
+
+  constructor(public authService: AuthService, public layoutService: LayoutService, private router: Router, private userService: UserService) {
     this.authService.isLoggedIn().subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
+      this.userService.get().subscribe((profile) => {
+        this.profile = profile;
+      });
     });
 
     this.authService.onAuthenticationCompleted.subscribe(() => {
       this.isLoggedIn = true;
+      this.userService.get().subscribe((profile) => {
+        this.profile = profile;
+      });
     });
 
     this.version = environment.version;

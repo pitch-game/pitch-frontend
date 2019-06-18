@@ -6,6 +6,7 @@ import { faFutbol, faEllipsisH, faStar, faCircle, faSpinner } from '@fortawesome
 import * as signalR from "@aspnet/signalr";
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/layout.service';
+import { MatchmakingService } from 'src/app/services/matchmaking.service';
 
 @Component({
   selector: "app-seasons",
@@ -13,7 +14,7 @@ import { LayoutService } from 'src/app/layout/layout.service';
   styleUrls: ["./seasons.page.less"]
 })
 export class SeasonsComponent implements OnInit {
-  constructor(private http: HttpClient, private authService: AuthService, private router: Router, private layoutService: LayoutService) { }
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router, private layoutService: LayoutService, private matchMakingService: MatchmakingService) { }
   response: any;
 
   findMatchIcon = faFutbol;
@@ -40,10 +41,17 @@ export class SeasonsComponent implements OnInit {
   statusMessage: string;
 
   async ngOnInit() {
-    let sessionId = localStorage.getItem('sessionId');
+    let sessionId = this.matchMakingService.get();
     if (sessionId) {
-      this.setStatus('Finding a match...');
-      await this.establishConnection();
+      await this.matchMakingService.validate().subscribe(async (result) => { //todo make async
+        if (result.valid) {
+          this.setStatus('Finding a match...');
+          await this.establishConnection();
+        } else {
+          this.matchMakingService.remove();
+          this.sessionId = null;
+        }
+      });
     }
   }
 
@@ -57,19 +65,32 @@ export class SeasonsComponent implements OnInit {
 
     this.connection.on("receiveSessionId", (sessionId: string) => {
       this.sessionId = sessionId;
+      this.matchMakingService.set(sessionId);
     });
 
     this.connection.on("matchReady", (sessionId: string) => {
       this.layoutService.showMatchmaking = false;
       this.showStatus = false;
       this.sessionId = null;
+      this.connection.send('cancel', [this.sessionId]);
+
       this.router.navigate(['/match', sessionId]);
     });
   }
 
   async matchmake() {
-    this.setStatus('Establishing connection...');
-    await this.establishConnection();
+    //if already matchmaking
+    if (this.sessionId || this.matchMakingService.get()) {
+      this.matchMakingService.cancel();
+      this.sessionId = null;
+      this.showStatus = false;
+      return;
+    }
+
+    if (!this.connection) {
+      this.setStatus('Establishing connection...');
+      await this.establishConnection();
+    }
 
     this.setStatus('Finding a match...');
     this.layoutService.showMatchmaking = true;

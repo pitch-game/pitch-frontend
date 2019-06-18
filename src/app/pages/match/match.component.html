@@ -5,9 +5,14 @@
       <div class="flex">
         <div class="w-1/3"></div>
         <div class="w-1/3">
-          <div class="text-3xl text-center text-green">
-            <fa-icon [icon]="loadingIcon" [spin]="true"></fa-icon>
-            {{match?.minute}}'
+          <div class="mb-2 text-center text-green">
+            <div *ngIf="!match?.expired" class="text-3xl">
+                <fa-icon [icon]="loadingIcon" [spin]="true"></fa-icon>
+                {{match?.minute}}'
+            </div>
+            <div *ngIf="match?.expired" class="text-sm">
+              Match ended {{ match?.expiredOn | timeAgo}}
+            </div>
           </div>
         </div>
       </div>
