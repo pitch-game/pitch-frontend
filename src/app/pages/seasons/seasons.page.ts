@@ -2,11 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
-import { faFutbol, faEllipsisH, faStar, faCircle, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faFutbol, faEllipsisH, faStar, faCircle, faSpinner, faGift, faMoneyCheck, faLevelUpAlt, faListUl, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import * as signalR from "@aspnet/signalr";
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/layout.service';
 import { MatchmakingService } from 'src/app/services/matchmaking.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: "app-seasons",
@@ -22,6 +23,9 @@ export class SeasonsComponent implements OnInit {
   starIcon = faStar;
   circleIcon = faCircle;
   loadingIcon = faSpinner;
+  faGift = faGift;
+  listIcon = faListUl;
+  cupIcon = faTrophy;
 
   connection: signalR.HubConnection;
 
@@ -40,6 +44,9 @@ export class SeasonsComponent implements OnInit {
   showStatus: boolean;
   statusMessage: string;
 
+  unclaimed: boolean;
+  inProgress: boolean;
+
   async ngOnInit() {
     let sessionId = this.matchMakingService.get();
     if (sessionId) {
@@ -53,6 +60,10 @@ export class SeasonsComponent implements OnInit {
         }
       });
     }
+
+    this.http.get<boolean>(`${environment.apiEndpoint}/match/unclaimed`).subscribe((result) => {
+      this.unclaimed = result;
+    });
   }
 
   async establishConnection() {
@@ -64,11 +75,13 @@ export class SeasonsComponent implements OnInit {
     await this.connection.start().catch(err => console.log(err));
 
     this.connection.on("receiveSessionId", (sessionId: string) => {
+      console.log(sessionId);
       this.sessionId = sessionId;
       this.matchMakingService.set(sessionId);
     });
 
     this.connection.on("matchReady", (sessionId: string) => {
+      console.log(sessionId);
       this.layoutService.showMatchmaking = false;
       this.showStatus = false;
       this.sessionId = null;
@@ -99,6 +112,10 @@ export class SeasonsComponent implements OnInit {
       this.sessionId = null;
     }
     this.connection.send('matchmake').catch(err => console.log(err));
+  }
+
+  claim(){
+    this.unclaimed = false;
   }
 
   setStatus(message: string) {
