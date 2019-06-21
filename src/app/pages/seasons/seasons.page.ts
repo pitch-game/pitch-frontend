@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/layout.service';
 import { MatchmakingService } from 'src/app/services/matchmaking.service';
 import { Observable } from 'rxjs';
+import { MatchService } from 'src/app/services/match.service';
 
 @Component({
   selector: "app-seasons",
@@ -15,7 +16,10 @@ import { Observable } from 'rxjs';
   styleUrls: ["./seasons.page.less"]
 })
 export class SeasonsComponent implements OnInit {
-  constructor(private http: HttpClient, private authService: AuthService, private router: Router, private layoutService: LayoutService, private matchMakingService: MatchmakingService) { }
+  constructor(private http: HttpClient, private authService: AuthService,
+     private router: Router, private layoutService: LayoutService,
+     private matchMakingService: MatchmakingService,
+     private matchService: MatchService) { }
   response: any;
 
   findMatchIcon = faFutbol;
@@ -61,8 +65,8 @@ export class SeasonsComponent implements OnInit {
       });
     }
 
-    this.http.get<boolean>(`${environment.apiEndpoint}/match/unclaimed`).subscribe((result) => {
-      this.unclaimed = result;
+    this.http.get<any>(`${environment.apiEndpoint}/match/unclaimed`).subscribe((result) => {
+      this.unclaimed = result.hasUnclaimed;
     });
   }
 
@@ -82,12 +86,12 @@ export class SeasonsComponent implements OnInit {
 
     this.connection.on("matchReady", (sessionId: string) => {
       console.log(sessionId);
-      this.layoutService.showMatchmaking = false;
+
       this.showStatus = false;
       this.sessionId = null;
       this.connection.send('cancel', [this.sessionId]);
 
-      this.router.navigate(['/match', sessionId]);
+      this.matchService.kickOff(sessionId);
     });
   }
 
@@ -116,6 +120,9 @@ export class SeasonsComponent implements OnInit {
 
   claim(){
     this.unclaimed = false;
+    this.http.get<boolean>(`${environment.apiEndpoint}/match/claim`).subscribe((result) => {
+      this.unclaimed = result;
+    });
   }
 
   setStatus(message: string) {

@@ -1,27 +1,25 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div class="sticky pin-t z-10">
   <nav class="flex items-center justify-between flex-wrap bg-indigo-dark p-3 pb-2">
     <div class="flex items-left flex-no-shrink text-white">
       <span routerLink="/" class="font-semibold text-xl tracking-tight">Pitch</span>
     </div>
-    <div class="flex items-center flex-no-shrink text-white text-sm">
-      <a href="http://updates.pitch-ga.me" class="font-semibold tracking-tight text-indigo-lighter"> {{version}}
-        alpha</a>
+    <div class="flex">
+      <button *ngIf="isLoggedIn && matchService.match" (click)="matchService.goToMatch()"
+        class="rounded-full mr-2 items-center text-xs py-2 border rounded text-black border-grey hover:bg-grey-light bg-grey-lightest">
+        <span class="text-green m-3">
+          <fa-icon [icon]="loadingIcon" [spin]="true"></fa-icon>
+          <span class="ml-1">{{matchService.match?.minute}}'</span>
+        </span>
+        <span
+          class="rounded-full items-center text-xs px-3 py-2 border rounded text-black border-bg-green hover:bg-green-light bg-green">
+          Your Team Name <span class="font-semibold">1 - 1</span> Opponents Team Name
+        </span>
+      </button>
     </div>
     <div class="flex">
       <button *ngIf="isLoggedIn" (click)="toggleMenu()"
-        class="rounded-full mr-2 items-center text-xs border rounded text-black border-grey-light hover:bg-grey-light bg-grey-lightest">
-        <span class="text-green m-3">
-          <fa-icon [icon]="loadingIcon" [spin]="true"></fa-icon>
-          <span class="ml-1">7'</span>
-        </span>
-        <span class="rounded-full items-center text-xs px-3 py-2 border rounded text-black border-bg-green hover:bg-green-light bg-green">
-          1 - 1
-        </span>
-      </button>
-      <button *ngIf="isLoggedIn" (click)="toggleMenu()"
         class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-black border-yellow hover:bg-yellow bg-yellow-dark">
-        £{{profile?.money || '0'}}
+        {{profile?.money || '0' | currency: 'GBP': 'symbol': '1.0'}}
       </button>
       <button *ngIf="isLoggedIn" (click)="toggleMenu()"
         class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-white border-orange hover:bg-orange bg-orange-dark">
@@ -93,10 +91,86 @@
   </div>
 </div>
 
-<div class="flex">
+<div class="flex bg-white">
   <!-- <div class="invisible lg:flex-1 lg:visible"></div> -->
   <div class="flex-auto" [@routeAnimations]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>
   </div>
   <!-- <div class="invisible lg:flex-1 lg:visible"></div> -->
 </div>
+
+<section class="bg-indigo-darkest py-8 w-full">
+  <div class="container mx-auto px-8">
+    <div class="text-grey text-xs">
+      v{{version}} alpha
+    </div>
+    <div class="text-grey text-xs mt-4 bg-indigo-darker rounded p-2">
+      This is an alpha version. Your progress may be lost and things may not work as intended.
+      Please report any issues using the link below. <br />
+    </div>
+    <div class="table mt-4 w-full">
+      <div class="block sm:table-cell">
+        <p class="uppercase text-grey text-sm sm:mb-6 font-semibold">Support</p>
+        <ul class="list-reset text-xs mb-6">
+          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+            ❤️
+            <a href="#" class="text-grey hover:text-grey-dark">Donate</a>
+          </li>
+          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+            ⭐
+            <a href="#" class="text-grey hover:text-grey-dark">GitHub</a>
+          </li>
+        </ul>
+      </div>
+      <div class="block sm:table-cell">
+        <p class="uppercase text-grey text-sm sm:mb-6 font-semibold">Links</p>
+        <ul class="list-reset text-xs mb-6">
+          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+            🤔
+            <a href="#" class="text-grey hover:text-grey-dark bg-indigo-darker p-1 rounded">Report an issue</a>
+          </li>
+          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+            ✔️
+            <a href="#" class="text-grey hover:text-grey-dark">Latest updates</a>
+          </li>
+          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+            🤷
+            <a href="#" class="text-grey hover:text-grey-dark">FAQ</a>
+          </li>
+          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+            📣
+            <a href="#" class="text-grey hover:text-grey-dark">Feedback</a>
+          </li>
+        </ul>
+      </div>
+      <div class="block sm:table-cell">
+        <p class="uppercase text-grey text-sm sm:mb-6 font-semibold">Legal</p>
+        <ul class="list-reset text-xs mb-6">
+          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+            📜
+            <a href="#" class="text-grey hover:text-grey-dark">Terms</a>
+          </li>
+          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+            👥
+            <a href="#" class="text-grey hover:text-grey-dark">Privacy</a>
+          </li>
+        </ul>
+      </div>
+      <div class="block sm:table-cell">
+        <p class="uppercase text-grey text-sm sm:mb-6 font-semibold">Business Enquiries</p>
+        <ul class="list-reset text-xs mb-6">
+          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+            👋
+            <a href="#" class="text-grey hover:text-grey-dark">hello@pitch-game.io</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bg-indigo-darker w-full text-xs text-indigo-lighter p-4">
+  <div class="container mx-auto">
+    Pitch is an open source project released under the GPL 3.0 license. Source repositories can be found <a
+      href="#">here</a>.
+  </div>
+</section>

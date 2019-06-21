@@ -6,6 +6,9 @@ import { environment } from 'src/environments/environment';
 import { LayoutService } from './layout/layout.service';
 import { faUsers, faFutbol, faTicketAlt, faShoppingBasket, faMoneyBill, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from './services/user.service';
+import { HttpClient } from '@angular/common/http';
+import { MatchService } from './services/match.service';
+
 
 @Component({
   selector: 'app-root',
@@ -25,12 +28,20 @@ export class AppComponent {
   marketplaceIcon = faMoneyBill;
   loadingIcon = faSpinner;
 
+  inProgress: any;
+
   isLoggedIn: boolean;
   version: string;
 
   profile: any;
 
-  constructor(public authService: AuthService, public layoutService: LayoutService, private router: Router, private userService: UserService) {
+  constructor(public authService: AuthService,
+     public layoutService: LayoutService,
+      private router: Router,
+       private userService: UserService,
+        private httpClient : HttpClient,
+        private matchService: MatchService) {
+
     this.authService.isLoggedIn().subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
       this.userService.get().subscribe((profile) => {
