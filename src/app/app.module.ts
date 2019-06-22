@@ -30,6 +30,8 @@ import {TimeAgoPipe} from 'time-ago-pipe';
 import { BuyPageComponent } from './pages/store/buy/buy.page';
 import { ReadyToOpenComponent } from './pages/store/open/open.page';
 import { MatchComponent } from './pages/match/match.component';
+import { CurrentSeasonPage } from './pages/seasons/current-season/current-season.page';
+import { MatchHistoryPage } from './pages/seasons/match-history/match-history.page';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { MatchComponent } from './pages/match/match.component';
     TimeAgoPipe,
     BuyPageComponent,
     ReadyToOpenComponent,
-    MatchComponent
+    MatchComponent,
+    CurrentSeasonPage,
+    MatchHistoryPage
   ],
   imports: [
     BrowserModule,

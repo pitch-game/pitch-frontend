@@ -13,6 +13,8 @@ import { ClubComponent } from './pages/squad/club/club.page';
 import { BuyPageComponent } from './pages/store/buy/buy.page';
 import { ReadyToOpenComponent } from './pages/store/open/open.page';
 import { MatchComponent } from './pages/match/match.component';
+import { CurrentSeasonPage } from './pages/seasons/current-season/current-season.page';
+import { MatchHistoryPage } from './pages/seasons/match-history/match-history.page';
 
 const routes: Routes = [
   {
@@ -24,7 +26,14 @@ const routes: Routes = [
       { path: 'club', component: ClubComponent, data: { animation: 'squad' } }
     ]
   },
-  { path: 'seasons', component: SeasonsComponent, data: { animation: 'seasons' }, canActivate: [AuthGuardService] },
+  {
+    path: 'seasons', component: SeasonsComponent, data: { animation: 'seasons' }, canActivate: [AuthGuardService],
+    children: [
+      { path: '', redirectTo: 'current', pathMatch: 'full' },
+      { path: 'current', component: CurrentSeasonPage },
+      { path: 'history', component: MatchHistoryPage },
+    ]
+  },
   { path: 'challenges', component: ChallengesComponent, data: { animation: 'challenges' }, canActivate: [AuthGuardService] },
   {
     path: 'store', component: StoreComponent, canActivate: [AuthGuardService],

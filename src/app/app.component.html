@@ -12,11 +12,10 @@
         </span>
         <span
           class="rounded-full items-center text-xs px-3 py-2 border rounded text-black border-bg-green hover:bg-green-light bg-green">
-          Your Team Name <span class="font-semibold">1 - 1</span> Opponents Team Name
+          Home Team <span class="font-semibold">{{matchService.match?.homeResult.score}} -
+            {{matchService.match?.awayResult.score}}</span> Away Team
         </span>
       </button>
-    </div>
-    <div class="flex">
       <button *ngIf="isLoggedIn" (click)="toggleMenu()"
         class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-black border-yellow hover:bg-yellow bg-yellow-dark">
         {{profile?.money || '0' | currency: 'GBP': 'symbol': '1.0'}}
