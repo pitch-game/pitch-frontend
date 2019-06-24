@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Card } from 'pitch-player-card';
 
 @Component({
   selector: 'app-training',

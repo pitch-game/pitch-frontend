@@ -16,7 +16,7 @@
       <tbody>
         <tr *ngFor="let card of (cards$ | async)" class="cursor-pointer hover:bg-indigo-lighter p-2">
           <td class="p-2">
-            <pitch-player-card [card]="card" size="sm" mode="squad"></pitch-player-card>
+            <pitch-player-card [card]="getPitchCard(card)" size="sm" mode="squad"></pitch-player-card>
           </td>
           <td class="p-2">{{card.name}}</td>
           <td class="p-2">{{card.position}}</td>

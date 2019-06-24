@@ -10,9 +10,6 @@ export class AuthGuardService implements CanActivate {
   constructor(private authService: AuthService) { }
 
   canActivate() {
-    if(isDevMode()){
-      return true;
-    }
     let isLoggedIn = this.authService.isLoggedIn();
     isLoggedIn.subscribe((loggedin) => {
       if (!loggedin) {

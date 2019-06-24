@@ -5,6 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { switchMap, scan, startWith } from 'rxjs/operators';
 import { Card } from 'src/app/models/card/card';
 import { CardService, CardQueryModel } from 'src/app/services/card.service';
+import { PitchPlayerCard } from 'pitch-player-card';
 
 @Component({
   selector: 'app-club',
@@ -40,5 +41,9 @@ export class ClubComponent implements OnInit {
   onScroll() {
     this.skip += this.take;
     this.loadMore$.next(this.skip);
+  }
+
+  getPitchCard(card: Card){
+    return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
   }
 }

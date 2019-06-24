@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { Squad } from 'src/app/models/squad/squad';
-import { Card } from 'src/app/models/card/card';
 import { SquadStats } from 'src/app/models/squad/squad-stats';
 import { PlayerPickerModal } from 'src/app/models/squad/player-picker-modal';
 import { SquadStatsService } from 'src/app/services/squad-stats.service';
 import { CardService, CardQueryModel } from 'src/app/services/card.service';
 import { SquadService } from 'src/app/services/squad.service';
+import { PitchPlayerCard } from 'pitch-player-card';
 
 @Component({
   selector: 'app-active-squad',
@@ -18,7 +18,7 @@ export class ActivesquadComponent implements OnInit {
 
   squad: Squad;
   stats: SquadStats = SquadStats.empty;
-  cards: { [position: string]: Card } = {};
+  cards: { [position: string]: PitchPlayerCard } = {};
 
   modal: PlayerPickerModal;
   pendingChanges: boolean;
@@ -61,13 +61,12 @@ export class ActivesquadComponent implements OnInit {
     await this.getPlayers(null);
   }
 
-  save() {
-    this.squadService.put(this.squad).subscribe((squad) => {
+  async save() {
+    await this.squadService.put(this.squad).subscribe(async (squad) => {
       this.squad = squad
 
-      for (let position in squad.lineup) {
-        this.loadPosition(position);
-      };
+      await this.getCardsForLineup();
+      await this.getCardsForSubs();
 
       this.pendingChanges = false;
     });
@@ -87,8 +86,12 @@ export class ActivesquadComponent implements OnInit {
     var cards = await this.cardService.getMany(ids).toPromise();
     for (let position in this.squad.lineup) {
       var card = cards.find(x => x.id == this.squad.lineup[position]);
-      //card.name = card.shortName; //TODO and check null
-      this.cards[position] = card;
+      if(card){
+        var ppc = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+        this.cards[position] = ppc;
+      } else {
+        this.cards[position] = null;
+      }
     };
   }
 
@@ -98,7 +101,12 @@ export class ActivesquadComponent implements OnInit {
     var subCards = await this.cardService.getMany(subIds).toPromise();
     for (let index in this.squad.subs) {
       var card = subCards.find(x => x.id == this.squad.subs[index]);
-      this.cards[this.squad.subs[index]] = card;
+      if(card){
+        var ppc = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+        this.cards[this.squad.subs[index]] = ppc;
+      } else {
+        this.cards[this.squad.subs[index]] = null;
+      }
     };
   }
 
