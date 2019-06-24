@@ -43,6 +43,10 @@ export class MatchService {
         var params = new HttpParams().set('skip', query.skip.toString()).set('take', query.take.toString());
         return this.httpClient.get<any[]>(`${environment.apiEndpoint}/match`, { params: params });
     }
+
+    inProgress() : Observable<any>{
+        return this.httpClient.get<any>(`${environment.apiEndpoint}/match/inProgress`);
+    }
 }
 
 export class CardQueryModel {

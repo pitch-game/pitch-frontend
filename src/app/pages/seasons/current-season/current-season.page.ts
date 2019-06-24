@@ -67,6 +67,13 @@ export class CurrentSeasonPage implements OnInit {
     this.http.get<any>(`${environment.apiEndpoint}/match/unclaimed`).subscribe((result) => {
       this.unclaimed = result.hasUnclaimed;
     });
+
+    this.matchService.inProgress().subscribe((result) => {
+      if (result.inProgress) {
+        this.inProgress = result.inProgress;
+        this.setStatus("Game in progress...");
+      }
+    });
   }
 
   async establishConnection() {
@@ -95,7 +102,8 @@ export class CurrentSeasonPage implements OnInit {
   }
 
   async matchmake() {
-    //if already matchmaking
+    if (this.inProgress) return;
+
     if (this.sessionId || this.matchMakingService.get()) {
       this.matchMakingService.cancel();
       this.sessionId = null;
