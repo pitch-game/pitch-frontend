@@ -117,11 +117,7 @@
           <div class="clearfix"></div>
           <hr class="mt-2 py-0 my-0 border border-grey-lighter">
           <div class="p-2 text-center">
-              <pitch-player-card mode="squad" size="sm"></pitch-player-card>
-              <div>
-                <div>Name Here</div>
-                <div>Team Here</div>
-              </div>
+              <pitch-player-card mode="squad" size="sm" [card]="getModel(event.card)"></pitch-player-card>
           </div>
         </div>
       </div>

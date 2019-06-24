@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { faSpinner, faCircle, faFutbol } from '@fortawesome/free-solid-svg-icons';
 import { timer, from, interval } from 'rxjs';
 import { concatMap, map, filter, take, flatMap } from 'rxjs/operators';
+import { Card } from 'src/app/models/card/card';
+import { PitchPlayerCard } from 'pitch-player-card';
 
 @Component({
   selector: 'app-match',
@@ -32,6 +34,10 @@ export class MatchComponent implements OnInit {
       .subscribe((result) => {
         this.match = result;
       });
+  }
+
+  getModel(card: any){
+    return new PitchPlayerCard(card.id, card.name, card.position, card.rating, 'silver')
   }
 
 }
