@@ -1,3 +1,28 @@
-<p>
-  match-history works!
-</p>
+<div class="flex content-center items-center justify-center p-2" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+  <div class="w-1/6 invisible lg:visible"></div>
+  <div class="m-2 flex-grow">
+    <table class="w-full text-center">
+      <thead>
+        <tr>
+          <th class="p-4" scope="col"></th>
+          <th class="p-4" scope="col">Result</th>
+          <th class="p-4" scope="col">Claimed</th>
+          <th class="p-4" scope="col">Kick Off</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let match of (matches$ | async)" class="cursor-pointer hover:bg-indigo-lighter p-2" (click)="goToMatch(match.id)">
+          <td class="p-4"><span class="float-left">{{match.homeTeam}}</span> <span class="font-semibold text-center">{{match.homeScore}} - {{match.awayScore}}</span> <span class="float-right">{{match.awayTeam}}</span></td>
+          <td class="p-4">{{match.result}}</td>
+          <td class="p-4">
+            <span *ngIf="match.claimed">
+                ✔️
+            </span>
+          </td>
+          <td class="p-4">{{match.kickOff | timeAgo}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="w-1/6 invisible lg:visible"></div>
+</div>

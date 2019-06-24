@@ -1,5 +1,6 @@
 export class Squad {
     id: string;
+    name: string;
     userId: string;
     lineup: { [position: string]: string };
     subs: string[]; //TODO

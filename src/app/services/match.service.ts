@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { LayoutService } from '../layout/layout.service';
@@ -18,8 +18,8 @@ export class MatchService {
         //todo check sessionId is still valid. Remove it if its not
     }
 
-    goToMatch(){
-        if(this.sessionId)
+    goToMatch() {
+        if (this.sessionId)
             this.router.navigate(['/match', this.sessionId]);
     }
 
@@ -30,13 +30,24 @@ export class MatchService {
         this.startPolling(sessionId);
     }
 
-    startPolling(sessionId: string){
+    startPolling(sessionId: string) {
         timer(0, 10000)
-        .pipe(flatMap(() => this.httpClient.get(`${environment.apiEndpoint}/match/${sessionId}`)))
-        .subscribe((result) => {
-          this.match = result;
-          //todo if match.IsOver then quit
-        });
+            .pipe(flatMap(() => this.httpClient.get(`${environment.apiEndpoint}/match/${sessionId}`)))
+            .subscribe((result) => {
+                this.match = result;
+                //todo if match.IsOver then quit
+            });
+    }
+
+    getWithQuery(query: CardQueryModel): Observable<any[]> {
+        var params = new HttpParams().set('skip', query.skip.toString()).set('take', query.take.toString());
+        return this.httpClient.get<any[]>(`${environment.apiEndpoint}/match`, { params: params });
+    }
+}
+
+export class CardQueryModel {
+    constructor(public skip: number, public take: number){
+
     }
 }
 
