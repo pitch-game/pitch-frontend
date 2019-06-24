@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="!unclaimed"
+                <div *ngIf="canMatchmake"
                     class="p-8 text-indigo-darker rounded rounded-t-none text-center uppercase font-bold ">
                     <div class="w-full flex items-center justify-center">
                         <button (click)="matchmake()"
@@ -65,16 +65,16 @@
                 </div>
                 <div *ngIf="unclaimed">
                     <button (click)="claim()"
-                        class="flex-grow mt-4 ml-2 bg-green hover:bg-green-light text-white font-bold p-4 rounded text-xl w-full">
+                        class="mt-4 ml-2 bg-green hover:bg-green-light text-white font-bold p-4 rounded text-xl w-full">
                         <fa-icon [icon]="faGift" class="text-white"></fa-icon>
                         Claim Rewards
                     </button>
                 </div>
-                <div *ngIf="inProgess">
-                    <button (click)="claim()"
-                        class="flex-grow mt-4 ml-2 bg-green hover:bg-green-light text-white font-bold p-4 rounded text-xl w-full">
-                        <fa-icon [icon]="faGift" class="text-white"></fa-icon>
-                        Match View
+                <div *ngIf="inProgress" class="p-4">
+                    <button (click)="goToMatch()"
+                        class="h-12 w-full mt-4 ml-2 bg-grey hover:bg-grey-light text-white font-bold py-2 px-4 rounded">
+                        <fa-icon [icon]="loadingIcon" [spin]="true"></fa-icon>
+                        Match in progress...
                     </button>
                 </div>
             </div>

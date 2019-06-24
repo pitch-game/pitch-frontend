@@ -47,8 +47,9 @@ export class CurrentSeasonPage implements OnInit {
   showStatus: boolean;
   statusMessage: string;
 
+  canMatchmake: boolean;
   unclaimed: boolean;
-  inProgress: boolean;
+  inProgress: string;
 
   async ngOnInit() {
     let sessionId = this.matchMakingService.get();
@@ -64,16 +65,12 @@ export class CurrentSeasonPage implements OnInit {
       });
     }
 
-    this.http.get<any>(`${environment.apiEndpoint}/match/unclaimed`).subscribe((result) => {
-      this.unclaimed = result.hasUnclaimed;
+    this.http.get<any>(`${environment.apiEndpoint}/match/status`).subscribe((result) => {
+      this.unclaimed = result.hasUnclaimedRewards;
+      this.inProgress = result.inProgressMatchId;
+      this.canMatchmake = !(this.unclaimed || this.inProgress);
     });
 
-    this.matchService.inProgress().subscribe((result) => {
-      if (result.inProgress) {
-        this.inProgress = result.inProgress;
-        this.setStatus("Game in progress...");
-      }
-    });
   }
 
   async establishConnection() {
@@ -135,5 +132,9 @@ export class CurrentSeasonPage implements OnInit {
   setStatus(message: string) {
     this.showStatus = true;
     this.statusMessage = message;
+  }
+
+  goToMatch(){
+    this.matchService.goToMatch(this.inProgress)
   }
 }

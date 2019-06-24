@@ -18,9 +18,9 @@ export class MatchService {
         //todo check sessionId is still valid. Remove it if its not
     }
 
-    goToMatch() {
-        if (this.sessionId)
-            this.router.navigate(['/match', this.sessionId]);
+    goToMatch(sessionId: string) {
+        if (sessionId)
+            this.router.navigate(['/match', sessionId]);
     }
 
     kickOff(sessionId: string) {
