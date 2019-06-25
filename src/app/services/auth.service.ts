@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from "@angular/core";
-import { UserManager, UserManagerSettings, User } from "oidc-client";
+import { UserManager, UserManagerSettings, User, WebStorageStateStore } from "oidc-client";
 import { environment } from "src/environments/environment";
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -63,6 +63,7 @@ export function getClientSettings(): UserManagerSettings {
     response_type: "id_token",
     scope: "openid",
     filterProtocolClaims: true,
-    loadUserInfo: true
+    loadUserInfo: true,
+    userStore: new WebStorageStateStore({ store: window.localStorage })
   };
 }
