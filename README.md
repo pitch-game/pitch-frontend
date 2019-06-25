@@ -2,6 +2,7 @@
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/jcbcn/pitch-frontend.svg)
 [![Build Status](https://dev.azure.com/pitch-game/Pitch%20Frontend/_apis/build/status/Pitch.Frontend?branchName=master)](https://dev.azure.com/pitch-game/Pitch%20Frontend/_build/latest?definitionId=10&branchName=master)
+![Dependencies](https://img.shields.io/david/jcbcn/pitch-frontend.svg)
 ![Website](https://img.shields.io/website/http/pitch-game.io.svg)
 ![GitHub repo size](https://img.shields.io/github/repo-size/jcbcn/pitch-frontend.svg)
 ![GitHub](https://img.shields.io/github/license/jcbcn/pitch-frontend.svg)
