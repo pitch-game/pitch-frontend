@@ -1,6 +1,6 @@
-<div class="flex mb-4 mt-12">
-    <div class="w-1/6 invisible lg:visible"></div>
-    <div class="w-1/4 flex-grow">
+<div class="flex flex-wrap mb-4 mt-12">
+    <div class="w-1/6 hidden lg:block"></div>
+    <div class="lg:w-1/4 flex-grow">
         <input *ngIf="squad" class="text-2xl bg-grey-lighter appearance-none border-2 border-grey-lighter rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-indigo" type="text" [(ngModel)]="squad.name" placeholder="Your Squad Name">
         <div class="flex w-full justify-between p-4">
             <div class="w-1/4 bg-transparent text-indigo-dark font-semibold py-2 px-4 border border-indigo rounded">
@@ -122,7 +122,7 @@
             </div>
         </div>
     </div>
-    <div class="w-1/5 ml-12">
+    <div class="lg:w-1/5 lg:ml-12 flex">
         <div class="w-full p-6">
             <button *ngIf="!pendingChanges && squad" routerLink="/squad/active"
                 class="w-full h-12 bg-grey text-white font-bold py-2 px-4 rounded">
@@ -201,13 +201,13 @@
             </div>
         </div>
     </div>
-    <div class="w-1/6 invisible lg:visible"></div>
+    <div class="w-1/6 hidden lg:block"></div>
 </div>
 
 <div *ngIf="modal && modal.visible" (click)="modal.visible = false"
     class="pin h-screen absolute flex items-center justify-center bg-modal"
     style="background-color: rgba(0, 0, 0, 0.8)">
-    <div class="bg-white rounded shadow m-4 max-h-full text-center w-1/5">
+    <div class="bg-white rounded shadow m-4 max-h-full text-center w-full lg:w-1/5">
         <div class="m-4 p-2 text-lg">
             <p>Select a {{modal.position || 'player'}}</p>
         </div>

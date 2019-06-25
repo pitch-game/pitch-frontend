@@ -1,12 +1,11 @@
 <div class="w-full flex">
-    <div class="w-1/6 invisible lg:visible"></div>
+    <div class="w-1/6 hidden lg:block"></div>
     <div class="flex-grow">
-
         <div class="lg:my-16 flex flex-row md:items-center w-full">
             <div class="w-full md:w-1/2 z-10">
                 <div class="mt-4 mx-auto w-2/3">
                     <div class="mb-4 text-indigo font-semibold uppercase">Season Rank</div>
-                    <div class="font-bold text-xl mb-2 pb-3 text-center">
+                    <div class="font-bold text-sm lg:text-xl mb-2 pb-3 text-center">
                         <div>
                             <fa-icon [icon]="starIcon" size="2x" class="text-yellow-dark"></fa-icon>
                             <fa-icon [icon]="starIcon" size="2x" class="text-grey"></fa-icon>
@@ -72,13 +71,13 @@
                 </div>
                 <div *ngIf="inProgress" class="p-4">
                     <button (click)="goToMatch()"
-                        class="h-12 w-full mt-4 ml-2 bg-grey hover:bg-grey-light text-white font-bold py-2 px-4 rounded">
+                        class="h-12 w-full mt-4 bg-grey hover:bg-grey-light text-white font-bold py-2 rounded">
                         <fa-icon [icon]="loadingIcon" [spin]="true"></fa-icon>
                         Match in progress...
                     </button>
                 </div>
             </div>
-            <div class="rounded w-5/6 md:w-1/2 z-0 mx-auto -mt-1 md:-mt-0 md:-ml-1">
+            <div class="hidden lg:block rounded w-5/6 md:w-1/2 z-0 mx-auto -mt-1 md:-mt-0 md:-ml-1">
                 <div class="py-8 text-center text-indigo font-semibold uppercase">
                     <div class="px-3 py-2">
                         <div class="font-bold text-lg mb-2 pb-3">
@@ -103,5 +102,5 @@
             </div>
         </div>
     </div>
-    <div class="w-1/6 invisible lg:visible"></div>
+    <div class="w-1/6 hidden lg:block"></div>
 </div>

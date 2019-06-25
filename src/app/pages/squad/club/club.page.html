@@ -1,14 +1,14 @@
 <div class="flex content-center items-center justify-center p-2" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
-  <div class="w-1/6 invisible lg:visible"></div>
+  <div class="w-1/6 hidden lg:block"></div>
   <div class="m-2 flex-grow">
-    <table class="w-full text-center">
+    <table class="text-sm lg:text-base w-full text-center">
       <thead>
         <tr>
           <th class="p-4" scope="col"></th>
-          <th class="p-4" scope="col">Name</th>
-          <th class="p-4" scope="col">Position</th>
-          <th class="p-4" scope="col">Rating</th>
-          <th class="p-4" scope="col">Fitness</th>
+          <th class="p-4 hidden lg:table-cell" scope="col">Name</th>
+          <th class="p-4 hidden lg:table-cell" scope="col">Position</th>
+          <th class="p-4 hidden lg:table-cell" scope="col">Rating</th>
+          <th class="p-4 hidden lg:table-cell" scope="col">Fitness</th>
           <th class="p-4" scope="col">Goals Scored</th>
           <th class="p-4" scope="col">Recieved</th>
         </tr>
@@ -18,15 +18,15 @@
           <td class="p-2">
             <pitch-player-card [card]="getPitchCard(card)" size="sm" mode="squad"></pitch-player-card>
           </td>
-          <td class="p-2">{{card.name}}</td>
-          <td class="p-2">{{card.position}}</td>
-          <td class="p-2">{{card.rating}}</td>
-          <td class="p-2">{{card.fitness}}</td>
+          <td class="p-2 hidden lg:table-cell">{{card.name}}</td>
+          <td class="p-2 hidden lg:table-cell">{{card.position}}</td>
+          <td class="p-2 hidden lg:table-cell">{{card.rating}}</td>
+          <td class="p-2 hidden lg:table-cell">{{card.fitness}}</td>
           <td class="p-2">{{card.goalsScored}}</td>
           <td class="p-2">{{card.createdOn | timeAgo}}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="w-1/6 invisible lg:visible"></div>
+  <div class="w-1/6 hidden lg:block"></div>
 </div>

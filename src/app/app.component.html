@@ -91,11 +91,9 @@
 </div>
 
 <div class="flex bg-white">
-  <!-- <div class="invisible lg:flex-1 lg:visible"></div> -->
   <div class="flex-auto" [@routeAnimations]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>
   </div>
-  <!-- <div class="invisible lg:flex-1 lg:visible"></div> -->
 </div>
 
 <section class="bg-indigo-darkest py-8 w-full">
