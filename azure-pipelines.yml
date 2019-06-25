@@ -18,5 +18,7 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
+    npm i ng-tailwindcss -g
+    ./node_modules/.bin/tailwind init
     ngtw build && ng build --prod
   displayName: 'npm install and build'
