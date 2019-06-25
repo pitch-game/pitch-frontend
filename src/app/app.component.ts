@@ -40,7 +40,7 @@ export class AppComponent {
       private router: Router,
        private userService: UserService,
         private httpClient : HttpClient,
-        private matchService: MatchService) {
+        public matchService: MatchService) {
 
     this.authService.isLoggedIn().subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
