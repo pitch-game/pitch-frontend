@@ -1,4 +1,4 @@
-<div class="w-full flex">
+<div class="w-full flex mb-10">
     <div class="w-1/6 hidden lg:block"></div>
     <div class="flex-grow">
         <div class="lg:my-16 flex flex-row md:items-center w-full">
@@ -64,7 +64,7 @@
                 </div>
                 <div *ngIf="unclaimed">
                     <button (click)="claim()"
-                        class="mt-4 ml-2 bg-green hover:bg-green-light text-white font-bold p-4 rounded text-xl w-full">
+                        class="h-12 w-full mt-4 bg-green hover:bg-green-light text-white font-bold py-2 rounded">
                         <fa-icon [icon]="faGift" class="text-white"></fa-icon>
                         Claim Rewards
                     </button>
