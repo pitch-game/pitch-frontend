@@ -1,4 +1,4 @@
-# PitchFrontend
+# Pitch Frontend
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/jcbcn/pitch-frontend.svg)
 [![Build Status](https://dev.azure.com/pitch-game/Pitch%20Frontend/_apis/build/status/Pitch.Frontend?branchName=master)](https://dev.azure.com/pitch-game/Pitch%20Frontend/_build/latest?definitionId=10&branchName=master)
@@ -10,7 +10,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
