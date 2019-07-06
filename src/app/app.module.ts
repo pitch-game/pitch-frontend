@@ -34,6 +34,7 @@ import { MatchComponent } from './pages/match/match.component';
 import { CurrentSeasonPage } from './pages/seasons/current-season/current-season.page';
 import { MatchHistoryPage } from './pages/seasons/match-history/match-history.page';
 import { HomePage } from './pages/home/home.page';
+import { ThousandSuffixesPipe } from './pipes/thousand-suffixes.pipe';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { HomePage } from './pages/home/home.page';
     TrainingComponent,
     ClubComponent,
     PlayerAlreadyInSquadPipe,
+    ThousandSuffixesPipe,
     TimeAgoPipe,
     BuyPageComponent,
     ReadyToOpenComponent,
