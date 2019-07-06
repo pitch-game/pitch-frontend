@@ -7,7 +7,8 @@ import {
 } from '@angular/common/http';
 
 import { AuthService } from '../services/auth.service';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -15,13 +16,15 @@ export class TokenInterceptor implements HttpInterceptor {
     constructor(public authService: AuthService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-        request = request.clone({
-            setHeaders: {
-                Authorization: this.authService.getAuthorizationHeaderValue()
-            }
-        });
-
-        return next.handle(request);
+        return from(this.authService.getAuthorizationHeaderValue())
+            .pipe(switchMap(authHeader => {
+                request = request.clone({
+                    setHeaders: {
+                        Authorization: authHeader
+                    }
+                });
+                return next.handle(request)
+            })
+            );
     }
 }

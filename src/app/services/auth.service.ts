@@ -32,9 +32,9 @@ export class AuthService {
     return this.user.profile;
   }
 
-  getAuthorizationHeaderValue(): string {
-    return `Bearer ${this.user.id_token}`;
-    //return `${this.user.token_type} ${this.user.access_token}`;
+  async getAuthorizationHeaderValue(): Promise<string> {
+    let user = await this.manager.getUser();
+    return `Bearer ${user.id_token}`;
   }
 
   async getToken() {
