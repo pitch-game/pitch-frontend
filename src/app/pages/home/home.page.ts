@@ -10,7 +10,12 @@ export class HomePage implements OnInit {
 
   constructor(private authService: AuthService) { }
 
+  signedIn: boolean;
+
   ngOnInit() {
+    this.authService.isLoggedIn().subscribe((loggedIn) => {
+      this.signedIn = loggedIn;
+    });
   }
 
   signIn(){
