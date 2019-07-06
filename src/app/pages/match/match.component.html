@@ -109,7 +109,7 @@
         <div class="text-xl lg:text-2xl">Timeline</div>
       </div>
     <div class="flex flex-wrap w-full flex-col content-center align-center">
-      <div class="lg:w-2/3 lg:m-2 rounded overflow-hidden shadow" *ngFor="let event of matchService.match?.events">
+      <div class="lg:w-2/3 lg:m-2 overflow-hidden" *ngFor="let event of matchService.match?.events">
         <div class="px-2 py-2">
           <span
             class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-green mr-2 float-right">{{event.minute}}'</span>
