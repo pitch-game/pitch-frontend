@@ -48,6 +48,7 @@ export class AppComponent implements OnInit{
       this.userService.get().subscribe((profile) => {
         this.profile = profile;
       });
+      this.matchService.init();
     });
 
     this.authService.onAuthenticationCompleted.subscribe(() => {
@@ -55,6 +56,7 @@ export class AppComponent implements OnInit{
       this.userService.get().subscribe((profile) => {
         this.profile = profile;
       });
+      this.matchService.init();
     });
 
     this.version = environment.version;

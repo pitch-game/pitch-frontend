@@ -13,7 +13,6 @@ export class MatchService {
 
     match: any;
     sessionId: string;
-    polling: boolean;
 
     timer: Observable<number>;
     pollingSubscription: Subscription;
@@ -56,6 +55,7 @@ export class MatchService {
 
                     if (this.match.expired) {
                         this.pollingSubscription.unsubscribe();
+                        this.sessionId = null;
                     }
                 });
         }
