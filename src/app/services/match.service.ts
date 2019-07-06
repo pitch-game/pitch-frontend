@@ -13,14 +13,24 @@ export class MatchService {
 
     match: any;
     sessionId: string;
+    polling: boolean;
 
     constructor(private httpClient: HttpClient, private router: Router, private layoutService: LayoutService) {
         //todo check sessionId is still valid. Remove it if its not
     }
 
+    init() {
+        this.inProgress().subscribe((result) => {
+            this.sessionId = result.inProgressMatchId;
+            this.startPolling(result.inProgressMatchId);
+        });
+    }
+
     goToMatch(sessionId: string) {
         if (sessionId)
             this.router.navigate(['/match', sessionId]);
+        else
+            this.router.navigate(['/match', this.sessionId]);
     }
 
     kickOff(sessionId: string) {
@@ -31,6 +41,9 @@ export class MatchService {
     }
 
     startPolling(sessionId: string) {
+        //TODO ensure only one is running
+        if (this.polling) return;
+        this.polling = true;
         timer(0, 10000)
             .pipe(flatMap(() => this.httpClient.get(`${environment.apiEndpoint}/match/${sessionId}`)))
             .subscribe((result) => {
@@ -44,13 +57,13 @@ export class MatchService {
         return this.httpClient.get<any[]>(`${environment.apiEndpoint}/match`, { params: params });
     }
 
-    inProgress() : Observable<any>{
-        return this.httpClient.get<any>(`${environment.apiEndpoint}/match/inProgress`);
+    inProgress(): Observable<any> {
+        return this.httpClient.get<any>(`${environment.apiEndpoint}/match/status`);
     }
 }
 
 export class CardQueryModel {
-    constructor(public skip: number, public take: number){
+    constructor(public skip: number, public take: number) {
 
     }
 }

@@ -4,25 +4,27 @@
       <a href routerLink="/" class="font-semibold text-xl tracking-tight no-underline text-white">Pitch</a>
     </div>
     <div class="flex">
-      <button *ngIf="isLoggedIn && matchService.match" (click)="matchService.goToMatch()" class="hidden lg:block"
+      <button *ngIf="isLoggedIn " (click)="matchService.goToMatch()" class="hidden lg:block"
         class="rounded-full mr-2 items-center text-xs py-2 border rounded text-black border-grey hover:bg-grey-light bg-grey-lightest">
         <span class="text-green m-3">
           <fa-icon [icon]="loadingIcon" [spin]="true"></fa-icon>
-          <span class="ml-1">{{matchService.match?.minute}}'</span>
+          <span class="ml-1">{{matchService.match?.minute || 0}}'</span>
         </span>
         <span
           class="rounded-full items-center text-xs px-3 py-2 border rounded text-black border-bg-green hover:bg-green-light bg-green">
-          Home Team <span class="font-semibold">{{matchService.match?.homeResult.score}} -
-            {{matchService.match?.awayResult.score}}</span> Away Team
+          <span class="font-bold">{{matchService.match?.homeResult.score}}</span>
+          <span class="text-grey-darker">
+           -
+          {{matchService.match?.awayResult.score}}</span>
         </span>
       </button>
       <button *ngIf="isLoggedIn" (click)="toggleMenu()"
         class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-black border-yellow hover:bg-yellow bg-yellow-dark">
-        {{profile?.money || '0' | currency: 'GBP': 'symbol': '1.0'}}
+        £{{profile?.money || '0' | thousandSuff : 0}}
       </button>
       <button *ngIf="isLoggedIn" (click)="toggleMenu()"
         class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-white border-orange hover:bg-orange bg-orange-dark">
-        Level {{profile?.level || '1'}}
+        Lvl {{profile?.level || '1'}}
       </button>
       <div class="block lg:hidden">
         <button (click)="toggleMenu()"

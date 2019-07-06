@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { slideInAnimation } from './animations';
 import { AuthService } from './services/auth.service';
@@ -18,7 +18,8 @@ import { MatchService } from './services/match.service';
     slideInAnimation
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+
   title = 'Pitch';
 
   seasonsIcon = faFutbol;
@@ -63,6 +64,11 @@ export class AppComponent {
         this.layoutService.showNav = false;
       //}
     });
+
+  }
+
+  ngOnInit(): void {
+    this.matchService.init();
   }
 
   prepareRoute(outlet: RouterOutlet) {
