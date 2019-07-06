@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { LayoutService } from '../layout/layout.service';
-import { Observable, timer, empty, BehaviorSubject, Subject } from 'rxjs';
+import { Observable, timer, empty, BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
 @Injectable({
@@ -15,6 +15,9 @@ export class MatchService {
     sessionId: string;
     polling: boolean;
 
+    timer: Observable<number>;
+    pollingSubscription: Subscription;
+
     constructor(private httpClient: HttpClient, private router: Router, private layoutService: LayoutService) {
         //todo check sessionId is still valid. Remove it if its not
     }
@@ -22,7 +25,9 @@ export class MatchService {
     init() {
         this.inProgress().subscribe((result) => {
             this.sessionId = result.inProgressMatchId;
-            this.startPolling(result.inProgressMatchId);
+            if (this.sessionId) {
+                this.startPolling(result.inProgressMatchId);
+            }
         });
     }
 
@@ -41,15 +46,19 @@ export class MatchService {
     }
 
     startPolling(sessionId: string) {
-        //TODO ensure only one is running
-        if (this.polling) return;
-        this.polling = true;
-        timer(0, 10000)
-            .pipe(flatMap(() => this.httpClient.get(`${environment.apiEndpoint}/match/${sessionId}`)))
-            .subscribe((result) => {
-                this.match = result;
-                //todo if match.IsOver then quit
-            });
+        if (!this.timer)
+            this.timer = timer(0, 10000);
+
+        if (!this.pollingSubscription) {
+            this.pollingSubscription = this.timer.pipe(flatMap(() => this.httpClient.get(`${environment.apiEndpoint}/match/${sessionId}`)))
+                .subscribe((result) => {
+                    this.match = result;
+
+                    if (this.match.expired) {
+                        this.pollingSubscription.unsubscribe();
+                    }
+                });
+        }
     }
 
     getWithQuery(query: CardQueryModel): Observable<any[]> {
