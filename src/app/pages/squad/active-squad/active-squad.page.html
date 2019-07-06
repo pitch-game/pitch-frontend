@@ -211,7 +211,7 @@
         <div class="m-4 p-2 text-lg">
             <p>Select a {{modal.position || 'player'}}</p>
         </div>
-        <div style="max-height:500px;height:500px;" class="overflow-y-scroll" infiniteScroll
+        <div class="overflow-y-scroll max-h-screen-1/2" infiniteScroll
             [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false">
             <div *ngFor="let card of modal.cards | async"
                 (click)="modal.callback(card.id)"
