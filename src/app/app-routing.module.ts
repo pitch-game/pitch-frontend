@@ -44,8 +44,6 @@ const routes: Routes = [
       { path: 'buy', component: BuyPageComponent },
     ]
   },
-  { path: 'store', component: StoreComponent, data: { animation: 'store' }, canActivate: [AuthGuardService] },
-  { path: 'buy', component: BuyPageComponent, data: { animation: 'buy' }, canActivate: [AuthGuardService] },
   { path: 'auth-callback', component: AuthCallbackComponent },
   { path: 'match/:id', component: MatchComponent },
   { path: '',  component: HomePage},

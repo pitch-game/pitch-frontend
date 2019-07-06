@@ -12,7 +12,7 @@
         Getting Started Guide
       </p>
     </div>
-    <a href (click)="signIn" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
+    <a [routerLink]="" (click)="signIn()" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
       <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
         <span *ngIf="!signedIn" class="text-2xl font-bold text-indigo-dark mr-2">1.</span>
         <span *ngIf="signedIn" class="text-2xl font-bold text-indigo-dark mr-2">✅</span>
@@ -20,21 +20,21 @@
       </p>
       <p class="text-grey-darker mb-2 group-hover:text-white">Sign in using your Google account.</p>
     </a>
-    <a href routerLink="/store" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
+    <a routerLink="/store" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
       <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
         <span class="text-2xl font-bold text-indigo-dark mr-2">2.</span>
-        Go shopping 🛍️
+        Get lucky 🤞
       </p>
       <p class="text-grey-darker mb-2 group-hover:text-white">Open your starter packs.</p>
     </a>
-    <a href routerLink="/squad" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
+    <a routerLink="/squad" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
       <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
         <span class="text-2xl font-bold text-indigo-dark mr-2">3.</span>
-        Build your squad 💪
+        Select your squad 💪
       </p>
-      <p class="text-grey-darker mb-2 group-hover:text-white">Name and build your active squad.</p>
+      <p class="text-grey-darker mb-2 group-hover:text-white">Name and select your active squad.</p>
     </a>
-    <a href routerLink="/seasons" class="block group hover:bg-indigo-lighter p-4 no-underline">
+    <a routerLink="/seasons" class="block group hover:bg-indigo-lighter p-4 no-underline">
       <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
         <span class="text-2xl font-bold text-indigo-dark mr-2">4.</span>
         Go play! ⚽🎉🥳

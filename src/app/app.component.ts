@@ -40,7 +40,6 @@ export class AppComponent implements OnInit{
      public layoutService: LayoutService,
       private router: Router,
        private userService: UserService,
-        private httpClient : HttpClient,
         public matchService: MatchService) {
 
     this.authService.isLoggedIn().subscribe((isLoggedIn) => {
@@ -81,7 +80,7 @@ export class AppComponent implements OnInit{
     this.layoutService.toggleNav();
   }
 
-  login() {
-    this.authService.startAuthentication();
+  async login() {
+    await this.authService.startAuthentication();
   }
 }

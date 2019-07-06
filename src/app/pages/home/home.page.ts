@@ -21,5 +21,4 @@ export class HomePage implements OnInit {
   signIn(){
     this.authService.startAuthentication();
   }
-
 }
