@@ -15,6 +15,7 @@ import { ReadyToOpenComponent } from './pages/store/open/open.page';
 import { MatchComponent } from './pages/match/match.component';
 import { CurrentSeasonPage } from './pages/seasons/current-season/current-season.page';
 import { MatchHistoryPage } from './pages/seasons/match-history/match-history.page';
+import { HomePage } from './pages/home/home.page';
 
 const routes: Routes = [
   {
@@ -46,7 +47,9 @@ const routes: Routes = [
   { path: 'store', component: StoreComponent, data: { animation: 'store' }, canActivate: [AuthGuardService] },
   { path: 'buy', component: BuyPageComponent, data: { animation: 'buy' }, canActivate: [AuthGuardService] },
   { path: 'auth-callback', component: AuthCallbackComponent },
-  { path: 'match/:id', component: MatchComponent }
+  { path: 'match/:id', component: MatchComponent },
+  { path: '',  component: HomePage},
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

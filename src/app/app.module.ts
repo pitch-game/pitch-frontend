@@ -33,6 +33,7 @@ import { ReadyToOpenComponent } from './pages/store/open/open.page';
 import { MatchComponent } from './pages/match/match.component';
 import { CurrentSeasonPage } from './pages/seasons/current-season/current-season.page';
 import { MatchHistoryPage } from './pages/seasons/match-history/match-history.page';
+import { HomePage } from './pages/home/home.page';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MatchHistoryPage } from './pages/seasons/match-history/match-history.pa
     ReadyToOpenComponent,
     MatchComponent,
     CurrentSeasonPage,
-    MatchHistoryPage
+    MatchHistoryPage,
+    HomePage
   ],
   imports: [
     BrowserModule,

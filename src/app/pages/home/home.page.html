@@ -1,0 +1,45 @@
+<div class="w-full flex text-sm" style="background-color:#3D457F">
+  <div class="w-1/6 hidden lg:block"></div>
+  <div class="flex-grow">
+    <div class="text-2xl p-6 text-white">Welcome to Pitch</div>
+  </div>
+</div>
+<div class="font-sans flex items-center justify-center w-full lg:py-8">
+  <div class="overflow-hidden bg-white lg:rounded max-w-md w-full shadow-lg leading-normal">
+    <div href (click)="signIn" class="block group p-4 border-b no-underline">
+      <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
+        Getting Started Guide
+      </p>
+    </div>
+    <a href (click)="signIn" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
+      <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
+        <span class="text-2xl font-bold text-indigo-dark mr-2">1.</span>
+        Sign in 👮
+      </p>
+      <p class="text-grey-darker mb-2 group-hover:text-white">Sign in using your Google account.</p>
+    </a>
+    <a href routerLink="/store" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
+      <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
+        <span class="text-2xl font-bold text-indigo-dark mr-2">2.</span>
+        Go shopping 🛍️
+      </p>
+      <p class="text-grey-darker mb-2 group-hover:text-white">Open your starter packs.</p>
+    </a>
+    <a href routerLink="/squad" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
+      <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
+        <span class="text-2xl font-bold text-indigo-dark mr-2">3.</span>
+        Build your squad 💪
+      </p>
+      <p class="text-grey-darker mb-2 group-hover:text-white">Name and build your active squad.</p>
+    </a>
+    <a href routerLink="/seasons" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
+      <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
+        <span class="text-2xl font-bold text-indigo-dark mr-2">4.</span>
+        Go play! ⚽🎉🥳
+      </p>
+      <p class="text-grey-darker mb-2 group-hover:text-white">Search for a live multiplayer game and play in real
+        time or simulate a game against a
+        random team.</p>
+    </a>
+  </div>
+</div>

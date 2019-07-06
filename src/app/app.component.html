@@ -1,7 +1,7 @@
 <div class="sticky pin-t z-10">
   <nav class="flex items-center justify-between flex-wrap bg-indigo-dark p-3 pb-2">
     <div class="flex items-left flex-no-shrink text-white">
-      <span routerLink="/" class="font-semibold text-xl tracking-tight">Pitch</span>
+      <a href routerLink="/" class="font-semibold text-xl tracking-tight no-underline text-white">Pitch</a>
     </div>
     <div class="flex">
       <button *ngIf="isLoggedIn && matchService.match" (click)="matchService.goToMatch()" class="hidden lg:block"
@@ -105,9 +105,9 @@
       This is an alpha version. Your progress may be lost and things may not work as intended.
       Please report any issues using the link below. <br />
     </div>
-    <div class="table mt-4 w-full">
+    <div class="table mt-4 w-full lg:max-w-xs">
       <div class="block sm:table-cell">
-        <p class="uppercase text-grey text-sm sm:mb-6 font-semibold">Support</p>
+        <p class="uppercase text-grey text-sm sm:mb-6 font-semibold">Links</p>
         <ul class="list-reset text-xs mb-6">
           <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
             ❤️
@@ -115,34 +115,19 @@
           </li>
           <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
             ⭐
-            <a href="#" class="text-grey hover:text-grey-dark">GitHub</a>
+            <a href="https://github.com/jcbcn/pitch-api" target="_blank"
+              class="text-grey hover:text-grey-dark">GitHub</a>
           </li>
-        </ul>
-      </div>
-      <div class="block sm:table-cell">
-        <p class="uppercase text-grey text-sm sm:mb-6 font-semibold">Links</p>
-        <ul class="list-reset text-xs mb-6">
           <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
             🤔
-            <a href="#" class="text-grey hover:text-grey-dark bg-indigo-darker p-1 rounded">Report an issue</a>
-          </li>
-          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-            ✔️
-            <a href="#" class="text-grey hover:text-grey-dark">Latest updates</a>
-          </li>
-          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-            🤷
-            <a href="#" class="text-grey hover:text-grey-dark">FAQ</a>
-          </li>
-          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-            📣
-            <a href="#" class="text-grey hover:text-grey-dark">Feedback</a>
+            <a href="https://github.com/jcbcn/pitch-api/issues" target="_blank"
+              class="text-grey hover:text-grey-dark bg-indigo-darker p-1 rounded">Report an issue</a>
           </li>
         </ul>
       </div>
       <div class="block sm:table-cell">
         <p class="uppercase text-grey text-sm sm:mb-6 font-semibold">Legal</p>
-        <ul class="list-reset text-xs mb-6">
+        <ul class="list-reset text-xs lg:mb-6">
           <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
             📜
             <a href="#" class="text-grey hover:text-grey-dark">Terms</a>
@@ -153,21 +138,11 @@
           </li>
         </ul>
       </div>
-      <div class="block sm:table-cell">
-        <p class="uppercase text-grey text-sm sm:mb-6 font-semibold">Business Enquiries</p>
-        <ul class="list-reset text-xs mb-6">
-          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-            👋
-            <a href="#" class="text-grey hover:text-grey-dark">hello@pitch-game.io</a>
-          </li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
 <section class="bg-indigo-darker w-full text-xs text-indigo-lighter p-4">
   <div class="container mx-auto">
-    Pitch is an open source project released under the GPL 3.0 license. Source repositories can be found <a
-      href="#">here</a>.
+    Pitch is an open source project released under the GPL 3.0 license.
   </div>
 </section>
