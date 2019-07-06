@@ -4,9 +4,10 @@
     <div class="text-2xl p-6 text-white">Welcome to Pitch</div>
   </div>
 </div>
-<div class="font-sans flex items-center justify-center w-full lg:py-8">
-  <div class="overflow-hidden bg-white lg:rounded max-w-md w-full shadow-lg leading-normal">
-    <div href (click)="signIn" class="block group p-4 border-b no-underline">
+<div class="flex items-center justify-left w-full lg:py-8">
+  <div class="w-1/6 hidden lg:block"></div>
+  <div class="flex-grow overflow-hidden bg-white lg:rounded leading-normal">
+    <div href (click)="signIn" class="block group p-4 no-underline">
       <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
         Getting Started Guide
       </p>
@@ -33,7 +34,7 @@
       </p>
       <p class="text-grey-darker mb-2 group-hover:text-white">Name and build your active squad.</p>
     </a>
-    <a href routerLink="/seasons" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
+    <a href routerLink="/seasons" class="block group hover:bg-indigo-lighter p-4 no-underline">
       <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
         <span class="text-2xl font-bold text-indigo-dark mr-2">4.</span>
         Go play! ⚽🎉🥳
@@ -43,4 +44,5 @@
         random team.</p>
     </a>
   </div>
+  <div class="w-1/6 hidden lg:block"></div>
 </div>
