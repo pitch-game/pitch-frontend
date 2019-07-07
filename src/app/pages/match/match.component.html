@@ -113,12 +113,13 @@
         <div class="px-2 py-2">
           <span
             class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-green mr-2 float-right">{{event.minute}}'</span>
-          <div class="float-left font-semibold text-grey-darker text-sm">{{event.name}}</div>
+          <div class="float-left font-semibold text-grey-darker text-sm mt-1">{{event.name}}</div>
           <div class="clearfix"></div>
-          <hr class="mt-2 py-0 my-0 border border-grey-lighter">
+          <hr class="mt-2 mb-2 py-0 my-0 border border-grey-lighter">
+          <div class="float-left font-semibold text-grey text-sm">{{event.squadName}}</div>
+          <div class="clearfix"></div>
           <div class="p-2 text-center">
               <pitch-player-card mode="squad" size="sm" [card]="getModel(event.card)"></pitch-player-card>
-              <div *ngIf="event.squadId == matchService.match?.home"></div>
           </div>
         </div>
       </div>

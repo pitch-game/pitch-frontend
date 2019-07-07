@@ -34,7 +34,7 @@ export class MatchComponent implements OnInit {
   }
 
   getModel(card: any) {
-    return new PitchPlayerCard(card.id, card.name, card.position, card.rating, 'silver')
+    return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity)
   }
 
 }
