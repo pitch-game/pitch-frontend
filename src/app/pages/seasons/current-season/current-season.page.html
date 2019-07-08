@@ -1,14 +1,24 @@
-<div class="w-full flex mb-10">
+<div class="w-full flex">
     <div class="w-1/6 hidden lg:block"></div>
     <div class="flex-grow">
-        <div class="lg:my-16 flex flex-row md:items-center w-full">
-            <div class="w-full md:w-1/2 z-10">
-                <div class="mt-4 mx-auto w-2/3">
-                    <div class="mb-4 text-indigo font-semibold uppercase">Games being played</div>
+        <div class="my-2 lg:my-16 flex flex-row md:items-center align-center justify-center w-full">
+            <div class="w-full md:w-2/3">
+                <div class="mt-4 w-full p-4">
+                    <div class="mb-4 font-semibold text-lg">Season 1 <span class="text-grey text-sm"> (Now)</span>
+                    </div>
+                    <div class="text-center mb-10">
+                        <span
+                            class="rounded-full bg-red uppercase px-4 py-2 pr-0 text-white border border-red-lighter text-sm font-bold">Live
+                            Matches
+                            <span
+                                class="rounded-full bg-red-light uppercase px-4 py-2 text-white text-sm font-bold ml-2">0</span>
+                        </span>
+                    </div>
+                    <!-- <div class="mb-4 text-indigo font-semibold uppercase">Live matches</div>
                     <div class="font-bold text-sm lg:text-xl mb-2 pb-3 text-center">
                         <p>0</p>
-                    </div>
-                    <div class="mb-4 text-indigo font-semibold uppercase">Season Rank</div>
+                    </div> -->
+                    <div class="mb-4 font-semibold text-lg">Season Rank</div>
                     <div class="font-bold text-sm lg:text-xl mb-2 pb-3 text-center">
                         <div>
                             <fa-icon [icon]="starIcon" size="2x" class="text-yellow-dark"></fa-icon>
@@ -20,12 +30,12 @@
                     </div>
                 </div>
                 <hr class="py-0 my-0 border border-grey-lighter">
-                <div *ngIf="unclaimed" class="py-4">
+                <div *ngIf="unclaimed" class="pt-4">
                     <div class="mt-4 mx-auto w-2/3">
-                        <div class="mb-4 text-indigo font-semibold uppercase">Match Rewards</div>
+                        <div class="mb-4 font-semibold">Match Rewards</div>
                         <div class="flex items-center justify-center mb-4 ml-4">
                             <span class="inline-flex bg-yellow rounded-full mr-4 p-2">
-                                <span class="text-black">+ £5,000</span>
+                                <span class="text-black">+ £10,000</span>
                             </span>
                         </div>
                         <div class="flex items-center justify-center mb-4 ml-4">
@@ -37,10 +47,6 @@
                             <span class="inline-flex bg-grey rounded-full mr-4 p-2">
                                 <span class="text-black">+ 1 Regular Pack</span>
                             </span>
-                        </div>
-                        <hr class="py-0 my-0 border border-grey-lighter">
-                        <div class="mt-2 text-sm text-right">
-                            <a href="#">View full match details »</a>
                         </div>
                     </div>
                 </div>
@@ -59,14 +65,17 @@
                             <span
                                 class="absolute pin-t pin-r -mt-2 -mr-2 rounded-full bg-red uppercase px-2 py-1 text-white text-xs font-bold">LIVE</span>
                         </button>
-                        <button
-                            class="h-12 flex-grow mt-4 ml-2 bg-grey hover:bg-grey-light text-white font-bold py-2 px-4 rounded">
+                        <button type="button" disabled
+                            class="h-12 flex-grow relative mt-4 mr-2 bg-grey-light text-white font-bold py-2 px-4 rounded cursor-default">
                             <fa-icon [icon]="simMatchIcon" class="text-white"></fa-icon>
                             Sim Match
+                            <span
+                                class="absolute pin-t pin-r -mt-2 -mr-2 rounded-full bg-red-lighter uppercase px-2 py-1 text-white text-xs font-bold">COMING
+                                SOON</span>
                         </button>
                     </div>
                 </div>
-                <div *ngIf="unclaimed">
+                <div class="px-4 pb-2" *ngIf="unclaimed">
                     <button (click)="claim()"
                         class="h-12 w-full mt-4 bg-green hover:bg-green-light text-white font-bold py-2 rounded">
                         <fa-icon [icon]="faGift" class="text-white"></fa-icon>
@@ -79,29 +88,6 @@
                         <fa-icon [icon]="loadingIcon" [spin]="true"></fa-icon>
                         Match in progress...
                     </button>
-                </div>
-            </div>
-            <div class="hidden lg:block rounded w-5/6 md:w-1/2 z-0 mx-auto -mt-1 md:-mt-0 md:-ml-1">
-                <div class="py-8 text-center text-indigo font-semibold uppercase">
-                    <div class="px-3 py-2">
-                        <div class="font-bold text-lg mb-2 pb-3">
-                            Level 3
-                        </div>
-                        <div class="w-full">
-                            <div class="w-full bg-grey-light">
-                                <div class="bg-orange-lighter text-xs font-bold leading-none py-1 text-center"
-                                    style="width: 45%">
-                                    5323
-                                    xp</div>
-                                <div class="bg-orange text-xs font-bold leading-none py-1 text-center"
-                                    style="width: 65%">
-                                    5323
-                                    xp</div>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

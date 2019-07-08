@@ -1,24 +1,31 @@
-<div class="flex flex-wrap mb-4 mt-12">
+<div class="flex flex-wrap mb-4 mt-4 lg:mt-8">
     <div class="w-1/6 hidden lg:block"></div>
     <div class="lg:w-1/4 flex-grow">
-        <input *ngIf="squad" class="text-2xl bg-grey-lighter appearance-none border-2 border-grey-lighter rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-indigo" type="text" [(ngModel)]="squad.name" placeholder="Your Squad Name">
+        <div class="p-4">
+            <input *ngIf="squad"
+                class="text-2xl bg-grey-lighter appearance-none border-2 border-grey-lighter rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-indigo"
+                type="text" [(ngModel)]="squad.name" placeholder="Your Squad Name">
+        </div>
         <div class="flex w-full justify-between p-4">
-            <div class="w-1/4 bg-transparent text-indigo-dark font-semibold py-2 px-4 border border-indigo rounded">
-                <div class="text-center text-sm">Team Chemistry</div>
+            <div
+                class="w-1/4 bg-transparent text-indigo-dark font-semibold py-1 px-2 lg:py-2 lg:px-4 border border-indigo rounded">
+                <div class="text-center text-sm">Chemistry</div>
                 <div class="text-center text-xl text-black pt-1">{{stats.chemistry | number:'2.0-0'}}%
                 </div>
             </div>
-            <div class="w-1/4 bg-transparent text-indigo-dark font-semibold py-2 px-4 border border-indigo rounded">
-                <div class="text-center text-sm">Overall Fitness</div>
+            <div
+                class="w-1/4 bg-transparent text-indigo-dark font-semibold py-1 px-2 lg:py-2 lg:px-4 border border-indigo rounded">
+                <div class="text-center text-sm">Fitness</div>
                 <div class="text-center text-xl text-black pt-1">{{stats.fitness | number:'2.0-0'}}%</div>
             </div>
-            <div class="w-1/4 bg-transparent text-indigo-dark font-semibold py-2 px-4 border border-indigo rounded">
-                <div class="text-center text-sm">Overall Rating</div>
+            <div
+                class="w-1/4 bg-transparent text-indigo-dark font-semibold py-1 px-2 lg:py-2 lg:px-4 border border-indigo rounded">
+                <div class="text-center text-sm">Rating</div>
                 <div class="text-center text-xl text-black pt-1">{{stats.rating | number:'2.0-0'}}</div>
             </div>
         </div>
 
-        <div class="isometric-container">
+        <div class="isometric-container -mt-20 -mb-20">
             <div class="isometric">
                 <div>
                     <div class="flex pb-8 lg:pb-16">
@@ -135,6 +142,13 @@
                 <span>Save changes</span>
             </button>
 
+            <h4 class="mt-6 mb-6 text-xl">Subs</h4>
+            <div *ngIf="squad" class="flex flex-wrap justify-center">
+                <pitch-player-card *ngFor="let id of squad.subs; let i = index" (click)="pickSub(i)" [card]="cards[id]"
+                    size="sm" mode="squad">
+                </pitch-player-card>
+            </div>
+
             <h4 class="mt-6 text-xl">Team Instructions</h4>
             <div class="w-full">
                 <h4 class="p-4">Core Style</h4>
@@ -192,13 +206,6 @@
                     </div>
                 </div>
             </div>
-
-            <h4 class="mt-6 mb-6 text-xl">Subs</h4>
-            <div *ngIf="squad" class="flex flex-wrap justify-center">
-                <pitch-player-card *ngFor="let id of squad.subs; let i = index" (click)="pickSub(i)" [card]="cards[id]"
-                    size="sm" mode="squad">
-                </pitch-player-card>
-            </div>
         </div>
     </div>
     <div class="w-1/6 hidden lg:block"></div>
@@ -209,12 +216,16 @@
     style="background-color: rgba(0, 0, 0, 0.8)">
     <div class="bg-white rounded shadow m-4 max-h-full text-center w-full lg:w-1/5">
         <div class="m-4 p-2 text-lg">
-            <p>Select a {{modal.position || 'player'}}</p>
+            <p>
+                Select a {{modal.position || 'player'}}
+                <span class="float-right">
+                    <fa-icon [icon]="closeIcon" class="ml-2 text-indigo-lighter"></fa-icon>
+                </span>
+            </p>
         </div>
-        <div class="overflow-y-scroll max-h-screen-1/2" infiniteScroll
-            [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false">
-            <div *ngFor="let card of modal.cards | async"
-                (click)="modal.callback(card.id)"
+        <div class="overflow-y-scroll max-h-screen-1/2" infiniteScroll [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false">
+            <div *ngFor="let card of modal.cards | async" (click)="modal.callback(card.id)"
                 class="flex bg-grey-lighter content-center items-center justify-center p-2 hover:bg-indigo-lighter cursor-pointer">
                 <div class="m-2 flex-1">
                     <pitch-player-card [card]="card" size="sm" mode="squad"></pitch-player-card>
@@ -224,7 +235,7 @@
                 <div class="m-2 flex-grow justify-center content-center">{{card.fitness}}</div>
             </div>
         </div>
-        <a href="#" class="block group hover:bg-indigo-lighter p-4 rounded" (click)="modal.callback(null)">
+        <a href="#" class="block group hover:bg-indigo-lighter p-4 rounded no-underline" (click)="modal.callback(null)">
             <p class="font-bold text-md mb-1 text-black group-hover:text-white">Remove Player</p>
         </a>
     </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Squad } from 'src/app/models/squad/squad';
 import { SquadStats } from 'src/app/models/squad/squad-stats';
 import { PlayerPickerModal } from 'src/app/models/squad/player-picker-modal';
@@ -24,6 +24,7 @@ export class ActivesquadComponent implements OnInit {
   pendingChanges: boolean;
 
   tickIcon = faCheckCircle;
+  closeIcon = faTimes;
 
   async ngOnInit() {
     this.squad = await this.squadService.get().toPromise();

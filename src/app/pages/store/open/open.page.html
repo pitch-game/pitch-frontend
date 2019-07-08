@@ -6,7 +6,7 @@
         <pitch-player-card size="lg"></pitch-player-card>
       </div>
       <div>
-        <span class="rounded-full bg-grey-light text-black px-2 py-1 text-2xl">x{{packs?.length || '?'}}</span>
+        <span *ngIf="packs" class="rounded-full bg-grey-light text-black px-2 py-1 text-2xl">x{{packs.length}}</span>
       </div>
     </div>
     <div class="flex content-center flex-wrap justify-center m-5">
@@ -15,8 +15,8 @@
           class="w-full bg-indigo hover:bg-indigo-lighter text-white font-bold p-2 px-4 rounded">
           <span class="text-lg mb-2">Open Pack</span>
           <div class="m-2">
-            <span
-              class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">{{packs?.length || '?'}}
+            <span *ngIf="packs"
+              class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">{{packs.length || 0}}
               remaining</span> </div>
         </button>
       </div>
@@ -37,7 +37,7 @@
       <button (click)="click()"
         class="w-full h-12 bg-indigo hover:bg-indigo-lighter text-white font-bold py-2 px-4 rounded">
         <span>Open Next <span
-            class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">{{packs?.length || '?'}}</span></span>
+            class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">{{packs?.length || 0}}</span></span>
         <fa-icon [icon]="nextIcon" class="ml-2 text-indigo-lighter"></fa-icon>
       </button>
     </div>

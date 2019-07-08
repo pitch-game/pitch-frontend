@@ -6,7 +6,7 @@
         <tr>
           <th class="p-4" scope="col"></th>
           <th class="p-4" scope="col">Result</th>
-          <th class="p-4" scope="col">Claimed</th>
+          <th class="p-4" scope="col">Claimed Rewards</th>
           <th class="p-4" scope="col">Kick Off</th>
         </tr>
       </thead>
@@ -16,7 +16,7 @@
           <td class="p-4">{{match.result}}</td>
           <td class="p-4">
             <span *ngIf="match.claimed">
-                ✔️
+                ✅
             </span>
           </td>
           <td class="p-4">{{match.kickOff | timeAgo}}</td>

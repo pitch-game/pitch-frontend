@@ -9,6 +9,7 @@ import { MatchmakingService } from 'src/app/services/matchmaking.service';
 import { Observable } from 'rxjs';
 import { MatchService } from 'src/app/services/match.service';
 import { OnInit, Component } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-current-season',
@@ -20,7 +21,8 @@ export class CurrentSeasonPage implements OnInit {
   constructor(private http: HttpClient, private authService: AuthService,
     private router: Router, private layoutService: LayoutService,
     private matchMakingService: MatchmakingService,
-    private matchService: MatchService) { }
+    private matchService: MatchService,
+    private userService: UserService) { }
   response: any;
 
   findMatchIcon = faFutbol;
@@ -51,6 +53,8 @@ export class CurrentSeasonPage implements OnInit {
   unclaimed: boolean;
   inProgress: string;
 
+  profile:any;
+
   async ngOnInit() {
     let sessionId = this.matchMakingService.get();
     if (sessionId) {
@@ -64,6 +68,10 @@ export class CurrentSeasonPage implements OnInit {
         }
       });
     }
+
+    this.userService.get().subscribe((profile) => {
+      this.profile = profile;
+    });
 
     this.http.get<any>(`${environment.apiEndpoint}/match/status`).subscribe((result) => {
       this.unclaimed = result.hasUnclaimedRewards;
