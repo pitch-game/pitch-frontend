@@ -20,15 +20,15 @@ export class ReadyToOpenComponent implements OnInit {
   nextIcon = faChevronCircleRight;
   closeIcon = faTimes;
   
-  async ngOnInit() {
+  ngOnInit() {
     this.store.getPacks().subscribe((packs) => {
       this.packs = packs;
     });
   }
 
-  async click() {
+  click() {
     let id = this.packs.pop().id;
-    if(this.showCurtain = true){
+    if(this.showCurtain){
       this.dismissCurtain();
     }
     this.store.openPack(id).subscribe((card) => {

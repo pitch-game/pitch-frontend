@@ -25,7 +25,7 @@
   <div class="w-1/6 hidden lg:block"></div>
 </div>
 
-<div *ngIf="showCurtain" class="fixed pin flex flex-col z-40 items-center justify-center overflow-auto bg-black">
+<div *ngIf="showCurtain && curtainPackId" class="fixed pin flex flex-col z-40 items-center justify-center overflow-auto bg-black">
   <button (click)="dismissCurtain()" class="absolute h-10 pin-t pin-b pin-r p-4">
     <fa-icon [icon]="closeIcon" size="2x" class="ml-2 text-indigo-lighter"></fa-icon>
   </button>
