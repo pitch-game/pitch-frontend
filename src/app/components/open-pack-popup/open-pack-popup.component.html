@@ -1,0 +1,18 @@
+<div *ngIf="packId" class="fixed pin flex flex-col z-40 items-center justify-center overflow-auto bg-black">
+  <button (click)="destroy()" class="absolute h-10 pin-t pin-b pin-r p-4">
+    <fa-icon [icon]="closeIcon" size="2x" class="ml-2 text-indigo-lighter"></fa-icon>
+  </button>
+  <div class="flex">
+    <pitch-player-card class="z-50" [card]="card" size="lg" spinOnInit="true"></pitch-player-card>
+  </div>
+  <div class="flex content-center flex-wrap justify-center m-5">
+    <div class="flex-1 p-2">
+      <button (click)="click()"
+        class="w-full h-12 bg-indigo hover:bg-indigo-lighter text-white font-bold py-2 px-4 rounded">
+        <span>Open Next <span
+            class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white font-bold">{{packsLeft || 0}}</span></span>
+        <fa-icon [icon]="nextIcon" class="ml-2 text-indigo-lighter"></fa-icon>
+      </button>
+    </div>
+  </div>
+</div>

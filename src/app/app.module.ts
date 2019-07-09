@@ -27,7 +27,7 @@ import { TokenInterceptor } from './auth/token.interceptor';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
-import {TimeAgoPipe} from 'time-ago-pipe';
+import { TimeAgoPipe } from 'time-ago-pipe';
 import { BuyPageComponent } from './pages/store/buy/buy.page';
 import { ReadyToOpenComponent } from './pages/store/open/open.page';
 import { MatchComponent } from './pages/match/match.component';
@@ -35,6 +35,7 @@ import { CurrentSeasonPage } from './pages/seasons/current-season/current-season
 import { MatchHistoryPage } from './pages/seasons/match-history/match-history.page';
 import { HomePage } from './pages/home/home.page';
 import { ThousandSuffixesPipe } from './pipes/thousand-suffixes.pipe';
+import { OpenPackPopupComponent } from './components/open-pack-popup/open-pack-popup.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ThousandSuffixesPipe } from './pipes/thousand-suffixes.pipe';
     MatchComponent,
     CurrentSeasonPage,
     MatchHistoryPage,
-    HomePage
+    HomePage,
+    OpenPackPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +79,7 @@ import { ThousandSuffixesPipe } from './pipes/thousand-suffixes.pipe';
       useClass: TokenInterceptor,
       multi: true
     }],
+  entryComponents: [OpenPackPopupComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
