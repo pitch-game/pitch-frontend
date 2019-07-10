@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { MatchService } from 'src/app/services/match.service';
 import { OnInit, Component } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { ThousandSuffixesPipe } from 'src/app/pipes/thousand-suffixes.pipe';
 
 @Component({
   selector: 'app-current-season',
@@ -32,20 +33,6 @@ export class CurrentSeasonPage implements OnInit {
   loadingIcon = faSpinner;
   faGift = faGift;
 
-  connection: signalR.HubConnection;
-
-  private _sessionId: string;
-  get sessionId(): string {
-    return this._sessionId;
-  }
-  set sessionId(sessionId: string) {
-    if (sessionId)
-      localStorage.setItem('sessionId', sessionId);
-    else
-      localStorage.removeItem('sessionId');
-    this._sessionId = sessionId;
-  }
-
   showStatus: boolean;
   statusMessage: string;
 
@@ -56,18 +43,7 @@ export class CurrentSeasonPage implements OnInit {
   profile:any;
 
   async ngOnInit() {
-    let sessionId = this.matchMakingService.get();
-    if (sessionId) {
-      await this.matchMakingService.validate().subscribe(async (result) => { //todo make async
-        if (result.valid) {
-          this.setStatus('Finding a match...');
-          await this.establishConnection();
-        } else {
-          this.matchMakingService.remove();
-          this.sessionId = null;
-        }
-      });
-    }
+
 
     this.userService.get().subscribe((profile) => {
       this.profile = profile;
@@ -79,55 +55,6 @@ export class CurrentSeasonPage implements OnInit {
       this.canMatchmake = !(this.unclaimed || this.inProgress);
     });
 
-  }
-
-  async establishConnection() {
-    this.connection = new signalR.HubConnectionBuilder()
-      //TODO get websockets working
-      .withUrl(`${environment.apiEndpoint}/match/hubs/matchmaking`, { accessTokenFactory: () => this.authService.getToken(), transport: signalR.HttpTransportType.LongPolling })
-      .build();
-
-    await this.connection.start().catch(err => console.log(err));
-
-    this.connection.on("receiveSessionId", (sessionId: string) => {
-      console.log(sessionId);
-      this.sessionId = sessionId;
-      this.matchMakingService.set(sessionId);
-    });
-
-    this.connection.on("matchReady", (sessionId: string) => {
-      console.log(sessionId);
-
-      this.showStatus = false;
-      this.sessionId = null;
-      this.connection.send('cancel', [this.sessionId]);
-
-      this.matchService.kickOff(sessionId);
-    });
-  }
-
-  async matchmake() {
-    if (this.inProgress) return;
-
-    if (this.sessionId || this.matchMakingService.get()) {
-      this.matchMakingService.cancel();
-      this.sessionId = null;
-      this.showStatus = false;
-      return;
-    }
-
-    if (!this.connection) {
-      this.setStatus('Establishing connection...');
-      await this.establishConnection();
-    }
-
-    this.setStatus('Finding a match...');
-    this.layoutService.showMatchmaking = true;
-    if (this.sessionId) {
-      this.connection.send('cancel', [this.sessionId]);
-      this.sessionId = null;
-    }
-    this.connection.send('matchmake').catch(err => console.log(err));
   }
 
   claim() {
@@ -144,5 +71,9 @@ export class CurrentSeasonPage implements OnInit {
 
   goToMatch(){
     this.matchService.goToMatch(this.inProgress)
+  }
+
+  matchmake(){
+    this.matchMakingService.matchmake();
   }
 }

@@ -73,7 +73,7 @@
         </div>
       </div>
       <div class="flex-grow lg:flex-none">
-        <span *ngIf="isLoggedIn" class="text-sm p-2 text-white block lg:inline">Welcome, {{authService.getClaims().name}}</span>
+        <span *ngIf="isLoggedIn" class="text-sm mr-2 text-indigo-lighter block lg:inline">Welcome, {{authService.getClaims().name}}</span>
         <a href="#" (click)="login()"
           class="inline-block text-sm px-4 py-2 leading-none rounded text-white border-white bg-indigo-light hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
           <span *ngIf="!isLoggedIn">Login</span>
@@ -87,7 +87,7 @@
       role="alert">
       <span class="font-semibold mr-2 text-center flex-auto">
         <fa-icon class="mr-1" [icon]="loadingIcon" [spin]="true"></fa-icon>
-        Matchmaking in progress...
+        Matchmaking in progress...<a class="ml-1 text-indigo" (click)="matchmakingService.cancel()">cancel</a>
       </span>
     </div>
   </div>

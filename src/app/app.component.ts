@@ -8,6 +8,7 @@ import { faUsers, faFutbol, faTicketAlt, faShoppingBasket, faMoneyBill, faSpinne
 import { UserService } from './services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { MatchService } from './services/match.service';
+import { MatchmakingService } from './services/matchmaking.service';
 
 
 @Component({
@@ -40,7 +41,8 @@ export class AppComponent implements OnInit {
     public layoutService: LayoutService,
     private router: Router,
     private userService: UserService,
-    public matchService: MatchService) {
+    public matchService: MatchService,
+    private matchmakingService: MatchmakingService) {
 
     this.authService.isLoggedIn().subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
@@ -65,11 +67,11 @@ export class AppComponent implements OnInit {
       this.layoutService.showNav = false;
       //}
     });
-
   }
 
   ngOnInit(): void {
     this.matchService.init();
+    this.matchmakingService.init();
   }
 
   prepareRoute(outlet: RouterOutlet) {
