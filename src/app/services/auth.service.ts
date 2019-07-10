@@ -42,6 +42,10 @@ export class AuthService {
     return user.id_token;
   }
 
+  signOut() {
+    this.manager.signoutRedirect();
+  }
+
   startAuthentication(): Promise<void> {
     return this.manager.signinRedirect();
   }

@@ -18,7 +18,7 @@ import { MatchService } from './services/match.service';
     slideInAnimation
   ]
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   title = 'Pitch';
 
@@ -37,10 +37,10 @@ export class AppComponent implements OnInit{
   profile: any;
 
   constructor(public authService: AuthService,
-     public layoutService: LayoutService,
-      private router: Router,
-       private userService: UserService,
-        public matchService: MatchService) {
+    public layoutService: LayoutService,
+    private router: Router,
+    private userService: UserService,
+    public matchService: MatchService) {
 
     this.authService.isLoggedIn().subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
@@ -62,7 +62,7 @@ export class AppComponent implements OnInit{
 
     this.router.events.subscribe((event) => {
       //if(typeof(event) == NavigationEnd) { TODO
-        this.layoutService.showNav = false;
+      this.layoutService.showNav = false;
       //}
     });
 
@@ -81,6 +81,12 @@ export class AppComponent implements OnInit{
   }
 
   async login() {
-    await this.authService.startAuthentication();
+    this.authService.isLoggedIn().subscribe(async (loggedIn) => {
+      if (loggedIn) {
+        this.authService.signOut();
+      } else {
+        await this.authService.startAuthentication();
+      }
+    });
   }
 }
