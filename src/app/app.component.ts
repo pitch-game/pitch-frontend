@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     public matchService: MatchService,
-    private matchmakingService: MatchmakingService) {
+    public matchmakingService: MatchmakingService) {
 
     this.authService.isLoggedIn().subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
