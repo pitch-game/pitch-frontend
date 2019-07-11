@@ -54,7 +54,8 @@ export class ActivesquadComponent implements OnInit {
     this.modal.callback = (async (id) => {
       this.squad.subs[index] = id;
       if (id) {
-        this.cards[id] = await this.cardService.get(id).toPromise();
+        var card = await this.cardService.get(id).toPromise();
+        this.cards[id] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
       }
       this.pendingChanges = true;
       this.stats = this.squadStatsService.calculate(this.squad, this.cards);
@@ -117,7 +118,8 @@ export class ActivesquadComponent implements OnInit {
       return;
     }
 
-    this.cards[position] = await this.cardService.get(this.squad.lineup[position]).toPromise();
+    var card = await this.cardService.get(this.squad.lineup[position]).toPromise();
+    this.cards[position] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
   }
 
   private async getPlayers(position: string) {
