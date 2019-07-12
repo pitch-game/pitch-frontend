@@ -36,6 +36,7 @@ import { MatchHistoryPage } from './pages/seasons/match-history/match-history.pa
 import { HomePage } from './pages/home/home.page';
 import { ThousandSuffixesPipe } from './pipes/thousand-suffixes.pipe';
 import { OpenPackPopupComponent } from './components/open-pack-popup/open-pack-popup.component';
+import { UnauthorizedInterceptor } from './auth/unauthorized.interceptor';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,10 @@ import { OpenPackPopupComponent } from './components/open-pack-popup/open-pack-p
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true
+    },{
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptor,
       multi: true
     }],
   entryComponents: [OpenPackPopupComponent],
