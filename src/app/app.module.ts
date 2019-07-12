@@ -37,6 +37,7 @@ import { HomePage } from './pages/home/home.page';
 import { ThousandSuffixesPipe } from './pipes/thousand-suffixes.pipe';
 import { OpenPackPopupComponent } from './components/open-pack-popup/open-pack-popup.component';
 import { UnauthorizedInterceptor } from './auth/unauthorized.interceptor';
+import { SubstitutionModalComponent } from './components/substitution-modal/substitution-modal.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { UnauthorizedInterceptor } from './auth/unauthorized.interceptor';
     CurrentSeasonPage,
     MatchHistoryPage,
     HomePage,
-    OpenPackPopupComponent
+    OpenPackPopupComponent,
+    SubstitutionModalComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,7 @@ import { UnauthorizedInterceptor } from './auth/unauthorized.interceptor';
       useClass: UnauthorizedInterceptor,
       multi: true
     }],
-  entryComponents: [OpenPackPopupComponent],
+  entryComponents: [OpenPackPopupComponent, SubstitutionModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -69,6 +69,10 @@ export class MatchService {
     inProgress(): Observable<any> {
         return this.httpClient.get<any>(`${environment.apiEndpoint}/match/status`);
     }
+
+    lineup(matchId: string): Observable<any> {
+        return this.httpClient.get<any>(`${environment.apiEndpoint}/match/lineup`, {params: { matchId }});        
+    }
 }
 
 export class CardQueryModel {
