@@ -18,7 +18,7 @@
       <div class="flex h-full">
         <div class="flex-auto">
           <h4 class="mb-2 text-red">Off</h4>
-          <div class="overflow-y-scroll max-h-screen-1/2">
+          <div class="overflow-y-scroll max-h-screen-1/3">
             <div class="p-2 m-1" *ngFor="let player of squad?.lineup">
               <pitch-player-card (click)="selectOff(player)" size="sm" [card]="card(player)" mode="squad"></pitch-player-card>
             </div>
@@ -31,7 +31,7 @@
         </div>
         <div class="flex-auto">
           <h4 class="mb-2 text-green">On</h4>
-          <div class="overflow-y-scroll max-h-screen-1/2">
+          <div class="overflow-y-scroll max-h-screen-1/3">
             <div class="p-2 m-1" *ngFor="let player of squad?.subs">
               <pitch-player-card (click)="selectOn(player)" size="sm" [card]="card(player)" mode="squad"></pitch-player-card>
             </div>
