@@ -12,6 +12,7 @@ import { flatMap } from 'rxjs/operators';
 export class MatchService {
 
     match: any;
+    subsRemaining: number;
     sessionId: string;
 
     timer: Observable<number>;
@@ -50,8 +51,9 @@ export class MatchService {
 
         if (!this.pollingSubscription) {
             this.pollingSubscription = this.timer.pipe(flatMap(() => this.httpClient.get(`${environment.apiEndpoint}/match/${sessionId}`)))
-                .subscribe((result) => {
-                    this.match = result;
+                .subscribe((result: any) => {
+                    this.match = result.match;
+                    this.subsRemaining = result.subsRemaining;
 
                     if (this.match.expired) {
                         this.pollingSubscription.unsubscribe();

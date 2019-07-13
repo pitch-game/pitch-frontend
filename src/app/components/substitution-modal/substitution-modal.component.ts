@@ -13,6 +13,7 @@ export class SubstitutionModalComponent implements OnInit {
   rightChevron = faChevronRight;
 
   destroy: Function;
+  callback: Function;
 
   off: PitchPlayerCard;
   on: PitchPlayerCard;
@@ -42,5 +43,7 @@ export class SubstitutionModalComponent implements OnInit {
 
   async sub(){
     await this.matchService.makeSub(this.off.id, this.on.id).toPromise();
+    this.callback();
+    this.destroy();
   }
 }

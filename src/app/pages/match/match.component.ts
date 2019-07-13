@@ -47,11 +47,17 @@ export class MatchComponent implements OnInit {
   }
 
   substitution() {
+    if(this.matchService.subsRemaining === 0) return;
+    
     let factory = this.componentFactoryResolver.resolveComponentFactory(SubstitutionModalComponent);
     this.cmpRef = this.viewContainerRef.createComponent(factory);
 
     this.cmpRef.instance.destroy = () => {
       this.cmpRef.destroy();
+    };
+
+    this.cmpRef.instance.callback = () => {
+      //get match
     };
 
     this.cmpRef.instance.matchId = this.sessionId;
