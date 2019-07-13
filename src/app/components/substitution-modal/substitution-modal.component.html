@@ -32,23 +32,8 @@
         <div class="flex-auto">
           <h4 class="mb-2 text-green">On</h4>
           <div class="overflow-y-scroll max-h-screen-1/2">
-            <div class="p-2 m-1">
-              <pitch-player-card size="sm" mode="squad"></pitch-player-card>
-            </div>
-            <div class="p-2 m-1">
-              <pitch-player-card size="sm" mode="squad"></pitch-player-card>
-            </div>
-            <div class="p-2 m-1">
-              <pitch-player-card size="sm" mode="squad"></pitch-player-card>
-            </div>
-            <div class="p-2 m-1">
-              <pitch-player-card size="sm" mode="squad"></pitch-player-card>
-            </div>
-            <div class="p-2 m-1">
-              <pitch-player-card size="sm" mode="squad"></pitch-player-card>
-            </div>
-            <div class="p-2 m-1">
-              <pitch-player-card size="sm" mode="squad"></pitch-player-card>
+            <div class="p-2 m-1" *ngFor="let player of squad?.subs">
+              <pitch-player-card (click)="selectOn(player)" size="sm" [card]="card(player)" mode="squad"></pitch-player-card>
             </div>
           </div>
         </div>
@@ -68,7 +53,7 @@
         </div>
       </div>
     </div>
-    <a *ngIf="on && off" class="block group hover:bg-indigo-lighter p-4 no-underline bg-green" (click)="destroy()">
+    <a *ngIf="on && off" class="block group hover:bg-indigo-lighter p-4 no-underline bg-green" (click)="sub()">
       <p class="font-bold text-md mb-1 text-black group-hover:text-white">Confirm</p>
     </a>
     <a class="block group hover:bg-indigo-lighter p-4 rounded no-underline bg-grey-light" (click)="destroy()">

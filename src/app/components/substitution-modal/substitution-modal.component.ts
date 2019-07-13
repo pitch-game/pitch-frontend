@@ -32,7 +32,15 @@ export class SubstitutionModalComponent implements OnInit {
     this.off = card;
   }
 
+  selectOn(card: any){
+    this.on = card;
+  }
+
   card(card: any){
     return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+  }
+
+  async sub(){
+    await this.matchService.makeSub(this.off.id, this.on.id).toPromise();
   }
 }

@@ -61,6 +61,10 @@ export class MatchService {
         }
     }
 
+    makeSub(off: string, on: string){
+        return this.httpClient.post<any>(`${environment.apiEndpoint}/match/substitution`, {off, on, matchId: this.sessionId});
+    }
+
     getWithQuery(query: CardQueryModel): Observable<any[]> {
         var params = new HttpParams().set('skip', query.skip.toString()).set('take', query.take.toString());
         return this.httpClient.get<any[]>(`${environment.apiEndpoint}/match`, { params: params });

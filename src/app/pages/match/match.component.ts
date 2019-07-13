@@ -40,7 +40,9 @@ export class MatchComponent implements OnInit {
     this.matchService.startPolling(this.sessionId);
   }
 
+  //TODO fix performance
   getModel(card: any) {
+    if(!card) return new PitchPlayerCard();
     return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity)
   }
 
