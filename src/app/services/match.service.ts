@@ -5,15 +5,16 @@ import { Router } from '@angular/router';
 import { LayoutService } from '../layout/layout.service';
 import { Observable, timer, empty, BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
+import { MatchResult, Match } from '../models/match/match-result';
 
 @Injectable({
     providedIn: "root"
 })
 export class MatchService {
 
-    match: any;
+    match: Match;
     subsRemaining: number;
-    sessionId: string;
+    matchId: string;
 
     timer: Observable<number>;
     pollingSubscription: Subscription;
@@ -24,8 +25,8 @@ export class MatchService {
 
     init() {
         this.inProgress().subscribe((result) => {
-            this.sessionId = result.inProgressMatchId;
-            if (this.sessionId) {
+            this.matchId = result.inProgressMatchId;
+            if (this.matchId) {
                 this.startPolling(result.inProgressMatchId);
             }
         });
@@ -35,13 +36,13 @@ export class MatchService {
         if (sessionId)
             this.router.navigate(['/match', sessionId]);
         else
-            this.router.navigate(['/match', this.sessionId]);
+            this.router.navigate(['/match', this.matchId]);
     }
 
     kickOff(sessionId: string) {
         this.router.navigate(['/match', sessionId]);
         this.layoutService.showMatchmaking = false;
-        this.sessionId = sessionId;
+        this.matchId = sessionId;
         this.startPolling(sessionId);
     }
 
@@ -51,20 +52,20 @@ export class MatchService {
 
         if (!this.pollingSubscription) {
             this.pollingSubscription = this.timer.pipe(flatMap(() => this.httpClient.get(`${environment.apiEndpoint}/match/${sessionId}`)))
-                .subscribe((result: any) => {
-                    this.match = result.match;
-                    this.subsRemaining = result.subsRemaining;
+                .subscribe((matchResult: MatchResult) => {
+                    this.match = matchResult.match;
+                    this.subsRemaining = matchResult.subsRemaining;
 
                     if (this.match.expired) {
                         this.pollingSubscription.unsubscribe();
-                        this.sessionId = null;
+                        this.matchId = null;
                     }
                 });
         }
     }
 
     makeSub(off: string, on: string){
-        return this.httpClient.post<any>(`${environment.apiEndpoint}/match/substitution`, {off, on, matchId: this.sessionId});
+        return this.httpClient.post<any>(`${environment.apiEndpoint}/match/substitution`, {off, on, matchId: this.matchId});
     }
 
     getWithQuery(query: CardQueryModel): Observable<any[]> {

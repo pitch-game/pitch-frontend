@@ -13,7 +13,7 @@ export class AuthCallbackComponent implements OnInit {
 
   ngOnInit() {
       this.authService.completeAuthentication().then(() => {
-        this.router.navigate(['seasons']);
+        this.router.navigate(['home']);
       });
   }
 }

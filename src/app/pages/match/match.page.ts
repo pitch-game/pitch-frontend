@@ -1,19 +1,14 @@
 import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
-import { faSpinner, faCircle, faFutbol, faClock, faChartLine, faUsers } from '@fortawesome/free-solid-svg-icons';
-import { timer, from, interval } from 'rxjs';
-import { concatMap, map, filter, take, flatMap } from 'rxjs/operators';
-import { Card } from 'src/app/models/card/card';
+import { faSpinner, faFutbol, faClock, faChartLine, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { PitchPlayerCard } from 'pitch-player-card';
 import { MatchService } from 'src/app/services/match.service';
 import { SubstitutionModalComponent } from 'src/app/components/substitution-modal/substitution-modal.component';
 
 @Component({
   selector: 'app-match',
-  templateUrl: './match.component.html',
-  styleUrls: ['./match.component.less']
+  templateUrl: './match.page.html',
+  styleUrls: ['./match.page.less']
 })
 export class MatchComponent implements OnInit {
 
@@ -23,7 +18,6 @@ export class MatchComponent implements OnInit {
   statsIcon = faChartLine;
   lineupIcon = faUsers;
 
-  match: any;
   sessionId: string; 
   cmpRef: any;
   

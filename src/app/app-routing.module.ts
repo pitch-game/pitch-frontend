@@ -12,7 +12,7 @@ import { TrainingComponent } from './pages/squad/training/training.page';
 import { ClubComponent } from './pages/squad/club/club.page';
 import { BuyPageComponent } from './pages/store/buy/buy.page';
 import { ReadyToOpenComponent } from './pages/store/open/open.page';
-import { MatchComponent } from './pages/match/match.component';
+import { MatchComponent } from './pages/match/match.page';
 import { CurrentSeasonPage } from './pages/seasons/current-season/current-season.page';
 import { MatchHistoryPage } from './pages/seasons/match-history/match-history.page';
 import { HomePage } from './pages/home/home.page';

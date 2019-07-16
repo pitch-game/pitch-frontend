@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatchComponent } from './match.component';
+import { MatchComponent } from './match.page';
 
 describe('MatchComponent', () => {
   let component: MatchComponent;
