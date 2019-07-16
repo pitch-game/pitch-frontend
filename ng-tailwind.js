@@ -1,10 +1,10 @@
 module.exports = {
   // Tailwind Paths
   configJS: 'tailwind.js',
-  sourceCSS: 'src/tailwind.css',
+  sourceCSS: 'src/tailwind.less',
   outputCSS: 'src/styles.css',
   // Sass
-  sass: false,
+  sass: true,
   // PurgeCSS Settings
   purge: false,
   keyframes: false,
@@ -12,5 +12,12 @@ module.exports = {
   rejected: false,
   whitelist: [],
   whitelistPatterns: [],
-  whitelistPatternsChildren: []
+  whitelistPatternsChildren: [],
+  extensions: [
+    '.ts',
+    '.html',
+    '.js'
+  ],
+  extractors: [],
+  content: []
 }
