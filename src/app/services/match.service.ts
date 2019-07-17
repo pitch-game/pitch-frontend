@@ -6,6 +6,7 @@ import { LayoutService } from '../layout/layout.service';
 import { Observable, timer, empty, BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 import { MatchResult, Match } from '../models/match/match-result';
+import { MatchListItem } from '../models/match/match-list-item';
 
 @Injectable({
     providedIn: "root"
@@ -68,7 +69,7 @@ export class MatchService {
         return this.httpClient.post<any>(`${environment.apiEndpoint}/match/substitution`, {off, on, matchId: this.matchId});
     }
 
-    getWithQuery(query: CardQueryModel): Observable<any[]> {
+    getWithQuery(query: CardQueryModel): Observable<MatchListItem[]> {
         var params = new HttpParams().set('skip', query.skip.toString()).set('take', query.take.toString());
         return this.httpClient.get<any[]>(`${environment.apiEndpoint}/match`, { params: params });
     }
