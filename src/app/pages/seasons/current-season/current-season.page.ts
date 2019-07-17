@@ -11,6 +11,7 @@ import { MatchService } from 'src/app/services/match.service';
 import { OnInit, Component } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ThousandSuffixesPipe } from 'src/app/pipes/thousand-suffixes.pipe';
+import { UserProfile } from 'src/app/models/user/profile';
 
 @Component({
   selector: 'app-current-season',
@@ -33,28 +34,20 @@ export class CurrentSeasonPage implements OnInit {
   loadingIcon = faSpinner;
   faGift = faGift;
 
-  showStatus: boolean;
-  statusMessage: string;
-
   canMatchmake: boolean;
   unclaimed: boolean;
   inProgress: string;
 
-  profile:any;
+  profile: UserProfile;
 
   async ngOnInit() {
-
-
-    this.userService.get().subscribe((profile) => {
-      this.profile = profile;
-    });
+    var profile = await this.userService.get();
 
     this.http.get<any>(`${environment.apiEndpoint}/match/status`).subscribe((result) => {
       this.unclaimed = result.hasUnclaimedRewards;
       this.inProgress = result.inProgressMatchId;
       this.canMatchmake = !(this.unclaimed || this.inProgress);
     });
-
   }
 
   claim() {
@@ -64,16 +57,11 @@ export class CurrentSeasonPage implements OnInit {
     });
   }
 
-  setStatus(message: string) {
-    this.showStatus = true;
-    this.statusMessage = message;
-  }
-
   goToMatch(){
     this.matchService.goToMatch(this.inProgress)
   }
 
-  matchmake(){
-    this.matchMakingService.matchmake();
+  async matchmake(){
+    await this.matchMakingService.matchmake();
   }
 }

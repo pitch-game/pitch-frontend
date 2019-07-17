@@ -9,6 +9,7 @@ import { UserService } from './services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { MatchService } from './services/match.service';
 import { MatchmakingService } from './services/matchmaking.service';
+import { UserProfile } from './models/user/profile';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class AppComponent implements OnInit {
   isLoggedIn: boolean;
   version: string;
 
-  profile: any;
+  profile: UserProfile;
 
   constructor(public authService: AuthService,
     public layoutService: LayoutService,
@@ -44,19 +45,15 @@ export class AppComponent implements OnInit {
     public matchService: MatchService,
     public matchmakingService: MatchmakingService) {
 
-    this.authService.isLoggedIn().subscribe((isLoggedIn) => {
+    this.authService.isLoggedIn().subscribe(async (isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
-      this.userService.get().subscribe((profile) => {
-        this.profile = profile;
-      });
+      this.profile = await this.userService.get();
       this.matchService.init();
     });
 
-    this.authService.onAuthenticationCompleted.subscribe(() => {
+    this.authService.onAuthenticationCompleted.subscribe(async () => {
       this.isLoggedIn = true;
-      this.userService.get().subscribe((profile) => {
-        this.profile = profile;
-      });
+      this.profile = await this.userService.get();
       this.matchService.init();
     });
 
