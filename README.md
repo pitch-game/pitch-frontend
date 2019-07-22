@@ -1,12 +1,12 @@
 # Pitch Frontend
 
-![GitHub last commit](https://img.shields.io/github/last-commit/jcbcn/pitch-frontend.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/pitch-game/pitch-frontend.svg)
 ![Azure DevOps builds](https://img.shields.io/azure-devops/build/pitch-game/c9af1751-7ec1-463d-8e60-e869ac1bb96c/10.svg)
 ![Azure DevOps releases](https://img.shields.io/azure-devops/release/pitch-game/c9af1751-7ec1-463d-8e60-e869ac1bb96c/1/1.svg)
-![Dependencies](https://img.shields.io/david/jcbcn/pitch-frontend.svg)
+![Dependencies](https://img.shields.io/david/pitch-game/pitch-frontend.svg)
 ![Website](https://img.shields.io/website/http/pitch-game.io.svg)
-![GitHub repo size](https://img.shields.io/github/repo-size/jcbcn/pitch-frontend.svg)
-![GitHub](https://img.shields.io/github/license/jcbcn/pitch-frontend.svg)
+![GitHub repo size](https://img.shields.io/github/repo-size/pitch-game/pitch-frontend.svg)
+![GitHub](https://img.shields.io/github/license/pitch-game/pitch-frontend.svg)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.2.
 
