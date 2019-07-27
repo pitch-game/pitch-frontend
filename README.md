@@ -8,6 +8,15 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/pitch-game/pitch-frontend.svg)
 ![GitHub](https://img.shields.io/github/license/pitch-game/pitch-frontend.svg)
 
+|   Pack Opening                            |   Live match                              |
+|:-----------------------------------------:|:-----------------------------------------:|
+| <img src="images/store.gif" width="300"/> | <img src="images/match.gif" width="300"/> |
+
+|   Squad                                   |   Seasons                                         |
+|:-----------------------------------------:|:-----------------------------------------------:|
+| <img src="images/squad.gif" width="300"/> |   <img src="images/seasons.gif" width="300"/>   |
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.2.
 
 ## Development server
