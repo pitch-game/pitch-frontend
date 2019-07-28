@@ -1,40 +1,23 @@
-import { Injectable, EventEmitter } from "@angular/core";
-import { environment } from "src/environments/environment";
-import { Observable, from } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Observable } from 'rxjs';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
-  //private manager = new UserManager(getClientSettings());
-  public user: any = null;
-  public isAuthenticated: boolean;
 
-  public onAuthenticationCompleted: EventEmitter<any> = new EventEmitter();
-
-  constructor(public oidcSecurityService: OidcSecurityService) {
-    this.oidcSecurityService.getIsAuthorized().subscribe(auth => {
-      this.isAuthenticated = auth;
-    });
-
-    this.oidcSecurityService.getUserData().subscribe(userData => {
-      this.user = userData;
-    });
-  }
+  constructor(public oidcSecurityService: OidcSecurityService) { }
 
   isLoggedIn(): Observable<boolean> {
-    return from(this.oidcSecurityService.getUserData()).pipe(map<any, boolean>((user) => {
-      if (user) {
-        return true;
-      } else {
-        return false;
-      }
-    }));
+    return this.oidcSecurityService.getIsAuthorized();
   }
 
-  async getAuthorizationHeaderValue(): Promise<string> {
+  getUserData(): Observable<any> {
+    return this.oidcSecurityService.getUserData();
+  }
+
+  getAuthorizationHeaderValue(): string {
     return `Bearer ${this.getToken()}`;
   }
 
@@ -49,12 +32,5 @@ export class AuthService {
   startAuthentication(): void {
     this.oidcSecurityService.authorize();
   }
-
-  // completeAuthentication(): Promise<void> {
-  //   return this.manager.signinRedirectCallback().then(user => {
-  //     this.user = user;
-  //     this.onAuthenticationCompleted.emit();
-  //   });
-  // }
 }
 

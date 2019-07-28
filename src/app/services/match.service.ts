@@ -24,7 +24,6 @@ export class MatchService {
     }
 
     async init() {
-        if(!this.authService.isAuthenticated) return;
         let result = await this.matchHttpService.inProgress();
         this.matchId = result.inProgressMatchId;
         if (this.matchId) {

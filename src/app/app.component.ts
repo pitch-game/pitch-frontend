@@ -19,7 +19,7 @@ import { UserProfile } from './models/user/profile';
     slideInAnimation
   ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   title = 'Pitch';
 
@@ -36,6 +36,7 @@ export class AppComponent implements OnInit {
   version: string;
 
   profile: UserProfile;
+  username: string;
 
   constructor(public authService: AuthService,
     public layoutService: LayoutService,
@@ -46,15 +47,15 @@ export class AppComponent implements OnInit {
 
     this.authService.isLoggedIn().subscribe(async (isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
-      if(!isLoggedIn) return;
+      if (!isLoggedIn) return;
       this.profile = await this.userService.get();
-      this.matchService.init();
+      await this.matchService.init();
+      await this.matchmakingService.init();
     });
 
-    this.authService.onAuthenticationCompleted.subscribe(async () => {
-      this.isLoggedIn = true;
-      this.profile = await this.userService.get();
-      this.matchService.init();
+    this.authService.getUserData().subscribe((user) => {
+      if (!user) return;
+      this.username = user.name;
     });
 
     this.version = environment.version;
@@ -66,11 +67,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  async ngOnInit(): Promise<void> {
-    await this.matchService.init();
-    await this.matchmakingService.init();
-  }
-
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
@@ -79,13 +75,11 @@ export class AppComponent implements OnInit {
     this.layoutService.toggleNav();
   }
 
-  async login() {
-    // this.authService.isLoggedIn().subscribe(async (loggedIn) => {
-    //   if (loggedIn) {
-    //     this.authService.signOut();
-    //   } else {
-       await this.authService.startAuthentication();
-    //   }
-    // });
+  login() {
+    this.authService.startAuthentication();
+  }
+
+  signOut() {
+    this.authService.signOut();
   }
 }

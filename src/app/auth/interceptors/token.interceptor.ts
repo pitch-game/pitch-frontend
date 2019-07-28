@@ -16,15 +16,11 @@ export class TokenInterceptor implements HttpInterceptor {
     constructor(public authService: AuthService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return from(this.authService.getAuthorizationHeaderValue())
-            .pipe(switchMap(authHeader => {
-                request = request.clone({
-                    setHeaders: {
-                        Authorization: authHeader
-                    }
-                });
-                return next.handle(request)
-            })
-            );
+        request = request.clone({
+            setHeaders: {
+                Authorization: this.authService.getAuthorizationHeaderValue()
+            }
+        });
+        return next.handle(request);
     }
 }
