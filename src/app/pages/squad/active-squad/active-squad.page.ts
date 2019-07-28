@@ -36,27 +36,31 @@ export class ActivesquadComponent implements OnInit {
 
   async pickPlayer(position: string) {
     this.modal = new PlayerPickerModal();
-    this.modal.position = position;
-    this.modal.callback = (async (id) => {
-      await this.assign(position, id)
-    });
     this.modal.visible = true;
-    await this.getPlayers(position);
-  }
+    this.modal.position = position;
+    this.modal.callback = (async (cardId) => {
+      this.squad.lineup[position] = cardId;
+      if (cardId) {
+        var card = await this.cardService.get(cardId);
+        this.cards[position] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+      } else {
+        this.cards[position] = null;
+      }
 
-  setTeamInstruction(style: string, value: number) {
-    this.squad.instructions[style] = value;
-    this.pendingChanges = true;
+      this.pendingChanges = true;
+      this.stats = this.squadStatsService.calculate(this.squad, this.cards);
+    });
+    await this.getPlayers(position);
   }
 
   async pickSub(index: number) {
     this.modal = new PlayerPickerModal();
     this.modal.visible = true;
-    this.modal.callback = (async (id) => {
-      this.squad.subs[index] = id;
-      if (id) {
-        var card = await this.cardService.get(id);
-        this.cards[id] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+    this.modal.callback = (async (cardId) => {
+      this.squad.subs[index] = cardId;
+      if (cardId) {
+        var card = await this.cardService.get(cardId);
+        this.cards[cardId] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
       }
       this.pendingChanges = true;
       this.stats = this.squadStatsService.calculate(this.squad, this.cards);
@@ -78,8 +82,9 @@ export class ActivesquadComponent implements OnInit {
     return Object.values(this.squad.lineup).concat(this.squad.subs);
   }
 
-  onScroll() {
-    console.log('scroll');
+  setTeamInstruction(style: string, value: number) {
+    this.squad.instructions[style] = value;
+    this.pendingChanges = true;
   }
 
   private async getCardsForLineup() {
@@ -112,24 +117,7 @@ export class ActivesquadComponent implements OnInit {
     };
   }
 
-  private async loadPosition(position: string) {
-    if (!this.squad.lineup[position]) {
-      this.cards[position] = null;
-      return;
-    }
-
-    var card = await this.cardService.get(this.squad.lineup[position]);
-    this.cards[position] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
-  }
-
   private getPlayers(position: string) {
     this.modal.cards = this.cardService.getWithQuery(new CardQueryModel(0, 10, position, this.idsToFilter()));
-  }
-
-  private async assign(position: string, cardId: string) {
-    this.squad.lineup[position] = cardId;
-    await this.loadPosition(position);
-    this.pendingChanges = true;
-    this.stats = this.squadStatsService.calculate(this.squad, this.cards);
   }
 }
