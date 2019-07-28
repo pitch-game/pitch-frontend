@@ -80,12 +80,12 @@ export class AppComponent implements OnInit {
   }
 
   async login() {
-    this.authService.isLoggedIn().subscribe(async (loggedIn) => {
-      if (loggedIn) {
-        this.authService.signOut();
-      } else {
-        await this.authService.startAuthentication();
-      }
-    });
+    // this.authService.isLoggedIn().subscribe(async (loggedIn) => {
+    //   if (loggedIn) {
+    //     this.authService.signOut();
+    //   } else {
+       await this.authService.startAuthentication();
+    //   }
+    // });
   }
 }

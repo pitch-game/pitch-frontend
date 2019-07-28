@@ -74,7 +74,7 @@
       </div>
       <div class="flex-grow lg:flex-none">
         <span *ngIf="isLoggedIn" class="text-sm mr-2 text-indigo-lighter block lg:inline">Welcome,
-          {{authService.getClaims().name}}</span>
+          {{authService.user.name}}</span>
         <a href="#" (click)="login()"
           class="inline-block text-sm px-4 py-2 leading-none rounded text-white border-white bg-indigo-light hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
           <span *ngIf="!isLoggedIn">Login</span>

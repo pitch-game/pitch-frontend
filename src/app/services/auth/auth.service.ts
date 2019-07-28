@@ -1,25 +1,31 @@
 import { Injectable, EventEmitter } from "@angular/core";
-import { UserManager, UserManagerSettings, User, WebStorageStateStore } from "oidc-client";
 import { environment } from "src/environments/environment";
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
-  private manager = new UserManager(getClientSettings());
-  private user: User = null;
+  //private manager = new UserManager(getClientSettings());
+  public user: any = null;
+  public isAuthenticated: boolean;
+
   public onAuthenticationCompleted: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
-    this.manager.getUser().then(user => {
-      this.user = user;
+  constructor(public oidcSecurityService: OidcSecurityService) {
+    this.oidcSecurityService.getIsAuthorized().subscribe(auth => {
+      this.isAuthenticated = auth;
+    });
+
+    this.oidcSecurityService.getUserData().subscribe(userData => {
+      this.user = userData;
     });
   }
 
   isLoggedIn(): Observable<boolean> {
-    return from(this.manager.getUser()).pipe(map<User, boolean>((user) => {
+    return from(this.oidcSecurityService.getUserData()).pipe(map<any, boolean>((user) => {
       if (user) {
         return true;
       } else {
@@ -28,46 +34,27 @@ export class AuthService {
     }));
   }
 
-  getClaims(): any {
-    return this.user.profile;
-  }
-
   async getAuthorizationHeaderValue(): Promise<string> {
-    let user = await this.manager.getUser();
-    return `Bearer ${user.id_token}`;
+    return `Bearer ${this.getToken()}`;
   }
 
-  async getToken() {
-    let user = await this.manager.getUser();
-    return user.id_token;
+  getToken() {
+    return this.oidcSecurityService.getIdToken();
   }
 
   signOut() {
-    this.manager.signoutRedirect();
+    this.oidcSecurityService.logoff();
   }
 
-  startAuthentication(): Promise<void> {
-    return this.manager.signinRedirect();
+  startAuthentication(): void {
+    this.oidcSecurityService.authorize();
   }
 
-  completeAuthentication(): Promise<void> {
-    return this.manager.signinRedirectCallback().then(user => {
-      this.user = user;
-      this.onAuthenticationCompleted.emit();
-    });
-  }
+  // completeAuthentication(): Promise<void> {
+  //   return this.manager.signinRedirectCallback().then(user => {
+  //     this.user = user;
+  //     this.onAuthenticationCompleted.emit();
+  //   });
+  // }
 }
 
-export function getClientSettings(): UserManagerSettings {
-  return {
-    authority: environment.identityEndpoint,
-    client_id: "cbf24cc4a1bb79e441a5b5937be6dd84",
-    redirect_uri: environment.appUri + "/auth-callback",
-    post_logout_redirect_uri: environment.appUri,
-    response_type: "id_token",
-    scope: "openid",
-    filterProtocolClaims: true,
-    loadUserInfo: true,
-    userStore: new WebStorageStateStore({ store: window.localStorage })
-  };
-}

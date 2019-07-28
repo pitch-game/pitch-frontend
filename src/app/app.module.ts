@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +39,9 @@ import { OpenPackPopupComponent } from './components/open-pack-popup/open-pack-p
 import { UnauthorizedInterceptor } from './auth/interceptors/unauthorized.interceptor';
 import { SubstitutionModalComponent } from './components/substitution-modal/substitution-modal.component';
 
+import { AuthModule, OidcSecurityService, OpenIdConfiguration, AuthWellKnownEndpoints, OidcConfigService, ConfigResult } from 'angular-auth-oidc-client';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +73,8 @@ import { SubstitutionModalComponent } from './components/substitution-modal/subs
     FontAwesomeModule,
     PitchPlayerCardModule,
     InfiniteScrollModule,
-    FormsModule
+    FormsModule,
+    AuthModule.forRoot()
   ],
   providers: [
     AuthGuardService,
@@ -81,12 +85,44 @@ import { SubstitutionModalComponent } from './components/substitution-modal/subs
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    },{
+    }, {
       provide: HTTP_INTERCEPTORS,
       useClass: UnauthorizedInterceptor,
       multi: true
+    },
+    OidcConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: loadConfig,
+      deps: [OidcConfigService],
+      multi: true,
     }],
   entryComponents: [OpenPackPopupComponent, SubstitutionModalComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private oidcSecurityService: OidcSecurityService, private oidcConfigService: OidcConfigService) {
+    this.oidcConfigService.onConfigurationLoaded.subscribe((configResult: ConfigResult) => {
+      const config: OpenIdConfiguration = {
+        stsServer: environment.identityEndpoint,
+        client_id: "cbf24cc4a1bb79e441a5b5937be6dd84",
+        redirect_url: environment.appUri + "/auth-callback",
+        post_logout_redirect_uri: environment.appUri,
+        response_type: "id_token",
+        scope: "openid",
+        post_login_route: "",
+        log_console_debug_active: true,
+        log_console_warning_active: true
+      };
+
+      this.oidcSecurityService.setupModule(config, configResult.authWellknownEndpoints);
+    });
+  }
+}
+
+export function loadConfig(oidcConfigService: OidcConfigService) {
+  return () =>
+    oidcConfigService.load_using_custom_stsServer(
+      `${environment.identityEndpoint}/.well-known/openid-configuration`
+    );
+}

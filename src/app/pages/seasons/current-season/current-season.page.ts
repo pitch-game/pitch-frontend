@@ -42,7 +42,6 @@ export class CurrentSeasonPage implements OnInit {
 
   async ngOnInit() {
     var profile = await this.userService.get();
-
     this.http.get<any>(`${environment.apiEndpoint}/match/status`).subscribe((result) => {
       this.unclaimed = result.hasUnclaimedRewards;
       this.inProgress = result.inProgressMatchId;

@@ -5,6 +5,7 @@ import { Observable, timer, Subscription } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 import { MatchResult, Match } from '../models/match/match-result';
 import { MatchHttpService } from './http/match.http-service';
+import { AuthService } from './auth/auth.service';
 
 @Injectable({
     providedIn: "root"
@@ -18,11 +19,12 @@ export class MatchService {
     timer: Observable<number>;
     pollingSubscription: Subscription;
 
-    constructor(private router: Router, private layoutService: LayoutService, private matchHttpService: MatchHttpService) {
+    constructor(private router: Router, private layoutService: LayoutService, private matchHttpService: MatchHttpService, private authService: AuthService) {
         //todo check sessionId is still valid. Remove it if its not
     }
 
     async init() {
+        if(!this.authService.isAuthenticated) return;
         let result = await this.matchHttpService.inProgress();
         this.matchId = result.inProgressMatchId;
         if (this.matchId) {
