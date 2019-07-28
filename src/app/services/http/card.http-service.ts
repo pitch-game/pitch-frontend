@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Card } from '../models/card/card';
+import { Card } from '../../models/card/card';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { CardQueryModel } from 'src/app/models/card/card-query-model';
 
 @Injectable({
     providedIn: "root"
 })
-export class CardService {
+export class CardHttpService {
     constructor(private http: HttpClient) { }
 
-    get(id: string): Observable<Card> {
-        return this.http.get<Card>(`${environment.apiEndpoint}/card/${id}`)
+    async get(id: string): Promise<Card> {
+        return await this.http.get<Card>(`${environment.apiEndpoint}/card/${id}`).toPromise();
     }
 
     getWithQuery(query: CardQueryModel): Observable<Card[]> {
@@ -22,11 +23,7 @@ export class CardService {
         return this.http.get<Card[]>(`${environment.apiEndpoint}/card`, { params: params });
     }
 
-    getMany(ids: string[]): Observable<Card[]> {
-        return this.http.get<Card[]>(`${environment.apiEndpoint}/card/cards/${ids.filter(x => x).join(';')}`);
+    async getMany(ids: string[]): Promise<Card[]> {
+        return await this.http.get<Card[]>(`${environment.apiEndpoint}/card/cards/${ids.filter(x => x).join(';')}`).toPromise();
     }
-}
-
-export class CardQueryModel {
-    constructor(public skip: number = 0, public take: number = 10, public position: string = null, public notIn: string[] = null) { }
 }

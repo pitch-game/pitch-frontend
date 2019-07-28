@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faTimes, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { PitchPlayerCard } from 'pitch-player-card';
-import { MatchService } from 'src/app/services/match.service';
+import { MatchHttpService } from 'src/app/services/http/match.http-service';
 
 @Component({
   selector: 'app-substitution-modal',
@@ -22,11 +22,11 @@ export class SubstitutionModalComponent implements OnInit {
 
   squad: any;
 
-  constructor(private matchService: MatchService) {
+  constructor(private matchHttpService: MatchHttpService) {
   }
 
   async ngOnInit() {
-    this.squad = await this.matchService.lineup(this.matchId).toPromise();
+    this.squad = await this.matchHttpService.lineup(this.matchId);
   }
 
   selectOff(card: any){
@@ -42,7 +42,7 @@ export class SubstitutionModalComponent implements OnInit {
   }
 
   async sub(){
-    await this.matchService.makeSub(this.off.id, this.on.id).toPromise();
+    await this.matchHttpService.makeSub(this.off.id, this.on.id, this.matchId);
     this.callback();
     this.destroy();
   }

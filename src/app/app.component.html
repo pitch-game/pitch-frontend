@@ -4,18 +4,18 @@
       <a href routerLink="/" class="font-semibold text-xl tracking-tight no-underline text-white">Pitch</a>
     </div>
     <div class="flex">
-      <button *ngIf="isLoggedIn && matchService.match && !matchService.match.expired" (click)="matchService.goToMatch()" class="hidden lg:block"
+      <button *ngIf="isLoggedIn && matchService.match && !matchService.match.expired" (click)="matchService.goToMatch()"
+        class="hidden lg:block"
         class="rounded-full mr-2 items-center text-xs py-2 border rounded text-black border-grey hover:bg-grey-light bg-grey-lightest">
         <span class="text-green m-3">
           <fa-icon [icon]="loadingIcon" [spin]="true"></fa-icon>
           <span class="ml-1">{{matchService.match?.minute || 0}}'</span>
         </span>
-        <span
-          class="rounded-full items-center text-xs px-3 py-2 rounded text-black hover:bg-green-light bg-green">
+        <span class="rounded-full items-center text-xs px-3 py-2 rounded text-black hover:bg-green-light bg-green">
           <span class="font-bold">{{matchService.match?.homeResult.score}}</span>
           <span class="text-grey-darker">
-           -
-          {{matchService.match?.awayResult.score}}</span>
+            -
+            {{matchService.match?.awayResult.score}}</span>
         </span>
       </button>
       <button *ngIf="isLoggedIn" (click)="toggleMenu()"
@@ -73,7 +73,8 @@
         </div>
       </div>
       <div class="flex-grow lg:flex-none">
-        <span *ngIf="isLoggedIn" class="text-sm mr-2 text-indigo-lighter block lg:inline">Welcome, {{authService.getClaims().name}}</span>
+        <span *ngIf="isLoggedIn" class="text-sm mr-2 text-indigo-lighter block lg:inline">Welcome,
+          {{authService.getClaims().name}}</span>
         <a href="#" (click)="login()"
           class="inline-block text-sm px-4 py-2 leading-none rounded text-white border-white bg-indigo-light hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
           <span *ngIf="!isLoggedIn">Login</span>
@@ -118,8 +119,7 @@
           </li>
           <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
             ⭐
-            <a href="https://github.com/pitch-game" target="_blank"
-              class="text-grey hover:text-grey-dark">GitHub</a>
+            <a href="https://github.com/pitch-game" target="_blank" class="text-grey hover:text-grey-dark">GitHub</a>
           </li>
           <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
             🤔
@@ -147,6 +147,7 @@
 <section class="bg-indigo-darker w-full text-xs text-indigo-lighter p-4">
   <div class="container mx-auto">
     Copyright © 2019 Jacob Cann
-    <p class="mt-1 text-indigo-light">Pitch is an open source project licensed under the GNU General Public License v3.0</p>
+    <p class="mt-1 text-indigo-light">Pitch is an open source project licensed under the GNU General Public License v3.0
+    </p>
   </div>
 </section>

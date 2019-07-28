@@ -1,4 +1,4 @@
-import { AuthService } from "src/app/services/auth.service";
+import { AuthService } from "src/app/services/auth/auth.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
 import { faFutbol, faEllipsisH, faStar, faCircle, faSpinner, faGift, faMoneyCheck, faLevelUpAlt, faListUl, faTrophy } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +9,7 @@ import { MatchmakingService } from 'src/app/services/matchmaking.service';
 import { Observable } from 'rxjs';
 import { MatchService } from 'src/app/services/match.service';
 import { OnInit, Component } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { UserHttpService } from 'src/app/services/http/user.http-service';
 import { ThousandSuffixesPipe } from 'src/app/pipes/thousand-suffixes.pipe';
 import { UserProfile } from 'src/app/models/user/profile';
 
@@ -24,7 +24,7 @@ export class CurrentSeasonPage implements OnInit {
     private router: Router, private layoutService: LayoutService,
     private matchMakingService: MatchmakingService,
     private matchService: MatchService,
-    private userService: UserService) { }
+    private userService: UserHttpService) { }
   response: any;
 
   findMatchIcon = faFutbol;

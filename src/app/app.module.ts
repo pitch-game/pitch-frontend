@@ -9,8 +9,8 @@ import { SeasonsComponent } from './pages/seasons/seasons.page';
 import { ChallengesComponent } from './pages/challenges/challenges.page';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthGuardService } from './services/auth-guard.service';
-import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth/auth-guard.service';
+import { AuthService } from './services/auth/auth.service';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreComponent } from './pages/store/store.page';

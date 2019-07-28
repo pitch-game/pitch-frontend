@@ -6,7 +6,7 @@ import {
     HttpInterceptor
 } from '@angular/common/http';
 
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth/auth.service';
 import { Observable, from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { slideInAnimation } from './animations';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './services/auth/auth.service';
 import { environment } from 'src/environments/environment';
 import { LayoutService } from './layout/layout.service';
 import { faUsers, faFutbol, faTicketAlt, faShoppingBasket, faMoneyBill, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { UserService } from './services/user.service';
-import { HttpClient } from '@angular/common/http';
+import { UserHttpService } from './services/http/user.http-service';
 import { MatchService } from './services/match.service';
 import { MatchmakingService } from './services/matchmaking.service';
 import { UserProfile } from './models/user/profile';
@@ -41,7 +40,7 @@ export class AppComponent implements OnInit {
   constructor(public authService: AuthService,
     public layoutService: LayoutService,
     private router: Router,
-    private userService: UserService,
+    private userService: UserHttpService,
     public matchService: MatchService,
     public matchmakingService: MatchmakingService) {
 
@@ -66,9 +65,9 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.matchService.init();
-    this.matchmakingService.init();
+  async ngOnInit(): Promise<void> {
+    await this.matchService.init();
+    await this.matchmakingService.init();
   }
 
   prepareRoute(outlet: RouterOutlet) {

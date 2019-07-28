@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { startWith, switchMap, scan } from 'rxjs/operators';
-import { MatchService, CardQueryModel } from 'src/app/services/match.service';
 import { Router } from '@angular/router';
 import { MatchListItem } from 'src/app/models/match/match-list-item';
+import { CardQueryModel } from 'src/app/models/card/card-query-model';
+import { MatchHttpService } from 'src/app/services/http/match.http-service';
 
 @Component({
   selector: 'app-match-history',
@@ -12,7 +13,7 @@ import { MatchListItem } from 'src/app/models/match/match-list-item';
 })
 export class MatchHistoryPage implements OnInit {
 
-  constructor(private matchService: MatchService, private router: Router) { }
+  constructor(private matchService: MatchHttpService, private router: Router) { }
   
   matches$: Observable<MatchListItem[]>;
   loadMore$ = new Subject<number>();

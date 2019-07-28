@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { switchMap, scan, startWith } from 'rxjs/operators';
 import { Card } from 'src/app/models/card/card';
-import { CardService, CardQueryModel } from 'src/app/services/card.service';
+import { CardHttpService } from 'src/app/services/http/card.http-service';
 import { PitchPlayerCard } from 'pitch-player-card';
+import { CardQueryModel } from 'src/app/models/card/card-query-model';
 
 @Component({
   selector: 'app-club',
@@ -14,7 +13,7 @@ import { PitchPlayerCard } from 'pitch-player-card';
 })
 export class ClubComponent implements OnInit {
 
-  constructor(private cardService: CardService) { }
+  constructor(private cardService: CardHttpService) { }
 
   cards$: Observable<Card[]>;
   loadMore$ = new Subject<number>();

@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import * as signalR from '@aspnet/signalr';
 import { LayoutService } from '../layout/layout.service';
 import { MatchService } from './match.service';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/auth.service';
 
 @Injectable({
     providedIn: "root"

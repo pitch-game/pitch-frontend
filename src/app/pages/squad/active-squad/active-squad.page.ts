@@ -4,9 +4,10 @@ import { Squad } from 'src/app/models/squad/squad';
 import { SquadStats } from 'src/app/models/squad/squad-stats';
 import { PlayerPickerModal } from 'src/app/models/squad/player-picker-modal';
 import { SquadStatsService } from 'src/app/services/squad-stats.service';
-import { CardService, CardQueryModel } from 'src/app/services/card.service';
-import { SquadService } from 'src/app/services/squad.service';
+import { CardHttpService } from 'src/app/services/http/card.http-service';
+import { SquadHttpService } from 'src/app/services/http/squad.http-service';
 import { PitchPlayerCard } from 'pitch-player-card';
+import { CardQueryModel } from 'src/app/models/card/card-query-model';
 
 @Component({
   selector: 'app-active-squad',
@@ -14,7 +15,7 @@ import { PitchPlayerCard } from 'pitch-player-card';
   styleUrls: ['./active-squad.page.sass']
 })
 export class ActivesquadComponent implements OnInit {
-  constructor(private cardService: CardService, private squadService: SquadService, private squadStatsService: SquadStatsService) { }
+  constructor(private cardService: CardHttpService, private squadService: SquadHttpService, private squadStatsService: SquadStatsService) { }
 
   squad: Squad;
   stats: SquadStats = SquadStats.empty;
@@ -27,7 +28,7 @@ export class ActivesquadComponent implements OnInit {
   closeIcon = faTimes;
 
   async ngOnInit() {
-    this.squad = await this.squadService.get().toPromise();
+    this.squad = await this.squadService.get();
     await this.getCardsForLineup();
     await this.getCardsForSubs();
     this.stats = this.squadStatsService.calculate(this.squad, this.cards);
@@ -54,7 +55,7 @@ export class ActivesquadComponent implements OnInit {
     this.modal.callback = (async (id) => {
       this.squad.subs[index] = id;
       if (id) {
-        var card = await this.cardService.get(id).toPromise();
+        var card = await this.cardService.get(id);
         this.cards[id] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
       }
       this.pendingChanges = true;
@@ -64,14 +65,13 @@ export class ActivesquadComponent implements OnInit {
   }
 
   async save() {
-    await this.squadService.put(this.squad).subscribe(async (squad) => {
-      this.squad = squad
+    let squad = await this.squadService.put(this.squad);
+    this.squad = squad
 
-      await this.getCardsForLineup();
-      await this.getCardsForSubs();
+    await this.getCardsForLineup();
+    await this.getCardsForSubs();
 
-      this.pendingChanges = false;
-    });
+    this.pendingChanges = false;
   }
 
   idsToFilter() {
@@ -85,10 +85,10 @@ export class ActivesquadComponent implements OnInit {
   private async getCardsForLineup() {
     var ids = Object.values(this.squad.lineup).filter(x => x);
     if (ids.length == 0) return;
-    var cards = await this.cardService.getMany(ids).toPromise();
+    var cards = await this.cardService.getMany(ids);
     for (let position in this.squad.lineup) {
       var card = cards.find(x => x.id == this.squad.lineup[position]);
-      if(card){
+      if (card) {
         var ppc = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
         this.cards[position] = ppc;
       } else {
@@ -100,10 +100,10 @@ export class ActivesquadComponent implements OnInit {
   private async getCardsForSubs() {
     var subIds = this.squad.subs.filter(x => x);
     if (subIds.length == 0) return;
-    var subCards = await this.cardService.getMany(subIds).toPromise();
+    var subCards = await this.cardService.getMany(subIds);
     for (let index in this.squad.subs) {
       var card = subCards.find(x => x.id == this.squad.subs[index]);
-      if(card){
+      if (card) {
         var ppc = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
         this.cards[this.squad.subs[index]] = ppc;
       } else {
@@ -118,12 +118,12 @@ export class ActivesquadComponent implements OnInit {
       return;
     }
 
-    var card = await this.cardService.get(this.squad.lineup[position]).toPromise();
+    var card = await this.cardService.get(this.squad.lineup[position]);
     this.cards[position] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
   }
 
-  private async getPlayers(position: string) {
-    this.modal.cards = await this.cardService.getWithQuery(new CardQueryModel(0, 10, position, this.idsToFilter()));
+  private getPlayers(position: string) {
+    this.modal.cards = this.cardService.getWithQuery(new CardQueryModel(0, 10, position, this.idsToFilter()));
   }
 
   private async assign(position: string, cardId: string) {

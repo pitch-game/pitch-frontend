@@ -1,12 +1,10 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LayoutService } from '../layout/layout.service';
-import { Observable, timer, empty, BehaviorSubject, Subject, Subscription } from 'rxjs';
+import { Observable, timer, Subscription } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 import { MatchResult, Match } from '../models/match/match-result';
-import { MatchListItem } from '../models/match/match-list-item';
+import { MatchHttpService } from './http/match.http-service';
 
 @Injectable({
     providedIn: "root"
@@ -20,17 +18,16 @@ export class MatchService {
     timer: Observable<number>;
     pollingSubscription: Subscription;
 
-    constructor(private httpClient: HttpClient, private router: Router, private layoutService: LayoutService) {
+    constructor(private router: Router, private layoutService: LayoutService, private matchHttpService: MatchHttpService) {
         //todo check sessionId is still valid. Remove it if its not
     }
 
-    init() {
-        this.inProgress().subscribe((result) => {
-            this.matchId = result.inProgressMatchId;
-            if (this.matchId) {
-                this.startPolling(result.inProgressMatchId);
-            }
-        });
+    async init() {
+        let result = await this.matchHttpService.inProgress();
+        this.matchId = result.inProgressMatchId;
+        if (this.matchId) {
+            this.startPolling(result.inProgressMatchId);
+        }
     }
 
     goToMatch(sessionId: string) {
@@ -52,7 +49,8 @@ export class MatchService {
             this.timer = timer(0, 10000);
 
         if (!this.pollingSubscription) {
-            this.pollingSubscription = this.timer.pipe(flatMap(() => this.httpClient.get(`${environment.apiEndpoint}/match/${sessionId}`)))
+            this.pollingSubscription = this.timer.pipe(flatMap(() =>
+                this.matchHttpService.get(sessionId)))
                 .subscribe((matchResult: MatchResult) => {
                     this.match = matchResult.match;
                     this.subsRemaining = matchResult.subsRemaining;
@@ -64,31 +62,4 @@ export class MatchService {
                 });
         }
     }
-
-    makeSub(off: string, on: string){
-        return this.httpClient.post<any>(`${environment.apiEndpoint}/match/substitution`, {off, on, matchId: this.matchId});
-    }
-
-    getWithQuery(query: CardQueryModel): Observable<MatchListItem[]> {
-        var params = new HttpParams().set('skip', query.skip.toString()).set('take', query.take.toString());
-        return this.httpClient.get<any[]>(`${environment.apiEndpoint}/match`, { params: params });
-    }
-
-    inProgress(): Observable<any> {
-        return this.httpClient.get<any>(`${environment.apiEndpoint}/match/status`);
-    }
-
-    lineup(matchId: string): Observable<any> {
-        return this.httpClient.get<any>(`${environment.apiEndpoint}/match/lineup`, {params: { matchId }});        
-    }
-}
-
-export class CardQueryModel {
-    constructor(public skip: number, public take: number) {
-
-    }
-}
-
-export class MatchResults {
-
 }
