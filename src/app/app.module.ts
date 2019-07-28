@@ -9,12 +9,12 @@ import { SeasonsComponent } from './pages/seasons/seasons.page';
 import { ChallengesComponent } from './pages/challenges/challenges.page';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthGuardService } from './services/auth/auth-guard.service';
-import { AuthService } from './services/auth/auth.service';
-import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.component';
+import { AuthGuardService } from './auth/services/auth-guard.service';
+import { AuthService } from './auth/services/auth.service';
+import { AuthCallbackComponent } from './auth/components/auth-callback/auth-callback.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreComponent } from './pages/store/store.page';
-import { LayoutService } from './layout/layout.service';
+import { LayoutService } from './services/layout.service';
 import { ActivesquadComponent } from './pages/squad/active-squad/active-squad.page';
 import { TrainingComponent } from './pages/squad/training/training.page';
 import { ClubComponent } from './pages/squad/club/club.page';
@@ -22,7 +22,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { PitchPlayerCardModule } from 'pitch-player-card'
 import { StoreHttpService } from './services/http/store.http-service';
-import { PlayerAlreadyInSquadPipe } from './pipes/player-already-in-squad.pipe';
 import { TokenInterceptor } from './auth/interceptors/token.interceptor';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -53,7 +52,6 @@ import { environment } from 'src/environments/environment';
     ActivesquadComponent,
     TrainingComponent,
     ClubComponent,
-    PlayerAlreadyInSquadPipe,
     ThousandSuffixesPipe,
     TimeAgoPipe,
     BuyPageComponent,

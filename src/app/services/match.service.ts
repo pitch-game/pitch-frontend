@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { LayoutService } from '../layout/layout.service';
+import { LayoutService } from './layout.service';
 import { Observable, timer, Subscription } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 import { MatchResult, Match } from '../models/match/match-result';
 import { MatchHttpService } from './http/match.http-service';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from '../auth/services/auth.service';
 
 @Injectable({
     providedIn: "root"

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { slideInAnimation } from './animations';
-import { AuthService } from './services/auth/auth.service';
+import { AuthService } from './auth/services/auth.service';
 import { environment } from 'src/environments/environment';
-import { LayoutService } from './layout/layout.service';
+import { LayoutService } from './services/layout.service';
 import { faUsers, faFutbol, faTicketAlt, faShoppingBasket, faMoneyBill, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { UserHttpService } from './services/http/user.http-service';
 import { MatchService } from './services/match.service';

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import * as signalR from '@aspnet/signalr';
-import { LayoutService } from '../layout/layout.service';
+import { LayoutService } from './layout.service';
 import { MatchService } from './match.service';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from '../auth/services/auth.service';
 
 @Injectable({
     providedIn: "root"
