@@ -1,6 +1,5 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { faUsers, faRunning, faUserTie } from '@fortawesome/free-solid-svg-icons';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: "app-squad",
@@ -8,15 +7,8 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ["./squad.page.less"]
 })
 
-export class SquadComponent implements OnInit {
+export class SquadComponent {
   squadIcon = faUsers;
   trainingIcon = faRunning;
   clubIcon = faUserTie;
-
-  constructor() {}
-  ngOnInit() {}
-
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
-  }
 }
