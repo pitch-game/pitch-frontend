@@ -46,6 +46,7 @@ export class AppComponent implements OnInit {
 
     this.authService.isLoggedIn().subscribe(async (isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
+      if(!isLoggedIn) return;
       this.profile = await this.userService.get();
       this.matchService.init();
     });

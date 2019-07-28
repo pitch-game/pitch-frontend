@@ -11,7 +11,7 @@ import { ChallengesComponent } from './pages/challenges/challenges.page';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { AuthService } from './services/auth/auth.service';
-import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreComponent } from './pages/store/store.page';
 import { LayoutService } from './layout/layout.service';
@@ -23,7 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PitchPlayerCardModule } from 'pitch-player-card'
 import { StoreHttpService } from './pages/store/store.service';
 import { PlayerAlreadyInSquadPipe } from './pipes/player-already-in-squad.pipe';
-import { TokenInterceptor } from './auth/token.interceptor';
+import { TokenInterceptor } from './auth/interceptors/token.interceptor';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
@@ -36,7 +36,7 @@ import { MatchHistoryPage } from './pages/seasons/match-history/match-history.pa
 import { HomePage } from './pages/home/home.page';
 import { ThousandSuffixesPipe } from './pipes/thousand-suffixes.pipe';
 import { OpenPackPopupComponent } from './components/open-pack-popup/open-pack-popup.component';
-import { UnauthorizedInterceptor } from './auth/unauthorized.interceptor';
+import { UnauthorizedInterceptor } from './auth/interceptors/unauthorized.interceptor';
 import { SubstitutionModalComponent } from './components/substitution-modal/substitution-modal.component';
 
 @NgModule({
