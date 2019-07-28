@@ -21,7 +21,7 @@ import { ClubComponent } from './pages/squad/club/club.page';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { PitchPlayerCardModule } from 'pitch-player-card'
-import { StoreHttpService } from './pages/store/store.service';
+import { StoreHttpService } from './services/http/store.http-service';
 import { PlayerAlreadyInSquadPipe } from './pipes/player-already-in-squad.pipe';
 import { TokenInterceptor } from './auth/interceptors/token.interceptor';
 

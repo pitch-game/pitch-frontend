@@ -10,11 +10,11 @@ import { Squad } from '../../models/squad/squad';
 export class SquadHttpService {
     constructor(private http: HttpClient) { }
 
-    async get(): Promise<Squad> {
-        return await this.http.get<Squad>(`${environment.apiEndpoint}/squad`).toPromise();
+    get(): Promise<Squad> {
+        return this.http.get<Squad>(`${environment.apiEndpoint}/squad`).toPromise();
     }
 
-    async put(squad: Squad): Promise<Squad> {
-        return await this.http.put<any>(`${environment.apiEndpoint}/squad`, squad).toPromise();
+    put(squad: Squad): Promise<Squad> {
+        return this.http.put<any>(`${environment.apiEndpoint}/squad`, squad).toPromise();
     }
 }

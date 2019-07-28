@@ -1,8 +1,7 @@
-import { Component, OnInit, ElementRef, ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { StoreHttpService } from '../store.service';
+import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { StoreHttpService } from '../../../services/http/store.http-service';
 import { faChevronCircleRight, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Card } from 'src/app/models/card/card';
-import { PitchPlayerCard } from 'pitch-player-card';
 import { OpenPackPopupComponent } from 'src/app/components/open-pack-popup/open-pack-popup.component';
 
 @Component({
@@ -21,10 +20,8 @@ export class ReadyToOpenComponent implements OnInit {
   nextIcon = faChevronCircleRight;
   closeIcon = faTimes;
 
-  ngOnInit() {
-    this.store.getPacks().subscribe((packs) => {
-      this.packs = packs;
-    });
+  async ngOnInit() {
+    this.packs = await this.store.getPacks();
   }
 
   click() {

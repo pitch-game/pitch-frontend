@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Card } from 'src/app/models/card/card';
-import { StoreHttpService } from 'src/app/pages/store/store.service';
+import { StoreHttpService } from 'src/app/services/http/store.http-service';
 import { faTimes, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { PitchPlayerCard } from 'pitch-player-card';
 
@@ -11,7 +10,7 @@ import { PitchPlayerCard } from 'pitch-player-card';
 })
 export class OpenPackPopupComponent implements OnInit {
 
-  constructor(private store: StoreHttpService) { }
+  constructor(private storeHttpService: StoreHttpService) { }
 
   card: PitchPlayerCard = null;
   packId: string;
@@ -23,10 +22,9 @@ export class OpenPackPopupComponent implements OnInit {
   destroy: Function;
   openNext: Function;
 
-  ngOnInit() {
-    this.store.openPack(this.packId).subscribe((card) => {
-      this.card = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
-    });
+  async ngOnInit() {
+    let result = await this.storeHttpService.openPack(this.packId);
+    this.card = new PitchPlayerCard(result.id, result.shortName, result.position, result.rating, result.rarity)
   }
 
   click() {

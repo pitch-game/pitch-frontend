@@ -10,7 +10,7 @@ export class UserHttpService {
 
     constructor(private httpClient: HttpClient) {}
 
-    async get(): Promise<UserProfile> {
-        return await this.httpClient.get<UserProfile>(`${environment.apiEndpoint}/user`).toPromise();
+    get(): Promise<UserProfile> {
+        return this.httpClient.get<UserProfile>(`${environment.apiEndpoint}/user`).toPromise();
     }
 }

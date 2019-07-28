@@ -11,8 +11,8 @@ import { CardQueryModel } from 'src/app/models/card/card-query-model';
 export class CardHttpService {
     constructor(private http: HttpClient) { }
 
-    async get(id: string): Promise<Card> {
-        return await this.http.get<Card>(`${environment.apiEndpoint}/card/${id}`).toPromise();
+    get(id: string): Promise<Card> {
+        return this.http.get<Card>(`${environment.apiEndpoint}/card/${id}`).toPromise();
     }
 
     getWithQuery(query: CardQueryModel): Observable<Card[]> {
@@ -23,7 +23,7 @@ export class CardHttpService {
         return this.http.get<Card[]>(`${environment.apiEndpoint}/card`, { params: params });
     }
 
-    async getMany(ids: string[]): Promise<Card[]> {
-        return await this.http.get<Card[]>(`${environment.apiEndpoint}/card/cards/${ids.filter(x => x).join(';')}`).toPromise();
+    getMany(ids: string[]): Promise<Card[]> {
+        return this.http.get<Card[]>(`${environment.apiEndpoint}/card/cards/${ids.filter(x => x).join(';')}`).toPromise();
     }
 }
