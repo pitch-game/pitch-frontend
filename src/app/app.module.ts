@@ -94,9 +94,7 @@ import { environment } from 'src/environments/environment';
       useFactory: loadConfig,
       deps: [OidcConfigService],
       multi: true,
-    },
-    { provide: OAuthStorage, useValue: localStorage }
-],
+    }],
   entryComponents: [OpenPackPopupComponent, SubstitutionModalComponent],
   bootstrap: [AppComponent]
 })
