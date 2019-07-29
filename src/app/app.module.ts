@@ -110,7 +110,8 @@ export class AppModule {
         scope: "openid",
         post_login_route: "",
         log_console_debug_active: true,
-        log_console_warning_active: true
+        log_console_warning_active: true,
+        storage: localStorage
       };
 
       this.oidcSecurityService.setupModule(config, configResult.authWellknownEndpoints);
