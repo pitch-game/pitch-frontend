@@ -111,7 +111,8 @@ export class AppModule {
         post_login_route: "",
         log_console_debug_active: true,
         log_console_warning_active: true,
-        storage: localStorage
+        storage: localStorage,
+        max_id_token_iat_offset_allowed_in_seconds: 60
       };
 
       this.oidcSecurityService.setupModule(config, configResult.authWellknownEndpoints);
