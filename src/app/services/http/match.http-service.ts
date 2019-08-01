@@ -3,6 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { CardQueryModel } from 'src/app/models/card/card-query-model';
 import { MatchListItem } from 'src/app/models/match/match-list-item';
+import { MatchResult } from 'src/app/models/match/match-result';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: "root"
@@ -16,8 +18,8 @@ export class MatchHttpService {
         return this.httpClient.get<any[]>(`${environment.apiEndpoint}/match`, { params: params }).toPromise();
     }
 
-    get(matchId: string) {
-        return this.httpClient.get(`${environment.apiEndpoint}/match/${matchId}`);
+    get(matchId: string): Observable<MatchResult> {
+        return this.httpClient.get<MatchResult>(`${environment.apiEndpoint}/match/${matchId}`);
     }
 
     makeSub(off: string, on: string, matchId: string) {
