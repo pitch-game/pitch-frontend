@@ -38,6 +38,10 @@ export class AppComponent {
   profile: UserProfile;
   username: string;
 
+  links = [
+    {name: 'Quick Match'}
+  ];
+
   constructor(public authService: AuthService,
     public layoutService: LayoutService,
     private router: Router,

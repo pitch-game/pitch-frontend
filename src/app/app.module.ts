@@ -41,6 +41,8 @@ import { SubstitutionModalComponent } from './components/substitution-modal/subs
 import { AuthModule, OidcSecurityService, OpenIdConfiguration, AuthWellKnownEndpoints, OidcConfigService, ConfigResult } from 'angular-auth-oidc-client';
 import { environment } from 'src/environments/environment';
 
+import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +74,12 @@ import { environment } from 'src/environments/environment';
     PitchPlayerCardModule,
     InfiniteScrollModule,
     FormsModule,
-    AuthModule.forRoot()
+    AuthModule.forRoot(),
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatListModule,
+    MatButtonModule
   ],
   providers: [
     AuthGuardService,
