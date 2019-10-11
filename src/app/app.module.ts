@@ -41,7 +41,7 @@ import { SubstitutionModalComponent } from './components/substitution-modal/subs
 import { AuthModule, OidcSecurityService, OpenIdConfiguration, AuthWellKnownEndpoints, OidcConfigService, ConfigResult } from 'angular-auth-oidc-client';
 import { environment } from 'src/environments/environment';
 
-import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonModule } from '@angular/material';
+import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonModule, MatMenuModule, MatGridListModule, MatTableModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -79,7 +79,10 @@ import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatBu
     MatIconModule,
     MatToolbarModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatMenuModule,
+    MatGridListModule,
+    MatTableModule
   ],
   providers: [
     AuthGuardService,

@@ -43,9 +43,9 @@ export class AppComponent {
   ];
 
   teamLinks = [
-    { name: 'Squad', icon: 'group' },
-    { name: 'Club', icon: 'work' },
-    { name: 'Performance', icon: 'show_chart' }
+    { name: 'Squad', icon: 'group', route: '/squad/active' },
+    { name: 'Club', icon: 'work', route: '/squad/club' },
+    { name: 'Performance', icon: 'show_chart', route: '/seasons/history' }
   ]
 
   constructor(public authService: AuthService,

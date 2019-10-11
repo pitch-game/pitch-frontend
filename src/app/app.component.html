@@ -5,23 +5,29 @@
       <h6 matSubheader>pre-alpha</h6>
     </div>
     <mat-nav-list>
-      <a mat-list-item href="..." *ngFor="let link of links">
-        <mat-icon matListIcon>{{link.icon}}</mat-icon>
-        <p mat-line>{{ link.name }}</p>
+      <a mat-list-item href="...">
+        <mat-icon matListIcon>sports_soccer</mat-icon>
+        <p mat-line>
+          Quick Match
+          <button mat-button color="primary">PLAY</button>
+        </p>
       </a>
       <mat-divider></mat-divider>
       <h3 matSubheader>Team Management</h3>
-      <a mat-list-item href="..." *ngFor="let link of teamLinks">
+      <a mat-list-item href *ngFor="let link of teamLinks" [routerLink]="link.route">
         <mat-icon matListIcon>{{link.icon}}</mat-icon>
         <p mat-line>{{ link.name }}</p>
       </a>
       <mat-divider></mat-divider>
       <h3 matSubheader>Packs</h3>
-      <a mat-list-item href="...">
+      <a mat-list-item href routerLink="/store/open">
         <mat-icon matListIcon>0</mat-icon>
-        <p mat-line>Unopened</p>
+        <p mat-line>
+          Unopened
+          <button mat-button color="primary">OPEN</button>
+        </p>
       </a>
-      <a mat-list-item href="...">
+      <a mat-list-item href routerLink="/store/buy">
         <mat-icon matListIcon>shopping_basket</mat-icon>
         <p mat-line>Store</p>
       </a>
@@ -41,10 +47,15 @@
       <mat-toolbar-row>
         <span>Quick Match</span>
         <span class="example-spacer"></span>
-        <button mat-icon-button>
+        <mat-menu #userMenu="matMenu" yPosition="above">
+          <button mat-menu-item (click)="isLoggedIn ? signOut() : login()">Sign In</button>
+          <button mat-menu-item>Help</button>
+        </mat-menu>
+        <button mat-icon-button [matMenuTriggerFor]="userMenu">
           <mat-icon class="account_circle" aria-hidden="false" aria-label="User profile">account_circle</mat-icon>
         </button>
       </mat-toolbar-row>
     </mat-toolbar>
+    <router-outlet #outlet="outlet"></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>

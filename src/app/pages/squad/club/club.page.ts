@@ -21,6 +21,8 @@ export class ClubComponent implements OnInit {
   skip: number = 0;
   take: number = 10;
 
+  displayedColumns: string[] = ['card', 'name', 'position', 'rating', 'goals', 'createdOn'];
+
   async ngOnInit() {
     this.cards$ = this.loadMore$
       .pipe(
