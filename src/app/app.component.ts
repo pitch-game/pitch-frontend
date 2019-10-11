@@ -39,8 +39,14 @@ export class AppComponent {
   username: string;
 
   links = [
-    {name: 'Quick Match'}
+    { name: 'Quick Match', icon: 'sports_soccer' }
   ];
+
+  teamLinks = [
+    { name: 'Squad', icon: 'group' },
+    { name: 'Club', icon: 'work' },
+    { name: 'Performance', icon: 'show_chart' }
+  ]
 
   constructor(public authService: AuthService,
     public layoutService: LayoutService,

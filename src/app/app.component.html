@@ -1,15 +1,39 @@
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened>
     <div class="mdc-drawer__header">
-      <h3 class="mdc-drawer__title">Pitch</h3>
-      <h6 class="mdc-drawer__subtitle">pre-alpha</h6>
+      <h3 matSubheader>Pitch</h3>
+      <h6 matSubheader>pre-alpha</h6>
     </div>
     <mat-nav-list>
       <a mat-list-item href="..." *ngFor="let link of links">
-        <mat-icon matListIcon>folder</mat-icon>
-        {{ link.name }}
+        <mat-icon matListIcon>{{link.icon}}</mat-icon>
+        <p mat-line>{{ link.name }}</p>
       </a>
       <mat-divider></mat-divider>
+      <h3 matSubheader>Team Management</h3>
+      <a mat-list-item href="..." *ngFor="let link of teamLinks">
+        <mat-icon matListIcon>{{link.icon}}</mat-icon>
+        <p mat-line>{{ link.name }}</p>
+      </a>
+      <mat-divider></mat-divider>
+      <h3 matSubheader>Packs</h3>
+      <a mat-list-item href="...">
+        <mat-icon matListIcon>0</mat-icon>
+        <p mat-line>Unopened</p>
+      </a>
+      <a mat-list-item href="...">
+        <mat-icon matListIcon>shopping_basket</mat-icon>
+        <p mat-line>Store</p>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item href="...">
+        <mat-icon matListIcon>star</mat-icon>
+        <p mat-line>Sponsor</p>
+      </a>
+      <a mat-list-item href="...">
+        <mat-icon matListIcon>announcement</mat-icon>
+        <p mat-line>Help & feedback</p>
+      </a>
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content>
