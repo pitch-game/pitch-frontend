@@ -43,7 +43,7 @@ import { environment } from 'src/environments/environment';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonModule, MatMenuModule, MatGridListModule, MatTableModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTabsModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonModule, MatMenuModule, MatGridListModule, MatTableModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTabsModule, MatProgressSpinnerModule, MatChipsModule } from '@angular/material';
 import { PlayerSelectorDialogComponent } from './modals/player-selector-dialog/player-selector-dialog.component';
 
 @NgModule({
@@ -93,7 +93,8 @@ import { PlayerSelectorDialogComponent } from './modals/player-selector-dialog/p
     MatSnackBarModule,
     MatSelectModule,
     MatTabsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatChipsModule
   ],
   providers: [
     AuthGuardService,

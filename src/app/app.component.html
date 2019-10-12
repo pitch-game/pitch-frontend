@@ -5,11 +5,12 @@
       <h6 matSubheader>pre-alpha</h6>
     </div>
     <mat-nav-list>
-      <a mat-list-item href="...">
-        <div *ngIf="isLoggedIn && matchService.match && !matchService.match.expired" (click)="matchService.goToMatch()"
+      <a mat-list-item href *ngIf="isLoggedIn && matchService.match && !matchService.match.expired" (click)="matchService.goToMatch()">
+        <div 
           class="hidden lg:block"
           class="rounded-full mr-2 items-center text-xs py-2 border rounded text-black border-grey hover:bg-grey-light bg-grey-lightest">
           <mat-progress-spinner mode="indeterminate" diameter="15"></mat-progress-spinner>
+          <mat-chip color="primary">LIVE</mat-chip> - 
           <span class="text-green m-3">
             <span class="ml-1">{{matchService.match?.minute || 0}}'</span>
           </span>

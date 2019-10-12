@@ -31,7 +31,7 @@
         </div>
 
         <div class="isometric-container -mt-20 -mb-20">
-            <div class="">
+            <div class="isometric">
                 <div>
                     <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
                         fxLayoutAlign="center">
@@ -138,12 +138,12 @@
     <div class="lg:w-1/5 lg:ml-12 flex" fxFlex="30%" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
         fxLayoutAlign="center">
         <div class="w-full p-6" fxFlex="100%">
-            <button *ngIf="!pendingChanges && squad" routerLink="/squad/active"
+            <button mat-button *ngIf="!pendingChanges && squad" routerLink="/squad/active"
                 class="w-full h-12 bg-grey text-white font-bold py-2 px-4 rounded">
                 <fa-icon [icon]="tickIcon" class="mr-2 text-white ml-2"></fa-icon>
                 <span>Last updated {{squad.lastUpdated | timeAgo}}</span>
             </button>
-            <button *ngIf="pendingChanges" (click)="save()"
+            <button mat-button *ngIf="pendingChanges" (click)="save()"
                 class="w-full h-12 bg-green text-white font-bold py-2 px-4 rounded">
                 <fa-icon [icon]="tickIcon" class="mr-2 text-white ml-2"></fa-icon>
                 <span>Save changes</span>
@@ -153,26 +153,26 @@
             <div class="w-full">
                 <mat-form-field *ngIf="squad">
                     <mat-label>Core Style</mat-label>
-                    <mat-select [(value)]="squad.instructions['core']">
-                        <mat-option value="0">Default</mat-option>
-                        <mat-option value="1">Attacking</mat-option>
-                        <mat-option value="2">Defensive</mat-option>
+                    <mat-select [(ngModel)]="squad.instructions['core']">
+                        <mat-option [value]="0">Default</mat-option>
+                        <mat-option [value]="1">Attacking</mat-option>
+                        <mat-option [value]="2">Defensive</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field *ngIf="squad">
                     <mat-label>Attacking Style</mat-label>
-                    <mat-select [(value)]="squad.instructions['attacking']">
-                        <mat-option value="0">Default</mat-option>
-                        <mat-option value="1">Direct</mat-option>
-                        <mat-option value="2">Short</mat-option>
+                    <mat-select [(ngModel)]="squad.instructions['attacking']">
+                        <mat-option [value]="0">Default</mat-option>
+                        <mat-option [value]="1">Direct</mat-option>
+                        <mat-option [value]="2">Short</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field *ngIf="squad">
                     <mat-label>Defensive Style</mat-label>
-                    <mat-select [(value)]="squad.instructions['defensive']">
-                        <mat-option value="0">Default</mat-option>
-                        <mat-option value="1">Press</mat-option>
-                        <mat-option value="2">Contain</mat-option>
+                    <mat-select [(ngModel)]="squad.instructions['defensive']">
+                        <mat-option [value]="0">Default</mat-option>
+                        <mat-option [value]="1">Press</mat-option>
+                        <mat-option [value]="2">Contain</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>

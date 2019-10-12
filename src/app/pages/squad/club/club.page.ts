@@ -19,7 +19,7 @@ export class ClubComponent implements OnInit {
   loadMore$ = new Subject<number>();
 
   skip: number = 0;
-  take: number = 10;
+  take: number = 25;
 
   displayedColumns: string[] = ['card', 'name', 'position', 'rating', 'goals', 'createdOn'];
 
