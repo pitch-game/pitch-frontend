@@ -24,3 +24,7 @@
   .example-spacer {
     flex: 1 1 auto;
   }
+
+  .mat-nav-list a.active {
+    background: plum;
+}

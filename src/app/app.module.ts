@@ -41,7 +41,10 @@ import { SubstitutionModalComponent } from './components/substitution-modal/subs
 import { AuthModule, OidcSecurityService, OpenIdConfiguration, AuthWellKnownEndpoints, OidcConfigService, ConfigResult } from 'angular-auth-oidc-client';
 import { environment } from 'src/environments/environment';
 
-import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonModule, MatMenuModule, MatGridListModule, MatTableModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonModule, MatMenuModule, MatGridListModule, MatTableModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTabsModule, MatProgressSpinnerModule } from '@angular/material';
+import { PlayerSelectorDialogComponent } from './modals/player-selector-dialog/player-selector-dialog.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,8 @@ import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatBu
     MatchHistoryPage,
     HomePage,
     OpenPackPopupComponent,
-    SubstitutionModalComponent
+    SubstitutionModalComponent,
+    PlayerSelectorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +79,7 @@ import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatBu
     InfiniteScrollModule,
     FormsModule,
     AuthModule.forRoot(),
+    FlexLayoutModule,
     MatSidenavModule,
     MatIconModule,
     MatToolbarModule,
@@ -82,7 +87,13 @@ import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatBu
     MatButtonModule,
     MatMenuModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
+    MatCardModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     AuthGuardService,
@@ -105,7 +116,7 @@ import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatBu
       deps: [OidcConfigService],
       multi: true,
     }],
-  entryComponents: [OpenPackPopupComponent, SubstitutionModalComponent],
+  entryComponents: [OpenPackPopupComponent, SubstitutionModalComponent, PlayerSelectorDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

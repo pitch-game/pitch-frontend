@@ -8,6 +8,8 @@ import { CardHttpService } from 'src/app/services/http/card.http-service';
 import { SquadHttpService } from 'src/app/services/http/squad.http-service';
 import { PitchPlayerCard } from 'pitch-player-card';
 import { CardQueryModel } from 'src/app/models/card/card-query-model';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { PlayerSelectorDialogComponent } from 'src/app/modals/player-selector-dialog/player-selector-dialog.component';
 
 @Component({
   selector: 'app-active-squad',
@@ -15,7 +17,7 @@ import { CardQueryModel } from 'src/app/models/card/card-query-model';
   styleUrls: ['./active-squad.page.sass']
 })
 export class ActivesquadComponent implements OnInit {
-  constructor(private cardService: CardHttpService, private squadService: SquadHttpService, private squadStatsService: SquadStatsService) { }
+  constructor(private cardService: CardHttpService, private squadService: SquadHttpService, private squadStatsService: SquadStatsService, public dialog: MatDialog, public snackBar: MatSnackBar) { }
 
   squad: Squad;
   stats: SquadStats = SquadStats.empty;
@@ -70,6 +72,9 @@ export class ActivesquadComponent implements OnInit {
 
   async save() {
     let squad = await this.squadService.put(this.squad);
+    this.snackBar.open('Squad updated', null, {
+      duration: 3000
+    });
     this.squad = squad
 
     await this.getCardsForLineup();
@@ -85,6 +90,10 @@ export class ActivesquadComponent implements OnInit {
   setTeamInstruction(style: string, value: number) {
     this.squad.instructions[style] = value;
     this.pendingChanges = true;
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(PlayerSelectorDialogComponent);
   }
 
   private async getCardsForLineup() {

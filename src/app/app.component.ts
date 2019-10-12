@@ -14,7 +14,7 @@ import { UserProfile } from './models/user/profile';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less'],
+  styleUrls: ['./app.component.scss'],
   animations: [
     slideInAnimation
   ]
@@ -45,7 +45,7 @@ export class AppComponent {
   teamLinks = [
     { name: 'Squad', icon: 'group', route: '/squad/active' },
     { name: 'Club', icon: 'work', route: '/squad/club' },
-    { name: 'Performance', icon: 'show_chart', route: '/seasons/history' }
+    { name: 'History', icon: 'show_chart', route: '/seasons/history' }
   ]
 
   constructor(public authService: AuthService,

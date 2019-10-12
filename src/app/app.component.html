@@ -14,20 +14,20 @@
       </a>
       <mat-divider></mat-divider>
       <h3 matSubheader>Team Management</h3>
-      <a mat-list-item href *ngFor="let link of teamLinks" [routerLink]="link.route">
+      <a mat-list-item href *ngFor="let link of teamLinks" [routerLink]="link.route" routerLinkActive="active">
         <mat-icon matListIcon>{{link.icon}}</mat-icon>
         <p mat-line>{{ link.name }}</p>
       </a>
       <mat-divider></mat-divider>
       <h3 matSubheader>Packs</h3>
-      <a mat-list-item href routerLink="/store/open">
+      <a mat-list-item href routerLink="/store/open" routerLinkActive="active">
         <mat-icon matListIcon>0</mat-icon>
         <p mat-line>
           Unopened
           <button mat-button color="primary">OPEN</button>
         </p>
       </a>
-      <a mat-list-item href routerLink="/store/buy">
+      <a mat-list-item href routerLink="/store/buy" routerLinkActive="active">
         <mat-icon matListIcon>shopping_basket</mat-icon>
         <p mat-line>Store</p>
       </a>
