@@ -135,7 +135,7 @@
         </div>
     </div>
     
-    <div class="lg:w-1/5 lg:ml-12 flex" fxFlex="30%" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+    <div class="lg:w-1/5 lg:ml-12 flex" fxFlex="30%" fxLayout="column" fxLayoutWrap fxLayoutGap="0.5%"
         fxLayoutAlign="center">
         <div class="w-full p-6" fxFlex="100%">
             <button mat-button *ngIf="!pendingChanges && squad" routerLink="/squad/active"
@@ -177,35 +177,5 @@
                 </mat-form-field>
             </div>
         </div>
-    </div>
-</div>
-
-<div *ngIf="modal && modal.visible" (click)="modal.visible = false"
-    class="inset-0 h-full fixed flex items-center justify-center content-center bg-modal"
-    style="background-color: rgba(0, 0, 0, 0.8)">
-    <div class="bg-white rounded shadow m-4 max-h-full text-center w-full lg:w-1/5">
-        <div class="m-4 p-2 text-lg">
-            <p>
-                Select a {{modal.position || 'player'}}
-                <span class="float-right">
-                    <fa-icon [icon]="closeIcon" class="ml-2 text-indigo-lighter"></fa-icon>
-                </span>
-            </p>
-        </div>
-        <div class="overflow-y-scroll max-h-screen-1/2" infiniteScroll [infiniteScrollDistance]="2"
-            [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false">
-            <div *ngFor="let card of modal.cards | async" (click)="modal.callback(card.id)"
-                class="flex bg-grey-lighter content-center items-center justify-center p-2 hover:bg-indigo-lighter cursor-pointer">
-                <div class="m-2 flex-1">
-                    <pitch-player-card [card]="card" size="sm" mode="squad"></pitch-player-card>
-                </div>
-                <div class="m-2 flex-grow justify-center content-center">{{card.position}}</div>
-                <div class="m-2 flex-grow flex-col justify-center content-center">{{card.name}}</div>
-                <div class="m-2 flex-grow justify-center content-center">{{card.fitness}}</div>
-            </div>
-        </div>
-        <a href="#" class="block group hover:bg-indigo-lighter p-4 rounded no-underline" (click)="modal.callback(null)">
-            <p class="font-bold text-md mb-1 text-black group-hover:text-white">Remove Player</p>
-        </a>
     </div>
 </div>
