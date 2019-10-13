@@ -15,6 +15,7 @@ export class MatchService {
     match: Match;
     subsRemaining: number;
     matchId: string;
+    unclaimed: boolean;
 
     timer: Observable<number>;
     pollingSubscription: Subscription;
@@ -26,6 +27,7 @@ export class MatchService {
     async init() {
         let result = await this.matchHttpService.inProgress();
         this.matchId = result.inProgressMatchId;
+        this.unclaimed = result.hasUnclaimedRewards;
         if (this.matchId) {
             this.startPolling(result.inProgressMatchId);
         }

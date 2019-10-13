@@ -9,6 +9,7 @@ import { UserHttpService } from './services/http/user.http-service';
 import { MatchService } from './services/match.service';
 import { MatchmakingService } from './services/matchmaking.service';
 import { UserProfile } from './models/user/profile';
+import { MatchHttpService } from './services/http/match.http-service';
 
 
 @Component({
@@ -53,6 +54,7 @@ export class AppComponent {
     private router: Router,
     private userService: UserHttpService,
     public matchService: MatchService,
+    private matchHttpService: MatchHttpService,
     public matchmakingService: MatchmakingService) {
 
     this.authService.isLoggedIn().subscribe(async (isLoggedIn) => {
@@ -75,6 +77,11 @@ export class AppComponent {
       this.layoutService.showNav = false;
       //}
     });
+  }
+
+  async claim() {
+    await this.matchHttpService.claim();
+    await this.matchService.init();
   }
 
   prepareRoute(outlet: RouterOutlet) {
