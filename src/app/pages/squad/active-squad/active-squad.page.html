@@ -1,40 +1,45 @@
-<button mat-button (click)="openDialog()">Open dialog</button>
-<div class="flex flex-wrap mb-4 mt-4 lg:mt-8" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%">
-    <div class="lg:w-1/4 flex-grow" fxFlex="70%">
+<div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%">
+    <div class="lg:w-1/4 flex-grow" fxFlex="70%" fxLayout="column" fxLayoutWrap fxLayoutGap="1%"
+        fxLayoutAlign="space-around stretch">
         <div class="p-4">
             <input matInput *ngIf="squad"
                 class="text-2xl bg-grey-lighter appearance-none border-2 border-grey-lighter rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-indigo"
                 type="text" [(ngModel)]="squad.name" placeholder="Your Squad Name" (input)="pendingChanges = true">
         </div>
-        <div class="flex w-full justify-between p-4" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="space-around center">
+        <div fxFlex="15%" fxLayout="row" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="space-around center">
             <mat-card fxFlex="20%"
                 class="w-1/4 bg-transparent text-indigo-dark font-semibold py-1 px-2 lg:py-2 lg:px-4 border border-indigo rounded">
+                <mat-card-header>
+                    <mat-card-title>Chemistry</mat-card-title>
+                </mat-card-header>
                 <mat-card-content>
-                    <div class="text-center text-sm">Chemistry</div>
                     <div class="text-center text-xl text-black pt-1">{{stats.chemistry | number:'2.0-0'}}%</div>
                 </mat-card-content>
             </mat-card>
             <mat-card fxFlex="20%"
                 class="w-1/4 bg-transparent text-indigo-dark font-semibold py-1 px-2 lg:py-2 lg:px-4 border border-indigo rounded">
+                <mat-card-header>
+                    <mat-card-title>Fitness</mat-card-title>
+                </mat-card-header>
                 <mat-card-content>
-                    <div class="text-center text-sm">Fitness</div>
                     <div class="text-center text-xl text-black pt-1">{{stats.fitness | number:'2.0-0'}}%</div>
                 </mat-card-content>
             </mat-card>
             <mat-card fxFlex="20%"
                 class="w-1/4 bg-transparent text-indigo-dark font-semibold py-1 px-2 lg:py-2 lg:px-4 border border-indigo rounded">
+                <mat-card-header>
+                    <mat-card-title>Rating</mat-card-title>
+                </mat-card-header>
                 <mat-card-content>
-                    <div class="text-center text-sm">Rating</div>
                     <div class="text-center text-xl text-black pt-1">{{stats.rating | number:'2.0-0'}}%</div>
                 </mat-card-content>
             </mat-card>
         </div>
 
-        <div class="isometric-container -mt-20 -mb-20">
+        <div class="isometric-container" fxFlex="70%">
             <div class="isometric">
                 <div>
-                    <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
-                        fxLayoutAlign="center">
+                    <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
                         <div fxFlex="25%" class="w-1/4 hover:bg-green"></div>
                         <div fxFlex="25%" class="w-1/4 hover:bg-indigo-lighter">
                             <div class="text-center py-2">
@@ -52,8 +57,7 @@
                         </div>
                         <div fxFlex="25%" class="w-1/4 hover:bg-green"></div>
                     </div>
-                    <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
-                        fxLayoutAlign="center">
+                    <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
                         <div fxFlex="25%" class="w-1/4 hover:bg-indigo-lighter">
                             <div class="text-center py-2">
                                 <pitch-player-card (click)="pickPlayer('LM')" [card]="cards['LM']" size="sm"
@@ -83,8 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
-                        fxLayoutAlign="center">
+                    <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
                         <div fxFlex="25%" class="w-1/4 hover:bg-indigo-lighter">
                             <div class="text-center py-2">
                                 <pitch-player-card (click)="pickPlayer('LB')" [card]="cards['LB']" size="sm"
@@ -114,7 +117,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-center" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+                    <div class="flex justify-center" fxLayout="row" fxLayoutWrap fxLayoutGap="1%"
                         fxLayoutAlign="center">
                         <div fxFlex="25%" class="w-1/4 hover:bg-indigo-lighter">
                             <div class="text-center py-2">
@@ -127,16 +130,20 @@
                 </div>
             </div>
         </div>
-        <h2 class="mt-6 mb-6 text-xl">Subs</h2>
-        <div *ngIf="squad" class="flex flex-wrap justify-center" fxLayout="row wrap" fxLayoutGap="0.5%" fxLayoutAlign="space-around center">
-            <pitch-player-card *ngFor="let id of squad.subs; let i = index" (click)="pickSub(i)" [card]="cards[id]"
-                size="sm" mode="squad">
-            </pitch-player-card>
+
+        <div fxFlex="15%">
+            <h2 class="mt-6 mb-6 text-xl">Subs</h2>
+            <div *ngIf="squad" fxLayout="row wrap" fxLayoutGap="0.5%"
+                fxLayoutAlign="space-around center">
+                <pitch-player-card *ngFor="let id of squad.subs; let i = index" (click)="pickSub(i)" [card]="cards[id]"
+                    size="sm" mode="squad">
+                </pitch-player-card>
+            </div>
         </div>
     </div>
-    
-    <div class="lg:w-1/5 lg:ml-12 flex" fxFlex="30%" fxLayout="column" fxLayoutWrap fxLayoutGap="0.5%"
-        fxLayoutAlign="center">
+
+    <div style="text-align:center" fxFlex="30%" fxLayout="column" fxLayoutWrap fxLayoutGap="0.5%"
+        fxLayoutAlign="center stretch">
         <div class="w-full p-6" fxFlex="100%">
             <button mat-button *ngIf="!pendingChanges && squad" routerLink="/squad/active"
                 class="w-full h-12 bg-grey text-white font-bold py-2 px-4 rounded">

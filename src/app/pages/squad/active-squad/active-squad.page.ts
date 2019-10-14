@@ -7,7 +7,6 @@ import { SquadStatsService } from 'src/app/services/squad-stats.service';
 import { CardHttpService } from 'src/app/services/http/card.http-service';
 import { SquadHttpService } from 'src/app/services/http/squad.http-service';
 import { PitchPlayerCard } from 'pitch-player-card';
-import { CardQueryModel } from 'src/app/models/card/card-query-model';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { PlayerSelectorDialogComponent } from 'src/app/modals/player-selector-dialog/player-selector-dialog.component';
 
@@ -98,10 +97,6 @@ export class ActivesquadComponent implements OnInit {
   setTeamInstruction(style: string, value: number) {
     this.squad.instructions[style] = value;
     this.pendingChanges = true;
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(PlayerSelectorDialogComponent);
   }
 
   private async getCardsForLineup() {
