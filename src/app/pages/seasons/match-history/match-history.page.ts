@@ -19,7 +19,7 @@ export class MatchHistoryPage implements OnInit {
   loadMore$ = new Subject<number>();
 
   skip: number = 0;
-  take: number = 25;
+  take: number = 30;
 
   displayedColumns: string[] = ['home', 'result', 'away', 'claimed', 'kickOff'];
 

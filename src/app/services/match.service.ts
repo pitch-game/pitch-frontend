@@ -59,6 +59,7 @@ export class MatchService {
                     this.subsRemaining = matchResult.subsRemaining;
 
                     if (this.match.expired) {
+                        //todo match ended event
                         this.pollingSubscription.unsubscribe();
                         this.matchId = null;
                     }

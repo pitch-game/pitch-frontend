@@ -1,5 +1,6 @@
 <table mat-table [dataSource]="matches$ | async" class="mat-elevation-z8" infiniteScroll [infiniteScrollDistance]="2"
-  [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+  [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [infiniteScrollContainer]="'.mat-drawer-content'"
+  [fromRoot]="true">
 
   <ng-container matColumnDef="home">
     <th mat-header-cell *matHeaderCellDef> Home </th>
