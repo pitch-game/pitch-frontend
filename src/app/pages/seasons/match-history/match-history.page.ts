@@ -14,12 +14,14 @@ import { MatchHttpService } from 'src/app/services/http/match.http-service';
 export class MatchHistoryPage implements OnInit {
 
   constructor(private matchService: MatchHttpService, private router: Router) { }
-  
+
   matches$: Observable<MatchListItem[]>;
   loadMore$ = new Subject<number>();
 
   skip: number = 0;
-  take: number = 25;
+  take: number = 30;
+
+  displayedColumns: string[] = ['home', 'result', 'away', 'claimed', 'kickOff'];
 
   async ngOnInit() {
     this.matches$ = this.loadMore$
@@ -42,7 +44,7 @@ export class MatchHistoryPage implements OnInit {
     this.loadMore$.next(this.skip);
   }
 
-  goToMatch(id: string){
+  goToMatch(id: string) {
     this.router.navigate(['/match', id]);
   }
 }

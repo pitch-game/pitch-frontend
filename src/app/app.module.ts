@@ -41,6 +41,11 @@ import { SubstitutionModalComponent } from './components/substitution-modal/subs
 import { AuthModule, OidcSecurityService, OpenIdConfiguration, AuthWellKnownEndpoints, OidcConfigService, ConfigResult } from 'angular-auth-oidc-client';
 import { environment } from 'src/environments/environment';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonModule, MatMenuModule, MatGridListModule, MatTableModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTabsModule, MatProgressSpinnerModule, MatChipsModule } from '@angular/material';
+import { PlayerSelectorDialogComponent } from './modals/player-selector-dialog/player-selector-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +66,8 @@ import { environment } from 'src/environments/environment';
     MatchHistoryPage,
     HomePage,
     OpenPackPopupComponent,
-    SubstitutionModalComponent
+    SubstitutionModalComponent,
+    PlayerSelectorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +78,23 @@ import { environment } from 'src/environments/environment';
     PitchPlayerCardModule,
     InfiniteScrollModule,
     FormsModule,
-    AuthModule.forRoot()
+    AuthModule.forRoot(),
+    FlexLayoutModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatListModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatGridListModule,
+    MatTableModule,
+    MatCardModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatProgressSpinnerModule,
+    MatChipsModule
   ],
   providers: [
     AuthGuardService,
@@ -95,7 +117,7 @@ import { environment } from 'src/environments/environment';
       deps: [OidcConfigService],
       multi: true,
     }],
-  entryComponents: [OpenPackPopupComponent, SubstitutionModalComponent],
+  entryComponents: [OpenPackPopupComponent, SubstitutionModalComponent, PlayerSelectorDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

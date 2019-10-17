@@ -1,153 +1,114 @@
-<div class="sticky top-0 z-10">
-  <nav class="flex items-center justify-between flex-wrap bg-indigo-dark p-3 pb-2">
-    <div class="flex items-left flex-no-shrink text-white">
-      <a href routerLink="/" class="font-semibold text-xl tracking-tight no-underline text-white">Pitch</a>
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer [mode]="(isHandset$ | async) ? 'over' : 'side'" opened>
+    <div class="logo">
+      <h2>Pitch</h2>
+      <h5>pre-alpha</h5>
     </div>
-    <div class="flex">
-      <button *ngIf="isLoggedIn && matchService.match && !matchService.match.expired" (click)="matchService.goToMatch()"
-        class="hidden lg:block"
-        class="rounded-full mr-2 items-center text-xs py-2 border rounded text-black border-grey hover:bg-grey-light bg-grey-lightest">
-        <span class="text-green m-3">
-          <fa-icon [icon]="loadingIcon" [spin]="true"></fa-icon>
-          <span class="ml-1">{{matchService.match?.minute || 0}}'</span>
-        </span>
-        <span class="rounded-full items-center text-xs px-3 py-2 rounded text-black hover:bg-green-light bg-green">
-          <span class="font-bold">{{matchService.match?.homeResult.score}}</span>
-          <span class="text-grey-darker">
-            -
-            {{matchService.match?.awayResult.score}}</span>
-        </span>
-      </button>
-      <button *ngIf="isLoggedIn" (click)="toggleMenu()"
-        class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-black border-yellow hover:bg-yellow bg-yellow-dark">
-        £{{profile?.money || '0' | thousandSuff : 0}}
-      </button>
-      <button *ngIf="isLoggedIn" (click)="toggleMenu()"
-        class="rounded-full mr-2 items-center text-xs px-3 py-2 border rounded text-white border-orange hover:bg-orange bg-orange-dark">
-        Lvl {{profile?.level || '1'}}
-      </button>
-      <div class="block lg:hidden">
-        <button (click)="toggleMenu()"
-          class="items-center px-3 py-2 border rounded text-indigo-lighter border-indigo-light hover:text-white hover:border-white">
-          <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <title>Menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-          </svg>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]=""
+        *ngIf="isLoggedIn && matchService.match && !matchService.match.expired && !matchService.unclaimed"
+        (click)="matchService.goToMatch()">
+        <div class="hidden lg:block"
+          class="rounded-full mr-2 items-center text-xs py-2 border rounded text-black border-grey hover:bg-grey-light bg-grey-lightest">
+          <mat-progress-spinner class="spinner" mode="indeterminate" diameter="15"></mat-progress-spinner>
+          <mat-chip color="primary">LIVE</mat-chip> -
+          <span class="text-green m-3">
+            <span class="ml-1">{{matchService.match?.minute || 0}}'</span>
+          </span>
+          <span class="rounded-full items-center text-xs px-3 py-2 rounded text-black hover:bg-green-light bg-green">
+            <span class="font-bold">{{matchService.match?.homeResult.score}}</span>
+            <span class="text-grey-darker">
+              -
+              {{matchService.match?.awayResult.score}}</span>
+          </span>
+        </div>
+      </a>
+      <a mat-list-item [routerLink]=""
+        *ngIf="(!matchService.match || matchService.match.expired) && !matchService.unclaimed"
+        (click)="matchmakingService.matchmake()">
+        <mat-icon matListIcon>sports_soccer</mat-icon>
+        <p mat-line>
+          Quick Match
+          <button mat-button color="primary" *ngIf="!layoutService.showMatchmaking">PLAY</button>
+          <button mat-button color="primary" *ngIf="layoutService.showMatchmaking">
+            <mat-progress-spinner class="spinner" mode="indeterminate" diameter="15"></mat-progress-spinner>
+          </button>
+        </p>
+      </a>
+      <a mat-list-item [routerLink]="" *ngIf="matchService.unclaimed" (click)="claim()">
+        <mat-icon matListIcon>card_giftcard</mat-icon>
+        <p mat-line>
+          Match Summary
+        </p>
+      </a>
+      <a mat-list-item href>
+        <mat-icon matListIcon>list</mat-icon>
+        <p mat-line>Leaderboards</p>
+      </a>
+      <mat-divider></mat-divider>
+      <h3 matSubheader>Team Management</h3>
+      <a mat-list-item href *ngFor="let link of teamLinks" [routerLink]="link.route" routerLinkActive="active">
+        <mat-icon matListIcon>{{link.icon}}</mat-icon>
+        <p mat-line>{{ link.name }}</p>
+      </a>
+      <mat-divider></mat-divider>
+      <h3 matSubheader>Packs</h3>
+      <a mat-list-item href routerLink="/store/open" routerLinkActive="active">
+        <mat-icon matListIcon>0</mat-icon>
+        <p mat-line>
+          Unopened
+          <button mat-button color="primary">OPEN</button>
+        </p>
+      </a>
+      <a mat-list-item href routerLink="/store/buy" routerLinkActive="active">
+        <mat-icon matListIcon>shopping_basket</mat-icon>
+        <p mat-line>Store</p>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item href="https://github.com/users/jcbcn/sponsorship" target="_blank"> 
+        <mat-icon matListIcon>star</mat-icon>
+        <p mat-line>Sponsor</p>
+      </a>
+      <a mat-list-item href="...">
+        <mat-icon matListIcon>announcement</mat-icon>
+        <p mat-line>Help & feedback</p>
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-      </div>
-    </div>
-  </nav>
-  <nav class="lg:flex items-center justify-between flex-wrap bg-indigo-darker p-3 hidden lg:block"
-    [ngClass]="{'block' : layoutService.showNav, 'hidden' : !layoutService.showNav}">
-    <div class="w-full block flex-grow flex lg:items-center lg:w-auto flex-row-reverse lg:flex-row">
-      <div class="text-sm lg:flex-auto text-right lg:text-left pt-2 lg:pt-0">
-        <div class="lg:inline-block lg:mt-0">
-          <fa-icon [icon]="seasonsIcon" class="mr-2 text-indigo-lighter"></fa-icon>
-          <a routerLink="/seasons" class="lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
-            Seasons
-          </a>
-        </div>
-        <div class="mt-4 lg:inline-block lg:mt-0">
-          <fa-icon [icon]="squadIcon" class="mr-2 text-indigo-lighter"></fa-icon>
-          <a routerLink="/squad" class="lg:inline-block lg:mt-0 text-indigo-lighter hover:text-white mr-4">
-            Squad
-          </a>
-        </div>
-        <!-- <div class="mt-4 lg:inline-block lg:mt-0">
-          <fa-icon [icon]="challengesIcon" class="mr-2 text-indigo-lighter"></fa-icon>
-          <a class="lg:inline-block lg:mt-0 text-indigo-lighter mr-4 line-through">
-            Challenges
-          </a>
-        </div>
-        <div class="mt-4 lg:inline-block lg:mt-0">
-          <fa-icon [icon]="marketplaceIcon" class="mr-2 text-indigo-lighter"></fa-icon>
-          <a class="lg:inline-block text-indigo-lighter mr-4 line-through">
-            Marketplace
-          </a>
-        </div> -->
-        <div class="mt-4 lg:inline-block lg:mt-0">
-          <fa-icon [icon]="storeIcon" class="mr-2 text-indigo-lighter"></fa-icon>
-          <a routerLink="/store" class="lg:inline-block text-indigo-lighter hover:text-white mr-4">
-            Store
-          </a>
-        </div>
-      </div>
-      <div class="flex-grow lg:flex-none">
-        <span *ngIf="isLoggedIn" class="text-sm mr-2 text-indigo-lighter block lg:inline">Welcome,
-          {{username}}</span>
-        <a href="#" (click)="isLoggedIn ? signOut() : login()"
-          class="inline-block text-sm px-4 py-2 leading-none rounded text-white border-white bg-indigo-light hover:border-transparent hover:text-indigo hover:bg-white mt-4 lg:mt-0">
-          <span *ngIf="!isLoggedIn">Login</span>
-          <span *ngIf="isLoggedIn">Sign Out</span>
-        </a>
-      </div>
-    </div>
-  </nav>
-  <div *ngIf="layoutService.showMatchmaking" class="bg-indigo-darkest text-center py-4 lg:px-4">
-    <div class="p-2 bg-indigo-darker items-center text-indigo-lightest leading-none lg:rounded-full flex lg:inline-flex"
-      role="alert">
-      <span class="font-semibold mr-2 text-center flex-auto">
-        <fa-icon class="mr-1" [icon]="loadingIcon" [spin]="true"></fa-icon>
-        Matchmaking in progress...<a class="ml-1 text-indigo" (click)="matchmakingService.cancel()">cancel</a>
-      </span>
-    </div>
-  </div>
-</div>
+        <!-- <span>Quick Match</span> -->
+        <span class="example-spacer"></span>
+        <span *ngIf="isLoggedIn && profile" class="mat-button mat-button-base" mat-button="">
+          <span class="mat-button-wrapper">£{{profile.money | thousandSuff}}</span>
+          <div class="mat-button-ripple mat-ripple" matripple="">
+          </div>
+          <div class="mat-button-focus-overlay">
+          </div>
+        </span>
+        <span *ngIf="isLoggedIn && profile" class="mat-button mat-button-base" mat-button="">
+          <span class="mat-button-wrapper">Level {{profile.level}}</span>
+          <div class="mat-button-ripple mat-ripple" matripple="">
+          </div>
+          <div class="mat-button-focus-overlay">
+          </div>
+        </span>
+        <mat-menu #userMenu="matMenu" yPosition="above">
+          <span mat-menu-item disabled="true" *ngIf="isLoggedIn">{{username}}</span>
+          <button mat-menu-item
+            (click)="isLoggedIn ? signOut() : login()">{{ isLoggedIn ? 'Sign Out' : 'Sign In'}}</button>
+        </mat-menu>
+        <button mat-icon-button [matMenuTriggerFor]="userMenu">
+          <mat-icon class="account_circle" aria-hidden="false" aria-label="User profile">account_circle</mat-icon>
 
-<div class="flex bg-white">
-  <div class="flex-auto" [@routeAnimations]="prepareRoute(outlet)">
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
     <router-outlet #outlet="outlet"></router-outlet>
-  </div>
-</div>
-
-<section class="bg-indigo-darkest py-8 w-full">
-  <div class="container mx-auto px-8">
-    <div class="text-grey text-xs">
-      v{{version}} alpha
-    </div>
-    <div class="text-grey text-xs mt-4 bg-indigo-darker rounded p-2">
-      This is an alpha version. Your progress may be lost and things may not work as intended.
-      Please report any issues using the link below. <br />
-    </div>
-    <div class="table mt-4 w-full lg:max-w-xs">
-      <div class="block sm:table-cell">
-        <p class="uppercase text-grey text-sm sm:mb-6 font-semibold">Links</p>
-        <ul class="list-reset text-xs mb-6">
-          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-            ❤️
-            <a href="#" class="text-grey hover:text-grey-dark">Donate</a>
-          </li>
-          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-            ⭐
-            <a href="https://github.com/pitch-game" target="_blank" class="text-grey hover:text-grey-dark">GitHub</a>
-          </li>
-          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-            🤔
-            <a href="https://github.com/pitch-game" target="_blank"
-              class="text-grey hover:text-grey-dark bg-indigo-darker p-1 rounded">Report an issue</a>
-          </li>
-        </ul>
-      </div>
-      <div class="block sm:table-cell">
-        <p class="uppercase text-grey text-sm sm:mb-6 font-semibold">Legal</p>
-        <ul class="list-reset text-xs lg:mb-6">
-          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-            📜
-            <a href="#" class="text-grey hover:text-grey-dark">Terms</a>
-          </li>
-          <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-            👥
-            <a href="#" class="text-grey hover:text-grey-dark">Privacy</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="bg-indigo-darker w-full text-xs text-indigo-lighter p-4">
-  <div class="container mx-auto">
-    Copyright © 2019 Jacob Cann
-    <p class="mt-1 text-indigo-light">Pitch is an open source project licensed under the GNU General Public License v3.0
-    </p>
-  </div>
-</section>
+  </mat-drawer-content>
+</mat-drawer-container>

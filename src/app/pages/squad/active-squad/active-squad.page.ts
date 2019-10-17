@@ -7,7 +7,8 @@ import { SquadStatsService } from 'src/app/services/squad-stats.service';
 import { CardHttpService } from 'src/app/services/http/card.http-service';
 import { SquadHttpService } from 'src/app/services/http/squad.http-service';
 import { PitchPlayerCard } from 'pitch-player-card';
-import { CardQueryModel } from 'src/app/models/card/card-query-model';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { PlayerSelectorDialogComponent } from 'src/app/modals/player-selector-dialog/player-selector-dialog.component';
 
 @Component({
   selector: 'app-active-squad',
@@ -15,7 +16,7 @@ import { CardQueryModel } from 'src/app/models/card/card-query-model';
   styleUrls: ['./active-squad.page.sass']
 })
 export class ActivesquadComponent implements OnInit {
-  constructor(private cardService: CardHttpService, private squadService: SquadHttpService, private squadStatsService: SquadStatsService) { }
+  constructor(private cardService: CardHttpService, private squadService: SquadHttpService, private squadStatsService: SquadStatsService, public dialog: MatDialog, public snackBar: MatSnackBar) { }
 
   squad: Squad;
   stats: SquadStats = SquadStats.empty;
@@ -35,41 +36,52 @@ export class ActivesquadComponent implements OnInit {
   }
 
   async pickPlayer(position: string) {
-    this.modal = new PlayerPickerModal();
-    this.modal.visible = true;
-    this.modal.position = position;
-    this.modal.callback = (async (cardId) => {
-      this.squad.lineup[position] = cardId;
-      if (cardId) {
-        var card = await this.cardService.get(cardId);
-        this.cards[position] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
-      } else {
-        this.cards[position] = null;
-      }
 
-      this.pendingChanges = true;
-      this.stats = this.squadStatsService.calculate(this.squad, this.cards);
+    let dialogRef = this.dialog.open(PlayerSelectorDialogComponent, {
+      data: {
+        position: position,
+        idsToFilter: this.idsToFilter(),
+        callback: (async (cardId) => {
+          this.squad.lineup[position] = cardId;
+          if (cardId) {
+            var card = await this.cardService.get(cardId);
+            this.cards[position] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+          } else {
+            this.cards[position] = null;
+          }
+
+          this.pendingChanges = true;
+          this.stats = this.squadStatsService.calculate(this.squad, this.cards);
+          dialogRef.close();
+        })
+      },
+      hasBackdrop: true
     });
-    await this.getPlayers(position);
   }
 
   async pickSub(index: number) {
-    this.modal = new PlayerPickerModal();
-    this.modal.visible = true;
-    this.modal.callback = (async (cardId) => {
-      this.squad.subs[index] = cardId;
-      if (cardId) {
-        var card = await this.cardService.get(cardId);
-        this.cards[cardId] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
-      }
-      this.pendingChanges = true;
-      this.stats = this.squadStatsService.calculate(this.squad, this.cards);
+    let dialogRef = this.dialog.open(PlayerSelectorDialogComponent, {
+      data: {
+        idsToFilter: this.idsToFilter(), callback: (async (cardId) => {
+          this.squad.subs[index] = cardId;
+          if (cardId) {
+            var card = await this.cardService.get(cardId);
+            this.cards[cardId] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+          }
+          this.pendingChanges = true;
+          this.stats = this.squadStatsService.calculate(this.squad, this.cards);
+          dialogRef.close();
+        })
+      },
+      hasBackdrop: true
     });
-    await this.getPlayers(null);
   }
 
   async save() {
     let squad = await this.squadService.put(this.squad);
+    this.snackBar.open('Squad updated', null, {
+      duration: 3000
+    });
     this.squad = squad
 
     await this.getCardsForLineup();
@@ -115,9 +127,5 @@ export class ActivesquadComponent implements OnInit {
         this.cards[this.squad.subs[index]] = null;
       }
     };
-  }
-
-  private getPlayers(position: string) {
-    this.modal.cards = this.cardService.getWithQuery(new CardQueryModel(0, 10, position, this.idsToFilter()));
   }
 }

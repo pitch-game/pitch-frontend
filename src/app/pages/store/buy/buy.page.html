@@ -1,32 +1,20 @@
-<div class="w-full flex mb-10">
-  <div class="w-1/6 hidden lg:block"></div>
-  <div class="flex-grow">
-    <div class="flex mt-10">
-      <div class="w-1/2 text-center">
-        <div>
-          <pitch-player-card></pitch-player-card>
-          <div class="mt-3">
-            <span
-              class="ml-1 rounded-full bg-yellow-dark uppercase px-2 py-1 text-sm text-black font-bold">£10,000</span>
-          </div>
-        </div>
-        <button disabled class="w-1/3 h-12 mt-5 bg-grey-light text-white font-bold py-2 px-4 rounded">
-          <span>Buy</span>
-        </button>
-      </div>
-      <div class="w-1/2 text-center">
-        <div>
-          <pitch-player-card></pitch-player-card>
-          <div class="mt-3">
-            <span
-              class="ml-1 rounded-full bg-yellow-dark uppercase px-2 py-1 text-sm text-black font-bold">£100,000</span>
-          </div>
-        </div>
-        <button disabled class="w-1/3 h-12 mt-5 bg-grey-light text-white font-bold py-2 px-4 rounded">
-          <span>Buy</span>
-        </button>
-      </div>
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile>
+    <pitch-player-card></pitch-player-card>
+    <div class="mt-3">
+      <span class="ml-1 rounded-full bg-yellow-dark uppercase px-2 py-1 text-sm text-black font-bold">£10,000</span>
     </div>
-  </div>
-  <div class="w-1/6 hidden lg:block"></div>
-</div>
+    <button disabled class="w-1/3 h-12 mt-5 bg-grey-light text-white font-bold py-2 px-4 rounded">
+      <span>Buy</span>
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <pitch-player-card></pitch-player-card>
+    <div class="mt-3">
+      <span class="ml-1 rounded-full bg-yellow-dark uppercase px-2 py-1 text-sm text-black font-bold">£100,000</span>
+    </div>
+    <button disabled class="w-1/3 h-12 mt-5 bg-grey-light text-white font-bold py-2 px-4 rounded">
+      <span>Buy</span>
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>
