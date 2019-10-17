@@ -40,7 +40,7 @@ display: inline;
   $accent: map-get($theme, accent);
 
   .mat-nav-list a.active {
-    background-color: mat-color($accent, A400);
+    background-color: mat-color($primary, 200);
 }
 
 }

@@ -1,4 +1,4 @@
-<table mat-table matSort [dataSource]="cards$ | async" class="mat-elevation-z8" infiniteScroll [infiniteScrollDistance]="2"
+<table mat-table matSort [dataSource]="cards$ | async" infiniteScroll [infiniteScrollDistance]="2"
   [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
 
   <ng-container matColumnDef="card">
