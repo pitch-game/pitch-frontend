@@ -1,12 +1,5 @@
 <h2 mat-dialog-title>Select a {{position || 'player'}}</h2>
 <mat-dialog-content class="mat-typography mat-dialog-content">
-  <div class="m-4 p-2 text-lg">
-    <p>
-      <span class="float-right">
-        <fa-icon [icon]="closeIcon" class="ml-2 text-indigo-lighter"></fa-icon>
-      </span>
-    </p>
-  </div>
   <div class="overflow-y-scroll max-h-screen-1/2" infiniteScroll [infiniteScrollDistance]="2"
     [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false"  [infiniteScrollContainer]="'.mat-dialog-content'" [fromRoot]="true" fxLayout="column" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="space-around center">
     <div *ngFor="let card of cards$ | async" (click)="callback(card.id)"
