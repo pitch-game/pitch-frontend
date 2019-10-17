@@ -1,34 +1,46 @@
+// Import library functions for theme creation.
+@import '~@angular/material/theming';
+
 :host {
-    height: 100%;
-    display: block;
+  height: 100%;
+  display: block;
 }
 
 .example-container {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 
-  mat-drawer {
-    width: 256px;
-  }
-  
-  .example-icon {
-    padding: 0 14px;
-  }
-  
-  .example-spacer {
-    flex: 1 1 auto;
-  }
+mat-drawer {
+  width: 256px;
+}
 
-  .mat-nav-list a.active {
-    background: plum;
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
 }
 
 .spinner {
-  display: inline;
+display: inline;
+}
+
+
+// Define a mixin that accepts a theme and outputs the theme-specific styles.
+@mixin nav-theme($theme) {
+  // Extract the palettes you need from the theme definition.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  .mat-nav-list a.active {
+    background-color: mat-color($accent, A400);
+}
+
 }

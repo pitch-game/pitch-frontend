@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { slideInAnimation } from './animations';
 import { AuthService } from './auth/services/auth.service';
@@ -10,6 +10,9 @@ import { MatchService } from './services/match.service';
 import { MatchmakingService } from './services/matchmaking.service';
 import { UserProfile } from './models/user/profile';
 import { MatchHttpService } from './services/http/match.http-service';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map, withLatestFrom, filter } from 'rxjs/operators';
 
 
 @Component({
@@ -39,6 +42,8 @@ export class AppComponent {
   profile: UserProfile;
   username: string;
 
+  @ViewChild('drawer', null) drawer: any;
+
   links = [
     { name: 'Quick Match', icon: 'sports_soccer' }
   ];
@@ -49,13 +54,18 @@ export class AppComponent {
     { name: 'History', icon: 'show_chart', route: '/seasons/history' }
   ]
 
+  public isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(map((result: BreakpointState) => result.matches));
+
   constructor(public authService: AuthService,
     public layoutService: LayoutService,
     private router: Router,
     private userService: UserHttpService,
     public matchService: MatchService,
     private matchHttpService: MatchHttpService,
-    public matchmakingService: MatchmakingService) {
+    public matchmakingService: MatchmakingService,
+    private breakpointObserver: BreakpointObserver) {
 
     this.authService.isLoggedIn().subscribe(async (isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
@@ -71,6 +81,11 @@ export class AppComponent {
     });
 
     this.version = environment.version;
+    
+    router.events.pipe(
+      withLatestFrom(this.isHandset$),
+      filter(([a, b]) => b && a instanceof NavigationEnd)
+    ).subscribe(_ => this.drawer.close())
 
     this.router.events.subscribe((event) => {
       //if(typeof(event) == NavigationEnd) { TODO
@@ -78,6 +93,7 @@ export class AppComponent {
       //}
     });
   }
+  
 
   async claim() {
     await this.matchHttpService.claim();
