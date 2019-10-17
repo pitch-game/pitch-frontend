@@ -1,48 +1,36 @@
-<div class="w-full flex text-sm" style="background-color:#3D457F">
-  <div class="w-1/6 hidden lg:block"></div>
-  <div class="flex-grow">
-    <div class="text-2xl p-6 text-white">Welcome to Pitch</div>
-  </div>
-</div>
-<div class="flex items-center justify-left w-full lg:py-8">
-  <div class="w-1/6 hidden lg:block"></div>
-  <div class="flex-grow overflow-hidden bg-white lg:rounded leading-normal">
-    <div href (click)="signIn" class="block group p-4 no-underline">
-      <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
-        Getting Started Guide
-      </p>
+<mat-vertical-stepper #stepper [linear]="true">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Authenticate</ng-template>
+      <div>
+        <button mat-button matStepperNext>Sign In</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Open your starter packs</ng-template>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Name and build your squad</ng-template>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Find a match!</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
-    <a [routerLink]="" (click)="signIn()" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
-      <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
-        <span *ngIf="!signedIn" class="text-2xl font-bold text-indigo-dark mr-2">1.</span>
-        <span *ngIf="signedIn" class="text-2xl font-bold text-indigo-dark mr-2">✅</span>
-        Sign in 👮
-      </p>
-      <p class="text-grey-darker mb-2 group-hover:text-white">Sign in using your Google account.</p>
-    </a>
-    <a routerLink="/store" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
-      <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
-        <span class="text-2xl font-bold text-indigo-dark mr-2">2.</span>
-        Get lucky 🤞
-      </p>
-      <p class="text-grey-darker mb-2 group-hover:text-white">Open your starter packs.</p>
-    </a>
-    <a routerLink="/squad" class="block group hover:bg-indigo-lighter p-4 border-b no-underline">
-      <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
-        <span class="text-2xl font-bold text-indigo-dark mr-2">3.</span>
-        Select your squad 💪
-      </p>
-      <p class="text-grey-darker mb-2 group-hover:text-white">Name and select your active squad.</p>
-    </a>
-    <a routerLink="/seasons" class="block group hover:bg-indigo-lighter p-4 no-underline">
-      <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
-        <span class="text-2xl font-bold text-indigo-dark mr-2">4.</span>
-        Go play! ⚽🎉🥳
-      </p>
-      <p class="text-grey-darker mb-2 group-hover:text-white">Search for a live multiplayer game and play in real
-        time or simulate a game against a
-        random team.</p>
-    </a>
-  </div>
-  <div class="w-1/6 hidden lg:block"></div>
-</div>
+  </mat-step>
+</mat-vertical-stepper>
