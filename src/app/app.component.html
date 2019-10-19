@@ -8,21 +8,24 @@
       <a mat-list-item [routerLink]=""
         *ngIf="isLoggedIn && matchService.match && !matchService.match.expired && !matchService.unclaimed"
         (click)="matchService.goToMatch()">
-        <div class="hidden lg:block"
-          class="rounded-full mr-2 items-center text-xs py-2 border rounded text-black border-grey hover:bg-grey-light bg-grey-lightest">
-          <mat-progress-spinner class="spinner" mode="indeterminate" diameter="15"></mat-progress-spinner>
-          <mat-chip color="primary">LIVE</mat-chip> -
-          <span class="text-green m-3">
-            <span class="ml-1">{{matchService.match?.minute || 0}}'</span>
-          </span>
-          <span class="rounded-full items-center text-xs px-3 py-2 rounded text-black hover:bg-green-light bg-green">
+        <div style="width:100%" class="text-center" fxLayout="row" fxLayoutAlign="space-evenly center">
+          <div fxFlex>
+            <mat-chip-list>
+              <mat-chip color="primary">LIVE</mat-chip>
+            </mat-chip-list>
+          </div>
+          <div fxFlex>
             <span class="font-bold">{{matchService.match?.homeResult.score}}</span>
             <span class="text-grey-darker">
               -
               {{matchService.match?.awayResult.score}}</span>
-          </span>
+          </div>
+          <div fxFlex>
+            <span class="ml-1">{{matchService.match?.minute || 0}}'</span>
+          </div>
         </div>
       </a>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
       <a mat-list-item [routerLink]=""
         *ngIf="(!matchService.match || matchService.match.expired) && !matchService.unclaimed"
         (click)="matchmakingService.matchmake()">

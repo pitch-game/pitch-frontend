@@ -1,40 +1,40 @@
-<div class="flex" fxLayout="row" fxLayout.xs="column" fxLayoutWrap>
-  <div class="w-1/3" fxFlex></div>
-  <div class="w-1/3" fxFlex>
-    <div style="text-align:center">
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap>
+  <div fxFlex></div>
+  <div fxFlex>
+    <div fxFlex fxLayout="column" fxLayoutAlign="center center">
       <div *ngIf="!matchService.match?.expired">
-        <mat-progress-spinner mode="indeterminate" diameter="20"></mat-progress-spinner>
-        {{matchService.match?.minute}}'
+          <div>{{matchService.match?.minute}}'</div>
+        <mat-progress-bar mode="indeterminate" diameter="15"></mat-progress-bar>
       </div>
       <div *ngIf="matchService.match?.expired" class="text-sm">
         Match ended {{ matchService.match?.expiredOn | timeAgo}}
       </div>
     </div>
   </div>
-  <div class="w-1/3" fxFlex></div>
+  <div fxFlex></div>
 </div>
 <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%">
   <div fxFlex></div>
   <div fxFlex="16%">
-    <h1 class="word-break-all">
+    <h4 class="word-break-all">
       {{matchService.match?.homeResult?.name}}
-    </h1>
+    </h4>
   </div>
   <div fxFlex="16%">
     <h1 class="text-center">
       {{matchService.match?.homeResult?.score}}
     </h1>
   </div>
-  <div class="text-indigo-lighter mt-1 text-center" fxFlex="16%">-</div>
+  <div class="text-center" fxFlex="16%">-</div>
   <div fxFlex="16%">
     <h1 class="text-center">
       {{matchService.match?.awayResult?.score}}
     </h1>
   </div>
   <div fxFlex="16%">
-    <h1 class="word-break-all">
+    <h4 class="word-break-all">
       {{matchService.match?.awayResult?.name}}
-    </h1>
+    </h4>
   </div>
   <div class="hidden lg:block w-1/3" fxFlex></div>
 </div>
