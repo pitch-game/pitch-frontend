@@ -43,7 +43,7 @@ import { environment } from 'src/environments/environment';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonModule, MatMenuModule, MatGridListModule, MatTableModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTabsModule, MatProgressSpinnerModule, MatChipsModule, MatStepperModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonModule, MatMenuModule, MatGridListModule, MatTableModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTabsModule, MatProgressSpinnerModule, MatChipsModule, MatStepperModule, MatFormFieldModule, MatInputModule, MatProgressBarModule } from '@angular/material';
 import { PlayerSelectorDialogComponent } from './modals/player-selector-dialog/player-selector-dialog.component';
 
 @NgModule({
@@ -98,6 +98,7 @@ import { PlayerSelectorDialogComponent } from './modals/player-selector-dialog/p
     MatStepperModule,
     MatInputModule,
     MatFormFieldModule,
+    MatProgressBarModule,
     ReactiveFormsModule
   ],
   providers: [
