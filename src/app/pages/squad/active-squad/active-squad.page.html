@@ -1,11 +1,10 @@
 <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%">
     <div fxFlex="70%" fxLayout="column" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="space-around stretch">
-        <div class="container">
-            <mat-form-field appearance="outline" style="width:100%">
+        <div class="container squad-name">
+            <mat-form-field appearance="outline">
                 <mat-label>Team Name</mat-label>
-                <input class="squad-name" matInput *ngIf="squad" [(ngModel)]="squad.name" placeholder="Your Squad Name"
+                <input matInput *ngIf="squad" [(ngModel)]="squad.name" placeholder="Your Squad Name"
                     (input)="pendingChanges = true">
-                <mat-icon matSuffix>users</mat-icon>
             </mat-form-field>
         </div>
         <div>
@@ -131,7 +130,7 @@
             </div>
         </div>
 
-        <div>
+        <div class="container">
             <h2>Subs</h2>
             <div *ngIf="squad" fxLayout="row wrap" fxLayoutGap="0.5%" fxLayoutAlign="space-around center">
                 <pitch-player-card *ngFor="let id of squad.subs; let i = index" (click)="pickSub(i)" [card]="cards[id]"
@@ -141,9 +140,9 @@
         </div>
     </div>
 
-    <div>
-        <h2 mat-dialog-title>Team Instructions</h2>
-        <div mat-dialog-content fxLayout="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center stretch">
+    <div class="container">
+        <h2>Team Instructions</h2>
+        <div fxLayout="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center stretch">
             <mat-form-field *ngIf="squad">
                 <mat-label>Core Style</mat-label>
                 <mat-select [(ngModel)]="squad.instructions['core']">
