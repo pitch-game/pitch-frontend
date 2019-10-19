@@ -40,6 +40,8 @@
           </button>
         </p>
       </a>
+      <mat-progress-bar mode="indeterminate"
+      *ngIf="(!matchService.match || matchService.match.expired) && !matchService.unclaimed"></mat-progress-bar>
       <a mat-list-item [routerLink]="" *ngIf="matchService.unclaimed" (click)="claim()">
         <mat-icon matListIcon>card_giftcard</mat-icon>
         <p mat-line>
@@ -58,11 +60,11 @@
       </a>
       <mat-divider></mat-divider>
       <h3 matSubheader>Packs</h3>
-      <a mat-list-item href routerLink="/store/open" routerLinkActive="active">
-        <mat-icon matListIcon>0</mat-icon>
+      <a mat-list-item [routerLink]="" (click)="click()">
+        <span>{{(packs?.length) || 0}}</span>
+        <mat-icon matListIcon>open_in_new</mat-icon>
         <p mat-line>
-          Unopened
-          <button mat-button color="primary">OPEN</button>
+          Open
         </p>
       </a>
       <a mat-list-item href routerLink="/store/buy" routerLinkActive="active">

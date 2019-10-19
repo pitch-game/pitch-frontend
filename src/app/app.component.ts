@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { slideInAnimation } from './animations';
 import { AuthService } from './auth/services/auth.service';
@@ -13,6 +13,9 @@ import { MatchHttpService } from './services/http/match.http-service';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, withLatestFrom, filter } from 'rxjs/operators';
+import { Card } from './models/card/card';
+import { StoreHttpService } from './services/http/store.http-service';
+import { OpenPackPopupComponent } from './components/open-pack-popup/open-pack-popup.component';
 
 
 @Component({
@@ -42,6 +45,10 @@ export class AppComponent {
   profile: UserProfile;
   username: string;
 
+  cards: { [id: string]: Card } = {};
+  packs: any[];
+  cmpRef: any;
+
   @ViewChild('drawer', null) drawer: any;
 
   links = [
@@ -65,7 +72,10 @@ export class AppComponent {
     public matchService: MatchService,
     private matchHttpService: MatchHttpService,
     public matchmakingService: MatchmakingService,
-    private breakpointObserver: BreakpointObserver) {
+    private breakpointObserver: BreakpointObserver,
+    private store: StoreHttpService, 
+    private componentFactoryResolver: ComponentFactoryResolver, 
+    private viewContainerRef: ViewContainerRef) {
 
     this.authService.isLoggedIn().subscribe(async (isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
@@ -92,8 +102,35 @@ export class AppComponent {
       this.layoutService.showNav = false;
       //}
     });
+
+    this.store.getPacks().subscribe((packs) => {
+      this.packs = packs;
+    });
   }
-  
+
+  click() {
+    if(!this.packs || this.packs.length == 0) return;
+    let id = this.packs.pop().id;
+    if (this.cards[id] && this.cards[id].opened) return;
+    this.open(null);
+  }
+
+  open(id: string) {
+    let factory = this.componentFactoryResolver.resolveComponentFactory(OpenPackPopupComponent);
+    this.cmpRef = this.viewContainerRef.createComponent(factory);
+
+    this.cmpRef.instance.packId = id;
+    this.cmpRef.instance.packsLeft = this.packs.length;
+
+    this.cmpRef.instance.openNext = () => {
+      this.cmpRef.destroy();
+      this.click();
+    };
+
+    this.cmpRef.instance.destroy = () => {
+      this.cmpRef.destroy();
+    };
+  }  
 
   async claim() {
     await this.matchHttpService.claim();

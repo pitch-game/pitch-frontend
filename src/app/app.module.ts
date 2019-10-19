@@ -28,7 +28,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { BuyPageComponent } from './pages/store/buy/buy.page';
-import { ReadyToOpenComponent } from './pages/store/open/open.page';
 import { MatchComponent } from './pages/match/match.page';
 import { CurrentSeasonPage } from './pages/seasons/current-season/current-season.page';
 import { MatchHistoryPage } from './pages/seasons/match-history/match-history.page';
@@ -60,7 +59,6 @@ import { PlayerSelectorDialogComponent } from './modals/player-selector-dialog/p
     ThousandSuffixesPipe,
     TimeAgoPipe,
     BuyPageComponent,
-    ReadyToOpenComponent,
     MatchComponent,
     CurrentSeasonPage,
     MatchHistoryPage,
