@@ -53,12 +53,11 @@ display: inline;
 }
 
 .content {
-  //margin-top: 58px
+  margin-top: 58px
 }
 
 .position-fixed{
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 10;
 }
