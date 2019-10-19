@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%">
     <div fxFlex="70%" fxLayout="column" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="space-around stretch">
         <div class="container squad-name">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
                 <mat-label>Team Name</mat-label>
                 <input matInput *ngIf="squad" [(ngModel)]="squad.name" placeholder="Your Squad Name"
                     (input)="pendingChanges = true">
