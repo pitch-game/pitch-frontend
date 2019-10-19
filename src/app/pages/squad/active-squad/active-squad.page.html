@@ -1,21 +1,15 @@
+<button mat-fab color="primary" class="save-button" *ngIf="pendingChanges" (click)="save()">
+    <mat-icon matListIcon>save</mat-icon>
+    <!-- <span>Save changes</span> -->
+</button>
+
 <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%">
     <div fxFlex="70%" fxLayout="column" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="space-around stretch">
         <div class="container squad-name">
             <mat-form-field *ngIf="squad" appearance="outline" style="margin-bottom: -1.25em">
                 <mat-label>Team Name</mat-label>
-                <input matInput [(ngModel)]="squad.name" placeholder="Your Squad Name"
-                    (input)="pendingChanges = true">
+                <input matInput [(ngModel)]="squad.name" placeholder="Your Squad Name" (input)="pendingChanges = true">
             </mat-form-field>
-        </div>
-        <div>
-            <button mat-button color="primary" *ngIf="!pendingChanges && squad" routerLink="/squad/active">
-                <fa-icon [icon]="tickIcon" class="mr-2 text-white ml-2"></fa-icon>
-                <span>Last updated {{squad.lastUpdated | timeAgo}}</span>
-            </button>
-            <button mat-flat-button color="primary" class="block" *ngIf="pendingChanges" (click)="save()">
-                <fa-icon [icon]="tickIcon" class="mr-2 text-white ml-2"></fa-icon>
-                <span>Save changes</span>
-            </button>
         </div>
         <div fxLayout="row" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="space-around center">
             <mat-card fxFlex="40%" class="text-center">
