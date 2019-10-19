@@ -4,7 +4,7 @@
     <div fxFlex fxLayout="column" fxLayoutAlign="center center">
       <div *ngIf="!matchService.match?.expired">
           <div>{{matchService.match?.minute}}'</div>
-        <mat-progress-bar mode="indeterminate" diameter="15"></mat-progress-bar>
+        <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
       </div>
       <div *ngIf="matchService.match?.expired" class="text-sm">
         Match ended {{ matchService.match?.expiredOn | timeAgo}}

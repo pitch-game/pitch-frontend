@@ -11,7 +11,7 @@
         <div style="width:100%" class="text-center" fxLayout="row" fxLayoutAlign="space-evenly center">
           <div fxFlex>
             <mat-chip-list>
-              <mat-chip color="primary">LIVE</mat-chip>
+              <mat-chip color="accent" selected>LIVE</mat-chip>
             </mat-chip-list>
           </div>
           <div fxFlex>
@@ -25,7 +25,9 @@
           </div>
         </div>
       </a>
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <mat-progress-bar color="accent" mode="indeterminate"
+        *ngIf="isLoggedIn && matchService.match && !matchService.match.expired && !matchService.unclaimed">
+      </mat-progress-bar>
       <a mat-list-item [routerLink]=""
         *ngIf="(!matchService.match || matchService.match.expired) && !matchService.unclaimed"
         (click)="matchmakingService.matchmake()">
@@ -85,22 +87,13 @@
           *ngIf="isHandset$ | async">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <!-- <span>Quick Match</span> -->
         <span class="example-spacer"></span>
-        <span *ngIf="isLoggedIn && profile" class="mat-button mat-button-base" mat-button="">
-          <span class="mat-button-wrapper">£{{profile.money | thousandSuff}}</span>
-          <div class="mat-button-ripple mat-ripple" matripple="">
-          </div>
-          <div class="mat-button-focus-overlay">
-          </div>
-        </span>
-        <span *ngIf="isLoggedIn && profile" class="mat-button mat-button-base" mat-button="">
-          <span class="mat-button-wrapper">Level {{profile.level}}</span>
-          <div class="mat-button-ripple mat-ripple" matripple="">
-          </div>
-          <div class="mat-button-focus-overlay">
-          </div>
-        </span>
+        <button *ngIf="isLoggedIn && profile" mat-button color="accent">
+          £{{profile.money | thousandSuff}}
+        </button>
+        <button *ngIf="isLoggedIn && profile" mat-button color="accent">
+          Level {{profile.level}}
+        </button>
         <mat-menu #userMenu="matMenu" yPosition="above">
           <span mat-menu-item disabled="true" *ngIf="isLoggedIn">{{username}}</span>
           <button mat-menu-item
