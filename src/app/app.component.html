@@ -1,6 +1,6 @@
 <mat-drawer-container class="example-container">
   <mat-drawer #drawer [mode]="(isHandset$ | async) ? 'over' : 'side'" opened>
-    <div class="logo">
+    <div class="logo" routerLink="/">
       <h2>Pitch</h2>
       <h5>pre-alpha</h5>
     </div>
@@ -41,10 +41,10 @@
           Match Summary
         </p>
       </a>
-      <a mat-list-item href>
+      <!-- <a mat-list-item href>
         <mat-icon matListIcon>list</mat-icon>
         <p mat-line>Leaderboards</p>
-      </a>
+      </a> -->
       <mat-divider></mat-divider>
       <h3 matSubheader>Team Management</h3>
       <a mat-list-item href *ngFor="let link of teamLinks" [routerLink]="link.route" routerLinkActive="active">
@@ -65,18 +65,18 @@
         <p mat-line>Store</p>
       </a>
       <mat-divider></mat-divider>
-      <a mat-list-item href="https://github.com/users/jcbcn/sponsorship" target="_blank"> 
+      <a mat-list-item href="https://github.com/users/jcbcn/sponsorship" target="_blank">
         <mat-icon matListIcon>star</mat-icon>
         <p mat-line>Sponsor</p>
       </a>
-      <a mat-list-item href="...">
+      <a mat-list-item href="https://github.com/pitch-game" target="_blank">
         <mat-icon matListIcon>announcement</mat-icon>
         <p mat-line>Help & feedback</p>
       </a>
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" class="position-fixed">
       <mat-toolbar-row>
         <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
           *ngIf="isHandset$ | async">
@@ -109,6 +109,8 @@
         </button>
       </mat-toolbar-row>
     </mat-toolbar>
-    <router-outlet #outlet="outlet"></router-outlet>
+    <div class="content">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>

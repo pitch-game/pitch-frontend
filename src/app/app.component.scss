@@ -40,7 +40,7 @@ display: inline;
   $accent: map-get($theme, accent);
 
   .mat-nav-list a.active {
-    background-color: mat-color($primary, 200);
+    background-color: mat-color($primary, 300);
 }
 
 }
@@ -50,4 +50,15 @@ display: inline;
   h2 {
     margin: 0;
   }
+}
+
+.content {
+  //margin-top: 58px
+}
+
+.position-fixed{
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }

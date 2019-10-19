@@ -1,28 +1,33 @@
-<div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%">
+<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%">
     <div fxFlex="70%" fxLayout="column" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="space-around stretch">
+        <div class="container">
+            <mat-form-field appearance="outline" style="width:100%">
+                <mat-label>Team Name</mat-label>
+                <input class="squad-name" matInput *ngIf="squad" [(ngModel)]="squad.name" placeholder="Your Squad Name"
+                    (input)="pendingChanges = true">
+                <mat-icon matSuffix>users</mat-icon>
+            </mat-form-field>
+        </div>
         <div>
-            <input matInput *ngIf="squad" [(ngModel)]="squad.name" placeholder="Your Squad Name"
-                (input)="pendingChanges = true">
-            <button mat-button *ngIf="!pendingChanges && squad" routerLink="/squad/active">
+            <button mat-button color="primary" *ngIf="!pendingChanges && squad" routerLink="/squad/active">
                 <fa-icon [icon]="tickIcon" class="mr-2 text-white ml-2"></fa-icon>
                 <span>Last updated {{squad.lastUpdated | timeAgo}}</span>
             </button>
-            <button mat-button *ngIf="pendingChanges" (click)="save()">
+            <button mat-flat-button color="primary" class="block" *ngIf="pendingChanges" (click)="save()">
                 <fa-icon [icon]="tickIcon" class="mr-2 text-white ml-2"></fa-icon>
                 <span>Save changes</span>
             </button>
-
         </div>
         <div fxLayout="row" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="space-around center">
-            <mat-card fxFlex="20%">
+            <mat-card fxFlex="40%" class="text-center">
                 <mat-card-header>
                     <mat-card-title>Chemistry</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <div>{{stats.chemistry | number:'2.0-0'}}%</div>
+                    {{stats.chemistry | number:'2.0-0'}}%
                 </mat-card-content>
             </mat-card>
-            <mat-card fxFlex="20%">
+            <mat-card fxFlex="40%" class="text-center">
                 <mat-card-header>
                     <mat-card-title>Rating</mat-card-title>
                 </mat-card-header>
@@ -137,8 +142,8 @@
     </div>
 
     <div>
-        <h2>Team Instructions</h2>
-        <div fxLayout="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center stretch">
+        <h2 mat-dialog-title>Team Instructions</h2>
+        <div mat-dialog-content fxLayout="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center stretch">
             <mat-form-field *ngIf="squad">
                 <mat-label>Core Style</mat-label>
                 <mat-select [(ngModel)]="squad.instructions['core']">

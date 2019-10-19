@@ -7,10 +7,44 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
+$md-main: (
+    50 : #eaeaf7,
+    100 : #c9cbec,
+    200 : #a6a8df,
+    300 : #8285d2,
+    400 : #676bc9,
+    500 : #4c51bf,
+    600 : #454ab9,
+    700 : #3c40b1,
+    800 : #3337a9,
+    900 : #24279b,
+    A100 : #d9daff,
+    A200 : #a6a8ff,
+    A400 : #7376ff,
+    A700 : #595dff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$candy-app-primary: mat-palette($mat-deep-purple);
+$candy-app-primary: mat-palette($md-main);
 $candy-app-accent:  mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
