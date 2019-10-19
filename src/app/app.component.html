@@ -40,8 +40,7 @@
           </button>
         </p>
       </a>
-      <mat-progress-bar mode="indeterminate"
-      *ngIf="(!matchService.match || matchService.match.expired) && !matchService.unclaimed"></mat-progress-bar>
+      <mat-progress-bar mode="indeterminate" *ngIf="layoutService.showMatchmaking"></mat-progress-bar>
       <a mat-list-item [routerLink]="" *ngIf="matchService.unclaimed" (click)="claim()">
         <mat-icon matListIcon>card_giftcard</mat-icon>
         <p mat-line>

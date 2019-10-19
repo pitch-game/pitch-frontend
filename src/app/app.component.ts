@@ -112,7 +112,7 @@ export class AppComponent {
     if(!this.packs || this.packs.length == 0) return;
     let id = this.packs.pop().id;
     if (this.cards[id] && this.cards[id].opened) return;
-    this.open(null);
+    this.open(id);
   }
 
   open(id: string) {
