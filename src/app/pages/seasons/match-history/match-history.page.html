@@ -3,20 +3,20 @@
   [fromRoot]="true" style="text-align: center;">
 
   <ng-container matColumnDef="home">
-    <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Home </th>
-    <td mat-cell *matCellDef="let element"style="text-align: right;"> {{element.homeTeam}} </td>
+    <th mat-header-cell *matHeaderCellDef style="text-align: center;"></th>
+    <td mat-cell *matCellDef="let element"style="text-align: center;"> {{element.homeTeam}} </td>
   </ng-container>
 
   <ng-container matColumnDef="result">
-    <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Result </th>
+    <th mat-header-cell *matHeaderCellDef style="text-align: center;"></th>
     <td mat-cell *matCellDef="let element">
       <a href [routerLink]="['/match', element.id]">{{element.homeScore}} - {{element.awayScore}}</a>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="away">
-    <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Away </th>
-    <td mat-cell *matCellDef="let element"style="text-align: left;"> {{element.awayTeam}} </td>
+    <th mat-header-cell *matHeaderCellDef style="text-align: center;"></th>
+    <td mat-cell *matCellDef="let element"style="text-align: center;"> {{element.awayTeam}} </td>
   </ng-container>
 
   <ng-container matColumnDef="claimed">
