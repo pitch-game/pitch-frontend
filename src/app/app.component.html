@@ -29,15 +29,12 @@
         *ngIf="isLoggedIn && matchService.match && !matchService.match.expired && !matchService.unclaimed">
       </mat-progress-bar>
       <a mat-list-item [routerLink]=""
-        *ngIf="(!matchService.match || matchService.match.expired) && !matchService.unclaimed"
-        (click)="matchmakingService.matchmake()">
+        *ngIf="(!matchService.match || matchService.match.expired) && !matchService.unclaimed">
         <mat-icon matListIcon>sports_soccer</mat-icon>
         <p mat-line>
           Quick Match
-          <button mat-button color="primary" *ngIf="!layoutService.showMatchmaking">PLAY</button>
-          <button mat-button color="primary" *ngIf="layoutService.showMatchmaking">
-            <mat-progress-spinner class="spinner" mode="indeterminate" diameter="15"></mat-progress-spinner>
-          </button>
+          <button mat-button color="primary" *ngIf="!layoutService.showMatchmaking"
+            (click)="matchmakingService.matchmake()">PLAY</button>
         </p>
       </a>
       <mat-progress-bar mode="indeterminate" *ngIf="layoutService.showMatchmaking"></mat-progress-bar>
@@ -59,7 +56,7 @@
       </a>
       <mat-divider></mat-divider>
       <h3 matSubheader>Packs</h3>
-      <a mat-list-item [routerLink]="" (click)="click()">
+      <a mat-list-item [routerLink]="" (click)="click()" [ngClass]="{'disabled': packs?.length == 0 || true }">
         <span>{{(packs?.length) || 0}}</span>
         <mat-icon matListIcon>open_in_new</mat-icon>
         <p mat-line>

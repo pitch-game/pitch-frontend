@@ -1,17 +1,17 @@
 <table mat-table matSort [dataSource]="cards$ | async" infiniteScroll [infiniteScrollDistance]="2"
   [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [infiniteScrollContainer]="'.mat-drawer-content'"
-  [fromRoot]="true">
+  [fromRoot]="true" style="text-align: center;">
   <ng-container matColumnDef="card">
-    <th mat-header-cell *matHeaderCellDef> Card </th>
-    <td mat-cell *matCellDef="let element">
-      <pitch-player-card [card]="getPitchCard(element)" size="sm" mode="squad"></pitch-player-card>
+    <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Card </th>
+    <td mat-cell *matCellDef="let element" class="card-cell">
+      <pitch-player-card [card]="getPitchCard(element)" size="sm" mode="squad" [matTooltip]="element.name"></pitch-player-card>
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="name">
+  <!-- <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
+  </ng-container> -->
 
   <!-- <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef> Position </th>
@@ -24,12 +24,12 @@
   </ng-container> -->
 
   <ng-container matColumnDef="goals">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Goals </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;"> Goals </th>
     <td mat-cell *matCellDef="let element"> {{element.goalsScored}} </td>
   </ng-container>
 
   <ng-container matColumnDef="createdOn">
-    <th mat-header-cell *matHeaderCellDef> Created On </th>
+    <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Created On </th>
     <td mat-cell *matCellDef="let element"> {{element.createdOn | timeAgo}} </td>
   </ng-container>
 

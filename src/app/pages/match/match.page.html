@@ -79,14 +79,12 @@
 
 <mat-tab-group animationDuration="0ms">
   <mat-tab label="TIMELINE">
-    <div class="flex flex-wrap w-full flex-col content-center align-center">
-      <div class="lg:w-2/3 lg:m-2 overflow-hidden" *ngFor="let event of matchService.match?.events">
-        <mat-card
-          class="w-1/4 bg-transparent text-indigo-dark font-semibold py-1 px-2 lg:py-2 lg:px-4 border border-indigo rounded">
+    <div fxLayout="column" fxLayoutGap="3%" fxLayoutAlign="center">
+      <div *ngFor="let event of matchService.match?.events" fxFlex fxLayout="row">
+        <mat-card fxFlex class="event-card">
           <mat-card-content>
             <div class="px-2 py-2">
-              <span
-                class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-green mr-2 float-right">{{event.minute}}'</span>
+              <span style="float: right;">{{event.minute}}'</span>
               <div class="float-left font-semibold text-grey-darker text-sm mt-1">{{event.name}}</div>
               <div class="clearfix"></div>
               <hr class="mt-2 mb-2 py-0 my-0 border border-grey-lighter">
@@ -98,8 +96,6 @@
             </div>
           </mat-card-content>
         </mat-card>
-
-
       </div>
     </div>
   </mat-tab>

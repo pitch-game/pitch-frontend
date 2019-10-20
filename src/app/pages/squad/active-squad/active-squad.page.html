@@ -13,19 +13,17 @@
         </div>
         <div fxLayout="row" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="space-around center">
             <mat-card fxFlex="40%" class="text-center">
-                <mat-card-header>
-                    <mat-card-title>Chemistry</mat-card-title>
-                </mat-card-header>
+                <!-- <mat-icon>favorite</mat-icon> -->
+                <h2>Chemistry</h2>
                 <mat-card-content>
-                    {{stats.chemistry | number:'2.0-0'}}%
+                        <h3>{{stats.chemistry | number:'2.0-0'}}%</h3>
                 </mat-card-content>
             </mat-card>
             <mat-card fxFlex="40%" class="text-center">
-                <mat-card-header>
-                    <mat-card-title>Rating</mat-card-title>
-                </mat-card-header>
+                <!-- <mat-icon>star</mat-icon>  -->
+                <h2>Rating</h2>
                 <mat-card-content>
-                    <div>{{stats.rating | number:'2.0-0'}}</div>
+                    <h3>{{stats.rating | number:'2.0-0'}}</h3>
                 </mat-card-content>
             </mat-card>
         </div>

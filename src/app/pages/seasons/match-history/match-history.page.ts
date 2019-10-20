@@ -21,7 +21,7 @@ export class MatchHistoryPage implements OnInit {
   skip: number = 0;
   take: number = 30;
 
-  displayedColumns: string[] = ['home', 'result', 'away', 'claimed', 'kickOff'];
+  displayedColumns: string[] = ['home', 'result', 'away', 'claimed'];
 
   async ngOnInit() {
     this.matches$ = this.loadMore$
