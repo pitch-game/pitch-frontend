@@ -4,6 +4,7 @@ import { faSpinner, faFutbol, faClock, faChartLine, faUsers } from '@fortawesome
 import { PitchPlayerCard } from 'pitch-player-card';
 import { MatchService } from 'src/app/services/match.service';
 import { SubstitutionModalComponent } from 'src/app/components/substitution-modal/substitution-modal.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-match',
@@ -21,7 +22,7 @@ export class MatchComponent implements OnInit {
   sessionId: string; 
   cmpRef: any;
   
-  constructor(private route: ActivatedRoute, public matchService: MatchService, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
+  constructor(private route: ActivatedRoute, public matchService: MatchService, private componentFactoryResolver: ComponentFactoryResolver, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -43,17 +44,11 @@ export class MatchComponent implements OnInit {
   substitution() {
     if(this.matchService.subsRemaining === 0) return;
     
-    let factory = this.componentFactoryResolver.resolveComponentFactory(SubstitutionModalComponent);
-    this.cmpRef = this.viewContainerRef.createComponent(factory);
-
-    this.cmpRef.instance.destroy = () => {
-      this.cmpRef.destroy();
-    };
-
-    this.cmpRef.instance.callback = () => {
-      //get match
-    };
-
-    this.cmpRef.instance.matchId = this.sessionId;
+    let dialogRef = this.dialog.open(SubstitutionModalComponent, {
+      data: {
+        matchId: this.sessionId
+      },
+      hasBackdrop: true
+    });
   }
 }

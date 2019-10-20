@@ -1,58 +1,35 @@
-<div class="inset-0 h-full fixed flex items-center justify-center content-center bg-modal"
-  style="background-color: rgba(0, 0, 0, 0.8)">
-  <div class="bg-white rounded shadow m-4 max-h-full text-center w-full lg:w-1/5">
-    <!-- <div class="m-4 p-2 text-lg">
-            <p>
-                Select a {{modal.position || 'player'}}
-                <span class="float-right">
-                    <fa-icon [icon]="closeIcon" class="ml-2 text-indigo-lighter"></fa-icon>
-                </span>
-            </p>
-        </div> -->
-    <div class="p-2 m-4">
-      <div class="flex h-full">
-        <div class="flex-auto">
-          <h4 class="mb-2 text-red">Off</h4>
-          <div class="overflow-y-scroll max-h-screen-1/3">
-            <div class="p-2 m-1" *ngFor="let player of squad?.active">
-              <pitch-player-card (click)="selectOff(player)" size="sm" [card]="card(player)" mode="squad"></pitch-player-card>
-            </div>
-          </div>
-        </div>
-        <div class="flex justify-center items-center">
-          <div>
-            <fa-icon [icon]="rightChevron" size="2x" class="ml-2 text-indigo-lighter"></fa-icon>
-          </div>
-        </div>
-        <div class="flex-auto">
-          <h4 class="mb-2 text-green">On</h4>
-          <div class="overflow-y-scroll max-h-screen-1/3">
-            <div class="p-2 m-1" *ngFor="let player of squad?.subs">
-              <pitch-player-card (click)="selectOn(player)" size="sm" [card]="card(player)" mode="squad"></pitch-player-card>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="mt-4">
-        <h4 class="mb-4">Summary</h4>
-        <div class="flex m-2">
-          <div class="w-1/3 text-xs">
-            {{off?.name}}
-          </div>
-          <div class="w-1/3 text-center">
-            <fa-icon [icon]="rightChevron" class="ml-2 text-indigo-lighter"></fa-icon>
-          </div>
-          <div class="w-1/3 text-xs">
-            {{on?.name}}
-          </div>
-        </div>
+<h2 mat-dialog-title>Make a substitution</h2>
+<mat-dialog-content class="mat-typography mat-dialog-content">
+  <div fxLayout="row">
+    <div fxLayout="column" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="space-around center">
+      <h2>Off</h2>
+      <div class="p-2 m-1" *ngFor="let player of squad?.active">
+        <pitch-player-card (click)="selectOff(player)" size="sm" [card]="card(player)" mode="squad"></pitch-player-card>
       </div>
     </div>
-    <a *ngIf="on && off" class="block group hover:bg-indigo-lighter p-4 no-underline bg-green" (click)="sub()">
-      <p class="font-bold text-md mb-1 text-black group-hover:text-white">Confirm</p>
-    </a>
-    <a class="block group hover:bg-indigo-lighter p-4 rounded no-underline bg-grey-light" (click)="destroy()">
-      <p class="font-bold text-md mb-1 text-black group-hover:text-white">Cancel</p>
-    </a>
+    <div fxLayout="column" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="space-around center">
+      <h2>On</h2>
+      <div class="p-2 m-1" *ngFor="let player of squad?.subs">
+        <pitch-player-card (click)="selectOn(player)" size="sm" [card]="card(player)" mode="squad"></pitch-player-card>
+      </div>
+    </div>
   </div>
-</div>
+  <div class="mt-4">
+    <h4 class="mb-4">Summary</h4>
+    <div class="flex m-2">
+      <div class="w-1/3 text-xs">
+        {{off?.name}}
+      </div>
+      <div class="w-1/3 text-center">
+        <fa-icon [icon]="rightChevron" class="ml-2 text-indigo-lighter"></fa-icon>
+      </div>
+      <div class="w-1/3 text-xs">
+        {{on?.name}}
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="primary" (click)="sub()" [disabled]="!(on && off)">Confirm</button>
+</mat-dialog-actions>

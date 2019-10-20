@@ -1,3 +1,7 @@
+<button mat-fab color="primary" class="sub-button" (click)="substitution()" [disabled]="matchService.match?.expired || matchService.subsRemaining == 0">
+    <mat-icon matListIcon>compare_arrows</mat-icon>
+</button>
+
 <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap>
   <div fxFlex></div>
   <div fxFlex>
@@ -99,7 +103,7 @@
       </div>
     </div>
   </mat-tab>
-  <mat-tab label="LINEUPS"> LINEUPS </mat-tab>
+  <mat-tab label="LINEUPS" disabled> LINEUPS </mat-tab>
   <mat-tab label="STATS">
     <div fxLayout="column" fxLayoutWrap fxLayoutGap="2%" fxLayoutAlign="space-around stretch" style="margin-top:10px;">
       <!-- <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">

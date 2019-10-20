@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { faTimes, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { PitchPlayerCard } from 'pitch-player-card';
 import { MatchHttpService } from 'src/app/services/http/match.http-service';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-substitution-modal',
@@ -22,7 +23,8 @@ export class SubstitutionModalComponent implements OnInit {
 
   squad: any;
 
-  constructor(private matchHttpService: MatchHttpService) {
+  constructor(private matchHttpService: MatchHttpService, @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.matchId = data.matchId;
   }
 
   async ngOnInit() {
