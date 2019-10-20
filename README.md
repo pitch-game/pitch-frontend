@@ -10,13 +10,14 @@
 
 <center>
 
-|   Pack Opening                            |   Live match                              |
-|:-----------------------------------------:|:-----------------------------------------:|
-| <img src=".images/store.gif" width="300"/> | <img src=".images/match.gif" width="300"/> |
-
 |   Squad                                   |   Seasons                                         |
 |:-----------------------------------------:|:-----------------------------------------------:|
 | <img src=".images/squad.gif" width="300"/> |   <img src=".images/seasons.gif" width="300"/>   |
+
+
+|   Pack Opening                            |   Live match                              |
+|:-----------------------------------------:|:-----------------------------------------:|
+| <img src=".images/store.gif" width="300"/> | <img src=".images/match.gif" width="300"/> |
 
 </center>
 
