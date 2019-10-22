@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { CardHttpService } from 'src/app/services/http/card.http-service';
 import { CardQueryModel } from 'src/app/models/card/card-query-model';
-import { PitchPlayerCard } from 'pitch-player-card/models/pitch-player-card';
+import { PitchPlayerCard } from 'pitch-player-card';
 import { Observable, Subject } from 'rxjs';
 import { Card } from 'src/app/models/card/card';
 import { MAT_DIALOG_DATA } from '@angular/material';
@@ -45,6 +45,10 @@ export class PlayerSelectorDialogComponent implements OnInit {
 
   private getPlayers(skip: number): Observable<Card[]> {
     return this.cardService.getWithQuery(new CardQueryModel(this.skip, this.take, this.position, this.idsToFilter));
+  }
+
+  getPitchCard(card: Card){
+    return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
   }
 
   onScroll() {

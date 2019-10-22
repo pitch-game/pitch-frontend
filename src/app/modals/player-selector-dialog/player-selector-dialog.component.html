@@ -5,7 +5,7 @@
     <div *ngFor="let card of cards$ | async" (click)="callback(card.id)"
       class="flex bg-grey-lighter content-center items-center justify-center p-2 hover:bg-indigo-lighter cursor-pointer">
       <div class="m-2 flex-1">
-        <pitch-player-card [card]="card" size="sm" mode="squad"></pitch-player-card>
+        <pitch-player-card [card]="getPitchCard(card)" size="sm" mode="squad"></pitch-player-card>
       </div>
     </div>
   </div>
@@ -14,8 +14,3 @@
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button (click)="callback(null)">Remove Player</button>
 </mat-dialog-actions>
-
-
-<!-- Copyright 2019 Google Inc. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license -->
