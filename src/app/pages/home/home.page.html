@@ -3,7 +3,7 @@
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Authenticate</ng-template>
       <div>
-        <button mat-button matStepperNext>Sign In</button>
+        <button mat-button matStepperNext (click)="signIn()">Sign In</button>
       </div>
     </form>
   </mat-step>
