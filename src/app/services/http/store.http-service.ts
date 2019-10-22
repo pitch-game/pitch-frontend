@@ -12,7 +12,7 @@ export class StoreHttpService {
         return this.http.get<Card>(`${environment.apiEndpoint}/store/packs/open/` + id).toPromise();
     }
 
-    getPacks(): Observable<any> {
-        return this.http.get<any[]>(`${environment.apiEndpoint}/store/packs`);
+    getPacks(): Promise<any> {
+        return this.http.get<any[]>(`${environment.apiEndpoint}/store/packs`).toPromise();
     }
 }

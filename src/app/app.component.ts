@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { slideInAnimation } from './animations';
 import { AuthService } from './auth/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { LayoutService } from './services/layout.service';
-import { faUsers, faFutbol, faTicketAlt, faShoppingBasket, faMoneyBill, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { UserHttpService } from './services/http/user.http-service';
 import { MatchService } from './services/match.service';
 import { MatchmakingService } from './services/matchmaking.service';
@@ -13,9 +12,7 @@ import { MatchHttpService } from './services/http/match.http-service';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, withLatestFrom, filter } from 'rxjs/operators';
-import { Card } from './models/card/card';
-import { StoreHttpService } from './services/http/store.http-service';
-import { OpenPackPopupComponent } from './components/open-pack-popup/open-pack-popup.component';
+import { PackService } from './services/pack.service';
 
 
 @Component({
@@ -24,30 +21,16 @@ import { OpenPackPopupComponent } from './components/open-pack-popup/open-pack-p
   styleUrls: ['./app.component.scss'],
   animations: [
     slideInAnimation
-  ]
+  ],
+  providers:  [ PackService ]
 })
 export class AppComponent {
-
   title = 'Pitch';
-
-  seasonsIcon = faFutbol;
-  squadIcon = faUsers;
-  challengesIcon = faTicketAlt;
-  storeIcon = faShoppingBasket;
-  marketplaceIcon = faMoneyBill;
-  loadingIcon = faSpinner;
-
-  inProgress: any;
-
-  isLoggedIn: boolean;
   version: string;
 
+  isLoggedIn: boolean;
   profile: UserProfile;
   username: string;
-
-  cards: { [id: string]: Card } = {};
-  packs: any[];
-  cmpRef: any;
 
   @ViewChild('drawer', null) drawer: any;
 
@@ -73,9 +56,7 @@ export class AppComponent {
     private matchHttpService: MatchHttpService,
     public matchmakingService: MatchmakingService,
     private breakpointObserver: BreakpointObserver,
-    private store: StoreHttpService, 
-    private componentFactoryResolver: ComponentFactoryResolver, 
-    private viewContainerRef: ViewContainerRef) {
+    private packService: PackService) {
 
     this.authService.isLoggedIn().subscribe(async (isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
@@ -83,6 +64,7 @@ export class AppComponent {
       this.profile = await this.userService.get();
       await this.matchService.init();
       await this.matchmakingService.init();
+      await this.packService.init();
     });
 
     this.authService.getUserData().subscribe((user) => {
@@ -90,55 +72,25 @@ export class AppComponent {
       this.username = user.name;
     });
 
-    this.version = environment.version;
-    
     router.events.pipe(
       withLatestFrom(this.isHandset$),
       filter(([a, b]) => b && a instanceof NavigationEnd)
     ).subscribe(_ => this.drawer.close())
 
-    this.router.events.subscribe((event) => {
-      //if(typeof(event) == NavigationEnd) { TODO
+    this.router.events.subscribe(_ => {
       this.layoutService.showNav = false;
-      //}
     });
 
-    this.store.getPacks().subscribe((packs) => {
-      this.packs = packs;
-    });
+    this.version = environment.version;
   }
 
-  click() {
-    if(!this.packs || this.packs.length == 0) return;
-    let id = this.packs.pop().id;
-    if (this.cards[id] && this.cards[id].opened) return;
-    this.open(id);
+  openPack() {
+    this.packService.openPack();
   }
 
-  open(id: string) {
-    let factory = this.componentFactoryResolver.resolveComponentFactory(OpenPackPopupComponent);
-    this.cmpRef = this.viewContainerRef.createComponent(factory);
-
-    this.cmpRef.instance.packId = id;
-    this.cmpRef.instance.packsLeft = this.packs.length;
-
-    this.cmpRef.instance.openNext = () => {
-      this.cmpRef.destroy();
-      this.click();
-    };
-
-    this.cmpRef.instance.destroy = () => {
-      this.cmpRef.destroy();
-    };
-  }  
-
-  async claim() {
+  async claimMatchRewards() {
     await this.matchHttpService.claim();
     await this.matchService.init();
-  }
-
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 
   toggleMenu() {
@@ -151,5 +103,9 @@ export class AppComponent {
 
   signOut() {
     this.authService.signOut();
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }

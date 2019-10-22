@@ -38,7 +38,7 @@
         </p>
       </a>
       <mat-progress-bar mode="indeterminate" *ngIf="layoutService.showMatchmaking"></mat-progress-bar>
-      <a mat-list-item [routerLink]="" *ngIf="matchService.unclaimed" (click)="claim()">
+      <a mat-list-item [routerLink]="" *ngIf="matchService.unclaimed" (click)="claimMatchRewards()">
         <mat-icon matListIcon>card_giftcard</mat-icon>
         <p mat-line>
           Match Summary
@@ -56,7 +56,7 @@
       </a>
       <mat-divider></mat-divider>
       <h3 matSubheader>Packs</h3>
-      <a mat-list-item [routerLink]="" (click)="click()" [ngClass]="{'disabled': packs?.length == 0 || true }">
+      <a mat-list-item [routerLink]="" (click)="openPack()" [ngClass]="{'disabled': packs?.length == 0 || true }">
         <span>{{(packs?.length) || 0}}</span>
         <mat-icon matListIcon>open_in_new</mat-icon>
         <p mat-line>
