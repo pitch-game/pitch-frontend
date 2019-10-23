@@ -1,5 +1,5 @@
 import { Component, ViewChild} from '@angular/core';
-import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { slideInAnimation } from './animations';
 import { AuthService } from './auth/services/auth.service';
 import { environment } from 'src/environments/environment';
@@ -30,7 +30,7 @@ export class AppComponent {
 
   isLoggedIn: boolean;
   profile: UserProfile;
-  username: string;
+  username$: Observable<string>;
 
   @ViewChild('drawer', null) drawer: any;
 
@@ -56,20 +56,18 @@ export class AppComponent {
     private matchHttpService: MatchHttpService,
     public matchmakingService: MatchmakingService,
     private breakpointObserver: BreakpointObserver,
-    private packService: PackService) {
+    public packService: PackService) {
 
     this.authService.isLoggedIn().subscribe(async (isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
       if (!isLoggedIn) return;
+
       this.profile = await this.userService.get();
+      this.username$ = this.authService.getUserData().pipe(map((result) => result.name));
+
       await this.matchService.init();
       await this.matchmakingService.init();
       await this.packService.init();
-    });
-
-    this.authService.getUserData().subscribe((user) => {
-      if (!user) return;
-      this.username = user.name;
     });
 
     router.events.pipe(
@@ -103,9 +101,5 @@ export class AppComponent {
 
   signOut() {
     this.authService.signOut();
-  }
-
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }

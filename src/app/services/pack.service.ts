@@ -4,7 +4,7 @@ import { OpenPackPopupComponent } from '../components/open-pack-popup/open-pack-
 
 @Injectable()
 export class PackService {
-    packs: any[];
+    public packs: any[];
     cmpRef: any;
 
     constructor(private store: StoreHttpService,
