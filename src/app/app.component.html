@@ -33,9 +33,9 @@
         <mat-icon matListIcon>sports_soccer</mat-icon>
         <p mat-line>
           Quick Match
-          <button mat-button color="primary" *ngIf="!layoutService.showMatchmaking"
-            (click)="matchmakingService.matchmake()">PLAY</button>
         </p>
+        <button class="quick-play" mat-button color="primary" *ngIf="!layoutService.showMatchmaking"
+          (click)="matchmakingService.matchmake()">PLAY</button>
       </a>
       <mat-progress-bar mode="indeterminate" *ngIf="layoutService.showMatchmaking"></mat-progress-bar>
       <a mat-list-item [routerLink]="" *ngIf="matchService.unclaimed" (click)="claimMatchRewards()">
@@ -56,7 +56,8 @@
       </a>
       <mat-divider></mat-divider>
       <h3 matSubheader>Packs</h3>
-      <a mat-list-item [routerLink]="" (click)="openPack()" [ngClass]="{'disabled': packService.packs?.length == 0 || true }">
+      <a mat-list-item [routerLink]="" (click)="openPack()"
+        [ngClass]="{'disabled': packService.packs?.length == 0 || true }">
         <span>{{(packService.packs?.length) || 0}}</span>
         <mat-icon matListIcon>open_in_new</mat-icon>
         <p mat-line>

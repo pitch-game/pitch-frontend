@@ -16,9 +16,6 @@ export class OpenPackPopupComponent implements OnInit {
   packId: string;
   packsLeft: number;
 
-  closeIcon = faTimes;
-  nextIcon = faChevronRight;
-
   destroy: Function;
   openNext: Function;
 

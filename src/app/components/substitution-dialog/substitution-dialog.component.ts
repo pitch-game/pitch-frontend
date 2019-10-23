@@ -5,11 +5,11 @@ import { MatchHttpService } from 'src/app/services/http/match.http-service';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-substitution-modal',
-  templateUrl: './substitution-modal.component.html',
-  styleUrls: ['./substitution-modal.component.less']
+  selector: 'app-substitution-dialog',
+  templateUrl: './substitution-dialog.component.html',
+  styleUrls: ['./substitution-dialog.component.less']
 })
-export class SubstitutionModalComponent implements OnInit {
+export class SubstitutionDialogComponent implements OnInit {
 
   rightChevron = faChevronRight;
 

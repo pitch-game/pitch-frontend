@@ -8,7 +8,7 @@ import { CardHttpService } from 'src/app/services/http/card.http-service';
 import { SquadHttpService } from 'src/app/services/http/squad.http-service';
 import { PitchPlayerCard } from 'pitch-player-card';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { PlayerSelectorDialogComponent } from 'src/app/modals/player-selector-dialog/player-selector-dialog.component';
+import { PlayerSelectorDialogComponent } from 'src/app/components/player-selector-dialog/player-selector-dialog.component';
 
 @Component({
   selector: 'app-active-squad',

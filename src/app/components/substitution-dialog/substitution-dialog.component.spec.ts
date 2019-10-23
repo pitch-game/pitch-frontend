@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubstitutionModalComponent } from './substitution-modal.component';
+import { SubstitutionDialogComponent } from './substitution-dialog.component';
 
-describe('SubstitutionModalComponent', () => {
-  let component: SubstitutionModalComponent;
-  let fixture: ComponentFixture<SubstitutionModalComponent>;
+describe('SubstitutionDialogComponent', () => {
+  let component: SubstitutionDialogComponent;
+  let fixture: ComponentFixture<SubstitutionDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubstitutionModalComponent ]
+      declarations: [ SubstitutionDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SubstitutionModalComponent);
+    fixture = TestBed.createComponent(SubstitutionDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

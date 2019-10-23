@@ -35,7 +35,7 @@ import { HomePage } from './pages/home/home.page';
 import { ThousandSuffixesPipe } from './pipes/thousand-suffixes.pipe';
 import { OpenPackPopupComponent } from './components/open-pack-popup/open-pack-popup.component';
 import { UnauthorizedInterceptor } from './auth/interceptors/unauthorized.interceptor';
-import { SubstitutionModalComponent } from './components/substitution-modal/substitution-modal.component';
+import { SubstitutionDialogComponent } from './components/substitution-dialog/substitution-dialog.component';
 
 import { AuthModule, OidcSecurityService, OpenIdConfiguration, AuthWellKnownEndpoints, OidcConfigService, ConfigResult } from 'angular-auth-oidc-client';
 import { environment } from 'src/environments/environment';
@@ -43,7 +43,7 @@ import { environment } from 'src/environments/environment';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonModule, MatMenuModule, MatGridListModule, MatTableModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTabsModule, MatProgressSpinnerModule, MatChipsModule, MatStepperModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatTooltipModule } from '@angular/material';
-import { PlayerSelectorDialogComponent } from './modals/player-selector-dialog/player-selector-dialog.component';
+import { PlayerSelectorDialogComponent } from './components/player-selector-dialog/player-selector-dialog.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +64,7 @@ import { PlayerSelectorDialogComponent } from './modals/player-selector-dialog/p
     MatchHistoryPage,
     HomePage,
     OpenPackPopupComponent,
-    SubstitutionModalComponent,
+    SubstitutionDialogComponent,
     PlayerSelectorDialogComponent
   ],
   imports: [
@@ -121,7 +121,7 @@ import { PlayerSelectorDialogComponent } from './modals/player-selector-dialog/p
       deps: [OidcConfigService],
       multi: true,
     }],
-  entryComponents: [OpenPackPopupComponent, SubstitutionModalComponent, PlayerSelectorDialogComponent],
+  entryComponents: [OpenPackPopupComponent, SubstitutionDialogComponent, PlayerSelectorDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

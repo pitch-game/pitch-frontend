@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { faSpinner, faFutbol, faClock, faChartLine, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { PitchPlayerCard } from 'pitch-player-card';
 import { MatchService } from 'src/app/services/match.service';
-import { SubstitutionModalComponent } from 'src/app/components/substitution-modal/substitution-modal.component';
+import { SubstitutionDialogComponent } from 'src/app/components/substitution-dialog/substitution-dialog.component';
 import { MatDialog } from '@angular/material';
 
 @Component({
@@ -44,7 +44,7 @@ export class MatchComponent implements OnInit {
   substitution() {
     if(this.matchService.subsRemaining === 0) return;
     
-    let dialogRef = this.dialog.open(SubstitutionModalComponent, {
+    let dialogRef = this.dialog.open(SubstitutionDialogComponent, {
       data: {
         matchId: this.sessionId
       },
