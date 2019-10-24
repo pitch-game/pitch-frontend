@@ -75,10 +75,6 @@ export class AppComponent {
       filter(([a, b]) => b && a instanceof NavigationEnd)
     ).subscribe(_ => this.drawer.close())
 
-    this.router.events.subscribe(_ => {
-      this.layoutService.showNav = false;
-    });
-
     this.version = environment.version;
   }
 
@@ -89,10 +85,6 @@ export class AppComponent {
   async claimMatchRewards() {
     await this.matchHttpService.claim();
     await this.matchService.init();
-  }
-
-  toggleMenu() {
-    this.layoutService.toggleNav();
   }
 
   login() {
