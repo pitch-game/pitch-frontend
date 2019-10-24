@@ -3,13 +3,13 @@
   <div fxLayout="row">
     <div fxLayout="column" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="space-around center">
       <h2>Off</h2>
-      <div class="p-2 m-1" *ngFor="let player of squad?.active">
+      <div *ngFor="let player of squad?.active">
         <pitch-player-card (click)="selectOff(player)" size="sm" [card]="card(player)" mode="squad"></pitch-player-card>
       </div>
     </div>
     <div fxLayout="column" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="space-around center">
       <h2>On</h2>
-      <div class="p-2 m-1" *ngFor="let player of squad?.subs">
+      <div *ngFor="let player of squad?.subs">
         <pitch-player-card (click)="selectOn(player)" size="sm" [card]="card(player)" mode="squad"></pitch-player-card>
       </div>
     </div>
@@ -21,7 +21,7 @@
         {{off?.name}}
       </div>
       <div class="text-center">
-        <fa-icon [icon]="rightChevron" class="ml-2 text-indigo-lighter"></fa-icon>
+        <fa-icon [icon]="rightChevron"></fa-icon>
       </div>
       <div>
         {{on?.name}}

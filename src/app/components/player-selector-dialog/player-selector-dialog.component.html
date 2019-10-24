@@ -1,12 +1,10 @@
 <h2 mat-dialog-title>Select a {{position || 'player'}}</h2>
 <mat-dialog-content class="mat-typography mat-dialog-content">
-  <div class="overflow-y-scroll max-h-screen-1/2" infiniteScroll [infiniteScrollDistance]="2"
-    [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false"  [infiniteScrollContainer]="'.mat-dialog-content'" [fromRoot]="true" fxLayout="column" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="space-around center">
-    <div *ngFor="let card of cards$ | async" (click)="callback(card.id)"
-      class="flex bg-grey-lighter content-center items-center justify-center p-2 hover:bg-indigo-lighter cursor-pointer">
-      <div class="m-2 flex-1">
-        <pitch-player-card [card]="getPitchCard(card)" size="sm" mode="squad"></pitch-player-card>
-      </div>
+  <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()"
+    [scrollWindow]="false" [infiniteScrollContainer]="'.mat-dialog-content'" [fromRoot]="true" fxLayout="column"
+    fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="space-around center">
+    <div *ngFor="let card of cards$ | async" (click)="callback(card.id)">
+      <pitch-player-card [card]="getPitchCard(card)" size="sm" mode="squad"></pitch-player-card>
     </div>
   </div>
 </mat-dialog-content>
