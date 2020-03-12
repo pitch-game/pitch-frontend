@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  identityEndpoint: 'https://api.pitch-game.io/identity',
-  apiEndpoint: 'https://api.pitch-game.io',
+  identityEndpoint: 'http://host.docker.internal/identity',
+  apiEndpoint: 'http://host.docker.internal',
   appUri: 'http://localhost:4200',
   version: '1.0.0.0'
 };

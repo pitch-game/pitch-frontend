@@ -37,12 +37,32 @@ import { OpenPackPopupComponent } from './components/open-pack-popup/open-pack-p
 import { UnauthorizedInterceptor } from './auth/interceptors/unauthorized.interceptor';
 import { SubstitutionDialogComponent } from './components/substitution-dialog/substitution-dialog.component';
 
-import { AuthModule, OidcSecurityService, OpenIdConfiguration, AuthWellKnownEndpoints, OidcConfigService, ConfigResult } from 'angular-auth-oidc-client';
+import { AuthModule, OidcSecurityService, OpenIdConfiguration, OidcConfigService, ConfigResult } from 'angular-auth-oidc-client';
 import { environment } from 'src/environments/environment';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonModule, MatMenuModule, MatGridListModule, MatTableModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTabsModule, MatProgressSpinnerModule, MatChipsModule, MatStepperModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatTooltipModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { PlayerSelectorDialogComponent } from './components/player-selector-dialog/player-selector-dialog.component';
 
 @NgModule({
