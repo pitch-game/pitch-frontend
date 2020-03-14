@@ -8,30 +8,29 @@ export class PackService {
     cmpRef: any;
 
     constructor(private store: StoreHttpService,
-        private componentFactoryResolver: ComponentFactoryResolver,
-        private viewContainerRef: ViewContainerRef) {
+        private componentFactoryResolver: ComponentFactoryResolver) {
     }
 
     async init() {
         this.packs = await this.store.getPacks();
     }
 
-    openPack() {
+    openPack(containerRef: ViewContainerRef) {
         if (!this.packs || this.packs.length == 0) return;
         let id = this.packs.pop().id;
-        this.openPackRevealModal(id);
+        this.openPackRevealModal(id, containerRef);
     }
 
-    private openPackRevealModal(id: string) {
+    private openPackRevealModal(id: string, containerRef: ViewContainerRef) {
         let factory = this.componentFactoryResolver.resolveComponentFactory(OpenPackPopupComponent);
-        this.cmpRef = this.viewContainerRef.createComponent(factory);
+        this.cmpRef = containerRef.createComponent(factory);
 
         this.cmpRef.instance.packId = id;
         this.cmpRef.instance.packsLeft = this.packs.length;
 
         this.cmpRef.instance.openNext = () => {
             this.cmpRef.destroy();
-            this.openPack();
+            this.openPack(containerRef);
         };
 
         this.cmpRef.instance.destroy = () => {

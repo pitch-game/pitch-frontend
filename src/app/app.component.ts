@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component, ViewChild, ViewContainerRef} from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { slideInAnimation } from './animations';
 import { AuthService } from './auth/services/auth.service';
@@ -24,6 +24,7 @@ import { PackService } from './services/pack.service';
   ],
   providers:  [ PackService ]
 })
+
 export class AppComponent {
   title = 'Pitch';
   version: string;
@@ -56,7 +57,8 @@ export class AppComponent {
     private matchHttpService: MatchHttpService,
     public matchmakingService: MatchmakingService,
     private breakpointObserver: BreakpointObserver,
-    public packService: PackService) {
+    public packService: PackService,
+    private _vcr: ViewContainerRef) {
 
     this.authService.isLoggedIn().subscribe(async (isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
@@ -79,7 +81,7 @@ export class AppComponent {
   }
 
   openPack() {
-    this.packService.openPack();
+    this.packService.openPack(this._vcr);
   }
 
   async claimMatchRewards() {
