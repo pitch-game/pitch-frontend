@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { faTimes, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { PitchPlayerCard } from 'pitch-player-card';
 import { MatchHttpService } from 'src/app/services/http/match.http-service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-substitution-dialog',

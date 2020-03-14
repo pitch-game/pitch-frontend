@@ -4,8 +4,7 @@ import { faSpinner, faFutbol, faClock, faChartLine, faUsers } from '@fortawesome
 import { PitchPlayerCard } from 'pitch-player-card';
 import { MatchService } from 'src/app/services/match.service';
 import { SubstitutionDialogComponent } from 'src/app/components/substitution-dialog/substitution-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
-
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-match',
