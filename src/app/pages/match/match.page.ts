@@ -39,7 +39,7 @@ export class MatchComponent implements OnInit {
   getModel(cardId: string) {
     var card = this.matchService.match.cardLookup[cardId];
     if(!card) return new PitchPlayerCard();
-    return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity)
+    return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity, card.fitness)
   }
 
   substitution() {

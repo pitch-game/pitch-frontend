@@ -48,7 +48,7 @@ export class PlayerSelectorDialogComponent implements OnInit {
   }
 
   getPitchCard(card: Card){
-    return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+    return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity, card.fitness);
   }
 
   onScroll() {

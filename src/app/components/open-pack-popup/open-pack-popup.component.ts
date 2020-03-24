@@ -21,7 +21,7 @@ export class OpenPackPopupComponent implements OnInit {
 
   async ngOnInit() {
     let result = await this.storeHttpService.openPack(this.packId);
-    this.card = new PitchPlayerCard(result.id, result.shortName, result.position, result.rating, result.rarity)
+    this.card = new PitchPlayerCard(result.id, result.shortName, result.position, result.rating, result.rarity, result.fitness)
   }
 
   click() {

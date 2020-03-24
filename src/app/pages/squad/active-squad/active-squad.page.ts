@@ -45,7 +45,7 @@ export class ActivesquadComponent implements OnInit {
           this.squad.lineup[position] = cardId;
           if (cardId) {
             var card = await this.cardService.get(cardId);
-            this.cards[position] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+            this.cards[position] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity, card.fitness);
           } else {
             this.cards[position] = null;
           }
@@ -66,7 +66,7 @@ export class ActivesquadComponent implements OnInit {
           this.squad.subs[index] = cardId;
           if (cardId) {
             var card = await this.cardService.get(cardId);
-            this.cards[cardId] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+            this.cards[cardId] = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity, card.fitness);
           }
           this.pendingChanges = true;
           this.stats = this.squadStatsService.calculate(this.squad, this.cards);
@@ -106,7 +106,7 @@ export class ActivesquadComponent implements OnInit {
     for (let position in this.squad.lineup) {
       var card = cards.find(x => x.id == this.squad.lineup[position]);
       if (card) {
-        var ppc = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+        var ppc = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity, card.fitness);
         this.cards[position] = ppc;
       } else {
         this.cards[position] = null;
@@ -121,7 +121,7 @@ export class ActivesquadComponent implements OnInit {
     for (let index in this.squad.subs) {
       var card = subCards.find(x => x.id == this.squad.subs[index]);
       if (card) {
-        var ppc = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+        var ppc = new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity, card.fitness);
         this.cards[this.squad.subs[index]] = ppc;
       } else {
         this.cards[this.squad.subs[index]] = null;
