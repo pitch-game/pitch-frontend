@@ -36,7 +36,8 @@ export class MatchComponent implements OnInit {
   }
 
   //TODO fix performance
-  getModel(card: any) {
+  getModel(cardId: string) {
+    var card = this.matchService.match.cardLookup[cardId];
     if(!card) return new PitchPlayerCard();
     return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity)
   }
