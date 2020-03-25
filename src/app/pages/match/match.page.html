@@ -12,7 +12,7 @@
         <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
       </div>
       <div *ngIf="matchService.match?.expired" class="text-sm">
-        Match ended {{ matchService.match?.expiredOn | timeAgo}}
+        Match ended {{ matchService.match?.expiredOn | timeago:live}}
       </div>
     </div>
   </div>

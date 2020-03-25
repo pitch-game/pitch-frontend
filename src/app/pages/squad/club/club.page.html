@@ -30,7 +30,7 @@
 
   <ng-container matColumnDef="createdOn">
     <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Created On </th>
-    <td mat-cell *matCellDef="let element"> {{element.createdOn | timeAgo}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.createdOn |  timeago:live}} </td>
   </ng-container>
 
   <!--<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>-->

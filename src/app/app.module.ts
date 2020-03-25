@@ -26,7 +26,8 @@ import { TokenInterceptor } from './auth/interceptors/token.interceptor';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
-import { TimeAgoPipe } from 'time-ago-pipe';
+import { TimeagoModule } from 'ngx-timeago';
+
 import { BuyPageComponent } from './pages/store/buy/buy.page';
 import { MatchComponent } from './pages/match/match.page';
 import { CurrentSeasonPage } from './pages/seasons/current-season/current-season.page';
@@ -79,7 +80,6 @@ import { MatInputModule } from '@angular/material/input';
     TrainingComponent,
     ClubComponent,
     ThousandSuffixesPipe,
-    TimeAgoPipe,
     BuyPageComponent,
     MatchComponent,
     CurrentSeasonPage,
@@ -99,6 +99,7 @@ import { MatInputModule } from '@angular/material/input';
     InfiniteScrollModule,
     FormsModule,
     AuthModule.forRoot(),
+    TimeagoModule.forRoot(),
     FlexLayoutModule,
     MatSidenavModule,
     MatIconModule,
