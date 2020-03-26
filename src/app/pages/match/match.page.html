@@ -105,188 +105,182 @@
     </div>
   </mat-tab>
   <mat-tab label="LINEUPS">
-    <div class="isometric-container">
-      <div class="isometric">
-        <div>
-          <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['GK'][0])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-          </div>
-          <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][0])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][1])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][2])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][3])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-          </div>
-          <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][0])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][1])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][2])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][3])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-          </div>
-          <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-            <div fxFlex="25%"></div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['ATT'][0])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['ATT'][1])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%"></div>
+    <h2>{{matchService.match?.awayResult?.name}}</h2>
+    <div class="lineup">
+      <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['GK'][0])" size="sm"
+              mode="squad">
+            </pitch-player-card>
           </div>
         </div>
       </div>
+      <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][0])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][1])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][2])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][3])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][0])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][1])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][2])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][3])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+        <div fxFlex="25%"></div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['ATT'][0])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['ATT'][1])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+        <div fxFlex="25%"></div>
+      </div>
     </div>
-    <div class="isometric-container">
-      <div class="isometric">
-        <div>
-          <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-            <div fxFlex="25%"></div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['ATT'][0])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['ATT'][1])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%"></div>
+    <h2>{{matchService.match?.homeResult?.name}}</h2>
+    <div class="lineup">
+      <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+        <div fxFlex="25%"></div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['ATT'][0])" size="sm"
+              mode="squad">
+            </pitch-player-card>
           </div>
-          <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][0])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][1])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][2])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][3])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['ATT'][1])" size="sm"
+              mode="squad">
+            </pitch-player-card>
           </div>
-          <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][0])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][1])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][2])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][3])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
+        </div>
+        <div fxFlex="25%"></div>
+      </div>
+      <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][0])" size="sm"
+              mode="squad">
+            </pitch-player-card>
           </div>
-          <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-            <div fxFlex="25%">
-              <div>
-                <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['GK'][0])" size="sm"
-                  mode="squad">
-                </pitch-player-card>
-              </div>
-            </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][1])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][2])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][3])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+      </div>
+      <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][0])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][1])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][2])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][3])" size="sm"
+              mode="squad">
+            </pitch-player-card>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+        <div fxFlex="25%">
+          <div>
+            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['GK'][0])" size="sm"
+              mode="squad">
+            </pitch-player-card>
           </div>
         </div>
       </div>
