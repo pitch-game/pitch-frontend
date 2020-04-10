@@ -96,6 +96,7 @@
               </button>
               <button *ngIf="isLoggedIn && profile" mat-button [matMenuTriggerFor]="levelMenu">
                 Level {{profile.level}}
+                <mat-progress-bar color="warn" [value]="(profile.xp / (profile.nextLevelAt || 10000)) * 100"></mat-progress-bar>
               </button>
               <mat-menu #userMenu="matMenu" yPosition="above">
                 <span mat-menu-item disabled="true" *ngIf="isLoggedIn">{{username$ | async}}</span>
