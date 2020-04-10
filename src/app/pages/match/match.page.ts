@@ -1,6 +1,6 @@
 import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faSpinner, faFutbol, faClock, faChartLine, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faFutbol, faClock, faChartLine, faUsers, faSquare } from '@fortawesome/free-solid-svg-icons';
 import { PitchPlayerCard } from 'pitch-player-card';
 import { MatchService } from 'src/app/services/match.service';
 import { SubstitutionDialogComponent } from 'src/app/components/substitution-dialog/substitution-dialog.component';
@@ -18,6 +18,7 @@ export class MatchComponent implements OnInit {
   timelineIcon = faClock;
   statsIcon = faChartLine;
   lineupIcon = faUsers;
+  squareIcon = faSquare;
 
   sessionId: string; 
   cmpRef: any;

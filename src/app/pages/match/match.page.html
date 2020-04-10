@@ -3,336 +3,355 @@
   <mat-icon matListIcon>compare_arrows</mat-icon>
 </button>
 
-<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap>
-  <div fxFlex></div>
-  <div fxFlex>
-    <div fxFlex fxLayout="column" fxLayoutAlign="center center">
-      <div *ngIf="!matchService.match?.expired">
-        <div>{{matchService.match?.minute}}'</div>
-        <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
-      </div>
-      <div *ngIf="matchService.match?.expired" class="text-sm">
-        Match ended {{ matchService.match?.expiredOn | timeago:live}}
-      </div>
-    </div>
-  </div>
-  <div fxFlex></div>
-</div>
-<div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%">
-  <div fxFlex></div>
-  <div fxFlex="16%">
-    <h4 class="word-break-all">
-      {{matchService.match?.homeResult?.name}}
-    </h4>
-  </div>
-  <div fxFlex="16%">
-    <h1 class="text-center">
-      {{matchService.match?.homeResult?.score}}
-    </h1>
-  </div>
-  <div class="text-center" fxFlex="16%">-</div>
-  <div fxFlex="16%">
-    <h1 class="text-center">
-      {{matchService.match?.awayResult?.score}}
-    </h1>
-  </div>
-  <div fxFlex="16%">
-    <h4 class="word-break-all">
-      {{matchService.match?.awayResult?.name}}
-    </h4>
-  </div>
-  <div class="hidden lg:block w-1/3" fxFlex></div>
-</div>
-<div class="flex text-grey" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%">
-  <div fxFlex="grow">
-    <div class="text-xs lg:text-sm text-right" style="text-align:right"
-      *ngFor="let scorer of matchService.match?.homeResult?.scorers">
-      {{scorer}}
-      <fa-icon class="ml-1" [icon]="goalIcon"></fa-icon>
-    </div>
-  </div>
-  <div fxFlex="grow">
-    <div class="text-xs lg:text-sm text-left" style="text-align:left"
-      *ngFor="let scorer of matchService.match?.awayResult?.scorers">
-      <fa-icon class="mr-1" [icon]="goalIcon"></fa-icon>
-      {{scorer}}
-    </div>
-  </div>
-</div>
-<!-- <div *ngIf="!matchService.match?.expired" class="flex p-2">
-  <div class="w-1/6 hidden lg:block"></div>
-  <div class="flex-grow">
-    <div class="flex">
-      <div class="w-1/2 m-2">
-        <button class="w-full bg-grey-light text-white font-semibold p-2 px-4 rounded">
-          <span class="mr-2">Tactics</span>
-          <span class="rounded-full bg-grey-lighter uppercase px-2 py-1 text-sm text-white">0</span>
-        </button>
-      </div>
-      <div class="w-1/2 m-2">
-        <button (click)="substitution()"
-          class="w-full bg-indigo hover:bg-indigo-lighter text-white font-semibold p-2 px-4 rounded">
-          <span class="mr-2">Substitution</span>
-          <span
-            class="rounded-full bg-indigo-light uppercase px-2 py-1 text-sm text-white">{{matchService.subsRemaining}}</span>
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="w-1/6 hidden lg:block"></div>
-</div> -->
-
-<mat-tab-group animationDuration="0ms">
-  <mat-tab label="TIMELINE">
-    <div fxLayout="column" fxLayoutGap="3%" fxLayoutAlign="center">
-      <div *ngFor="let event of matchService.match?.timeline" fxFlex fxLayout="row">
-        <mat-card fxFlex class="event-card">
-          <mat-card-content>
-            <div class="px-2 py-2">
-              <span style="float: right;">{{event.minute}}'</span>
-              <div class="float-left font-semibold text-grey-darker text-sm mt-1">{{event.name}}</div>
-              <div class="clearfix"></div>
-              <hr class="mt-2 mb-2 py-0 my-0 border border-grey-lighter">
-              <div class="float-left font-semibold text-grey text-sm">{{event.squadName}}</div>
-              <div class="clearfix"></div>
-              <div class="p-2 text-center">
-                <pitch-player-card mode="squad" size="sm" [card]="getModel(event.cardId)"></pitch-player-card>
+<div id="wrapper"> <!-- give it an id -->
+  <div fxLayout="column" fxLayoutGap="8px" fxFill>
+      <div fxFlex="20">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap>
+          <div fxFlex></div>
+          <div fxFlex>
+            <div fxFlex fxLayout="column" fxLayoutAlign="center center">
+              <div *ngIf="!matchService.match?.expired">
+                <div>{{matchService.match?.minute}}'</div>
+                <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+              </div>
+              <div *ngIf="matchService.match?.expired" class="text-sm">
+                Match ended {{ matchService.match?.expiredOn | timeago:live}}
               </div>
             </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </div>
-  </mat-tab>
-  <mat-tab label="LINEUPS">
-    <h2>{{matchService.match?.awayResult?.name}}</h2>
-    <div class="lineup">
-      <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['GK'][0])" size="sm"
-              mode="squad">
-            </pitch-player-card>
+          </div>
+          <div fxFlex></div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%">
+          <div fxFlex></div>
+          <div fxFlex="16%">
+            <h4 class="word-break-all">
+              {{matchService.match?.homeResult?.name}}
+            </h4>
+          </div>
+          <div fxFlex="16%">
+            <h1 class="text-center">
+              {{matchService.match?.homeResult?.score}}
+            </h1>
+          </div>
+          <div class="text-center" fxFlex="16%">-</div>
+          <div fxFlex="16%">
+            <h1 class="text-center">
+              {{matchService.match?.awayResult?.score}}
+            </h1>
+          </div>
+          <div fxFlex="16%">
+            <h4 class="word-break-all">
+              {{matchService.match?.awayResult?.name}}
+            </h4>
+          </div>
+          <div class="hidden lg:block w-1/3" fxFlex></div>
+        </div>
+        <div class="flex text-grey" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%">
+          <div fxFlex="grow">
+            <div class="text-xs lg:text-sm text-right" style="text-align:right"
+              *ngFor="let scorer of matchService.match?.homeResult?.scorers">
+              {{scorer}}
+              <fa-icon class="ml-1" [icon]="goalIcon"></fa-icon>
+            </div>
+          </div>
+          <div fxFlex="grow">
+            <div class="text-xs lg:text-sm text-left" style="text-align:left"
+              *ngFor="let scorer of matchService.match?.awayResult?.scorers">
+              <fa-icon class="mr-1" [icon]="goalIcon"></fa-icon>
+              {{scorer}}
+            </div>
           </div>
         </div>
       </div>
-      <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][0])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][1])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][2])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][3])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
+      <div fxFlex="80" fxFill>
+        <mat-tab-group animationDuration="0ms" id="tab-group">
+          <mat-tab label="TIMELINE">
+            <div fxLayout="column" fxLayoutGap="3%" fxLayoutAlign="center">
+              <div *ngFor="let event of matchService.match?.timeline" fxFlex fxLayout="row">
+                <mat-card fxFlex class="event-card">
+                  <mat-card-content>
+                    <div class="px-2 py-2">
+                      <span style="float: right;">{{event.minute}}'</span>
+                      <div class="float-left font-semibold text-grey-darker text-sm mt-1">{{event.name}}</div>
+                      <div class="clearfix"></div>
+                      <hr class="mt-2 mb-2 py-0 my-0 border border-grey-lighter">
+                      <div class="float-left font-semibold text-grey text-sm">{{event.squadName}}</div>
+                      <div class="clearfix"></div>
+                      <div class="p-2 text-center">
+                        <pitch-player-card mode="squad" size="sm" [card]="getModel(event.cardId)"></pitch-player-card>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="LINEUPS">
+            <h2>{{matchService.match?.awayResult?.name}}</h2>
+            <div class="lineup">
+              <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+                <div fxFlex="25%">
+                  <div>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['GK'][0])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+              </div>
+              <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+                <div fxFlex="25%">
+                  <div>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][0])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][1])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][2])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['DEF'][3])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+                <div fxFlex="25%">
+                  <div>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][0])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][1])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][2])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][3])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+                <div fxFlex="25%"></div>
+                <div fxFlex="25%">
+                  <div>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['ATT'][0])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['ATT'][1])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%"></div>
+              </div>
+            </div>
+            <h2>{{matchService.match?.homeResult?.name}}</h2>
+            <div class="lineup">
+              <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+                <div fxFlex="25%"></div>
+                <div fxFlex="25%">
+                  <div>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['ATT'][0]].redCards > 0" class="ml-1 red" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['ATT'][0]].yellowCards > 0" class="ml-1 yellow" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['ATT'][0]].goals > 0" class="ml-1" [icon]="goalIcon"></fa-icon>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['ATT'][0])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['ATT'][1]].redCards > 0" class="ml-1 red" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['ATT'][1]].yellowCards > 0" class="ml-1 yellow" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['ATT'][1]].goals > 0" class="ml-1" [icon]="goalIcon"></fa-icon>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['ATT'][1])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%"></div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+                <div fxFlex="25%">
+                  <div>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['MID'][0]].redCards > 0" class="ml-1 red" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['MID'][0]].yellowCards > 0" class="ml-1 yellow" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['MID'][0]].goals > 0" class="ml-1" [icon]="goalIcon"></fa-icon>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][0])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['MID'][1]].redCards > 0" class="ml-1 red" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['MID'][1]].yellowCards > 0" class="ml-1 yellow" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['MID'][1]].goals > 0" class="ml-1" [icon]="goalIcon"></fa-icon>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][1])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['MID'][2]].redCards > 0" class="ml-1 red" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['MID'][2]].yellowCards > 0" class="ml-1 yellow" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['MID'][2]].goals > 0" class="ml-1" [icon]="goalIcon"></fa-icon>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][2])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['MID'][3]].redCards > 0" class="ml-1 red" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['MID'][3]].yellowCards > 0" class="ml-1 yellow" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['MID'][3]].goals > 0" class="ml-1" [icon]="goalIcon"></fa-icon>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][3])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+              </div>
+              <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+                <div fxFlex="25%">
+                  <div>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['DEF'][0]].redCards > 0" class="ml-1 red" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['DEF'][0]].yellowCards > 0" class="ml-1 yellow" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['DEF'][0]].goals > 0" class="ml-1" [icon]="goalIcon"></fa-icon>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][0])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['DEF'][1]].redCards > 0" class="ml-1 red" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['DEF'][1]].yellowCards > 0" class="ml-1 yellow" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['DEF'][1]].goals > 0" class="ml-1" [icon]="goalIcon"></fa-icon>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][1])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['DEF'][2]].redCards > 0" class="ml-1 red" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['DEF'][2]].yellowCards > 0" class="ml-1 yellow" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['DEF'][2]].goals > 0" class="ml-1" [icon]="goalIcon"></fa-icon>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][2])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+                <div fxFlex="25%">
+                  <div>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['DEF'][3]].redCards > 0" class="ml-1 red" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['DEF'][3]].yellowCards > 0" class="ml-1 yellow" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['DEF'][3]].goals > 0" class="ml-1" [icon]="goalIcon"></fa-icon>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][3])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+                <div fxFlex="25%">
+                  <div>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['GK'][0]].redCards > 0" class="ml-1 red" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['GK'][0]].yellowCards > 0" class="ml-1 yellow" [icon]="squareIcon"></fa-icon>
+                    <fa-icon *ngIf="matchService.match.cardLookup[matchService.match?.lineup.home.lineup['GK'][0]].goals > 0" class="ml-1" [icon]="goalIcon"></fa-icon>
+                    <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['GK'][0])" size="sm"
+                      mode="squad">
+                    </pitch-player-card>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div fxLayout="row wrap" fxLayoutGap="0.5%" fxLayoutAlign="space-around center">
+          <pitch-player-card *ngFor="let id of matchService.match?.lineup.home.subs; let i = index" [card]="getModel(id)"
+            size="sm" mode="squad">
+          </pitch-player-card>
+        </div> -->
+            <!-- <div fxLayout="row wrap" fxLayoutGap="0.5%" fxLayoutAlign="space-around center">
+          <pitch-player-card *ngFor="let id of matchService.match?.lineup.away.subs; let i = index" [card]="getModel(id)"
+            size="sm" mode="squad">
+          </pitch-player-card>
+        </div> -->
+          </mat-tab>
+          <mat-tab label="STATS">
+            <div fxLayout="column" fxLayoutWrap fxLayoutGap="2%" fxLayoutAlign="space-around stretch"
+              style="margin-top:10px;">
+              <!-- <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
+            <span fxFlex class="text-center">{{matchService.match?.homeResult?.name}}</span>
+            <span fxFlex></span>
+            <span fxFlex class="text-center">{{matchService.match?.awayResult?.name}}</span>
+          </div> -->
+              <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
+                <div class="text-center" fxFlex>{{matchService.match?.homeStats?.shots}}</div>
+                <div class="text-center" fxFlex>Shots</div>
+                <div class="text-center" fxFlex>{{matchService.match?.awayStats?.shots}}</div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
+                <div class="text-center" fxFlex>{{matchService.match?.homeStats?.shotsOnTarget}}</div>
+                <div class="text-center" fxFlex>Shots on target</div>
+                <div class="text-center" fxFlex>{{matchService.match?.awayStats?.shotsOnTarget}}</div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
+                <div class="text-center" fxFlex>{{matchService.match?.homeStats?.possession}}%</div>
+                <div class="text-center" fxFlex>Possession</div>
+                <div class="text-center" fxFlex>{{matchService.match?.awayStats?.possession}}%</div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
+                <div class="text-center" fxFlex>{{matchService.match?.homeStats?.fouls}}</div>
+                <div class="text-center" fxFlex>Fouls</div>
+                <div class="text-center" fxFlex>{{matchService.match?.awayStats?.fouls}}</div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
+                <div class="text-center" fxFlex>{{matchService.match?.homeStats?.yellowCards}}</div>
+                <div class="text-center" fxFlex>Yellow Cards</div>
+                <div class="text-center" fxFlex>{{matchService.match?.awayStats?.yellowCards}}</div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
+                <div class="text-center" fxFlex>{{matchService.match?.homeStats?.redCards}}</div>
+                <div class="text-center" fxFlex>Red Cards</div>
+                <div class="text-center" fxFlex>{{matchService.match?.awayStats?.redCards}}</div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
       </div>
-      <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][0])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][1])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][2])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['MID'][3])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-      </div>
-      <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-        <div fxFlex="25%"></div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['ATT'][0])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.away.lineup['ATT'][1])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%"></div>
-      </div>
-    </div>
-    <h2>{{matchService.match?.homeResult?.name}}</h2>
-    <div class="lineup">
-      <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-        <div fxFlex="25%"></div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['ATT'][0])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['ATT'][1])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%"></div>
-      </div>
-      <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][0])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][1])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][2])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['MID'][3])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-      </div>
-      <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][0])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][1])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][2])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['DEF'][3])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-      </div>
-      <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
-        <div fxFlex="25%">
-          <div>
-            <pitch-player-card [card]="getModel(matchService.match?.lineup.home.lineup['GK'][0])" size="sm"
-              mode="squad">
-            </pitch-player-card>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- <div fxLayout="row wrap" fxLayoutGap="0.5%" fxLayoutAlign="space-around center">
-      <pitch-player-card *ngFor="let id of matchService.match?.lineup.home.subs; let i = index" [card]="getModel(id)"
-        size="sm" mode="squad">
-      </pitch-player-card>
-    </div> -->
-    <!-- <div fxLayout="row wrap" fxLayoutGap="0.5%" fxLayoutAlign="space-around center">
-      <pitch-player-card *ngFor="let id of matchService.match?.lineup.away.subs; let i = index" [card]="getModel(id)"
-        size="sm" mode="squad">
-      </pitch-player-card>
-    </div> -->
-  </mat-tab>
-  <mat-tab label="STATS">
-    <div fxLayout="column" fxLayoutWrap fxLayoutGap="2%" fxLayoutAlign="space-around stretch" style="margin-top:10px;">
-      <!-- <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
-        <span fxFlex class="text-center">{{matchService.match?.homeResult?.name}}</span>
-        <span fxFlex></span>
-        <span fxFlex class="text-center">{{matchService.match?.awayResult?.name}}</span>
-      </div> -->
-      <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
-        <div class="text-center" fxFlex>{{matchService.match?.homeStats?.shots}}</div>
-        <div class="text-center" fxFlex>Shots</div>
-        <div class="text-center" fxFlex>{{matchService.match?.awayStats?.shots}}</div>
-      </div>
-      <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
-        <div class="text-center" fxFlex>{{matchService.match?.homeStats?.shotsOnTarget}}</div>
-        <div class="text-center" fxFlex>Shots on target</div>
-        <div class="text-center" fxFlex>{{matchService.match?.awayStats?.shotsOnTarget}}</div>
-      </div>
-      <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
-        <div class="text-center" fxFlex>{{matchService.match?.homeStats?.possession}}%</div>
-        <div class="text-center" fxFlex>Possession</div>
-        <div class="text-center" fxFlex>{{matchService.match?.awayStats?.possession}}%</div>
-      </div>
-      <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
-        <div class="text-center" fxFlex>{{matchService.match?.homeStats?.fouls}}</div>
-        <div class="text-center" fxFlex>Fouls</div>
-        <div class="text-center" fxFlex>{{matchService.match?.awayStats?.fouls}}</div>
-      </div>
-      <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
-        <div class="text-center" fxFlex>{{matchService.match?.homeStats?.yellowCards}}</div>
-        <div class="text-center" fxFlex>Yellow Cards</div>
-        <div class="text-center" fxFlex>{{matchService.match?.awayStats?.yellowCards}}</div>
-      </div>
-      <div fxLayout="row" fxLayoutWrap fxLayoutGap="3%">
-        <div class="text-center" fxFlex>{{matchService.match?.homeStats?.redCards}}</div>
-        <div class="text-center" fxFlex>Red Cards</div>
-        <div class="text-center" fxFlex>{{matchService.match?.awayStats?.redCards}}</div>
-      </div>
-    </div>
-  </mat-tab>
-</mat-tab-group>
+  </div>
+</div>
