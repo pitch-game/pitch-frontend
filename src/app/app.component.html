@@ -94,7 +94,7 @@
               <button *ngIf="isLoggedIn && profile" mat-button>
                 £{{profile.money | thousandSuff}}
               </button>
-              <button *ngIf="isLoggedIn && profile" mat-button>
+              <button *ngIf="isLoggedIn && profile" mat-button [matMenuTriggerFor]="levelMenu">
                 Level {{profile.level}}
               </button>
               <mat-menu #userMenu="matMenu" yPosition="above">
@@ -116,3 +116,9 @@
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
+
+<mat-menu #levelMenu="matMenu">
+  <button *ngIf="isLoggedIn && profile" mat-menu-item>
+    <mat-progress-bar [value]="(profile.xp / (profile.nextLevelAt || 10000)) * 100"></mat-progress-bar>
+  </button>
+</mat-menu>
