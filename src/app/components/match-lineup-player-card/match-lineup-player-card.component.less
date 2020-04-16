@@ -1,0 +1,35 @@
+.red {
+color: red;
+}
+  
+.yellow {
+color: gold;
+}
+
+.container {
+    position: relative;
+
+    > .icons {
+        z-index: 1000;
+        position: absolute;
+        width: 100%;
+
+        > .right {
+            position: absolute;
+            right: 5px;
+        }
+
+        > .left {
+            position: absolute;
+            left: 5px;
+        }
+
+        fa-icon {
+            padding: 2px;
+        }
+    }
+
+    pitch-player-card {
+        margin-top: 5px;
+    }
+}

@@ -1,0 +1,89 @@
+<div class="lineup">
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+        <div fxFlex="25%"></div>
+        <div fxFlex="25%">
+            <div>
+                <app-match-lineup-player-card [card]="cardLookup[lineupDetail.lineup['ATT'][0]]" size="sm" mode="squad">
+                </app-match-lineup-player-card>
+            </div>
+        </div>
+        <div fxFlex="25%">
+            <div>
+                <app-match-lineup-player-card [card]="cardLookup[lineupDetail.lineup['ATT'][1]]" size="sm" mode="squad">
+                </app-match-lineup-player-card>
+            </div>
+        </div>
+        <div fxFlex="25%"></div>
+    </div>
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+        <div fxFlex="25%">
+            <div>
+                <app-match-lineup-player-card [card]="cardLookup[lineupDetail.lineup['MID'][0]]" size="sm" mode="squad">
+                </app-match-lineup-player-card>
+            </div>
+        </div>
+        <div fxFlex="25%">
+            <div>
+                <app-match-lineup-player-card [card]="cardLookup[lineupDetail.lineup['MID'][1]]" size="sm" mode="squad">
+                </app-match-lineup-player-card>
+            </div>
+        </div>
+        <div fxFlex="25%">
+            <div>
+                <app-match-lineup-player-card [card]="cardLookup[lineupDetail.lineup['MID'][2]]" size="sm" mode="squad">
+                </app-match-lineup-player-card>
+            </div>
+        </div>
+        <div fxFlex="25%">
+            <div>
+                <app-match-lineup-player-card [card]="cardLookup[lineupDetail.lineup['MID'][3]]" size="sm" mode="squad">
+                </app-match-lineup-player-card>
+            </div>
+        </div>
+    </div>
+    <div class="flex pb-8 lg:pb-16" fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+        <div fxFlex="25%">
+            <div>
+                <app-match-lineup-player-card [card]="cardLookup[lineupDetail.lineup['DEF'][0]]" size="sm" mode="squad">
+                </app-match-lineup-player-card>
+            </div>
+        </div>
+        <div fxFlex="25%">
+            <div>
+                <app-match-lineup-player-card [card]="cardLookup[lineupDetail.lineup['DEF'][1]]" size="sm" mode="squad">
+                </app-match-lineup-player-card>
+            </div>
+        </div>
+        <div fxFlex="25%">
+            <div>
+                <app-match-lineup-player-card [card]="cardLookup[lineupDetail.lineup['DEF'][2]]" size="sm" mode="squad">
+                </app-match-lineup-player-card>
+            </div>
+        </div>
+        <div fxFlex="25%">
+            <div>
+                <app-match-lineup-player-card [card]="cardLookup[lineupDetail.lineup['DEF'][3]]" size="sm" mode="squad">
+                </app-match-lineup-player-card>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+        <div fxFlex="25%">
+            <div>
+                <app-match-lineup-player-card [card]="cardLookup[lineupDetail.lineup['GK'][0]]" size="sm" mode="squad">
+                </app-match-lineup-player-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div fxLayout="row wrap" fxLayoutGap="0.5%" fxLayoutAlign="space-around center">
+          <pitch-player-card *ngFor="let id of lineup.home.subs; let i = index" [card]="cardLookup[getModel(id)"
+            size="sm" mode="squad">
+          </app-match-lineup-player-card>
+        </div> -->
+<!-- <div fxLayout="row wrap" fxLayoutGap="0.5%" fxLayoutAlign="space-around center">
+          <pitch-player-card *ngFor="let id of lineup.away.subs; let i = index" [card]="cardLookup[getModel(id)"
+            size="sm" mode="squad">
+          </app-match-lineup-player-card>
+        </div> -->

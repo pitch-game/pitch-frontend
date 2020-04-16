@@ -65,6 +65,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
+import { MatchLineupPlayerCardComponent } from './components/match-lineup-player-card/match-lineup-player-card.component';
+import { MatchLineupSquadComponent } from './components/match-lineup-squad/match-lineup-squad.component';
 
 
 
@@ -87,7 +89,9 @@ import { MatInputModule } from '@angular/material/input';
     HomePage,
     OpenPackPopupComponent,
     SubstitutionDialogComponent,
-    PlayerSelectorDialogComponent
+    PlayerSelectorDialogComponent,
+    MatchLineupPlayerCardComponent,
+    MatchLineupSquadComponent
   ],
   imports: [
     BrowserModule,
