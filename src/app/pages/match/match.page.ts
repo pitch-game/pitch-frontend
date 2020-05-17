@@ -1,10 +1,10 @@
 import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faSpinner, faFutbol, faClock, faChartLine, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faFutbol, faClock, faChartLine, faUsers, faSquare } from '@fortawesome/free-solid-svg-icons';
 import { PitchPlayerCard } from 'pitch-player-card';
 import { MatchService } from 'src/app/services/match.service';
 import { SubstitutionDialogComponent } from 'src/app/components/substitution-dialog/substitution-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-match',
@@ -18,6 +18,7 @@ export class MatchComponent implements OnInit {
   timelineIcon = faClock;
   statsIcon = faChartLine;
   lineupIcon = faUsers;
+  squareIcon = faSquare;
 
   sessionId: string; 
   cmpRef: any;
@@ -36,9 +37,10 @@ export class MatchComponent implements OnInit {
   }
 
   //TODO fix performance
-  getModel(card: any) {
+  getModel(cardId: string) {
+    var card = this.matchService.match.cardLookup[cardId];
     if(!card) return new PitchPlayerCard();
-    return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity)
+    return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity, card.fitness)
   }
 
   substitution() {

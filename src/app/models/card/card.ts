@@ -14,4 +14,8 @@ export class Card {
     gamesPlayed: number;
     goalsScored: number;
     createdOn: Date;
+    
+    redCards: number;
+    yellowCards: number;
+    goals: number;
 }

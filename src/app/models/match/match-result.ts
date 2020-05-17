@@ -33,7 +33,6 @@ export interface AwayStats {
 export interface Event {
     minute: number;
     name: string;
-    card: Card;
     squadName: string;
     cardId: string;
 }
@@ -44,12 +43,25 @@ export interface Match {
     awayResult: AwayResult;
     homeStats: HomeStats;
     awayStats: AwayStats;
-    events: Event[];
+    timeline: Event[];
     expired: boolean;
     expiredOn: Date;
+    cardLookup: { [id: string]: Card; }
+    lineup: Lineup;
 }
 
 export interface MatchResult {
     match: Match;
     subsRemaining: number;
+}
+
+
+export interface Lineup {
+    home: LineupDetail;
+    away: LineupDetail;
+}
+
+export interface LineupDetail {
+    subs: string[];
+    lineup: { [id: string]: string[]; };
 }

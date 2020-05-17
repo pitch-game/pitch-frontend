@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { faTimes, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { PitchPlayerCard } from 'pitch-player-card';
 import { MatchHttpService } from 'src/app/services/http/match.http-service';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-substitution-dialog',
@@ -13,9 +13,6 @@ export class SubstitutionDialogComponent implements OnInit {
 
   rightChevron = faChevronRight;
 
-  destroy: Function;
-  callback: Function;
-
   off: PitchPlayerCard;
   on: PitchPlayerCard;
 
@@ -23,7 +20,7 @@ export class SubstitutionDialogComponent implements OnInit {
 
   squad: any;
 
-  constructor(private matchHttpService: MatchHttpService, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private matchHttpService: MatchHttpService, @Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<SubstitutionDialogComponent>) {
     this.matchId = data.matchId;
   }
 
@@ -40,12 +37,11 @@ export class SubstitutionDialogComponent implements OnInit {
   }
 
   card(card: any){
-    return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+    return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity, card.fitness);
   }
 
   async sub(){
     await this.matchHttpService.makeSub(this.off.id, this.on.id, this.matchId);
-    this.callback();
-    this.destroy();
+    this.dialogRef.close();
   }
 }

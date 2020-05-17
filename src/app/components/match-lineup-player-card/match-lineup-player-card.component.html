@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="icons">
+        <span class="left">
+            <fa-icon *ngIf="card.redCards > 0" class="ml-1 red" [icon]="squareIcon"></fa-icon>
+            <fa-icon *ngIf="card.yellowCards > 0" class="ml-1 yellow" [icon]="squareIcon"></fa-icon>
+        </span>
+        <span class="right">
+            <fa-icon *ngIf="card.goals > 0" class="ml-1" [icon]="goalIcon"></fa-icon>
+        </span>
+    </div>
+    <pitch-player-card [card]="ppc" size="sm" mode="squad"></pitch-player-card>
+</div>

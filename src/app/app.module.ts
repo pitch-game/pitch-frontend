@@ -26,7 +26,8 @@ import { TokenInterceptor } from './auth/interceptors/token.interceptor';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
-import { TimeAgoPipe } from 'time-ago-pipe';
+import { TimeagoModule } from 'ngx-timeago';
+
 import { BuyPageComponent } from './pages/store/buy/buy.page';
 import { MatchComponent } from './pages/match/match.page';
 import { CurrentSeasonPage } from './pages/seasons/current-season/current-season.page';
@@ -42,8 +43,32 @@ import { environment } from 'src/environments/environment';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonModule, MatMenuModule, MatGridListModule, MatTableModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTabsModule, MatProgressSpinnerModule, MatChipsModule, MatStepperModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatTooltipModule } from '@angular/material';
 import { PlayerSelectorDialogComponent } from './components/player-selector-dialog/player-selector-dialog.component';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule} from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatInputModule } from '@angular/material/input';
+import { MatchLineupPlayerCardComponent } from './components/match-lineup-player-card/match-lineup-player-card.component';
+import { MatchLineupSquadComponent } from './components/match-lineup-squad/match-lineup-squad.component';
+
+
 
 @NgModule({
   declarations: [
@@ -57,7 +82,6 @@ import { PlayerSelectorDialogComponent } from './components/player-selector-dial
     TrainingComponent,
     ClubComponent,
     ThousandSuffixesPipe,
-    TimeAgoPipe,
     BuyPageComponent,
     MatchComponent,
     CurrentSeasonPage,
@@ -65,7 +89,9 @@ import { PlayerSelectorDialogComponent } from './components/player-selector-dial
     HomePage,
     OpenPackPopupComponent,
     SubstitutionDialogComponent,
-    PlayerSelectorDialogComponent
+    PlayerSelectorDialogComponent,
+    MatchLineupPlayerCardComponent,
+    MatchLineupSquadComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +103,7 @@ import { PlayerSelectorDialogComponent } from './components/player-selector-dial
     InfiniteScrollModule,
     FormsModule,
     AuthModule.forRoot(),
+    TimeagoModule.forRoot(),
     FlexLayoutModule,
     MatSidenavModule,
     MatIconModule,

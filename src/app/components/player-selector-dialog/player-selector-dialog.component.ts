@@ -4,7 +4,7 @@ import { CardQueryModel } from 'src/app/models/card/card-query-model';
 import { PitchPlayerCard } from 'pitch-player-card';
 import { Observable, Subject } from 'rxjs';
 import { Card } from 'src/app/models/card/card';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { startWith, switchMap, scan } from 'rxjs/operators';
 
 @Component({
@@ -48,7 +48,7 @@ export class PlayerSelectorDialogComponent implements OnInit {
   }
 
   getPitchCard(card: Card){
-    return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity);
+    return new PitchPlayerCard(card.id, card.shortName, card.position, card.rating, card.rarity, card.fitness);
   }
 
   onScroll() {

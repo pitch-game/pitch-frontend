@@ -1,5 +1,5 @@
 <table mat-table matSort [dataSource]="cards$ | async" infiniteScroll [infiniteScrollDistance]="2"
-  [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [infiniteScrollContainer]="'.mat-drawer-content'"
+  [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [infiniteScrollContainer]="'#scroll-container'"
   [fromRoot]="true" style="text-align: center;">
   <ng-container matColumnDef="card">
     <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Card </th>
@@ -30,7 +30,7 @@
 
   <ng-container matColumnDef="createdOn">
     <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Created On </th>
-    <td mat-cell *matCellDef="let element"> {{element.createdOn | timeAgo}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.createdOn |  timeago:live}} </td>
   </ng-container>
 
   <!--<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>-->

@@ -52,21 +52,16 @@ display: inline;
   }
 }
 
-.content {
-  //margin-top: 58px
-}
-
-.position-fixed{
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
 .text-center {
   text-align: center;
 }
 
 button.quick-play {
   float: right;
+}
+
+#wrapper{
+  min-height: 100%; 
+  height: 100%; 
+  box-sizing: border-box;
 }

@@ -10,13 +10,14 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "less"
+          "style": "less"
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "preserveSymlinks": true,
             "outputPath": "dist/pitch-frontend",
             "index": "src/index.html",
@@ -57,6 +58,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
